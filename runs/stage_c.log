@@ -1,3 +1,4 @@
 protocol loaded; 150 intents described (sha 1e475a3a7ed6)
-Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1211.48it/s]
-Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  97%|█████████▋| 301/310 [00:00<00:00, 3005.74it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 3052.78it/s]
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1127.12it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 3201.71it/s]
+seed 11: resume (C=64.0, limits={'low': {'ms_per_text': 81.519, 'L_reference': 163.038}, 'primary': {'ms_per_text': 163.038, 'L_reference': 163.038}, 'high': {'ms_per_text': 326.076, 'L_reference': 163.038}})

@@ -113,7 +113,11 @@ class Runner:
         (self.out / "teacher_responses").mkdir(parents=True, exist_ok=True)
         self.task_name = task_name
         self.intent_labels = intent_labels
-        self.ceilings = ceilings  # {"teacher_tokens": N, "evals": N, "extract_logical_s": N}
+        self.ceilings = {
+            "teacher_tokens": ceilings.get("teacher_tokens", ceilings.get("teacher_tokens_per_run")),
+            "evals": ceilings.get("evals", ceilings.get("evals_per_run")),
+            "extract_logical_s": ceilings.get("extract_logical_s", ceilings.get("extract_logical_s_per_run")),
+        }
         self.ledger = Ledger(unit_ms_per_text)
         self.teacher_calls = 0
         self.teacher_tokens = {"in": 0, "out": 0}
