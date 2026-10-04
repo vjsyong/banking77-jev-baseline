@@ -42,16 +42,33 @@
 - `tools/compare_caches.py` — cache equivalence checker (HTTP vs in-process).
 - `tools/latency_probe.py` — single-stream latency probe for the endpoint.
 
-## Results
-- Classical (official test split): to fill from `runs/banking77/metrics.json`.
-- Jev (direct + semantic-feature models): to fill after `evaluate-jev`.
+## Update — extraction method switched to the batched path (final)
+
+Mid-run, extraction was switched from the single-record HTTP path (~0.50 s/text) to
+the productionized batched extractor (`tools/batched_extract.py`: width-grouped,
+cross-record, in-process; validated 0/256 flips + 7.98x on a 256-text slice). All
+13,083 texts were then re-extracted in one consistent pass in **896 s (68.5 ms/text,
+7.3x)**, followed by `extract-jev` reconciliation (0 fetches), `evaluate-jev`, and a
+full cross-check vs the single-path backup (`jev_cache.single_path_backup.sqlite`):
+
+- 3,547 common rows: **4 choice flips (0.11%; near-ties, all train rows)**
+- noul: max |Δ| 3.5e-3, p95 1.5e-3, mean 6.1e-4, **none > 5e-3** (56,752 comparisons)
+- deterministic: a full rerun reproduced identical flips/deltas
+
+## Results (final, official test split)
+- Classical: LR macro-F1 0.9094 / acc 0.9091; LinearSVC 0.9087 / 0.9084; CNB 0.8068 / 0.8143.
+- Jev direct choice (TinyJev-0.6B): macro-F1 **0.7574**, acc **0.7633**, top-3 acc **0.9078**;
+  batched per-text cost p50 **67.9 ms** (p95 86.6 ms).
+- Jev semantic-feature models (16 probes): LR 0.4038; LinearSVC 0.4307; ExtraTrees **0.5707** (macro-F1).
+  => the classifier-on-probes hypothesis fails for the initial 16-probe bank (as the plan's
+  limitations section anticipated: 16 broad signals do not encode 77 intent distinctions).
 
 ## Caveats
 - GPU0 (`0000:01:00.0`) is in an "Unknown Error" state on this box; all inference ran
   on GPU1. fp16 as shipped, no quantization.
-- The manifest's latency stats blend ~640 in-process shard entries with the HTTP
-  extraction entries; treat the latency summary as indicative, not a clean HTTP-only
-  measurement.
+- Batched extraction introduces <=0.11% near-tie choice flips vs the single-record
+  path (4/3,547 compared rows, all train; drift <=3.5e-3 on noul / probabilities;
+  fp16 kernel-shape noise). Reported latencies are true batched values (~68 ms/text).
 - Results are local research data (text + labels retained per the bundle's own
   instructions; keep private per dataset terms).
 

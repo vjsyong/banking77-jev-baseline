@@ -145,7 +145,7 @@ def main():
         idxs = list(range(s, min(s + args.chunk, n)))
         t0 = time.perf_counter()
         hidden = forward_groups(model, device, fam, encs, idxs)
-        per_record_s = (time.perf_counter() - t0) / len(idxs)  # forward share per record
+        fwd_share = (time.perf_counter() - t0) / len(idxs)  # forward share per record
         for ri in idxs:
             enc = encs[ri]
             t1 = time.perf_counter()
@@ -154,12 +154,12 @@ def main():
                 hidden_rows[q["row"]] = hidden[(ri, q["id"])]
             z = fam.logits(hidden_rows, enc)
             answers = {q["id"]: to_systemone(q, fam.answer(q, softmax(z[q["id"]]))) for q in enc.questions}
-            per_record_s += (time.perf_counter() - t1)  # readout share, attributed per record
+            record_s = fwd_share + (time.perf_counter() - t1)  # forward share + this record's readout
             payload = {"model": args.model, "answers": answers,
-                       "latency_ms": round(per_record_s * 1000, 2)}
+                       "latency_ms": round(record_s * 1000, 2)}
             got = response_answers(payload)
             assert all(q["id"] in got for q in enc.questions)
-            cache.put(keys[ri], payload, per_record_s)
+            cache.put(keys[ri], payload, record_s)
             done += 1
         chunk_ms.append(1000 * (time.perf_counter() - t0) / len(idxs))
         if (s // args.chunk) % 25 == 24 or s + args.chunk >= n:

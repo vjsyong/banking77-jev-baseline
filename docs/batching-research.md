@@ -123,16 +123,15 @@ Tools: `tools/slice_diffdetail.py`; raw: `runs/slice_diffdetail.json`.
   ~4 ms). Realized grid ratio 7.75× — matches the measured speedup (compute-bound,
   again). Full 13,083-text extraction ≈ ~15 min incl. load.
 
-## Adoption options (for decision)
+## Adoption — EXECUTED (2026-10-04): option 1
 
-1. **Switch now**: stop the current run, productionize the batched extractor
-   (cache-compatible writes: same keys, System-One-shaped payloads), re-extract all
-   13,083 texts in ~15–20 min as one consistent method. Needs ~30–60 min of
-   engineering + a final validation pass.
-2. **Finish current** (~85 min more), use the batched path for future rounds only
-   (probe-discovery re-extractions).
-3. Hybrid: finish current for the baseline record, build the fast extractor in
-   parallel for the discovery rounds.
+The batched path was adopted for the baseline's final data. Full run: 13,083 texts in
+896 s = 68.5 ms/text (**7.3x vs the single-record path's ~503 ms/text**), one
+consistent method, then reconcile + evaluate + full cross-check vs the single-path
+backup: **4/3,547 near-tie choice flips (0.11%, all train), noul max |Δ| 3.5e-3,
+none > 5e-3, deterministic across reruns**. Remaining options 2/3 are moot for this
+baseline; the fast extractor stays available for the probe-discovery rounds (any
+re-extraction now costs ~15 min instead of ~110).
 
 Residual risk to note: near-tie choices could in principle flip on a rare row given
 ≤3e-3 perturbations; none observed in 256. A 1k-text slice can be run in ~2 min for
