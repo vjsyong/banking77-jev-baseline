@@ -199,11 +199,169 @@ def stage1():
     print("stage1 done -> stage_eval_partial.json")
 
 
+def baselines_and_stage2():
+    """Baselines under the same allowance + registered analysis (brief §12)."""
+    import json as _json
+    from extract_probes import ProbeStore, text_key
+    from fe_extract import FEExtractor, bank_matrix  # noqa: F401
+    from sklearn.metrics import accuracy_score, f1_score
+    from learner import make_lr
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    from sklearn.pipeline import FeatureUnion
+    import scipy.sparse as sp
+
+    proto = load_protocol()
+    frozen = _json.loads((OUT / "frozen_banks.json").read_text())
+    partial = _json.loads((OUT / "stage_eval_partial.json").read_text())
+    test = test_rows()
+    y_test = np.array([r["label"] for r in test])
+    ttexts = [r["text"] for r in test]
+
+    store = ProbeStore(str(HERE / "runs" / "clinc150" / "fe_discovery" / "probe_scores.sqlite"))
+    ex = FEExtractor(store)
+    intents, idrec = _json.loads((HERE / "data" / "clinc150" / "intent_descriptions_frozen.json").read_text()), None
+    intents = intents["intents"]
+
+    # task question (identical across seeds)
+    defn = {"name": "task_intent", "question": "Which intent does this message express?",
+            "options": [{"id": f"i{k:03d}", "definition": f"{n}: {d}"} for k, (n, d) in enumerate(intents)]}
+    import hashlib as _h
+    from schema import canonical_hash
+    defn["slot"] = f"fe::task::{canonical_hash({k: v for k, v in defn.items() if k != 'slot'})[:12]}"
+
+    baselines = {}
+    for seed in SEEDS:
+        disc, conf, _ = load_split(seed)
+        td = [r["text"] for r in disc]
+        tc = [r["text"] for r in conf]
+        yd = np.array([r["label"] for r in disc])
+        yc = np.array([r["label"] for r in conf])
+        C = frozen["seeds"][seed]["C"]
+        # task extraction on test + this seed's conf (discovery done at setup)
+        for texts_set in (ttexts, tc):
+            ex.extract_choice_fe(defn["slot"], defn["question"], defn["options"], texts_set)
+
+        def task_probs(texts):
+            rows = []
+            for t in texts:
+                rows.append([min(max(store.choice_score_of(defn["slot"], text_key(t), o["id"]), 1e-6), 1.0)
+                             for o in defn["options"]])
+            return np.log(np.array(rows))
+
+        P_te, P_c, P_d = task_probs(ttexts), task_probs(tc), task_probs(td)
+        # direct choice zero-shot: argmax
+        pred_zs = [intents[i] for i in P_te.argmax(1)]
+        # supervised readout: LR on log-probs
+        ro = make_lr(C).fit(P_d, yd)
+        ro_te = ro.predict(P_te)
+        ro_c = make_lr(C).fit(P_d, yd).predict(P_c)
+        # tfidf only
+        vec = FeatureUnion([("word", TfidfVectorizer(**__import__("learner").TFIDF_WORD)),
+                            ("char", TfidfVectorizer(**__import__("learner").TFIDF_CHAR))]).fit(td + tc)
+        tf = make_lr(C).fit(vec.transform(td + tc), np.concatenate([yd, yc]))
+        tf_te = tf.predict(vec.transform(ttexts))
+        tf_c = tf.predict(vec.transform(tc))
+        # embeddings
+        from embeddings import encode as emb_encode, fit_full as emb_fit
+        e_d, _ = emb_encode(td)
+        e_c, _ = emb_encode(tc)
+        e_te, _ = emb_encode(ttexts)
+        sc, clf = emb_fit(np.vstack([e_d, e_c]), np.concatenate([yd, yc]), C=max(2.0, C / 8))
+        emb_te = clf.predict(sc.transform(e_te))
+        baselines[seed] = {
+            "C": C,
+            "zeroshot_direct_choice": {"test_macro_f1": round(float(f1_score(y_test, pred_zs, average="macro", zero_division=0)), 4)},
+            "supervised_readout": {"conf_macro_f1": round(float(f1_score(yc, ro_c, average="macro", zero_division=0)), 4),
+                                    "test_macro_f1": round(float(f1_score(y_test, ro_te, average="macro", zero_division=0)), 4)},
+            "tfidf_lr": {"conf_macro_f1": round(float(f1_score(yc, tf_c, average="macro", zero_division=0)), 4),
+                          "test_macro_f1": round(float(f1_score(y_test, tf_te, average="macro", zero_division=0)), 4)},
+            "embeddings_lr": {"test_macro_f1": round(float(f1_score(y_test, emb_te, average="macro", zero_division=0)), 4)},
+        }
+        print(f"seed {seed} baselines: tfidf {baselines[seed]['tfidf_lr']['test_macro_f1']} | "
+              f"emb {baselines[seed]['embeddings_lr']['test_macro_f1']} | readout {baselines[seed]['supervised_readout']['test_macro_f1']} | "
+              f"zs {baselines[seed]['zeroshot_direct_choice']['test_macro_f1']}", flush=True)
+    store.close()
+
+    # ---- registered analysis ----
+    rng = np.random.default_rng(7)
+    n = len(y_test)
+    idx = np.arange(n)
+    BOOT = 1000
+    resamples = [rng.choice(idx, size=n, replace=True) for _ in range(BOOT)]
+
+    def arm_preds(seed, arm, ln="primary"):
+        return np.array(partial[str(seed)][arm][ln]["test_preds"])
+
+    def f1(preds, sub=None):
+        if sub is None:
+            return float(f1_score(y_test, preds, average="macro", zero_division=0))
+        return float(f1_score(y_test[sub], preds[sub], average="macro", zero_division=0))
+
+    def paired(name_a, arm_a, arm_b):
+        per_seed = []
+        for seed in SEEDS:
+            if str(seed) not in partial or arm_a not in partial[str(seed)] or arm_b not in partial[str(seed)]:
+                continue
+            a, b = arm_preds(seed, arm_a), arm_preds(seed, arm_b)
+            per_seed.append({"seed": seed, "delta_pp": round(100 * (f1(a) - f1(b)), 2),
+                             "f1_a": round(f1(a), 4), "f1_b": round(f1(b), 4)})
+        if not per_seed:
+            return None
+        deltas = [d["delta_pp"] for d in per_seed]
+        boot = []
+        seeds_ok = [seed for seed in SEEDS if str(seed) in partial and arm_a in partial[str(seed)] and arm_b in partial[str(seed)]]
+        for sub in resamples:
+            ds = []
+            for seed in seeds_ok:
+                a, b = arm_preds(seed, arm_a), arm_preds(seed, arm_b)
+                ds.append(f1(a, sub) - f1(b, sub))
+            boot.append(100 * float(np.mean(ds)))
+        lo, hi = np.percentile(boot, [2.5, 97.5])
+        return {"contrast": name_a, "per_seed": per_seed,
+                "mean_delta_pp": round(float(np.mean(deltas)), 2),
+                "seed_spread_pp": [round(min(deltas), 2), round(max(deltas), 2)],
+                "bootstrap95_mean_pp": [round(float(lo), 2), round(float(hi), 2)],
+                f"positive_seeds": f"{sum(1 for d in deltas if d > 0)}/{len(deltas)}"}
+
+    analysis = {
+        "primary_F_minus_E_at_L_primary": paired("F-E", "F", "E"),
+        "secondary_E_minus_R": paired("E-R", "E", "R"),
+        "secondary_E_minus_U": paired("E-U", "E", "U"),
+        "secondary_F_minus_U": paired("F-U", "F", "U"),
+    }
+    # checkpoints (H4): quality vs charged extraction compute per arm
+    checkpoints = {}
+    for seed in SEEDS:
+        for arm in ARMS:
+            rp = STAGE / f"seed_{seed}" / arm / "rounds.jsonl"
+            if not rp.exists():
+                continue
+            rounds = [_json.loads(l) for l in rp.read_text().splitlines() if l.strip()]
+            cps = []
+            for frac in (0.25, 0.5, 0.75, 1.0):
+                limit_q = 900.0 * frac
+                bank = None
+                for r in rounds:
+                    if r["ledger"]["logical_charge_s"] <= limit_q:
+                        bank = r["current_primary"]
+                cps.append({"frac": frac, "cv": (bank or {}).get("cv"), "nq": (bank or {}).get("nq"),
+                            "charged_s": rounds[-1]["ledger"]["logical_charge_s"]})
+            checkpoints.setdefault(str(arm), {})[str(seed)] = cps
+
+    out = {"baselines": baselines, "analysis": analysis, "checkpoints": checkpoints,
+           "frozen_banks_sha256": frozen.get("sha256")}
+    (OUT / "confirm_report.json").write_text(_json.dumps(out, indent=1))
+    print(_json.dumps({k: (v if k != "baselines" else "saved") for k, v in analysis.items()}, indent=1))
+    print("written confirm_report.json")
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "stage1"
     if cmd == "freeze":
         freeze_banks()
     elif cmd == "stage1":
         stage1()
+    elif cmd == "stage2":
+        baselines_and_stage2()
     else:
         print("unknown")
