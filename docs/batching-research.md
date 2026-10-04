@@ -102,14 +102,48 @@ regardless).
 **D. Check whether `kev.serve` can load the TinyJev-0.6B checkpoint directly** —
 unknown format compatibility; worth 15 min of inspection before building B/C.
 
-## Verification plan (later, on a free GPU)
+## Verification — slice test (2026-10-04, done; GPU paused for it)
 
-1. Freeze N cached texts as golden (reference = current path; already ~1.8k cached
-   now, 13k once this run completes).
-2. Run candidate A on the same texts: require choice-string equality 100%, noul
-   |Δ| ≤ 1e-3, prob diffs monitored; investigate any drift (padding is masked, so
-   only fp16 reduction noise is expected).
-3. Measure wall per text for A; then decide whether to adopt for future runs.
+Triple-diff on the first 256 train texts (all with golden cache entries), same
+session: fresh single-record run vs fresh batched run vs golden cache.
+Tools: `tools/slice_diffdetail.py`; raw: `runs/slice_diffdetail.json`.
+
+| pair | choice flips | noul max |Δ| | noul p95 | choice-prob max |Δ| |
+|---|---:|---:|---:|---:|
+| single vs golden (noise floor) | 0/256 | 5.0e-05 | 4.7e-05 | 1.2e-07 |
+| batched vs golden | 0/256 | 3.11e-03 | 1.54e-03 | 3.1e-03 |
+| batched vs single | 0/256 | 3.08e-03 | 1.54e-03 | 3.1e-03 |
+
+- The current path is run-to-run deterministic (5e-5 = golden's own 4-dp rounding).
+- The batched path introduces a real but small fp16 drift: ≤~3e-3 on probabilities,
+  from different kernel shapes over the regrouped batches. **0 choice flips in 256**;
+  noul deltas are feature-level negligible (the downstream classical models consume
+  these as continuous features).
+- **Speed: 502.6 → 63.0 ms/text = 7.98×** in the same process/session (excl. encode
+  ~4 ms). Realized grid ratio 7.75× — matches the measured speedup (compute-bound,
+  again). Full 13,083-text extraction ≈ ~15 min incl. load.
+
+## Adoption options (for decision)
+
+1. **Switch now**: stop the current run, productionize the batched extractor
+   (cache-compatible writes: same keys, System-One-shaped payloads), re-extract all
+   13,083 texts in ~15–20 min as one consistent method. Needs ~30–60 min of
+   engineering + a final validation pass.
+2. **Finish current** (~85 min more), use the batched path for future rounds only
+   (probe-discovery re-extractions).
+3. Hybrid: finish current for the baseline record, build the fast extractor in
+   parallel for the discovery rounds.
+
+Residual risk to note: near-tie choices could in principle flip on a rare row given
+≤3e-3 perturbations; none observed in 256. A 1k-text slice can be run in ~2 min for
+more confidence. The batched path does not change the cache schema, so the bundle's
+`evaluate-jev` remains untouched either way.
+
+<!-- superseded note: the first slice run (tools/batched_slice_test.py) reported
+"30x vs cache median" — inflated, because first-256 cache latencies include the
+4-way-contended shard-seeding window (median 1.87s). Correct reference: same-session
+single-record 502.6 ms/text → 7.98x. -->
+
 
 ## Why it matters beyond this run
 
