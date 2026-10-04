@@ -58,7 +58,7 @@ def load_protocol():
     return proto
 
 
-def main():
+def main(setup_only=None):
     proto = load_protocol()
     ceilings = proto["ceilings"]
     cm = CostModel(**proto["cost_model"])
@@ -81,6 +81,8 @@ def main():
 
     summarize = []
     for seed in SEEDS:
+        if setup_only is not None and seed != setup_only:
+            continue
         rec = json.loads((DATA / f"seed_{seed}.json").read_text())
         disc = [row[r] for r in rec["discovery_row_ids"]]
         texts = [r["text"] for r in disc]
@@ -92,16 +94,17 @@ def main():
 
         sdir = STAGE / f"seed_{seed}"
         sdir.mkdir(exist_ok=True)
+        cache_p = sdir / "tfidf_cache.pkl"
         seed_meta = sdir / "seed_setup.json"
         if seed_meta.exists():
             setup = json.loads(seed_meta.read_text())
             C = setup["C"]
             limits = setup["limits"]
-            tfidf = FoldTFIDF(texts, folds)
+            tfidf = FoldTFIDF(texts, folds, cache_path=str(cache_p))
             print(f"seed {seed}: resume (C={C}, limits={limits})", flush=True)
         else:
             t0 = time.perf_counter()
-            tfidf = FoldTFIDF(texts, folds)
+            tfidf = FoldTFIDF(texts, folds, cache_path=str(cache_p))
             C, ctable = select_C(tfidf, y)
             # reference latency: supervised Choice readout pipeline (150 options + LR)
             task_opts = [{"id": f"i{k:03d}", "definition": f"{name}: {desc}"}
@@ -131,6 +134,11 @@ def main():
             print(f"seed {seed}: C={C} | L_ref={L} ms/text | limits "
                   f"{limits['low']['ms_per_text']}/{limits['primary']['ms_per_text']}/"
                   f"{limits['high']['ms_per_text']}", flush=True)
+
+        if setup_only == seed:
+            print(f"setup-only: seed {seed} ready", flush=True)
+            store.close()
+            return
 
         for arm in ARMS:
             outdir = sdir / f"{arm}"
@@ -172,4 +180,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) >= 3 and sys.argv[1] == "--setup-only":
+        main(setup_only=int(sys.argv[2]))
+    else:
+        main()

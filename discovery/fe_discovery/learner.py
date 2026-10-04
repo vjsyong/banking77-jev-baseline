@@ -10,6 +10,7 @@ Frozen design (brief §7):
   - vectorizer / IDF / scaling / classifier fit strictly within training folds.
 """
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -24,7 +25,7 @@ TFIDF_CHAR = dict(analyzer="char_wb", ngram_range=(2, 5), min_df=2, sublinear_tf
                   max_features=100_000)
 C_GRID = [4.0, 16.0, 64.0]
 CLIP = (1e-6, 1.0)
-LR_OVR_JOBS = 8
+LR_OVR_JOBS = int(os.environ.get("FE_LR_JOBS", "8"))
 
 
 def make_lr(C):
@@ -57,21 +58,51 @@ class FoldTFIDF:
     """Per-fold TF-IDF caches for one seed: vectorizers fit on fold-train only.
 
     mats[f] = (vectorizer, transformed_all_rows_csr)  (all rows, transform only)
+    Disk-cached per (seed texts, folds, params) so parallel arm workers load in
+    seconds instead of refitting.
     """
 
-    def __init__(self, texts, folds, n_folds=5):
+    def __init__(self, texts, folds, n_folds=5, cache_path=None):
+        import hashlib
+        import pickle
         from sklearn.feature_extraction.text import TfidfVectorizer
         from sklearn.pipeline import FeatureUnion
         self.n_folds = int(n_folds)
         self.folds = folds
         self.n = len(texts)
         self.mats = {}
+        if cache_path is not None and Path(cache_path).exists():
+            try:
+                with open(cache_path, "rb") as fh:
+                    blob = pickle.load(fh)
+                if blob.get("key") == self._key(texts, folds, n_folds):
+                    self.mats = blob["mats"]
+                    return
+            except Exception:
+                pass  # rebuild on any cache trouble
         for f in range(self.n_folds):
             tr = np.where(folds != f)[0]
             vec = FeatureUnion([("word", TfidfVectorizer(**TFIDF_WORD)),
                                 ("char", TfidfVectorizer(**TFIDF_CHAR))])
             vec.fit([texts[i] for i in tr])
             self.mats[f] = (vec, vec.transform(texts).tocsr())
+        if cache_path is not None:
+            try:
+                with open(cache_path, "wb") as fh:
+                    pickle.dump({"key": self._key(texts, folds, n_folds), "mats": self.mats}, fh)
+            except Exception:
+                pass
+
+    @staticmethod
+    def _key(texts, folds, n_folds):
+        import hashlib
+        h = hashlib.sha256()
+        h.update(str(n_folds).encode())
+        h.update(np.asarray(folds).tobytes())
+        h.update(str(len(texts)).encode())
+        for t in texts:
+            h.update(t.encode("utf-8", "ignore"))
+        return h.hexdigest()[:24]
 
 
 def semantic_block(store, defs, row_keys, clip=CLIP):
