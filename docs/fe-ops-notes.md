@@ -47,9 +47,12 @@ from round 1 under the pool (D3).
 
 ## 4. Deviation D2 — operational accelerators (value-identical)
 
-- FoldTFIDF now writes a per-seed disk cache (`seed_S/tfidf_cache.pkl`, keyed by
-  text/fold hash). Values identical to in-memory fits (verified by reload
-  equality check); load time ~2 s vs ~5-10 min refit per process.
+- FoldTFIDF writes a per-seed disk cache (`seed_S/tfidf_cache.pkl`, keyed by
+  text/fold hash). Values identical to in-memory fits (reload-equality check
+  passed). Correction to an earlier estimate: a fold fit is only ~4 s, so the
+  cache is a small belt-and-braces saving, not a major hot path; the setup
+  block's ~583 s was dominated by the one-time 150-option reference extraction
+  (kept serial per seed).
 - Pool workers: `FE_LR_JOBS=4` (OvR thread count; affects wall time only),
   `OMP/MKL_NUM_THREADS=6`, `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`.
 - The model, dtype, extractor, schema, selector, learner, and prompt templates
