@@ -1,0 +1,9 @@
+12 defs for calibration
+
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]
+Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1229.24it/s]
+
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 310/310 [00:00<00:00, 3258.09it/s]
+  bank  0q/ 0opt: 0.506 ms/text (1975.63 /s)
+EXIT=143

@@ -71,6 +71,30 @@ BASE = [
 
 
 def main():
+    import sys as _sys
+    _sys.path.insert(0, str(HERE / "discovery" / "fe_discovery"))
+    sys.path.insert(0, "/home/xrim/taildash/client")
+    try:
+        from taildash import TaskMonitor
+        mon = TaskMonitor(server="http://localhost:8080",
+                          title="FE: cost calibration v2 (B77 dev)", total=6,
+                          agent_name="fe-discovery")
+    except Exception:  # noqa: BLE001
+        class _N:
+            def log(self, *a, **k): pass
+            def update(self, *a, **k): pass
+            def complete(self, *a, **k): pass
+            def fail(self, *a, **k): pass
+        mon = _N()
+    try:
+        _calib_main(mon)
+        mon.complete("calibration done")
+    except BaseException as exc:  # noqa: BLE001
+        mon.fail(f"{type(exc).__name__}: {exc}")
+        raise
+
+
+def _calib_main(mon):
     pred = pd.read_csv(HERE / "runs/banking77/jev_predictions.csv")
     train = pred[pred["split"] == "train"].reset_index(drop=True)
     rng = np.random.RandomState(7)
@@ -88,8 +112,9 @@ def main():
         defs.append(d)
     print(f"{len(defs)} defs for calibration", flush=True)
 
-    store = ProbeStore(str(HERE / "runs" / "banking77" / "fe_discovery" / "probe_scores.sqlite"))
+    store = ProbeStore(str(HERE / "runs/banking77/fe_discovery" / "probe_scores.sqlite"))
     ex = FEExtractor(store)
+    mon.log(f"calibration on {len(texts)} rows, {len(defs)} defs")
     points, per_def_ms = [], {}
     for k in (0, 4, 8, 12):
         bank = defs[:k]
@@ -107,6 +132,7 @@ def main():
         out = measure_batched(ex, pipe, bank, cal_texts)
         n_opts = sum(len(d["options"]) for d in bank)
         points.append((len(bank), n_opts, out["ms_per_text"]))
+        mon.update(len(points) + 1, message=f"bank {k}q: {out['ms_per_text']} ms/text")
         print(f"  bank {k:2d}q/{n_opts:2d}opt: {out['ms_per_text']} ms/text ({out['throughput']} /s)", flush=True)
 
     model = CostModel.fit(points)

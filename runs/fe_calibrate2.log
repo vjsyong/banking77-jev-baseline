@@ -1,0 +1,9 @@
+12 defs for calibration
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1107.96it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  94%|█████████▎| 290/310 [00:00<00:00, 2888.15it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 2963.00it/s]
+  bank  0q/ 0opt: 0.422 ms/text (2367.31 /s)
+/home/xrim/banking77-jev-baseline/venv-serve/lib/python3.12/site-packages/joblib/externals/loky/backend/resource_tracker.py:444: UserWarning: resource_tracker: There appear to be 14 leaked semlock objects to clean up at shutdown: {'/loky-1559759-55e4dyi3': 1, '/loky-1559759-jywt8c28': 1, '/loky-1559759-nsfd3e8b': 1, '/loky-1559759-mnymkk17': 1, '/loky-1559759-jmrana68': 1, '/loky-1559759-87ymh9fe': 1, '/loky-1559759-9bi4dfr1': 1, '/loky-1559759-okhs3iim': 1, '/loky-1559759-po4plory': 1, '/loky-1559759-al5ow7g8': 1, '/loky-1559759-u0t235xc': 1, '/loky-1559759-mcmfyfus': 1, '/loky-1559759-76pf_23x': 1, '/loky-1559759-m682mte_': 1}
+  warnings.warn(
+/home/xrim/banking77-jev-baseline/venv-serve/lib/python3.12/site-packages/joblib/externals/loky/backend/resource_tracker.py:444: UserWarning: resource_tracker: There appear to be 1 leaked folder objects to clean up at shutdown: {'/dev/shm/joblib_memmapping_folder_1559759_04460ab8d86240a0ab5d00dd9f3ae61e_0d13e48522534ccebab6a508e4342d7e': 1}
+  warnings.warn(
+EXIT=137

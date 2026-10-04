@@ -1,0 +1,618 @@
+{
+ "intents": [
+  [
+   "accept_reservations",
+   "Check whether a restaurant accepts reservations."
+  ],
+  [
+   "account_blocked",
+   "Get help restoring access to a blocked bank account."
+  ],
+  [
+   "alarm",
+   "Set, check, or manage an alarm."
+  ],
+  [
+   "application_status",
+   "Check the status of a credit card or loan application."
+  ],
+  [
+   "apr",
+   "Find the annual percentage rate for a credit product."
+  ],
+  [
+   "are_you_a_bot",
+   "Ask whether the assistant is a bot or human."
+  ],
+  [
+   "balance",
+   "Check the available balance in a bank account."
+  ],
+  [
+   "bill_balance",
+   "Find the outstanding amount owed on a bill."
+  ],
+  [
+   "bill_due",
+   "Find the payment due date for a bill."
+  ],
+  [
+   "book_flight",
+   "Book an airline flight."
+  ],
+  [
+   "book_hotel",
+   "Book a hotel stay."
+  ],
+  [
+   "calculator",
+   "Calculate the result of a mathematical expression."
+  ],
+  [
+   "calendar",
+   "Check events or availability on a calendar."
+  ],
+  [
+   "calendar_update",
+   "Add, change, or remove a calendar event."
+  ],
+  [
+   "calories",
+   "Find the calorie content of a food or meal."
+  ],
+  [
+   "cancel",
+   "Stop the current request or action."
+  ],
+  [
+   "cancel_reservation",
+   "Cancel an existing reservation."
+  ],
+  [
+   "car_rental",
+   "Find or book a rental car."
+  ],
+  [
+   "card_declined",
+   "Find out why a payment card was declined."
+  ],
+  [
+   "carry_on",
+   "Check airline carry-on baggage rules and allowances."
+  ],
+  [
+   "change_accent",
+   "Change the accent used by the assistant's voice."
+  ],
+  [
+   "change_ai_name",
+   "Change the name used to address the assistant."
+  ],
+  [
+   "change_language",
+   "Change the language the assistant uses."
+  ],
+  [
+   "change_speed",
+   "Change how quickly the assistant speaks."
+  ],
+  [
+   "change_user_name",
+   "Change the name the assistant uses for the user."
+  ],
+  [
+   "change_volume",
+   "Adjust the assistant's audio volume."
+  ],
+  [
+   "confirm_reservation",
+   "Verify that an existing reservation is confirmed."
+  ],
+  [
+   "cook_time",
+   "Find how long a particular food takes to cook."
+  ],
+  [
+   "credit_limit",
+   "Check the current credit limit on a credit card."
+  ],
+  [
+   "credit_limit_change",
+   "Request a change to a credit card's credit limit."
+  ],
+  [
+   "credit_score",
+   "Check the user's credit score."
+  ],
+  [
+   "current_location",
+   "Find the user's current geographic location."
+  ],
+  [
+   "damaged_card",
+   "Get help replacing a damaged payment card."
+  ],
+  [
+   "date",
+   "Ask for today's date or another calendar date."
+  ],
+  [
+   "definition",
+   "Find the definition of a word or phrase."
+  ],
+  [
+   "direct_deposit",
+   "Set up or get information about direct deposit."
+  ],
+  [
+   "directions",
+   "Get navigation instructions to a destination."
+  ],
+  [
+   "distance",
+   "Find the distance between two locations."
+  ],
+  [
+   "do_you_have_pets",
+   "Ask whether the assistant has pets."
+  ],
+  [
+   "exchange_rate",
+   "Find the exchange rate between currencies."
+  ],
+  [
+   "expiration_date",
+   "Check when a payment card expires."
+  ],
+  [
+   "find_phone",
+   "Locate a misplaced phone."
+  ],
+  [
+   "flight_status",
+   "Check a flight's departure, arrival, or delay status."
+  ],
+  [
+   "flip_coin",
+   "Generate a random heads-or-tails result."
+  ],
+  [
+   "food_last",
+   "Find how long a food remains safe or fresh."
+  ],
+  [
+   "freeze_account",
+   "Temporarily freeze a bank account."
+  ],
+  [
+   "fun_fact",
+   "Ask for an interesting fact."
+  ],
+  [
+   "gas",
+   "Find nearby gas stations or local fuel prices."
+  ],
+  [
+   "gas_type",
+   "Find the recommended fuel type for a vehicle."
+  ],
+  [
+   "goodbye",
+   "End the conversation with a farewell."
+  ],
+  [
+   "greeting",
+   "Start the conversation with a greeting."
+  ],
+  [
+   "how_busy",
+   "Check how crowded or busy a place currently is."
+  ],
+  [
+   "how_old_are_you",
+   "Ask the assistant's age."
+  ],
+  [
+   "improve_credit_score",
+   "Get advice on improving a credit score."
+  ],
+  [
+   "income",
+   "Check the user's income or earnings."
+  ],
+  [
+   "ingredient_substitution",
+   "Find a substitute for a recipe ingredient."
+  ],
+  [
+   "ingredients_list",
+   "Find the ingredients needed for a dish."
+  ],
+  [
+   "insurance",
+   "Check existing insurance coverage or policy details."
+  ],
+  [
+   "insurance_change",
+   "Change an insurance policy or coverage."
+  ],
+  [
+   "interest_rate",
+   "Check the interest rate on an account or loan."
+  ],
+  [
+   "international_fees",
+   "Check fees for international card transactions or withdrawals."
+  ],
+  [
+   "international_visa",
+   "Find visa requirements for international travel."
+  ],
+  [
+   "jump_start",
+   "Get instructions for jump-starting a vehicle."
+  ],
+  [
+   "last_maintenance",
+   "Find when a vehicle last received maintenance."
+  ],
+  [
+   "lost_luggage",
+   "Report or get help locating lost airline luggage."
+  ],
+  [
+   "make_call",
+   "Place a phone call to a person or business."
+  ],
+  [
+   "maybe",
+   "Express uncertainty or tentative agreement."
+  ],
+  [
+   "meal_suggestion",
+   "Get suggestions for what to eat."
+  ],
+  [
+   "meaning_of_life",
+   "Ask about life's meaning or purpose."
+  ],
+  [
+   "measurement_conversion",
+   "Convert a quantity between measurement units."
+  ],
+  [
+   "meeting_schedule",
+   "Check the time or details of an existing meeting."
+  ],
+  [
+   "min_payment",
+   "Find the minimum required credit card payment."
+  ],
+  [
+   "mpg",
+   "Find a vehicle's fuel efficiency in miles per gallon."
+  ],
+  [
+   "new_card",
+   "Request an additional or newly issued payment card."
+  ],
+  [
+   "next_holiday",
+   "Find the next upcoming holiday."
+  ],
+  [
+   "next_song",
+   "Skip to the next music track."
+  ],
+  [
+   "no",
+   "Reject a suggestion or answer a question negatively."
+  ],
+  [
+   "nutrition_info",
+   "Find food nutrient information beyond calorie counts."
+  ],
+  [
+   "oil_change_how",
+   "Get instructions for changing a vehicle's oil."
+  ],
+  [
+   "oil_change_when",
+   "Find when a vehicle needs its next oil change."
+  ],
+  [
+   "order",
+   "Place an order for goods or food."
+  ],
+  [
+   "order_checks",
+   "Order paper checks for a bank account."
+  ],
+  [
+   "order_status",
+   "Check the progress or delivery status of an order."
+  ],
+  [
+   "pay_bill",
+   "Make a payment toward a bill."
+  ],
+  [
+   "payday",
+   "Find when the next paycheck will arrive."
+  ],
+  [
+   "pin_change",
+   "Change a payment card's PIN."
+  ],
+  [
+   "play_music",
+   "Start playing music, an artist, album, or song."
+  ],
+  [
+   "plug_type",
+   "Find electrical plug types used at a travel destination."
+  ],
+  [
+   "pto_balance",
+   "Check remaining paid time off."
+  ],
+  [
+   "pto_request",
+   "Submit a request for paid time off."
+  ],
+  [
+   "pto_request_status",
+   "Check whether a paid time off request was approved."
+  ],
+  [
+   "pto_used",
+   "Check how much paid time off has been used."
+  ],
+  [
+   "recipe",
+   "Get cooking instructions for a dish."
+  ],
+  [
+   "redeem_rewards",
+   "Redeem accumulated credit card or loyalty rewards."
+  ],
+  [
+   "reminder",
+   "Create or check a reminder."
+  ],
+  [
+   "reminder_update",
+   "Change or delete an existing reminder."
+  ],
+  [
+   "repeat",
+   "Ask the assistant to repeat its previous response."
+  ],
+  [
+   "replacement_card_duration",
+   "Find how long a replacement payment card takes to arrive."
+  ],
+  [
+   "report_fraud",
+   "Report suspected fraud or unauthorized account activity."
+  ],
+  [
+   "report_lost_card",
+   "Report a lost or stolen payment card."
+  ],
+  [
+   "reset_settings",
+   "Restore the assistant's settings to their defaults."
+  ],
+  [
+   "restaurant_reservation",
+   "Book a table at a restaurant."
+  ],
+  [
+   "restaurant_reviews",
+   "Find reviews or ratings for a restaurant."
+  ],
+  [
+   "restaurant_suggestion",
+   "Get recommendations for restaurants."
+  ],
+  [
+   "rewards_balance",
+   "Check accumulated credit card or loyalty rewards."
+  ],
+  [
+   "roll_dice",
+   "Generate a random dice-roll result."
+  ],
+  [
+   "rollover_401k",
+   "Get help transferring funds from a former employer's 401(k)."
+  ],
+  [
+   "routing",
+   "Find a bank account's routing number."
+  ],
+  [
+   "schedule_maintenance",
+   "Book a vehicle maintenance appointment."
+  ],
+  [
+   "schedule_meeting",
+   "Arrange a new meeting with participants."
+  ],
+  [
+   "share_location",
+   "Send the user's location to someone."
+  ],
+  [
+   "shopping_list",
+   "View items on a shopping list."
+  ],
+  [
+   "shopping_list_update",
+   "Add, change, or remove shopping list items."
+  ],
+  [
+   "smart_home",
+   "Control connected home devices."
+  ],
+  [
+   "spelling",
+   "Find how to spell a word."
+  ],
+  [
+   "spending_history",
+   "Review spending totals or patterns over time."
+  ],
+  [
+   "sync_device",
+   "Connect or synchronize a device with the assistant."
+  ],
+  [
+   "taxes",
+   "Get information about taxes or tax obligations."
+  ],
+  [
+   "tell_joke",
+   "Ask the assistant to tell a joke."
+  ],
+  [
+   "text",
+   "Send a text message to someone."
+  ],
+  [
+   "thank_you",
+   "Express gratitude to the assistant."
+  ],
+  [
+   "time",
+   "Ask for the current time in a location."
+  ],
+  [
+   "timer",
+   "Start, check, or manage a countdown timer."
+  ],
+  [
+   "timezone",
+   "Find a location's time zone."
+  ],
+  [
+   "tire_change",
+   "Get instructions for changing a vehicle tire."
+  ],
+  [
+   "tire_pressure",
+   "Check current or recommended vehicle tire pressure."
+  ],
+  [
+   "todo_list",
+   "View tasks on a to-do list."
+  ],
+  [
+   "todo_list_update",
+   "Add, edit, complete, or remove to-do list tasks."
+  ],
+  [
+   "traffic",
+   "Check road congestion or traffic conditions."
+  ],
+  [
+   "transactions",
+   "Review individual bank account or card transactions."
+  ],
+  [
+   "transfer",
+   "Move money between accounts or to another person."
+  ],
+  [
+   "translate",
+   "Translate words or text into another language."
+  ],
+  [
+   "travel_alert",
+   "Check travel advisories or safety warnings for a destination."
+  ],
+  [
+   "travel_notification",
+   "Notify a bank of upcoming travel to prevent card restrictions."
+  ],
+  [
+   "travel_suggestion",
+   "Get recommendations for travel destinations."
+  ],
+  [
+   "uber",
+   "Request an Uber ride or check ride options."
+  ],
+  [
+   "update_playlist",
+   "Add, remove, or rearrange songs in a playlist."
+  ],
+  [
+   "user_name",
+   "Ask what name the assistant has for the user."
+  ],
+  [
+   "vaccines",
+   "Find vaccinations needed or recommended for a travel destination."
+  ],
+  [
+   "w2",
+   "Find or obtain a W-2 tax form."
+  ],
+  [
+   "weather",
+   "Check current weather or a forecast."
+  ],
+  [
+   "what_are_your_hobbies",
+   "Ask about the assistant's hobbies or interests."
+  ],
+  [
+   "what_can_i_ask_you",
+   "Ask what tasks or questions the assistant can handle."
+  ],
+  [
+   "what_is_your_name",
+   "Ask the assistant's name."
+  ],
+  [
+   "what_song",
+   "Identify the song currently playing."
+  ],
+  [
+   "where_are_you_from",
+   "Ask where the assistant comes from."
+  ],
+  [
+   "whisper_mode",
+   "Enable or disable the assistant's whispered speech."
+  ],
+  [
+   "who_do_you_work_for",
+   "Ask which organization the assistant works for."
+  ],
+  [
+   "who_made_you",
+   "Ask who created the assistant."
+  ],
+  [
+   "yes",
+   "Accept a suggestion or answer a question affirmatively."
+  ]
+ ],
+ "sha256": "1e475a3a7ed6f3e5806b7d7c51e491a6b84d8948922ab14364ebbe5c909d26be",
+ "model": "gpt-6.1-sol",
+ "temperature": 0.0,
+ "usage": {
+  "prompt_tokens": 4950,
+  "completion_tokens": 2246,
+  "total_tokens": 7196,
+  "prompt_tokens_details": {
+   "cached_tokens": 4224
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 48
+  }
+ }
+}
