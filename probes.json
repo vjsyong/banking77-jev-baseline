@@ -1,0 +1,66 @@
+[
+  {
+    "id": "asks_for_information",
+    "question": "Is the customer primarily asking for information, an explanation, an eligibility rule, or a limit?"
+  },
+  {
+    "id": "requests_an_action",
+    "question": "Is the customer asking for an account, card, payment, or transfer action to be performed or changed?"
+  },
+  {
+    "id": "reports_a_problem",
+    "question": "Is the customer reporting that something has failed, gone wrong, or produced an unexpected result?"
+  },
+  {
+    "id": "unauthorised_activity",
+    "question": "Does the customer say they do not recognize or did not authorize an account event, card payment, or withdrawal?"
+  },
+  {
+    "id": "transaction_is_pending",
+    "question": "Does the customer describe a payment, withdrawal, top-up, or transfer that is still pending or incomplete?"
+  },
+  {
+    "id": "transaction_is_completed",
+    "question": "Does the customer describe a payment, withdrawal, top-up, or transfer as completed or posted?"
+  },
+  {
+    "id": "money_outgoing",
+    "question": "Is the issue about money leaving the customer's account, including a payment, withdrawal, fee, or outgoing transfer?"
+  },
+  {
+    "id": "money_incoming",
+    "question": "Is the issue about money expected to arrive in the customer's account, including a transfer, refund, or incoming payment?"
+  },
+  {
+    "id": "physical_or_virtual_card",
+    "question": "Is a physical or virtual payment card central to the customer's issue or request?"
+  },
+  {
+    "id": "cash_or_atm",
+    "question": "Is cash, a cash deposit, a cash withdrawal, or an ATM central to the customer's issue or request?"
+  },
+  {
+    "id": "bank_transfer",
+    "question": "Is a bank transfer central to the customer's issue or request?"
+  },
+  {
+    "id": "account_funding_or_top_up",
+    "question": "Is adding money to the account or topping up a balance central to the customer's issue or request?"
+  },
+  {
+    "id": "fee_or_charge",
+    "question": "Is the customer asking about an unexpected fee, charge, exchange cost, or amount taken?"
+  },
+  {
+    "id": "currency_conversion",
+    "question": "Does the issue involve a foreign currency, currency conversion, exchange rate, or cross-border use?"
+  },
+  {
+    "id": "cancel_or_reverse",
+    "question": "Does the customer want a transaction, transfer, payment, or top-up cancelled, stopped, reversed, or reverted?"
+  },
+  {
+    "id": "account_access_or_security",
+    "question": "Is the issue about signing in, a passcode, identity verification, account access, a lost device, or account security?"
+  }
+]
