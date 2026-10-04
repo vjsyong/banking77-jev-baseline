@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
-"""Teacher model client for the discovery pilot.
+"""Teacher model client for the discovery experiments.
 
-Talks to the operator-configured strong model (custom_providers entry
-"Api.lmuai.com", default model gpt-5.6-sol) through its OpenAI-compatible
-endpoint. The API key is read from ~/.hermes/config.yaml at runtime and is
-never logged or written anywhere.
+Resolves two provider sources at runtime (API keys are read from config on
+disk and are never logged or printed):
+
+- "lmuai-pro" (default) -> ~/.config/opencode/opencode.json, provider.lmuai-pro,
+  base https://api.lmuai.ai/v1 (serves gpt-6.1-sol)
+- "Api.lmuai.com" -> ~/.hermes/config.yaml custom_providers entry (legacy)
 
 Library:
     from teacher_client import teacher_chat
     text = teacher_chat([{"role": "user", "content": "..."}], temperature=0.4, seed=1)
 
 CLI:
-    python teacher_client.py "prompt" [--temperature 0.4] [--seed 1]
+    python teacher_client.py "prompt" [--provider lmuai-pro] [--model gpt-6.1-sol]
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
+import re
 import sys
 import time
 import urllib.request
@@ -24,23 +28,60 @@ from pathlib import Path
 
 import yaml
 
-CONFIG = Path.home() / ".hermes" / "config.yaml"
-PROVIDER_NAME = "Api.lmuai.com"
-DEFAULT_MODEL = "gpt-5.6-sol"
+HERMES_CONFIG = Path.home() / ".hermes" / "config.yaml"
+OPENCODE_CONFIG = Path.home() / ".config" / "opencode" / "opencode.json"
+HERMES_PROVIDER = "Api.lmuai.com"
+DEFAULT_PROVIDER = "lmuai-pro"
+DEFAULT_MODEL = "gpt-6.1-sol"
 
 
-def _provider() -> dict:
-    cfg = yaml.safe_load(CONFIG.read_text())
-    for p in cfg.get("custom_providers", []):
-        if p.get("name") == PROVIDER_NAME:
-            return p
-    raise RuntimeError(f"provider {PROVIDER_NAME!r} not found in {CONFIG}")
+def _env_secret(name: str) -> str | None:
+    """Resolve an env-style secret: process env first, then ~/.bashrc export."""
+    val = os.environ.get(name)
+    if val:
+        return val
+    try:
+        for line in (Path.home() / ".bashrc").read_text().splitlines():
+            m = re.match(rf"\s*(?:export\s+)?{re.escape(name)}=(.*)$", line)
+            if m:
+                v = m.group(1).strip().strip("'\"")
+                if v:
+                    return v
+    except Exception:  # noqa: BLE001
+        pass
+    return None
 
 
-def teacher_chat(messages: list[dict], model: str = DEFAULT_MODEL, temperature: float = 0.4,
-                 seed: int | None = None, max_tokens: int = 1600, timeout: int = 150,
-                 retries: int = 2) -> str:
-    p = _provider()
+def _resolve_provider(name: str) -> dict:
+    """Return {"base_url", "api_key"} for a provider name. Keys stay in-process."""
+    if name == HERMES_PROVIDER:
+        cfg = yaml.safe_load(HERMES_CONFIG.read_text())
+        for p in cfg.get("custom_providers", []):
+            if p.get("name") == name:
+                return {"base_url": p["base_url"], "api_key": p["api_key"]}
+        raise RuntimeError(f"provider {name!r} not found in {HERMES_CONFIG}")
+    oc = json.loads(OPENCODE_CONFIG.read_text())
+    prov = (oc.get("provider") or {}).get(name)
+    if not prov:
+        raise RuntimeError(f"provider {name!r} not found in {OPENCODE_CONFIG}")
+    opts = prov.get("options") or {}
+    if not opts.get("baseURL"):
+        raise RuntimeError(f"provider {name!r} missing baseURL")
+    key = str(opts.get("apiKey") or "")
+    m = re.fullmatch(r"\{env:([A-Za-z0-9_]+)\}", key.strip())
+    if m:
+        key = _env_secret(m.group(1)) or ""
+    if not key:
+        raise RuntimeError(f"provider {name!r}: apiKey could not be resolved")
+    return {"base_url": opts["baseURL"], "api_key": key}
+
+
+def teacher_chat(messages: list[dict], model: str | None = None, provider: str | None = None,
+                 temperature: float = 0.4, seed: int | None = None, max_tokens: int = 1600,
+                 timeout: int = 240, retries: int = 2) -> str:
+    provider = provider or DEFAULT_PROVIDER
+    model = model or DEFAULT_MODEL
+    p = _resolve_provider(provider)
     body: dict = {"model": model, "messages": messages, "temperature": temperature,
                   "max_tokens": max_tokens}
     if seed is not None:
@@ -58,7 +99,7 @@ def teacher_chat(messages: list[dict], model: str = DEFAULT_MODEL, temperature: 
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 out = json.loads(r.read().decode("utf-8"))
             dt = time.perf_counter() - t0
-            print(f"[teacher] {model} ok in {dt:.1f}s", file=sys.stderr, flush=True)
+            print(f"[teacher] {provider}/{model} ok in {dt:.1f}s", file=sys.stderr, flush=True)
             return out["choices"][0]["message"]["content"]
         except Exception as exc:  # noqa: BLE001
             last = exc
@@ -72,9 +113,11 @@ def main():
     ap.add_argument("--temperature", type=float, default=0.4)
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--model", default=DEFAULT_MODEL)
+    ap.add_argument("--provider", default=DEFAULT_PROVIDER)
     args = ap.parse_args()
     out = teacher_chat([{"role": "user", "content": args.prompt}],
-                       temperature=args.temperature, seed=args.seed, model=args.model)
+                       temperature=args.temperature, seed=args.seed,
+                       model=args.model, provider=args.provider)
     print(out)
 
 

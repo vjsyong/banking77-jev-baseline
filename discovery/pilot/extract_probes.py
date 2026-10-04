@@ -50,6 +50,9 @@ class ProbeStore:
         self.db.execute("""CREATE TABLE IF NOT EXISTS probe_defs (
             probe_id TEXT PRIMARY KEY, question TEXT NOT NULL,
             created_at TEXT DEFAULT CURRENT_TIMESTAMP)""")
+        self.db.execute("""CREATE TABLE IF NOT EXISTS choice_scores (
+            probe_id TEXT NOT NULL, text_sha TEXT NOT NULL, opt TEXT NOT NULL,
+            score REAL NOT NULL, PRIMARY KEY (probe_id, text_sha, opt))""")
         self.db.commit()
 
     def define(self, probe_id: str, question: str):
@@ -69,6 +72,21 @@ class ProbeStore:
     def score_of(self, probe_id: str, tsha: str) -> float | None:
         row = self.db.execute("SELECT score FROM scores WHERE probe_id=? AND text_sha=?",
                               (probe_id, tsha)).fetchone()
+        return None if row is None else float(row[0])
+
+    def have_choice(self, probe_id: str, tsha: str, options: list[str]) -> bool:
+        n = self.db.execute("SELECT COUNT(*) FROM choice_scores WHERE probe_id=? AND text_sha=?",
+                            (probe_id, tsha)).fetchone()[0]
+        return n == len(options)
+
+    def put_choice(self, probe_id: str, tsha: str, opt: str, score: float):
+        self.db.execute("INSERT OR REPLACE INTO choice_scores VALUES (?, ?, ?, ?)",
+                        (probe_id, tsha, opt, float(score)))
+        self.db.commit()
+
+    def choice_score_of(self, probe_id: str, tsha: str, opt: str) -> float | None:
+        row = self.db.execute("SELECT score FROM choice_scores WHERE probe_id=? AND text_sha=? AND opt=?",
+                              (probe_id, tsha, opt)).fetchone()
         return None if row is None else float(row[0])
 
     def close(self):
@@ -114,6 +132,68 @@ class ProbeExtractor:
             if verbose:
                 print(f"  {probe_id}: {min(s + chunk, len(missing))}/{len(missing)}", flush=True)
         return time.perf_counter() - t0
+
+    def extract_choice(self, probe_id: str, question: str, options: list[str],
+                       texts: list[str], chunk: int = 64, verbose: bool = False) -> float:
+        """Extract one categorical Choice probe (2..3 short option labels).
+
+        Option labels are the criteria keys, so the returned distribution is keyed
+        by them; scores are stored per (probe, text, option). Returns wall seconds.
+        """
+        assert 2 <= len(options) <= 3, "choice probes need 2..3 options"
+        self.store.define(probe_id, question + " || options: " + " | ".join(options))
+        missing = [t for t in texts if not self.store.have_choice(probe_id, text_key(t), options)]
+        if not missing:
+            return 0.0
+        t0 = time.perf_counter()
+        q = {"id": "q", "type": "choice", "instructions": question,
+             "criteria": {o: None for o in options}}
+        for s in range(0, len(missing), chunk):
+            part = missing[s:s + chunk]
+            encs = [self.fam.encode({"id": f"x{i}", "state": t, "questions": [dict(q)]})
+                    for i, t in enumerate(part)]
+            rows = [e.prefix + e.rows[0] for e in encs]
+            width = max(len(r) for r in rows)
+            ids = torch.full((len(rows), width), self.fam.pad_token_id, dtype=torch.long)
+            att = torch.zeros((len(rows), width), dtype=torch.long)
+            for i, r in enumerate(rows):
+                ids[i, :len(r)] = torch.tensor(r)
+                att[i, :len(r)] = 1
+            with torch.inference_mode():
+                hs = self.model(input_ids=ids.to(self.dev), attention_mask=att.to(self.dev),
+                                use_cache=False).last_hidden_state.float().cpu().numpy()
+            for j, e in enumerate(encs):
+                h = hs[j, :len(rows[j])]
+                z = self.fam.logits([h], e)
+                probs = softmax(z["q"])
+                keys = e.questions[0]["keys"]
+                for o in options:
+                    self.store.put_choice(probe_id, text_key(part[j]), o,
+                                          float(probs[keys.index(o)]))
+            if verbose:
+                print(f"  {probe_id}: {min(s + chunk, len(missing))}/{len(missing)}", flush=True)
+        return time.perf_counter() - t0
+
+    def matrix_mixed(self, probe_defs: list[dict], texts: list[str]):
+        """Feature matrix for a mixed bank (Noul scalars + Choice option distributions).
+
+        probe_defs: [{"id":.., "format": "noul"|"choice", "options": [...]}, ...]
+        (options present for choice probes). Returns (X, colnames); raises if the
+        store is missing any required score.
+        """
+        cols, data = [], []
+        for p in probe_defs:
+            if p.get("format") == "choice":
+                for o in p.get("options") or []:
+                    cols.append(f"{p['id']}::{o}")
+                    data.append([self.store.choice_score_of(p["id"], text_key(t), o) for t in texts])
+            else:
+                cols.append(p["id"])
+                data.append([self.store.score_of(p["id"], text_key(t)) for t in texts])
+        X = np.array(data, dtype=np.float64).T
+        if np.isnan(X).any():
+            raise RuntimeError("missing probe scores in store (run extraction first)")
+        return X, cols
 
     def matrix(self, probe_ids: list[str], texts: list[str]) -> np.ndarray:
         """(n_texts, n_probes) score matrix from cache; raises if incomplete."""
