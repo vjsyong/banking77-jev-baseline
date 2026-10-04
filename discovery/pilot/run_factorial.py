@@ -264,6 +264,7 @@ def main():
     ap.add_argument("--seeds", default="0.3,0.7,1.0")
     ap.add_argument("--rounds", type=int, default=3)
     ap.add_argument("--tag", default="full")
+    ap.add_argument("--resume", action="store_true")
     args = ap.parse_args()
     cells = list(CELLS) if args.cells == "all" else args.cells.split(",")
     seeds = [float(s) for s in args.seeds.split(",")]
@@ -299,12 +300,23 @@ def main():
 
     archive_path = OUT / f"archive_{args.tag}.jsonl"
     summary_path = OUT / f"summary_{args.tag}.json"
-    done_runs = 0
-    runs_summary = []
-    with archive_path.open("w") as af:
+    partial_path = OUT / f"partial_{args.tag}.json"
+    completed = {}
+    if args.resume and partial_path.exists():
+        for rs in json.loads(partial_path.read_text()):
+            completed[(rs["cell"], rs["seed"])] = rs
+        mon.log(f"resume: {len(completed)} completed runs loaded")
+        print(f"resume: {len(completed)} completed runs loaded", flush=True)
+    done_runs = len(completed)
+    runs_summary = list(completed.values())
+    with archive_path.open("a" if (args.resume and archive_path.exists()) else "w") as af:
         for cell in cells:
             cfg_cell = CELLS[cell]
             for seed in seeds:
+                if (cell, seed) in completed:
+                    print(f"== {cell} seed {seed}: SKIPPED (already completed)", flush=True)
+                    mon.update(done_runs, message=f"{cell} seed {seed}: skipped (completed earlier)")
+                    continue
                 bank = [dict(p) for p in B0]
                 X = X0.copy()
                 cur = b0_best
@@ -408,6 +420,7 @@ def main():
                     "t_teacher": round(t_teacher, 1), "t_extract_1k": round(t_add, 1),
                     "teacher_calls": calls, "archive": nd, "trace": run_trace,
                 })
+                partial_path.write_text(json.dumps(runs_summary, indent=1))
                 print(f"== {cell} seed {seed}: bank {len(bank)} (choices "
                       f"{sum(1 for p in bank if p.get('format') == 'choice')}), cv {cur:.4f}, "
                       f"pruned total {sum(len(r['pruned']) for r in run_trace)}", flush=True)

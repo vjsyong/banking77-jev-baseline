@@ -89,6 +89,19 @@ class ProbeStore:
                               (probe_id, tsha, opt)).fetchone()
         return None if row is None else float(row[0])
 
+    def def_question(self, probe_id: str) -> str | None:
+        row = self.db.execute("SELECT question FROM probe_defs WHERE probe_id=?",
+                              (probe_id,)).fetchone()
+        return None if row is None else row[0]
+
+    def purge(self, probe_id: str):
+        """Drop all rows + definition for a probe id (used when its definition
+        changed and stale rows must not be served from cache)."""
+        self.db.execute("DELETE FROM scores WHERE probe_id=?", (probe_id,))
+        self.db.execute("DELETE FROM choice_scores WHERE probe_id=?", (probe_id,))
+        self.db.execute("DELETE FROM probe_defs WHERE probe_id=?", (probe_id,))
+        self.db.commit()
+
     def close(self):
         self.db.close()
 
@@ -103,9 +116,18 @@ class ProbeExtractor:
 
     def extract_probe(self, probe_id: str, question: str, texts: list[str],
                       chunk: int = 64, verbose: bool = False) -> float:
-        """Extract one Noul probe over texts. Returns wall seconds spent."""
+        """Extract one Noul probe over texts. Returns wall seconds spent.
+
+        Definition-aware: if the stored definition for this id differs (same slug,
+        different question), stale rows are purged and everything is re-extracted.
+        """
+        stored = self.store.def_question(probe_id)
+        if stored is not None and stored != question:
+            self.store.purge(probe_id)
         self.store.define(probe_id, question)
-        missing = [t for t in texts if not self.store.have(probe_id, text_key(t))]
+        have = {row[0] for row in self.store.db.execute(
+            "SELECT text_sha FROM scores WHERE probe_id=?", (probe_id,))}
+        missing = [t for t in texts if text_key(t) not in have]
         if not missing:
             return 0.0
         t0 = time.perf_counter()
@@ -141,8 +163,17 @@ class ProbeExtractor:
         by them; scores are stored per (probe, text, option). Returns wall seconds.
         """
         assert 2 <= len(options) <= 3, "choice probes need 2..3 options"
-        self.store.define(probe_id, question + " || options: " + " | ".join(options))
-        missing = [t for t in texts if not self.store.have_choice(probe_id, text_key(t), options)]
+        want = question + " || options: " + " | ".join(options)
+        stored = self.store.def_question(probe_id)
+        if stored is not None and stored != want:
+            self.store.purge(probe_id)
+        self.store.define(probe_id, want)
+        rows: dict = {}
+        for tsha, opt in self.store.db.execute(
+                "SELECT text_sha, opt FROM choice_scores WHERE probe_id=?", (probe_id,)):
+            rows.setdefault(tsha, set()).add(opt)
+        want_set = set(options)
+        missing = [t for t in texts if rows.get(text_key(t)) != want_set]
         if not missing:
             return 0.0
         t0 = time.perf_counter()
