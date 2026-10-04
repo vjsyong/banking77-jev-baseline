@@ -79,6 +79,8 @@ python banking77_baseline.py evaluate-jev --out runs/banking77
 
 `tools/batched_extract.py` is the faster, cache-compatible extraction path used for the reported numbers (see `docs/batching-research.md` for the measurements and the equivalence checks). Discovery and readout scripts live under `discovery/` and `readout/`; run them from the repository root, and use `--help` where a script takes options. Experiments write their artifacts under `runs/`.
 
+**Portability note:** `banking77_baseline.py` and `readout/` are self-contained, but most scripts under `discovery/` and two under `tools/` resolve the repository root from the development path (`/home/xrim/banking77-jev-baseline`). When cloning elsewhere, adjust the `HERE` constant near the top of those scripts (or clone to that path). A portability cleanup is scheduled after the in-flight study completes.
+
 ## Data and provenance
 
 - **BANKING77** (PolyAI): CC BY 4.0. Casanueva et al., 2020, *Efficient Intent Detection with Dual Sentence Encoders*. Fetched at runtime from Hugging Face; derived predictions are committed under `runs/banking77/`.
