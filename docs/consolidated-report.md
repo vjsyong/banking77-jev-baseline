@@ -74,20 +74,20 @@ currency_conversion, cancel_or_reverse, account_access_or_security — full ques
   std 0.08–0.16, 15–43% within ±0.05 of 0.5); **common-mode redundancy**
   (`money_outgoing~money_incoming` +0.81); **clear-case extraction errors**
   ("Nothing goes through on my card" → card probe 0.17); currency_conversion works
-  (0.86 for exchange intents). → `analysis/probe_audit.json`, `tools/audit_probes.py`.
+  (0.86 for exchange intents). → `runs/banking77/analysis/probe_audit.json`, `tools/audit_probes.py`.
 - **Scaled linear**: tuning C >> scaling — unscaled CV LR 0.5222, scaled CV LR **0.5286**
   (C*=10); the former "14pp tree gap" shrinks to **4.2pp** vs ExtraTrees.
-  → `analysis/scaled_linear.json`.
+  → `runs/banking77/analysis/scaled_linear.json`.
 - **Choice readout**: LR on 77 log-probs → **0.9008 macro-F1 / 0.9006 acc / top-3 0.9766**
   (+14.3pp over argmax; within 0.9pp of TF–IDF). Probes add nothing (−0.3pp).
-  → `analysis/choice_readout.json`.
+  → `runs/banking77/analysis/choice_readout.json`.
 - **Cost split**: choice-only 29.9 ms · probes-only 40.5 ms · combined 70.7 ms (additive).
 - → `docs/round1-followups.md`.
 
 ## 8. Round-2 scope (your four-point list) — DELIVERED
 
 1. **Frozen, exported pipeline**: `readout/banking77-readout-v1/`
-   (`readout_lr.joblib` + `labels.json` + `manifest.json` + README). Config:
+   (`readout/banking77-readout-v1/`: `readout_lr.joblib`, `labels.json`, `manifest.json`, `README.md`). Config:
    `log(clip(p,1e-6,1))` → StandardScaler → LR(C=1.0 CV-selected); upstream revision,
    clip constants, intent order, metrics all frozen in the manifest.
 2. **Deployment parity**: `readout/test_parity.py` **5/5** — artifact reproduces the
@@ -96,10 +96,10 @@ currency_conversion, cancel_or_reverse, account_access_or_security — full ques
 3. **Benchmark (text→prediction)**: Jev choice-only+readout single p50 **62.5 ms**
    (p95 68.2), batched **30.2 ms/text / 33.1 texts/s**; TF–IDF+LR single p50 **2.29 ms**,
    batched **0.229 ms/text / 4,374 texts/s**. Readout step itself 1.2 ms single /
-   0.6 ms per text batched. → `analysis/pipeline_benchmark.json`.
+   0.6 ms per text batched. → `runs/banking77/analysis/pipeline_benchmark.json`.
 4. **Confidence (train-OOF selected, test reported)**: τ=0.335 → 98.9% cov @ 90.0%
    (test 98.8/90.8); **τ=0.645 (default) → 86.7% @ 95.1% (test 88.1/95.4)**;
-   τ=0.85 → 72.9% @ 98.1% (test 74.2/98.0). → `analysis/confidence_coverage.json`.
+   τ=0.85 → 72.9% @ 98.1% (test 74.2/98.0). → `runs/banking77/analysis/confidence_coverage.json`.
 - → `docs/readout-v1-report.md`.
 
 ## 9. Paused / open

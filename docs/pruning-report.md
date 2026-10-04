@@ -30,7 +30,7 @@ triggered**. Details, evidence, and what would change the answer below.
 - **Subset ≡ column-taking (verified):** fresh subset extraction vs slicing the
   complete bank's columns gives **max |Δ| = 0.0** (per-question forwards have no
   cross-question coupling). Cached splicing is therefore exact; no per-subset
-  re-extraction needed (`equivalence_report.json`).
+  re-extraction needed (`discovery/pruning_study/snapshots/equivalence_report.json`).
 - **Fixed throughout:** 1,000 labeled rows; 5-fold stratified folds (seed 77);
   frozen deployed learner = StandardScaler → LogisticRegression(C=1.0), selected
   best-of-panel on the complete unpruned bank using training data (all seeds: LR);
@@ -84,7 +84,7 @@ on the search folds — but see §5: the search folds are an optimistic lane.
 ## 4. Frozen deployment points (§4 of the plan)
 
 Selected on training data and frozen **before** any outside evaluation:
-`frozen_points.json`, sha256 `d7650493…` (recorded in the evaluation provenance).
+`discovery/pruning_study/frozen_points.json`, sha256 `d7650493…` (recorded in the evaluation provenance).
 No further selection used the test split.
 
 **Test split (3,080) macro-F1, frozen learner fit on the 1k:**
@@ -112,7 +112,7 @@ chunk 64; single-request 50 texts; per-question deployed pipeline shape):**
 | s1.0 | batched ms/text (Δ) | 66.36 | 49.41 (**−25.5%**) | 52.13 (**−21.4%**) |
 | s1.0 | single p50/p95 ms | 1621/1790 | 1223/1258 | 1246/1284 |
 
-Also available per config in `deployment_eval.json`: probe count, numeric feature
+Also available per config in `discovery/pruning_study/deployment_eval.json`: probe count, numeric feature
 count, total Choice options, throughput (15.1–27.0 texts/s). Single-request
 latency is launch-overhead-bound (per-question forwards); batched numbers are the
 deployment-relevant ones.
@@ -163,9 +163,9 @@ same-lane acceptance would repeat the same optimism.
 
 ## 8. Artifacts
 
-- `snapshots/` — immutable inputs (+`equivalence_report.json`, row hashes).
+- `snapshots/` — immutable inputs (+`discovery/pruning_study/snapshots/equivalence_report.json`, row hashes).
 - `paths/{bank}_{condition}.jsonl` — full removal paths incl. rejected candidates.
-- `pruning_results.json` — conditions, budgets, column arms.
-- `frozen_points.json` — the two deployment points per seed (sha256 in provenance).
-- `deployment_eval.json` — test evaluation, paired statistics, latency, targets.
+- `discovery/pruning_study/pruning_results.json` — conditions, budgets, column arms.
+- `discovery/pruning_study/frozen_points.json` — the two deployment points per seed (sha256 in provenance).
+- `discovery/pruning_study/deployment_eval.json` — test evaluation, paired statistics, latency, targets.
 - Code: `discovery/pruning_study/{prepare_snapshots,run_pruning,evaluate_and_benchmark}.py`.

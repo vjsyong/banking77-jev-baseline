@@ -119,7 +119,7 @@ methodology (0.76–0.97). The two arms' versions of "declined payment" measure 
 thing equally well (0.978 vs 0.988) — wording variance is not the problem here. But high
 concept AUC alongside weak intent classification indicates that faithful per-concept
 measurements can still omit the distinctions the target requires. Labels are agent-verified
-with intent-pool provenance; sheets in `fidelity_sheet.csv` for human audit.
+with intent-pool provenance; sheets in `runs/banking77/discovery/pilot/fidelity_sheet.csv` for human audit.
 
 ---
 
@@ -217,11 +217,11 @@ Isolate the explanation rather than running more proposal rounds. Factors:
 ## 6. Artifacts
 
 - `runs/banking77/discovery/control_onehot.json` — representation control.
-- `runs/banking77/discovery/repair_set.csv`, `repair_scores.json`, `repair_audit_sheet.csv`
+- `runs/banking77/discovery/repair_set.csv`, `runs/banking77/discovery/repair_scores.json`, `runs/banking77/discovery/repair_audit_sheet.csv`
   — channel-repair study + audit sheet.
 - `runs/banking77/discovery/smallregime_refs.json` — 1k reference table.
-- `runs/banking77/discovery/pilot/` — `summary_full.json`, `archive_full.jsonl` (27 rounds),
-  `teacher_full_*.txt` (all raw teacher responses), `probe_scores.sqlite` (99-probe store),
-  `test_eval.json`, `fidelity_report.json`, `fidelity_sheet.csv`.
+- `runs/banking77/discovery/pilot/` — `runs/banking77/discovery/pilot/summary_full.json`, `runs/banking77/discovery/pilot/archive_full.jsonl` (27 rounds),
+  `teacher_full_*.txt` (all raw teacher responses), `runs/banking77/discovery/pilot/probe_scores.sqlite` (99-probe store),
+  `runs/banking77/discovery/pilot/test_eval.json`, `runs/banking77/discovery/pilot/fidelity_report.json`, `runs/banking77/discovery/pilot/fidelity_sheet.csv`.
 - Code: `discovery/` (teacher client, control, repair, refs) and `discovery/pilot/`
   (extractor, loop, evaluator, fidelity).

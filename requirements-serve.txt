@@ -1,0 +1,7 @@
+# Serving / extraction environment (GPU optional but recommended)
+tinyjev>=0.1.3
+torch>=2.4
+transformers>=4.53
+tqdm
+# used by the embeddings reference baseline in the CLINC150 confirm stage
+fastembed>=0.3

@@ -49,7 +49,7 @@ the productionized batched extractor (`tools/batched_extract.py`: width-grouped,
 cross-record, in-process; validated 0/256 flips + 7.98x on a 256-text slice). All
 13,083 texts were then re-extracted in one consistent pass in **896 s (68.5 ms/text,
 7.3x)**, followed by `extract-jev` reconciliation (0 fetches), `evaluate-jev`, and a
-full cross-check vs the single-path backup (`jev_cache.single_path_backup.sqlite`):
+full cross-check vs the single-path backup (`runs/banking77/jev_cache.single_path_backup.sqlite`):
 
 - 3,547 common rows: **4 choice flips (0.11%; near-ties, all train rows)**
 - noul: max |Δ| 3.5e-3, p95 1.5e-3, mean 6.1e-4, **none > 5e-3** (56,752 comparisons)

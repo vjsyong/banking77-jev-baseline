@@ -1,115 +1,98 @@
-# BANKING77 Jev and classical ML baseline
+# TinyJev semantic probes: baselines, label budgets, and guided feature discovery
 
-This bundle runs a small, reproducible comparison on the official BANKING77 train and test splits:
+Research code for measuring what a small question-answering model contributes as a **feature extractor** for text intent classification. Each message is presented to TinyJev-0.6B as one or more schema-bound categorical questions ("Choice" and "Noul" formats); the model's answer distributions become numeric features for conventional classifiers. The repository contains three completed studies on BANKING77 and one registered experiment currently running on CLINC150, each with a report in `docs/`.
 
-1. Word and character TF–IDF with Logistic Regression, Linear SVM, and Complement Naive Bayes.
-2. Jev directly choosing one of the 77 intents.
-3. A classical learner trained on 16 Noul semantic signals extracted by Jev.
+## Studies
 
-See [`EXPERIMENT_PLAN.md`](EXPERIMENT_PLAN.md) for the research hypothesis, controls, and follow-on probe-discovery protocol.
+| # | Study | Task | Status | Report |
+|---|-------|------|--------|--------|
+| 1 | Baseline: TF-IDF vs. direct Jev choice vs. semantic-probe features | BANKING77 | complete | `docs/consolidated-report.md` |
+| 2 | Label-budget readout and a frozen deployable pipeline | BANKING77 | complete | `docs/readout-v1-report.md` |
+| 3 | Guided probe discovery: pilot, representation x selection factorial, pruning study | BANKING77 | complete | `docs/discovery-pilot-report.md`, `docs/factorial-report.md`, `docs/pruning-report.md` |
+| 4 | Example-guided discovery with a frontier teacher (arms U/R/E/F) | CLINC150 | in progress | `docs/frontier_guided_discovery_experiment_brief.md`, `docs/fe-freeze.md`, `docs/fe-ops-notes.md` |
 
-The package does not contain BANKING77 or model weights. The data loader fetches the public dataset from Hugging Face on the machine where you run the experiment. The Jev client targets a local TinyJev/TinyJev-compatible System One endpoint; it does not need to send data to a cloud API.
+## Headline results
 
-## 1. Create the Python environment
+**BANKING77, official test split, macro-F1:**
+- TF-IDF + LogReg: **0.9094** (accuracy 0.9091; LinearSVC 0.9087, ComplementNB 0.8068)
+- Jev direct 77-way choice: **0.7574** (accuracy 0.7633, top-3 0.9078)
+- 16 hand-written Noul probes, best learner (ExtraTrees): 0.5707 (LogReg 0.4038). The small hand-written bank underperforms, as the plan anticipated.
 
-Python 3.10 to 3.12 is recommended.
+**Choice readout (LogReg on Jev's 77 log-probabilities):** **0.9008** macro-F1, +14.3pp over the direct argmax, within 0.9pp of TF-IDF. The trade is label efficiency against compute: per-text latency p50 is 62.5 ms single / 30.2 ms batched for the readout pipeline vs 2.29 ms / 0.229 ms for TF-IDF + LogReg.
 
-```bash
-python -m venv .venv
-source .venv/bin/activate        # macOS/Linux
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+**Label budgets (test macro-F1, two label seeds, chart in `runs/banking77/discovery/label_curves.png`):** the readout beats TF-IDF from the smallest budgets through roughly 5,000 labels (at 1,000: mean 0.8438 vs 0.7350; parity by 5,000); TF-IDF overtakes only near the full budget (0.9094 vs 0.9008). The direct argmax baseline is flat at 0.7574. If labels are scarce, the readout is the better use of a fixed serving budget; at 10k labels TF-IDF wins on both quality and latency.
+
+**Guided discovery (BANKING77, 1,000-label allowance, test macro-F1):**
+- Pilot: frontier feedback (cost model + quality/cost archive) did not reproducibly change the discovered banks (frontier minus unguided +2.16pp mean, carried by a single seed). Banks did improve over the hand-written set (0.4387 to 0.5245 best).
+- Factorial (2x2: representation x selection): representation is the lever. Mixed Choice-format banks reached **0.6956** (strict) and 0.5009 (pareto) vs 0.5295 / 0.4233 for Noul-only; paired representation effect +16.6pp (strict). The selection variant changed compression cost only.
+- Pruning study: **NO-GO** at the preregistered standard (at most 1pp macro-F1 loss at 25% or better measured-latency reduction). Conservative pruning passed the latency bar (25% to 43% saved) but failed quality (0/3 and 1/3 banks passing).
+
+**FE-discovery (CLINC150) is in progress:** example-guided vs. frontier-guided discovery under a fixed serving budget, four feedback arms, five seeds, one-shot confirmation on held-out splits. The instrument audit and protocol freeze are complete; the campaign is running. No results to report yet.
+
+## Repository layout
+
+```
+banking77_baseline.py   bundle runner: classical baselines, Jev extraction, evaluation
+probes.json             16 hand-written Noul probes
+EXPERIMENT_PLAN.md      original hypothesis, controls, and discovery protocol (BANKING77)
+RUN_NOTES.md            run log for the baseline phase: environment, batching switch, caveats
+readout/                choice-readout pipeline, exported artifact, parity tests, benchmark
+discovery/              discovery program
+  label_curves.py       label-budget learning curves
+  teacher_client.py     frontier teacher client (OpenAI-compatible endpoint)
+  pilot/                controlled pilot, 2x2 factorial, evaluators
+  pruning_study/        pruning screens, feature snapshots, deployment evaluation
+  fe_discovery/         CLINC150 experiment: schema, extractor, selector, campaign runner
+docs/                   one report per study, design briefs, freeze and ops records
+tools/                  batching accelerators, probe audits, latency probes
+runs/                   committed result artifacts: summaries, prompts, evaluations
+tests/                  bundle unit tests (no network or model required)
+data/                   derived dataset samples (see Data and provenance)
 ```
 
-The first run downloads the BANKING77 dataset. Keep the official train/test split intact.
+## Reproducing
 
-## 2. Run the classical baselines
+Two environments are used. The evaluation environment covers data loading, models, and the discovery harness; the serving environment covers TinyJev and torch.
+
+```bash
+python -m venv venv && venv/bin/pip install -r requirements.txt
+python -m venv venv-serve && venv-serve/bin/pip install -r requirements-serve.txt
+```
+
+BANKING77 downloads from Hugging Face on first use. The legacy BANKING77 loader requires `HF_DATASETS_TRUST_REMOTE_CODE=1` in this stack (environment variable only; the bundle code is unmodified).
+
+Start a local Jev endpoint (same or another machine; keep unauthenticated ports bound to loopback or reachable only over a private link):
+
+```bash
+tinyjev serve TinyJev-0.6B --backend torch --device cuda   # http://127.0.0.1:8077/v1/systemone
+```
+
+Baseline run:
 
 ```bash
 python banking77_baseline.py classical --out runs/banking77
-```
-
-This fits the TF–IDF representation on training text only, fits three classical models, and evaluates each on the official test set. It writes metrics, prediction files, and confusion-pair diagnostics under `runs/banking77/`.
-
-## 3. Start a local Jev-compatible endpoint
-
-One option is TinyJev through Ollama. Install Ollama and a TinyJev release that supports `/v1/systemone`, then pull the model:
-
-```bash
-ollama pull parable/tinyjev
-```
-
-Ollama normally serves on `http://127.0.0.1:11434`. TinyJev documents the System One route at `/v1/systemone`; the command below checks connectivity and response parsing on two short examples before you start the complete run.
-
-```bash
 python banking77_baseline.py extract-jev \
-  --endpoint http://127.0.0.1:11434/v1/systemone \
-  --model parable/tinyjev \
-  --out runs/banking77 \
-  --max-rows-per-split 2
-```
-
-If the endpoint is on another machine, use a private connection or SSH tunnel and leave the unauthenticated local service bound to loopback. For example, from the machine running this bundle:
-
-```bash
-ssh -L 11434:127.0.0.1:11434 your-user@your-model-host
-```
-
-Then use the same `127.0.0.1:11434` endpoint. Avoid exposing a no-auth inference port to the public internet.
-
-## 4. Extract Jev outputs and evaluate
-
-After the smoke test succeeds, run on all rows:
-
-```bash
-python banking77_baseline.py extract-jev \
-  --endpoint http://127.0.0.1:11434/v1/systemone \
-  --model parable/tinyjev \
-  --out runs/banking77 \
-  --workers 1
-```
-
-Each request asks the same 16 semantic questions and a direct 77-way intent question. Questions are sent together per text. The SQLite cache saves completed results, so an interrupted run can resume. The source labels are never included in Jev requests. `--workers` defaults to one; increase it only after checking that your serving backend handles concurrent requests safely.
-
-Then evaluate the cached Jev outputs:
-
-```bash
+  --endpoint http://127.0.0.1:8077/v1/systemone \
+  --model TinyJev-0.6B --out runs/banking77 --workers 1   # smoke test first: --max-rows-per-split 2
 python banking77_baseline.py evaluate-jev --out runs/banking77
 ```
 
-The semantic feature models are trained using the official training labels and only the 16 Noul values as inputs. The direct Jev score is calculated on the official test split. Results include macro-F1, accuracy, and per-class diagnostics. `jev_features.csv` and `jev_predictions.csv` retain the input text and labels for inspection, so treat them as research data and do not publish them without checking dataset terms.
+`tools/batched_extract.py` is the faster, cache-compatible extraction path used for the reported numbers (see `docs/batching-research.md` for the measurements and the equivalence checks). Discovery and readout scripts live under `discovery/` and `readout/`; run them from the repository root, and use `--help` where a script takes options. Experiments write their artifacts under `runs/`.
 
-## 5. Read the results
+## Data and provenance
 
-- `metrics.json`: classical and Jev model scores, run sizes, and timing.
-- `tfidf_*_predictions.csv`: reference model predictions and per-row labels, one file per classifier.
-- `jev_predictions.csv`: direct Jev selections and option probabilities.
-- `jev_features.csv`: extracted semantic signals for train and test rows.
-- `jev_cache.sqlite`: resumable extraction cache.
-- `jev_manifest.json`: probe schema, current extraction request count, cache reuse, and latency summaries.
+- **BANKING77** (PolyAI): CC BY 4.0. Casanueva et al., 2020, *Efficient Intent Detection with Dual Sentence Encoders*. Fetched at runtime from Hugging Face; derived predictions are committed under `runs/banking77/`.
+- **CLINC150**: from the `clinc/oos-eval` release; this repository uses in-scope (150-intent) classification only, out-of-scope queries excluded. Derived samples, folds, and hashes are in `data/clinc150/`, prepared by `discovery/fe_discovery/data_clinc.py`. See the source release for dataset terms.
+- **TinyJev**: package `tinyjev` (MIT) with the TinyJev-0.6B model (see its model card for terms). All inference in this repository ran on a single RTX 3090 in fp16.
+- **Teacher model** (discovery studies): a frontier LLM served over an OpenAI-compatible endpoint. The model revision and all settings are recorded in the frozen protocols and per-run artifacts. API keys are read from local user configuration at runtime and are never stored in this repository.
+- Text and labels are retained in derived artifacts; check dataset terms before redistributing.
 
-To run the offline client and cache checks without downloading BANKING77 or starting a Jev server:
+## Research discipline notes
 
-```bash
-python -m unittest discover -s tests -v
-```
+- Thresholds and acceptance rules are preregistered before runs (see the experiment briefs and `discovery/fe_discovery/frozen_protocol.json`). Criteria that failed as first written are kept in the record, including a corrected audit criterion in the freeze.
+- Probe discovery never uses test-split information: candidate banks are selected on training-only folds, and final banks are frozen before any confirmation or test evaluation.
+- Negative results are reported as such: the pruning study's NO-GO and the pilot's null on frontier feedback are part of the record, not footnotes.
 
-Macro-F1 is the primary metric because there are 77 classes. Accuracy is included for continuity with familiar intent benchmarks. The classical hyperparameters are fixed up front; this is a baseline run, not a large model tournament. Do not revise probe wording in response to official test errors. Use training-only cross-validation for the next discovery round, then keep the official test set for final confirmation.
+## License
 
-## Suggested next round
-
-First compare the manual 16-signal bank with direct Jev and the TF–IDF systems. Inspect errors from out-of-fold predictions on the training split. Ask a stronger teacher model to propose probe additions, splits, or replacements based only on those training-fold errors. Deduplicate proposals, append a versioned probe bank, and rerun Jev extraction with the persistent cache. Keep the same evaluation folds and model panel. Compare performance against probe count and measured Jev latency. Evaluate a frozen winner on the official test set once.
-
-The bank is deliberately small and hand-written as a starting point. It is not expected to encode all 77 intent distinctions. In particular, 16 broad signals may underperform a label-aligned probe or a strong word/character classifier.
-
-## Dataset citation
-
-Casanueva, I., Temcinas, T., Gerz, D., Henderson, M., and Vulic, I. (2020). *Efficient Intent Detection with Dual Sentence Encoders*. Proceedings of the 2nd Workshop on NLP for Conversational AI. Dataset: PolyAI/BANKING77, CC BY 4.0.
-
-## Troubleshooting
-
-- If Hugging Face dataset loading fails, try the commands from a machine with internet access or set `HF_HOME` to a writable cache directory. The code pins `datasets` below version 4 because the legacy BANKING77 loading script is not compatible with all newer releases.
-- If the Jev endpoint returns a 404, check that the URL ends in `/v1/systemone` and that the serving version supports the TinyJev System One route.
-- If the response shape differs, run the two-row smoke test first and inspect the HTTP error before launching the full extraction.
-- If disk space is limited, choose a small `--out` folder on a volume with space for the SQLite cache and CSVs.
+No repository-level license is declared yet. Datasets and models keep their own terms (see above). Contact the repository owner before reuse.

@@ -1,5 +1,8 @@
 venv/
 venv-serve/
+.venv/
+.venv-*/
 runs/
 __pycache__/
 *.pyc
+*.egg-info/

@@ -106,7 +106,7 @@ unknown format compatibility; worth 15 min of inspection before building B/C.
 
 Triple-diff on the first 256 train texts (all with golden cache entries), same
 session: fresh single-record run vs fresh batched run vs golden cache.
-Tools: `tools/slice_diffdetail.py`; raw: `runs/slice_diffdetail.json`.
+Tools: `tools/slice_diffdetail.py`; raw: `runs/banking77/slice_diffdetail.json`.
 
 | pair | choice flips | noul max |Δ| | noul p95 | choice-prob max |Δ| |
 |---|---:|---:|---:|---:|

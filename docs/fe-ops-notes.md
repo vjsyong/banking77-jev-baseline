@@ -1,9 +1,9 @@
 # Stage C operational notes and deviations
 
 Date: 4 October 2026. Applies to the CLINC150 confirmation campaign (Stage C) of
-`frontier_guided_discovery_experiment_brief.md`. This file records operations-level
+`docs/frontier_guided_discovery_experiment_brief.md`. This file records operations-level
 facts and deviations from the D-1 sequence; it does not alter the frozen protocol
-(`frozen_protocol.json`), the registered contrasts, the per-run mechanics, or any
+(`discovery/fe_discovery/frozen_protocol.json`), the registered contrasts, the per-run mechanics, or any
 teacher packet content.
 
 ## 1. Per-job memory cap discovery (pre-campaign, resolved)
@@ -30,7 +30,7 @@ Per round, wall-time share (5-round run, ~45 min total):
 ## 3. Deviation D1 — 2-way parallel pool (active)
 
 The registered campaign ran arms sequentially. From the switchover (4 Oct ~15:40 UTC),
-arm-runs execute as independent subprocesses through `stage_c_pool.py`
+arm-runs execute as independent subprocesses through `discovery/fe_discovery/stage_c_pool.py`
 (concurrency 2, `FE_POOL_WORKERS`). Scientific rationale for acceptability:
 
 - each arm run is an independent unit (own teacher conversation, own budget

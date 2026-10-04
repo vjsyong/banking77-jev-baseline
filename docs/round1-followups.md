@@ -4,7 +4,7 @@ All four from existing outputs (readout + audit + scaled models need no inferenc
 timing split used the batched infra for a 512-text slice). Raw outputs in
 `runs/banking77/analysis/`; scripts in `tools/`.
 
-## 1. Probe audit (`tools/audit_probes.py` → `analysis/probe_audit.json`)
+## 1. Probe audit (`tools/audit_probes.py` → `runs/banking77/analysis/probe_audit.json`)
 
 - **No saturation**: fraction <0.05 = 0.000 and >0.95 = 0.000 for all 16 probes;
   observed ranges ≈ [0.03–0.95], q05–q95 ≈ [0.24–0.85].
@@ -45,7 +45,7 @@ timing split used the batched infra for a 512-text slice). Raw outputs in
 - **Residual ET gap**: 4.2pp (0.5707 vs 0.5286) — genuine nonlinear structure remains,
   but much smaller than it appeared.
 
-## 3. Choice-probability readout (`tools/choice_readout.py` → `analysis/choice_readout.json`)
+## 3. Choice-probability readout (`tools/choice_readout.py` → `runs/banking77/analysis/choice_readout.json`)
 
 | system | macro-F1 | accuracy | top-3 |
 |---|---:|---:|---:|
