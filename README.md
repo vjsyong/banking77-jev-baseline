@@ -101,4 +101,4 @@ python banking77_baseline.py evaluate-jev --out runs/banking77
 
 ## License
 
-No repository-level license is declared yet. Datasets and models keep their own terms (see above). Contact the repository owner before reuse.
+Code in this repository is released under the MIT License (see `LICENSE`). Dataset-derived artifacts (`data/`, and text/label/prediction files under `runs/`) remain subject to their source dataset terms (BANKING77: CC BY 4.0; CLINC150: see the `clinc/oos-eval` release). Model weights and the `tinyjev` package keep their own licenses.
