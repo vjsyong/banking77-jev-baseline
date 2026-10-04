@@ -1,0 +1,402 @@
+{
+ "bank_id": "mixed-strict-s0.3",
+ "source": {
+  "cell": "mixed-strict",
+  "seed": 0.3,
+  "factorial": "summary_full.json"
+ },
+ "created": "2026-10-04T09:46:36Z",
+ "extractor": {
+  "package": "tinyjev 0.1.3",
+  "model": "AnkitAI/TinyJev-0.6B (HF snapshot c559c2f7ea95069f92af8b999f512345bbb87d22)",
+  "torch": "2.14.1+cu130",
+  "backend": "torch",
+  "device": "cuda",
+  "inference": {
+   "chunk": 64,
+   "per_forward": "single question x <=64 texts (no cross-question co-query)",
+   "dtype": "float32 head on fp16 backbone (as served)"
+  }
+ },
+ "dataset": {
+  "split": "train-1k (smallregime_index.csv)",
+  "n_rows": 1000,
+  "index_sha256": "b75492c71173f273ef6a805478b56233ac9ac096b0827aa5d5da48cc5544fe82",
+  "row_hashes_sha256": "b5454933f100186c13f672ed6b7c67bc10feda4aeb01ded8c858321f374329f2",
+  "row_hash_algo": "sha256(utf8(text))"
+ },
+ "learner_frozen": {
+  "pipeline": "StandardScaler -> LogisticRegression(C=1.0, lbfgs, max_iter=2000)",
+  "selection": "best-of-panel CV on the complete unpruned bank (all seeds: lr)"
+ },
+ "folds": "5-fold StratifiedKFold(shuffle, seed 77) on the 1k",
+ "probes": [
+  {
+   "id": "asks_for_information",
+   "question": "Is the customer primarily asking for information, an explanation, an eligibility rule, or a limit?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "requests_an_action",
+   "question": "Is the customer asking for an account, card, payment, or transfer action to be performed or changed?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "reports_a_problem",
+   "question": "Is the customer reporting that something has failed, gone wrong, or produced an unexpected result?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "unauthorised_activity",
+   "question": "Does the customer say they do not recognize or did not authorize an account event, card payment, or withdrawal?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "transaction_is_pending",
+   "question": "Does the customer describe a payment, withdrawal, top-up, or transfer that is still pending or incomplete?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "transaction_is_completed",
+   "question": "Does the customer describe a payment, withdrawal, top-up, or transfer as completed or posted?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "money_outgoing",
+   "question": "Is the issue about money leaving the customer's account, including a payment, withdrawal, fee, or outgoing transfer?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "money_incoming",
+   "question": "Is the issue about money expected to arrive in the customer's account, including a transfer, refund, or incoming payment?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "physical_or_virtual_card",
+   "question": "Is a physical or virtual payment card central to the customer's issue or request?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "cash_or_atm",
+   "question": "Is cash, a cash deposit, a cash withdrawal, or an ATM central to the customer's issue or request?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "bank_transfer",
+   "question": "Is a bank transfer central to the customer's issue or request?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "account_funding_or_top_up",
+   "question": "Is adding money to the account or topping up a balance central to the customer's issue or request?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "fee_or_charge",
+   "question": "Is the customer asking about an unexpected fee, charge, exchange cost, or amount taken?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "currency_conversion",
+   "question": "Does the issue involve a foreign currency, currency conversion, exchange rate, or cross-border use?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "cancel_or_reverse",
+   "question": "Does the customer want a transaction, transfer, payment, or top-up cancelled, stopped, reversed, or reverted?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "account_access_or_security",
+   "question": "Is the issue about signing in, a passcode, identity verification, account access, a lost device, or account security?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "card_setup_action",
+   "question": "Which card setup action does the customer ask about: activating a card, linking a card to an account or app, or neither?",
+   "format": "choice",
+   "options": [
+    "activate",
+    "link",
+    "neither"
+   ]
+  },
+  {
+   "id": "explicit_card_form",
+   "question": "Is the card explicitly described as physical or plastic, virtual or disposable, or neither exclusively?",
+   "format": "choice",
+   "options": [
+    "physical",
+    "virtual",
+    "unspecified_or_both"
+   ]
+  },
+  {
+   "id": "direct_debit_mentioned",
+   "question": "Does the customer explicitly mention a direct debit or a merchant automatically collecting money from their bank account?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "transfer_failure_kind",
+   "question": "For a bank transfer, does the customer explicitly report rejection or refusal, a processing failure without stated rejection, or neither?",
+   "format": "choice",
+   "options": [
+    "rejected",
+    "processing_failure",
+    "neither"
+   ]
+  },
+  {
+   "id": "atm_specific_outcome",
+   "question": "Does the customer report an ATM dispensing an incorrect cash amount, retaining their card, or neither exclusively?",
+   "format": "choice",
+   "options": [
+    "wrong_cash_amount",
+    "card_retained",
+    "neither"
+   ]
+  },
+  {
+   "id": "card_failure_specificity",
+   "question": "Does the customer explicitly report a declined card purchase, describe a card as unusable without an explicit purchase decline, or neither?",
+   "format": "choice",
+   "options": [
+    "purchase_declined",
+    "card_unusable",
+    "neither"
+   ]
+  },
+  {
+   "id": "support_question_scope__r3",
+   "question": "Which topic is the customer asking about: cards or currencies allowed for top ups, currencies the account can hold, or exchanging currencies?",
+   "format": "choice",
+   "options": [
+    "top_up_support",
+    "account_currencies",
+    "exchange_currencies"
+   ]
+  },
+  {
+   "id": "transfer_missing_destination__r3",
+   "question": "When transfer money is missing or expected, where is it relevant: the customer's own balance, another recipient's account, or an incoming transfer to the customer?",
+   "format": "choice",
+   "options": [
+    "own_balance",
+    "recipient_account",
+    "incoming_transfer"
+   ]
+  },
+  {
+   "id": "declined_cash_withdrawal",
+   "question": "Does the customer explicitly say that a cash withdrawal or ATM withdrawal was declined or refused?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "card_delivery_or_acceptance",
+   "question": "Is the card issue primarily about delivery timing, where the card is accepted, or neither?",
+   "format": "choice",
+   "options": [
+    "delivery_timing",
+    "merchant_acceptance",
+    "neither"
+   ]
+  }
+ ],
+ "column_order": [
+  [
+   "asks_for_information",
+   null
+  ],
+  [
+   "requests_an_action",
+   null
+  ],
+  [
+   "reports_a_problem",
+   null
+  ],
+  [
+   "unauthorised_activity",
+   null
+  ],
+  [
+   "transaction_is_pending",
+   null
+  ],
+  [
+   "transaction_is_completed",
+   null
+  ],
+  [
+   "money_outgoing",
+   null
+  ],
+  [
+   "money_incoming",
+   null
+  ],
+  [
+   "physical_or_virtual_card",
+   null
+  ],
+  [
+   "cash_or_atm",
+   null
+  ],
+  [
+   "bank_transfer",
+   null
+  ],
+  [
+   "account_funding_or_top_up",
+   null
+  ],
+  [
+   "fee_or_charge",
+   null
+  ],
+  [
+   "currency_conversion",
+   null
+  ],
+  [
+   "cancel_or_reverse",
+   null
+  ],
+  [
+   "account_access_or_security",
+   null
+  ],
+  [
+   "card_setup_action",
+   "activate"
+  ],
+  [
+   "card_setup_action",
+   "link"
+  ],
+  [
+   "card_setup_action",
+   "neither"
+  ],
+  [
+   "explicit_card_form",
+   "physical"
+  ],
+  [
+   "explicit_card_form",
+   "virtual"
+  ],
+  [
+   "explicit_card_form",
+   "unspecified_or_both"
+  ],
+  [
+   "direct_debit_mentioned",
+   null
+  ],
+  [
+   "transfer_failure_kind",
+   "rejected"
+  ],
+  [
+   "transfer_failure_kind",
+   "processing_failure"
+  ],
+  [
+   "transfer_failure_kind",
+   "neither"
+  ],
+  [
+   "atm_specific_outcome",
+   "wrong_cash_amount"
+  ],
+  [
+   "atm_specific_outcome",
+   "card_retained"
+  ],
+  [
+   "atm_specific_outcome",
+   "neither"
+  ],
+  [
+   "card_failure_specificity",
+   "purchase_declined"
+  ],
+  [
+   "card_failure_specificity",
+   "card_unusable"
+  ],
+  [
+   "card_failure_specificity",
+   "neither"
+  ],
+  [
+   "support_question_scope__r3",
+   "top_up_support"
+  ],
+  [
+   "support_question_scope__r3",
+   "account_currencies"
+  ],
+  [
+   "support_question_scope__r3",
+   "exchange_currencies"
+  ],
+  [
+   "transfer_missing_destination__r3",
+   "own_balance"
+  ],
+  [
+   "transfer_missing_destination__r3",
+   "recipient_account"
+  ],
+  [
+   "transfer_missing_destination__r3",
+   "incoming_transfer"
+  ],
+  [
+   "declined_cash_withdrawal",
+   null
+  ],
+  [
+   "card_delivery_or_acceptance",
+   "delivery_timing"
+  ],
+  [
+   "card_delivery_or_acceptance",
+   "merchant_acceptance"
+  ],
+  [
+   "card_delivery_or_acceptance",
+   "neither"
+  ]
+ ],
+ "n_columns": 42,
+ "n_probes": 26,
+ "snapshot_cv_best": 0.595182,
+ "snapshot_cv_scores": {
+  "lr": 0.5952,
+  "svm": 0.5038,
+  "et": 0.514
+ },
+ "extract_s": 87.3
+}

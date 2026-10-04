@@ -1,0 +1,446 @@
+{
+ "bank_id": "mixed-strict-s0.7",
+ "source": {
+  "cell": "mixed-strict",
+  "seed": 0.7,
+  "factorial": "summary_full.json"
+ },
+ "created": "2026-10-04T09:48:32Z",
+ "extractor": {
+  "package": "tinyjev 0.1.3",
+  "model": "AnkitAI/TinyJev-0.6B (HF snapshot c559c2f7ea95069f92af8b999f512345bbb87d22)",
+  "torch": "2.14.1+cu130",
+  "backend": "torch",
+  "device": "cuda",
+  "inference": {
+   "chunk": 64,
+   "per_forward": "single question x <=64 texts (no cross-question co-query)",
+   "dtype": "float32 head on fp16 backbone (as served)"
+  }
+ },
+ "dataset": {
+  "split": "train-1k (smallregime_index.csv)",
+  "n_rows": 1000,
+  "index_sha256": "b75492c71173f273ef6a805478b56233ac9ac096b0827aa5d5da48cc5544fe82",
+  "row_hashes_sha256": "b5454933f100186c13f672ed6b7c67bc10feda4aeb01ded8c858321f374329f2",
+  "row_hash_algo": "sha256(utf8(text))"
+ },
+ "learner_frozen": {
+  "pipeline": "StandardScaler -> LogisticRegression(C=1.0, lbfgs, max_iter=2000)",
+  "selection": "best-of-panel CV on the complete unpruned bank (all seeds: lr)"
+ },
+ "folds": "5-fold StratifiedKFold(shuffle, seed 77) on the 1k",
+ "probes": [
+  {
+   "id": "asks_for_information",
+   "question": "Is the customer primarily asking for information, an explanation, an eligibility rule, or a limit?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "requests_an_action",
+   "question": "Is the customer asking for an account, card, payment, or transfer action to be performed or changed?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "reports_a_problem",
+   "question": "Is the customer reporting that something has failed, gone wrong, or produced an unexpected result?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "unauthorised_activity",
+   "question": "Does the customer say they do not recognize or did not authorize an account event, card payment, or withdrawal?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "transaction_is_pending",
+   "question": "Does the customer describe a payment, withdrawal, top-up, or transfer that is still pending or incomplete?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "transaction_is_completed",
+   "question": "Does the customer describe a payment, withdrawal, top-up, or transfer as completed or posted?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "money_outgoing",
+   "question": "Is the issue about money leaving the customer's account, including a payment, withdrawal, fee, or outgoing transfer?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "money_incoming",
+   "question": "Is the issue about money expected to arrive in the customer's account, including a transfer, refund, or incoming payment?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "physical_or_virtual_card",
+   "question": "Is a physical or virtual payment card central to the customer's issue or request?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "cash_or_atm",
+   "question": "Is cash, a cash deposit, a cash withdrawal, or an ATM central to the customer's issue or request?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "bank_transfer",
+   "question": "Is a bank transfer central to the customer's issue or request?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "account_funding_or_top_up",
+   "question": "Is adding money to the account or topping up a balance central to the customer's issue or request?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "fee_or_charge",
+   "question": "Is the customer asking about an unexpected fee, charge, exchange cost, or amount taken?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "currency_conversion",
+   "question": "Does the issue involve a foreign currency, currency conversion, exchange rate, or cross-border use?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "cancel_or_reverse",
+   "question": "Does the customer want a transaction, transfer, payment, or top-up cancelled, stopped, reversed, or reverted?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "account_access_or_security",
+   "question": "Is the issue about signing in, a passcode, identity verification, account access, a lost device, or account security?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "transfer_outcome",
+   "question": "What is the transfer status described?",
+   "format": "choice",
+   "options": [
+    "recipient did not receive it",
+    "pending or incomplete",
+    "failed or declined"
+   ]
+  },
+  {
+   "id": "card_lifecycle_context",
+   "question": "What is the card-related need?",
+   "format": "choice",
+   "options": [
+    "get or replace a physical card",
+    "activate or link an existing card",
+    "use or fix a virtual card"
+   ]
+  },
+  {
+   "id": "cash_deposit_issue",
+   "question": "What is the cash or cheque issue?",
+   "format": "choice",
+   "options": [
+    "make a cash or cheque deposit",
+    "deposit balance not updated",
+    "cash withdrawal amount is wrong"
+   ]
+  },
+  {
+   "id": "unrecognised_event_type",
+   "question": "What type of unrecognised event is mentioned?",
+   "format": "choice",
+   "options": [
+    "card payment",
+    "direct debit",
+    "cash withdrawal"
+   ]
+  },
+  {
+   "id": "card_usage_support_context",
+   "question": "What kind of card support is the customer asking about?",
+   "format": "choice",
+   "options": [
+    "merchant acceptance",
+    "country availability",
+    "card or currency compatibility"
+   ]
+  },
+  {
+   "id": "cash_withdrawal_problem_type",
+   "question": "What cash withdrawal problem is described?",
+   "format": "choice",
+   "options": [
+    "card retained by ATM",
+    "wrong cash amount",
+    "withdrawal not authorised"
+   ]
+  },
+  {
+   "id": "card_activation_linking_status",
+   "question": "What is the card-related action or problem?",
+   "format": "choice",
+   "options": [
+    "link existing card",
+    "activate card",
+    "card not working"
+   ]
+  },
+  {
+   "id": "top_up_method_or_status",
+   "question": "What top-up situation is described?",
+   "format": "choice",
+   "options": [
+    "manual card top-up",
+    "automatic top-up",
+    "top-up pending or failed"
+   ]
+  },
+  {
+   "id": "recipient_not_received",
+   "question": "Does the customer explicitly say that the intended recipient has not received the transfer?",
+   "format": "noul",
+   "options": null
+  },
+  {
+   "id": "physical_card_request_type",
+   "question": "What physical-card need is described?",
+   "format": "choice",
+   "options": [
+    "first or new physical card",
+    "spare or replacement card",
+    "delivery timing or tracking"
+   ]
+  },
+  {
+   "id": "card_currency_support_topic",
+   "question": "What support topic is the customer asking about?",
+   "format": "choice",
+   "options": [
+    "supported cards or card currencies",
+    "available fiat currencies",
+    "exchanging currencies in the app"
+   ]
+  },
+  {
+   "id": "beneficiary_restriction",
+   "question": "Does the customer say a beneficiary or payee cannot be added, selected, or used?",
+   "format": "noul",
+   "options": null
+  }
+ ],
+ "column_order": [
+  [
+   "asks_for_information",
+   null
+  ],
+  [
+   "requests_an_action",
+   null
+  ],
+  [
+   "reports_a_problem",
+   null
+  ],
+  [
+   "unauthorised_activity",
+   null
+  ],
+  [
+   "transaction_is_pending",
+   null
+  ],
+  [
+   "transaction_is_completed",
+   null
+  ],
+  [
+   "money_outgoing",
+   null
+  ],
+  [
+   "money_incoming",
+   null
+  ],
+  [
+   "physical_or_virtual_card",
+   null
+  ],
+  [
+   "cash_or_atm",
+   null
+  ],
+  [
+   "bank_transfer",
+   null
+  ],
+  [
+   "account_funding_or_top_up",
+   null
+  ],
+  [
+   "fee_or_charge",
+   null
+  ],
+  [
+   "currency_conversion",
+   null
+  ],
+  [
+   "cancel_or_reverse",
+   null
+  ],
+  [
+   "account_access_or_security",
+   null
+  ],
+  [
+   "transfer_outcome",
+   "recipient did not receive it"
+  ],
+  [
+   "transfer_outcome",
+   "pending or incomplete"
+  ],
+  [
+   "transfer_outcome",
+   "failed or declined"
+  ],
+  [
+   "card_lifecycle_context",
+   "get or replace a physical card"
+  ],
+  [
+   "card_lifecycle_context",
+   "activate or link an existing card"
+  ],
+  [
+   "card_lifecycle_context",
+   "use or fix a virtual card"
+  ],
+  [
+   "cash_deposit_issue",
+   "make a cash or cheque deposit"
+  ],
+  [
+   "cash_deposit_issue",
+   "deposit balance not updated"
+  ],
+  [
+   "cash_deposit_issue",
+   "cash withdrawal amount is wrong"
+  ],
+  [
+   "unrecognised_event_type",
+   "card payment"
+  ],
+  [
+   "unrecognised_event_type",
+   "direct debit"
+  ],
+  [
+   "unrecognised_event_type",
+   "cash withdrawal"
+  ],
+  [
+   "card_usage_support_context",
+   "merchant acceptance"
+  ],
+  [
+   "card_usage_support_context",
+   "country availability"
+  ],
+  [
+   "card_usage_support_context",
+   "card or currency compatibility"
+  ],
+  [
+   "cash_withdrawal_problem_type",
+   "card retained by ATM"
+  ],
+  [
+   "cash_withdrawal_problem_type",
+   "wrong cash amount"
+  ],
+  [
+   "cash_withdrawal_problem_type",
+   "withdrawal not authorised"
+  ],
+  [
+   "card_activation_linking_status",
+   "link existing card"
+  ],
+  [
+   "card_activation_linking_status",
+   "activate card"
+  ],
+  [
+   "card_activation_linking_status",
+   "card not working"
+  ],
+  [
+   "top_up_method_or_status",
+   "manual card top-up"
+  ],
+  [
+   "top_up_method_or_status",
+   "automatic top-up"
+  ],
+  [
+   "top_up_method_or_status",
+   "top-up pending or failed"
+  ],
+  [
+   "recipient_not_received",
+   null
+  ],
+  [
+   "physical_card_request_type",
+   "first or new physical card"
+  ],
+  [
+   "physical_card_request_type",
+   "spare or replacement card"
+  ],
+  [
+   "physical_card_request_type",
+   "delivery timing or tracking"
+  ],
+  [
+   "card_currency_support_topic",
+   "supported cards or card currencies"
+  ],
+  [
+   "card_currency_support_topic",
+   "available fiat currencies"
+  ],
+  [
+   "card_currency_support_topic",
+   "exchanging currencies in the app"
+  ],
+  [
+   "beneficiary_restriction",
+   null
+  ]
+ ],
+ "n_columns": 48,
+ "n_probes": 28,
+ "snapshot_cv_best": 0.684379,
+ "snapshot_cv_scores": {
+  "lr": 0.6844,
+  "svm": 0.5976,
+  "et": 0.6347
+ },
+ "extract_s": 89.1
+}

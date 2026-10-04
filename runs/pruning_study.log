@@ -1,0 +1,46 @@
+/home/xrim/banking77-jev-baseline/venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py:812: UserWarning: The least populated class in y has only 4 members, which is less than n_splits=5.
+  warnings.warn(
+
+== mixed-strict-s0.3: 26 probes, 42 columns ==
+   reference: cv5 0.5952 | screen 0.6344 | budget 150
+   b_original_clean: removed 15, kept 11 probes (23 cols), cv5 0.5194 (Δ -7.58pp) [70 evals, no permitted removal remains]
+   c_corrected_tol005: removed 9, kept 17 probes (33 cols), cv5 0.5946 (Δ -0.06pp) [43 evals, no permitted removal remains]
+   d_corrected_tol010: removed 9, kept 17 probes (33 cols), cv5 0.5861 (Δ -0.91pp) [43 evals, no permitted removal remains]
+   col-arm: drop 'link' from card_setup_action -> cv5 0.5873 (Δ -0.79pp)
+   col-arm: drop 'virtual' from explicit_card_form -> cv5 0.5840 (Δ -1.12pp)
+   col-arm: drop 'processing_failure' from transfer_failure_kind -> cv5 0.5956 (Δ +0.04pp)
+
+== mixed-strict-s0.7: 28 probes, 48 columns ==
+   reference: cv5 0.6844 | screen 0.7040 | budget 150
+   b_original_clean: removed 16, kept 12 probes (30 cols), cv5 0.6319 (Δ -5.25pp) [55 evals, no permitted removal remains]
+   c_corrected_tol005: removed 12, kept 16 probes (34 cols), cv5 0.6797 (Δ -0.47pp) [98 evals, no permitted removal remains]
+   d_corrected_tol010: removed 7, kept 21 probes (41 cols), cv5 0.6745 (Δ -0.98pp) [24 evals, budget exhausted]
+
+== mixed-strict-s1.0: 28 probes, 52 columns ==
+   reference: cv5 0.6696 | screen 0.7402 | budget 150
+   b_original_clean: removed 16, kept 12 probes (32 cols), cv5 0.6141 (Δ -5.55pp) [73 evals, no permitted removal remains]
+   c_corrected_tol005: removed 7, kept 21 probes (45 cols), cv5 0.6647 (Δ -0.49pp) [49 evals, no permitted removal remains]
+   d_corrected_tol010: removed 6, kept 22 probes (46 cols), cv5 0.6609 (Δ -0.87pp) [50 evals, no permitted removal remains]
+   col-arm: drop 'recipient not received' from transfer_issue_stage -> cv5 0.6630 (Δ -0.66pp)
+   col-arm: drop 'cash withdrawal amount wrong' from cash_event_type -> cv5 0.6591 (Δ -1.05pp)
+   col-arm: drop 'cash or cheque top-up' from top_up_trigger -> cv5 0.6597 (Δ -0.99pp)
+
+written pruning_results.json + frozen_points.json
+
+=== SUMMARY ===
+mixed-strict-s0.3: ref cv5 0.5952 (26p/42c)
+   b_original_clean    : 11p/23c | cv5 0.5194 | Δ -7.58pp | evals 70
+   c_corrected_tol005  : 17p/33c | cv5 0.5946 | Δ -0.06pp | evals 43
+   d_corrected_tol010  : 17p/33c | cv5 0.5861 | Δ -0.91pp | evals 43
+   budget used 139/150 (reused 20)
+mixed-strict-s0.7: ref cv5 0.6844 (28p/48c)
+   b_original_clean    : 12p/30c | cv5 0.6319 | Δ -5.25pp | evals 55
+   c_corrected_tol005  : 16p/34c | cv5 0.6797 | Δ -0.47pp | evals 98
+   d_corrected_tol010  : 21p/41c | cv5 0.6745 | Δ -0.98pp | evals 24
+   budget used 150/150 (reused 27)
+mixed-strict-s1.0: ref cv5 0.6696 (28p/52c)
+   b_original_clean    : 12p/32c | cv5 0.6141 | Δ -5.55pp | evals 73
+   c_corrected_tol005  : 21p/45c | cv5 0.6647 | Δ -0.49pp | evals 49
+   d_corrected_tol010  : 22p/46c | cv5 0.6609 | Δ -0.87pp | evals 50
+   budget used 139/150 (reused 36)
+EXIT=0

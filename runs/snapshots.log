@@ -1,0 +1,12 @@
+/home/xrim/banking77-jev-baseline/venv-serve/lib/python3.12/site-packages/sklearn/model_selection/_split.py:812: UserWarning: The least populated class in y has only 4 members, which is less than n_splits=5.
+  warnings.warn(
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1075.50it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  44%|████▍     | 136/310 [00:00<00:00, 1318.60it/s]Loading weights:  86%|████████▋ | 268/310 [00:00<00:00, 1268.33it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 1291.56it/s]
+mixed-strict-s0.3: 26 probes (42 cols), cv 0.5952 (extract 87s)
+  equivalence: fresh-subset vs column-slice max|Δ| = 0.0
+mixed-strict-s0.7: 28 probes (48 cols), cv 0.6844 (extract 89s)
+  equivalence: fresh-subset vs column-slice max|Δ| = 0.0
+mixed-strict-s1.0: 28 probes (52 cols), cv 0.6696 (extract 92s)
+  equivalence: fresh-subset vs column-slice max|Δ| = 0.0
+equivalence: {"mixed-strict-s0.3": {"n_subset_probes": 6, "max_abs_delta": 0.0, "equivalent": true}, "mixed-strict-s0.7": {"n_subset_probes": 6, "max_abs_delta": 0.0, "equivalent": true}, "mixed-strict-s1.0": {"n_subset_probes": 6, "max_abs_delta": 0.0, "equivalent": true}}
+EXIT=0

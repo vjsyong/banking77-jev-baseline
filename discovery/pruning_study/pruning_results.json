@@ -1,0 +1,479 @@
+{
+  "mixed-strict-s0.3": {
+    "reference": {
+      "cv5": 0.5952,
+      "screen_fold0": 0.6344,
+      "n_probes": 26,
+      "n_columns": 42
+    },
+    "conditions": {
+      "b_original_clean": {
+        "removed": [
+          "asks_for_information",
+          "requests_an_action",
+          "reports_a_problem",
+          "unauthorised_activity",
+          "money_outgoing",
+          "card_setup_action",
+          "direct_debit_mentioned",
+          "physical_or_virtual_card",
+          "bank_transfer",
+          "account_funding_or_top_up",
+          "currency_conversion",
+          "transfer_failure_kind",
+          "cash_or_atm",
+          "cancel_or_reverse",
+          "declined_cash_withdrawal"
+        ],
+        "n_removed": 15,
+        "kept_probes": [
+          "transaction_is_pending",
+          "transaction_is_completed",
+          "money_incoming",
+          "fee_or_charge",
+          "account_access_or_security",
+          "explicit_card_form",
+          "atm_specific_outcome",
+          "card_failure_specificity",
+          "support_question_scope__r3",
+          "transfer_missing_destination__r3",
+          "card_delivery_or_acceptance"
+        ],
+        "kept_n": 11,
+        "kept_columns": 23,
+        "final_cv5": 0.5194,
+        "delta_vs_unpruned_pp": -7.58,
+        "n_evaluated": 70,
+        "stop": "no permitted removal remains",
+        "wall_s": 8.6
+      },
+      "c_corrected_tol005": {
+        "removed": [
+          "asks_for_information",
+          "requests_an_action",
+          "reports_a_problem",
+          "unauthorised_activity",
+          "transaction_is_completed",
+          "money_incoming",
+          "cash_or_atm",
+          "account_funding_or_top_up",
+          "direct_debit_mentioned"
+        ],
+        "n_removed": 9,
+        "kept_probes": [
+          "transaction_is_pending",
+          "money_outgoing",
+          "physical_or_virtual_card",
+          "bank_transfer",
+          "fee_or_charge",
+          "currency_conversion",
+          "cancel_or_reverse",
+          "account_access_or_security",
+          "card_setup_action",
+          "explicit_card_form",
+          "transfer_failure_kind",
+          "atm_specific_outcome",
+          "card_failure_specificity",
+          "support_question_scope__r3",
+          "transfer_missing_destination__r3",
+          "declined_cash_withdrawal",
+          "card_delivery_or_acceptance"
+        ],
+        "kept_n": 17,
+        "kept_columns": 33,
+        "final_cv5": 0.5946,
+        "delta_vs_unpruned_pp": -0.06,
+        "n_evaluated": 43,
+        "stop": "no permitted removal remains",
+        "wall_s": 22.1
+      },
+      "d_corrected_tol010": {
+        "removed": [
+          "asks_for_information",
+          "requests_an_action",
+          "reports_a_problem",
+          "unauthorised_activity",
+          "transaction_is_pending",
+          "transaction_is_completed",
+          "money_incoming",
+          "fee_or_charge",
+          "direct_debit_mentioned"
+        ],
+        "n_removed": 9,
+        "kept_probes": [
+          "money_outgoing",
+          "physical_or_virtual_card",
+          "cash_or_atm",
+          "bank_transfer",
+          "account_funding_or_top_up",
+          "currency_conversion",
+          "cancel_or_reverse",
+          "account_access_or_security",
+          "card_setup_action",
+          "explicit_card_form",
+          "transfer_failure_kind",
+          "atm_specific_outcome",
+          "card_failure_specificity",
+          "support_question_scope__r3",
+          "transfer_missing_destination__r3",
+          "declined_cash_withdrawal",
+          "card_delivery_or_acceptance"
+        ],
+        "kept_n": 17,
+        "kept_columns": 33,
+        "final_cv5": 0.5861,
+        "delta_vs_unpruned_pp": -0.91,
+        "n_evaluated": 43,
+        "stop": "no permitted removal remains",
+        "wall_s": 18.7
+      }
+    },
+    "column_arm": [
+      {
+        "probe": "card_setup_action",
+        "dropped_option": "link",
+        "cv5_after": 0.5873,
+        "delta_pp": -0.79,
+        "status": "evaluated"
+      },
+      {
+        "probe": "explicit_card_form",
+        "dropped_option": "virtual",
+        "cv5_after": 0.584,
+        "delta_pp": -1.12,
+        "status": "evaluated"
+      },
+      {
+        "probe": "transfer_failure_kind",
+        "dropped_option": "processing_failure",
+        "cv5_after": 0.5956,
+        "delta_pp": 0.04,
+        "status": "evaluated"
+      }
+    ],
+    "budget_used": 139,
+    "budget_reused": 20,
+    "wording_verified": true,
+    "snapshot_cv": 0.595182
+  },
+  "mixed-strict-s0.7": {
+    "reference": {
+      "cv5": 0.6844,
+      "screen_fold0": 0.704,
+      "n_probes": 28,
+      "n_columns": 48
+    },
+    "conditions": {
+      "b_original_clean": {
+        "removed": [
+          "reports_a_problem",
+          "unauthorised_activity",
+          "transaction_is_pending",
+          "transaction_is_completed",
+          "money_outgoing",
+          "money_incoming",
+          "physical_or_virtual_card",
+          "bank_transfer",
+          "fee_or_charge",
+          "currency_conversion",
+          "recipient_not_received",
+          "physical_card_request_type",
+          "beneficiary_restriction",
+          "requests_an_action",
+          "cash_or_atm",
+          "account_funding_or_top_up"
+        ],
+        "n_removed": 16,
+        "kept_probes": [
+          "asks_for_information",
+          "cancel_or_reverse",
+          "account_access_or_security",
+          "transfer_outcome",
+          "card_lifecycle_context",
+          "cash_deposit_issue",
+          "unrecognised_event_type",
+          "card_usage_support_context",
+          "cash_withdrawal_problem_type",
+          "card_activation_linking_status",
+          "top_up_method_or_status",
+          "card_currency_support_topic"
+        ],
+        "kept_n": 12,
+        "kept_columns": 30,
+        "final_cv5": 0.6319,
+        "delta_vs_unpruned_pp": -5.25,
+        "n_evaluated": 55,
+        "stop": "no permitted removal remains",
+        "wall_s": 6.7
+      },
+      "c_corrected_tol005": {
+        "removed": [
+          "reports_a_problem",
+          "unauthorised_activity",
+          "transaction_is_pending",
+          "money_incoming",
+          "cash_or_atm",
+          "bank_transfer",
+          "account_funding_or_top_up",
+          "cancel_or_reverse",
+          "beneficiary_restriction",
+          "recipient_not_received",
+          "card_usage_support_context",
+          "transaction_is_completed"
+        ],
+        "n_removed": 12,
+        "kept_probes": [
+          "asks_for_information",
+          "requests_an_action",
+          "money_outgoing",
+          "physical_or_virtual_card",
+          "fee_or_charge",
+          "currency_conversion",
+          "account_access_or_security",
+          "transfer_outcome",
+          "card_lifecycle_context",
+          "cash_deposit_issue",
+          "unrecognised_event_type",
+          "cash_withdrawal_problem_type",
+          "card_activation_linking_status",
+          "top_up_method_or_status",
+          "physical_card_request_type",
+          "card_currency_support_topic"
+        ],
+        "kept_n": 16,
+        "kept_columns": 34,
+        "final_cv5": 0.6797,
+        "delta_vs_unpruned_pp": -0.47,
+        "n_evaluated": 98,
+        "stop": "no permitted removal remains",
+        "wall_s": 75.3
+      },
+      "d_corrected_tol010": {
+        "removed": [
+          "requests_an_action",
+          "unauthorised_activity",
+          "transaction_is_pending",
+          "money_incoming",
+          "cash_or_atm",
+          "bank_transfer",
+          "account_funding_or_top_up"
+        ],
+        "n_removed": 7,
+        "kept_probes": [
+          "asks_for_information",
+          "reports_a_problem",
+          "transaction_is_completed",
+          "money_outgoing",
+          "physical_or_virtual_card",
+          "fee_or_charge",
+          "currency_conversion",
+          "cancel_or_reverse",
+          "account_access_or_security",
+          "transfer_outcome",
+          "card_lifecycle_context",
+          "cash_deposit_issue",
+          "unrecognised_event_type",
+          "card_usage_support_context",
+          "cash_withdrawal_problem_type",
+          "card_activation_linking_status",
+          "top_up_method_or_status",
+          "recipient_not_received",
+          "physical_card_request_type",
+          "card_currency_support_topic",
+          "beneficiary_restriction"
+        ],
+        "kept_n": 21,
+        "kept_columns": 41,
+        "final_cv5": 0.6745,
+        "delta_vs_unpruned_pp": -0.98,
+        "n_evaluated": 24,
+        "stop": "budget exhausted",
+        "wall_s": 113.6
+      }
+    },
+    "column_arm": [
+      {
+        "probe": "transfer_outcome",
+        "dropped_option": "recipient did not receive it",
+        "status": "budget-skipped"
+      },
+      {
+        "probe": "card_lifecycle_context",
+        "dropped_option": "use or fix a virtual card",
+        "status": "budget-skipped"
+      },
+      {
+        "probe": "cash_deposit_issue",
+        "dropped_option": "deposit balance not updated",
+        "status": "budget-skipped"
+      }
+    ],
+    "budget_used": 150,
+    "budget_reused": 27,
+    "wording_verified": true,
+    "snapshot_cv": 0.684379
+  },
+  "mixed-strict-s1.0": {
+    "reference": {
+      "cv5": 0.6696,
+      "screen_fold0": 0.7402,
+      "n_probes": 28,
+      "n_columns": 52
+    },
+    "conditions": {
+      "b_original_clean": {
+        "removed": [
+          "requests_an_action",
+          "reports_a_problem",
+          "transaction_is_pending",
+          "money_outgoing",
+          "physical_or_virtual_card",
+          "cash_or_atm",
+          "bank_transfer",
+          "account_funding_or_top_up",
+          "cancel_or_reverse",
+          "account_access_or_security",
+          "top_up_trigger",
+          "fee_or_charge",
+          "unauthorised_activity",
+          "transaction_is_completed",
+          "money_incoming",
+          "card_delivery_question_focus"
+        ],
+        "n_removed": 16,
+        "kept_probes": [
+          "asks_for_information",
+          "currency_conversion",
+          "transfer_issue_stage",
+          "cash_event_type",
+          "account_event_type",
+          "physical_card_order_purpose",
+          "disposable_card_request_focus",
+          "transfer_recipient_restriction",
+          "pin_change_or_block",
+          "supported_currency_context",
+          "top_up_failure_or_reversal",
+          "payment_fee_or_extra_entry"
+        ],
+        "kept_n": 12,
+        "kept_columns": 32,
+        "final_cv5": 0.6141,
+        "delta_vs_unpruned_pp": -5.55,
+        "n_evaluated": 73,
+        "stop": "no permitted removal remains",
+        "wall_s": 43.8
+      },
+      "c_corrected_tol005": {
+        "removed": [
+          "requests_an_action",
+          "transaction_is_pending",
+          "money_outgoing",
+          "money_incoming",
+          "cash_or_atm",
+          "bank_transfer",
+          "account_access_or_security"
+        ],
+        "n_removed": 7,
+        "kept_probes": [
+          "asks_for_information",
+          "reports_a_problem",
+          "unauthorised_activity",
+          "transaction_is_completed",
+          "physical_or_virtual_card",
+          "account_funding_or_top_up",
+          "fee_or_charge",
+          "currency_conversion",
+          "cancel_or_reverse",
+          "transfer_issue_stage",
+          "cash_event_type",
+          "top_up_trigger",
+          "account_event_type",
+          "physical_card_order_purpose",
+          "disposable_card_request_focus",
+          "card_delivery_question_focus",
+          "transfer_recipient_restriction",
+          "pin_change_or_block",
+          "supported_currency_context",
+          "top_up_failure_or_reversal",
+          "payment_fee_or_extra_entry"
+        ],
+        "kept_n": 21,
+        "kept_columns": 45,
+        "final_cv5": 0.6647,
+        "delta_vs_unpruned_pp": -0.49,
+        "n_evaluated": 49,
+        "stop": "no permitted removal remains",
+        "wall_s": 218.0
+      },
+      "d_corrected_tol010": {
+        "removed": [
+          "requests_an_action",
+          "reports_a_problem",
+          "transaction_is_pending",
+          "money_outgoing",
+          "physical_or_virtual_card",
+          "account_funding_or_top_up"
+        ],
+        "n_removed": 6,
+        "kept_probes": [
+          "asks_for_information",
+          "unauthorised_activity",
+          "transaction_is_completed",
+          "money_incoming",
+          "cash_or_atm",
+          "bank_transfer",
+          "fee_or_charge",
+          "currency_conversion",
+          "cancel_or_reverse",
+          "account_access_or_security",
+          "transfer_issue_stage",
+          "cash_event_type",
+          "top_up_trigger",
+          "account_event_type",
+          "physical_card_order_purpose",
+          "disposable_card_request_focus",
+          "card_delivery_question_focus",
+          "transfer_recipient_restriction",
+          "pin_change_or_block",
+          "supported_currency_context",
+          "top_up_failure_or_reversal",
+          "payment_fee_or_extra_entry"
+        ],
+        "kept_n": 22,
+        "kept_columns": 46,
+        "final_cv5": 0.6609,
+        "delta_vs_unpruned_pp": -0.87,
+        "n_evaluated": 50,
+        "stop": "no permitted removal remains",
+        "wall_s": 27.8
+      }
+    },
+    "column_arm": [
+      {
+        "probe": "transfer_issue_stage",
+        "dropped_option": "recipient not received",
+        "cv5_after": 0.663,
+        "delta_pp": -0.66,
+        "status": "evaluated"
+      },
+      {
+        "probe": "cash_event_type",
+        "dropped_option": "cash withdrawal amount wrong",
+        "cv5_after": 0.6591,
+        "delta_pp": -1.05,
+        "status": "evaluated"
+      },
+      {
+        "probe": "top_up_trigger",
+        "dropped_option": "cash or cheque top-up",
+        "cv5_after": 0.6597,
+        "delta_pp": -0.99,
+        "status": "evaluated"
+      }
+    ],
+    "budget_used": 139,
+    "budget_reused": 36,
+    "wording_verified": true,
+    "snapshot_cv": 0.669582
+  }
+}

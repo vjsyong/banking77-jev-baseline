@@ -1,0 +1,17 @@
+{
+  "mixed-strict-s0.3": {
+    "n_subset_probes": 6,
+    "max_abs_delta": 0.0,
+    "equivalent": true
+  },
+  "mixed-strict-s0.7": {
+    "n_subset_probes": 6,
+    "max_abs_delta": 0.0,
+    "equivalent": true
+  },
+  "mixed-strict-s1.0": {
+    "n_subset_probes": 6,
+    "max_abs_delta": 0.0,
+    "equivalent": true
+  }
+}
