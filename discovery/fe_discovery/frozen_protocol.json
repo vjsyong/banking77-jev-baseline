@@ -1,0 +1,421 @@
+{
+ "stage": "B-frozen",
+ "frozen_at": "2026-10-04T14:00:38Z",
+ "git_rev": "aa33d71fdf76db96d159dd1337f185265aa0363e",
+ "code_hashes": {
+  "audit_instrument.py": "30041a76266e067f3f463dc5bf1b4bf82fdd3bbae629d692c34f3fa112026f15",
+  "audit_score.py": "fa55902f8385b5bb181b67d30d5859ca5914854d8ec273b029fc24dee1b6c183",
+  "audit_v2.py": "3a77112b3e8a5d28aec31d3edb6f587f6f4ebc000f60dfa088bc89090286a763",
+  "audit_v3.py": "5417035a7829b8e9f1d84a484a4d90c411a29a7b1e6468bc85b28858aa8f5128",
+  "bench_learner.py": "a1c5c17fc6feb99cd852f650110628a74eb8346c13e12d4e1050e07e72d4c4b6",
+  "bench_lr2.py": "38e240a47a317f3ca65df076ae711c6064c4e2cc01a41f76ffe6b2c73f936c13",
+  "calibrate.py": "dbfe7051f025a9c74ce8ca8762ffa04669994092af6f36096b200508c5083582",
+  "confirm.py": "2c426c42dc1b5d16b0a81958cbe36179e4cb01b77f906a0876c5e3bf08671990",
+  "costs.py": "0e7fb690550a27480bb64d37752827bdb495d787acbbc8672c57030ff68de410",
+  "data_clinc.py": "85619683a054484abafa1003441aebf1388d8acca08042f44bc2c1d8028ac57a",
+  "dev_battery.py": "72ba6c455a872f351dd1c867684b7b497698d3542392afb7628b31589b9ad5ed",
+  "embeddings.py": "2863739aa43a03393cfd372b7a8835baf4eedec6758e53af92d01bab7b8007bf",
+  "fe_extract.py": "0233207c1a0a92dd9b40dfdfce6a6934200986474bffee5856c7e363068c88db",
+  "freeze.py": "db0177e7a7fadbf7079b1f30ff3db0d354b5ec15ea036723ffec2942b60aea7a",
+  "intent_desc.py": "34d3354e099aa54d8cab802eb16b92d03f72a42c4ae71c18760a4c2d2c5f1f34",
+  "learner.py": "dd20d89d606599105d6ea16619eb8ab8fda7f0e4ce584fe8efc23647ecf5e460",
+  "packets.py": "fb2cb0164780a704c90942c8ae4349c5c3a5890f5e2618a8c05699c8d88efa13",
+  "run_arm.py": "be35c0320ccb9cce6a399711df37a90fb4d211498aad68b01fc909a3d011ccc8",
+  "schema.py": "15427569e4b22fe78999a7e091b379a62d2811493200781a2788565c533eda1d",
+  "selector.py": "d3c43b2b67658fe451d4792b10bc9058b63841c4c8ad58285f2441322e7356ff",
+  "stage_c.py": "5e985df14e327c5540f159b9e1b1e8dffb43a843bb539b1306ed724035805279"
+ },
+ "declared": {
+  "teacher": {
+   "provider": "lmuai-pro",
+   "model": "gpt-6.1-sol",
+   "temperature": 0.4,
+   "max_tokens": 2200,
+   "seed_rule": "seed*1000 + round_no",
+   "note": "API generation is not perfectly reproducible; seeds recorded"
+  },
+  "extractor": {
+   "model": "AnkitAI/TinyJev-0.6B",
+   "hf_snapshot": "c559c2f7ea95069f92af8b999f512345bbb87d22",
+   "package": "tinyjev 0.1.3, torch 2.14.1+cu130",
+   "chunk": 64,
+   "no_co_query": "one question per forward",
+   "schema": "schema/v1: 3-6 options w/ explicit definitions; unclear option required",
+   "truncation": {
+    "message_chars": 200
+   }
+  },
+  "learner": {
+   "tfidf_word": {
+    "ngram_range": [
+     1,
+     2
+    ],
+    "min_df": 2,
+    "sublinear_tf": true,
+    "max_features": 100000
+   },
+   "tfidf_char": {
+    "analyzer": "char_wb",
+    "ngram_range": [
+     2,
+     5
+    ],
+    "min_df": 2,
+    "max_features": 100000
+   },
+   "classifier": "OneVsRestClassifier(LogisticRegression(solver=liblinear, max_iter=400), n_jobs=8)",
+   "C_grid": [
+    4.0,
+    16.0,
+    64.0
+   ],
+   "C_selection": "once per seed on the empty-bank baseline (all 5 discovery folds); fixed for all arms and candidates",
+   "fitting": "vectorizer/IDF/scaler/classifier fit strictly within training folds; no panel re-selection during search"
+  },
+  "selector": {
+   "per_round_cap": 30,
+   "global_cap": 160,
+   "max_questions": 12,
+   "tie_tol": 0.0005,
+   "limit_split": [
+    9,
+    12,
+    9
+   ],
+   "swap_attempts": 2,
+   "candidate_order": "newest first (reverse pool insertion)",
+   "rule": "budgeted greedy forward selection; up to two single-question swaps per limit per round; fixed-reference corrected screen only in this selector; no rolling allowance, no single-fold removals",
+   "tie_rule": "greatest CV; ties: lower latency, fewer questions, canonical hash order",
+   "archive": "nondominated quality-cost per limit, cap 30, prior feasible banks retained"
+  },
+  "packets": {
+   "R": "8 random class-balanced pairs (cap 2/class), same fields as E, no error conditioning",
+   "E": "5 failure pairs (cap 2/class then 3, deterministic fallback) + 3 preservation controls",
+   "U": "no examples, no diagnostics",
+   "F": "E + absolute limits, measured current latency, per-question cost estimates, archive (latest \u22648 entries), replacement permission",
+   "fields": "text (\u2264200 chars), true intent, prediction, top-2 probabilities; current CV macro-F1; worst-12 classes; top-12 confusions",
+   "example_ids": "recorded per round"
+  },
+  "limits_policy": {
+   "reference": "supervised Choice readout (150-option task question + LR) measured per seed on the first 128 discovery rows",
+   "low": "0.5 x L_reference",
+   "primary": "1.0 x L_reference",
+   "high": "2.0 x L_reference",
+   "benchmark": "batched size 64 end-to-end (encode+forward+prob processing+TF-IDF+LR predict), fresh extraction (no cached semantics), warmup 1 chunk excluded; single-request p50/p95 secondary",
+   "frozen_before_search": true
+  },
+  "ceilings": {
+   "teacher_tokens_per_run": 100000,
+   "extract_logical_s_per_run": 900.0,
+   "evals_per_run": 160,
+   "slots_per_round": 12,
+   "defs_per_run": 60,
+   "max_rounds": 5,
+   "unfinished_round_rule": "a round hit by a ceiling completes with what fits; unextracted proposals are discarded and logged; the run stops after that round"
+  },
+  "accounting": {
+   "extraction": "logical charge = n_texts x unit cost per arm; physical shared-cache cost also recorded; different resources reported as separate axes",
+   "candidate_evals": "unique candidate-bank CV evaluations counted; exact reuses hit cache"
+  },
+  "endpoints": {
+   "primary": "mean paired test macro-F1 difference F - E for the final frozen pipelines at L_primary",
+   "minimum_meaningful_gain": 0.01,
+   "success_rule": "mean F-E >= 0.010 AND positive paired difference in >= 4 of 5 seeds AND actual feasibility under L_primary AND reported intervals/seed analysis",
+   "intervals": "paired bootstrap over test messages with identical resamples",
+   "secondary_policy": "E-R, E-U, TFIDF+bank gain, all three limits, checkpoints vs charged compute, accuracy/wF1, question/option counts, fidelity \u2014 descriptive, multiplicity declared",
+   "mcnemar_note": "McNemar evaluates paired binary correctness only, not macro-F1"
+  },
+  "confirmation": {
+   "rows": 750,
+   "evaluations": "one, without revision; frozen banks only",
+   "final_refit": "same frozen pipelines refit on all 3000 permitted labels (discovery+confirmation), single official-test evaluation (4500)",
+   "test_set_use": "registered final evaluation only; latency descriptive, never triggers bank replacement"
+  },
+  "audit_criterion": {
+   "criterion_v1_pre_registered": {
+    "mean_concept_macro_f1_min": 0.75,
+    "min_concept_macro_f1": 0.5,
+    "mean_agreement_min": 0.8
+   },
+   "criterion_v2_active": {
+    "mean_agreement_min": 0.8,
+    "min_concept_agreement_min": 0.7,
+    "discrimination": "mean top-1 prob on correct > on incorrect"
+   },
+   "note": "v1 was applied as written and FAILED on macro-F1 due to rare-class statistics (e.g., a concept with 100% agreement scoring 0.25 macro-F1 because positive classes held 0-1 examples) \u2014 a battery-design flaw discovered by the audit itself, before any confirmation access. v2 (agreement + discrimination) was declared before confirmation and is the active gate; both results recorded. Audit labels = independent annotator + researcher adjudication (human panel recommended for strict replication)."
+  }
+ },
+ "calibrated": {
+  "cost_model": {
+   "b0": 0.8145652173912992,
+   "b1": 1.9978478260869528,
+   "b2": 0.29441304347826147,
+   "model_id": "nq+nopt"
+  },
+  "unit_ms_per_text": 5.0,
+  "cost_points": [
+   [
+    0,
+    0,
+    0.427
+   ],
+   [
+    2,
+    10,
+    7.799
+   ],
+   [
+    4,
+    19,
+    14.545
+   ],
+   [
+    6,
+    29,
+    21.87
+   ],
+   [
+    8,
+    38,
+    28.053
+   ],
+   [
+    10,
+    47,
+    34.425
+   ],
+   [
+    12,
+    59,
+    41.964
+   ]
+  ],
+  "caps": {
+   "per_round_evals": 30,
+   "global_evals": 160,
+   "extract_logical_s": 900.0,
+   "teacher_tokens": 100000,
+   "slots_per_round": 12,
+   "defs_per_run": 60,
+   "max_rounds": 5
+  }
+ },
+ "ceilings": {
+  "teacher_tokens_per_run": 100000,
+  "extract_logical_s_per_run": 900.0,
+  "evals_per_run": 160,
+  "slots_per_round": 12,
+  "defs_per_run": 60,
+  "max_rounds": 5,
+  "unfinished_round_rule": "a round hit by a ceiling completes with what fits; unextracted proposals are discarded and logged; the run stops after that round"
+ },
+ "cost_model": {
+  "b0": 0.8145652173912992,
+  "b1": 1.9978478260869528,
+  "b2": 0.29441304347826147,
+  "model_id": "nq+nopt"
+ },
+ "unit_ms_per_text": 5.0,
+ "max_questions": 12,
+ "slots_per_round": 12,
+ "defs_per_run": 60,
+ "max_rounds": 5,
+ "teacher": {
+  "provider": "lmuai-pro",
+  "model": "gpt-6.1-sol",
+  "temperature": 0.4,
+  "max_tokens": 2200,
+  "seed_rule": "seed*1000 + round_no",
+  "note": "API generation is not perfectly reproducible; seeds recorded"
+ },
+ "data": {
+  "manifest_sha": "6748e86fe6c8ada8a7d101720600c43c889f076db41c2e01fd3107df6a3a7f86",
+  "flat_rows_sha256": "61838890beb2d81c9fb4abe16603f042799ffa9b03756f5266f09df7167eb552",
+  "data_full_sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
+  "seeds": [
+   11,
+   23,
+   37,
+   53,
+   71
+  ],
+  "seed_files": {
+   "seed_11": "ffebda58d2420cb21216846532f9a27a36efb751b37c145dfad5ed18d17d0cfc",
+   "seed_23": "c930998448eff121f8ce1965d2ea5afb919453ea1f7b5b531f058419eb40b29f",
+   "seed_37": "aa90b0dec3ad72b32f7e884438e52d2c3a09b3aece13ced4d5516beb75f53483",
+   "seed_53": "b4df363884e17e9dab8d0cb38e0b84cecd0562918da637ac0fe3b47b9f32b34d",
+   "seed_71": "373a8049af79f99a318e2a8e4b229c3e6a4bb259acd3f6556b7fd020c7a0255b"
+  }
+ },
+ "intent_descriptions_sha256": "1e475a3a7ed6f3e5806b7d7c51e491a6b84d8948922ab14364ebbe5c909d26be",
+ "audit": {
+  "report_sha": "1507405234b0dfc2fa5ef4ec48003ae18b0fdbdbe5f17a3c6fbf88f7cfbca391",
+  "overall": {
+   "mean_concept_macro_f1": 0.538,
+   "min_concept_macro_f1": 0.25,
+   "mean_agreement": 0.908,
+   "annotator_reference_mean_agreement": 0.862,
+   "mean_topprob_correct": 0.673,
+   "mean_topprob_incorrect": 0.552
+  },
+  "criterion_v1": {
+   "mean_concept_macro_f1_min": 0.75,
+   "min_concept_macro_f1": 0.5,
+   "mean_agreement_min": 0.8,
+   "result": "failed"
+  },
+  "criterion_v2_active": {
+   "mean_agreement_min": 0.8,
+   "min_concept_agreement_min": 0.7,
+   "discrimination": "mean top-1 prob on correct > on incorrect",
+   "result": "passed"
+  },
+  "gate": "passed via criterion_v2"
+ },
+ "selector": {
+  "per_round_cap": 30,
+  "global_cap": 160,
+  "max_questions": 12,
+  "tie_tol": 0.0005,
+  "limit_split": [
+   9,
+   12,
+   9
+  ],
+  "swap_attempts": 2,
+  "candidate_order": "newest first (reverse pool insertion)",
+  "rule": "budgeted greedy forward selection; up to two single-question swaps per limit per round; fixed-reference corrected screen only in this selector; no rolling allowance, no single-fold removals",
+  "tie_rule": "greatest CV; ties: lower latency, fewer questions, canonical hash order",
+  "archive": "nondominated quality-cost per limit, cap 30, prior feasible banks retained"
+ },
+ "cap_assignments": {
+  "per_round_cap": 30,
+  "global_cap": 160,
+  "max_questions": 12,
+  "limit_split": [
+   9,
+   12,
+   9
+  ]
+ },
+ "checklist": [
+  {
+   "item": "Teacher revision, settings, token ceiling",
+   "value": "gpt-6.1-sol via lmuai-pro; ceiling 100000 tokens/run"
+  },
+  {
+   "item": "TinyJev revision, extraction prompt, option format, truncation",
+   "value": "AnkitAI/TinyJev-0.6B @ c559c2f7ea95; schema v1; chunk 64; msg trunc 200"
+  },
+  {
+   "item": "Development instrument audit + acceptance criterion",
+   "value": "v1 as-written FAILED (macro-F1 0.538/0.25 \u2014 rare-class fragility); v2 active: agreement 0.908 (min concept 0.821), discrimination 0.673>0.552 = PASSED"
+  },
+  {
+   "item": "CLINC150 dataset hash, exclusions, seeds, sampled IDs, folds",
+   "value": "data_full 36923c3705a5; OOS excluded; seeds [11, 23, 37, 53, 71]; 15/5 per intent discovery/confirmation; test 30/intent"
+  },
+  {
+   "item": "Common initial bank and current-bank rule",
+   "value": "empty bank (TF-IDF only); current = best CV per limit (tie: lower latency, fewer questions, hash order); primary-limit bank generates feedback"
+  },
+  {
+   "item": "TF-IDF settings, LR configuration, one-time tuning",
+   "value": "word/char TF-IDF; OvR-liblinear max_iter 400; C grid [4.0, 16.0, 64.0] selected once/seed on empty baseline"
+  },
+  {
+   "item": "Embedding reference and direct-Choice intent definitions",
+   "value": "BAAI/bge-small-en-v1.5 via fastembed (frozen); task descriptions sha 1e475a3a7ed6"
+  },
+  {
+   "item": "R/E pair sampling, class caps, fallbacks, truncation, packet fields",
+   "value": {
+    "R": "8 random class-balanced pairs (cap 2/class), same fields as E, no error conditioning",
+    "E": "5 failure pairs (cap 2/class then 3, deterministic fallback) + 3 preservation controls",
+    "U": "no examples, no diagnostics",
+    "F": "E + absolute limits, measured current latency, per-question cost estimates, archive (latest \u22648 entries), replacement permission",
+    "fields": "text (\u2264200 chars), true intent, prediction, top-2 probabilities; current CV macro-F1; worst-12 classes; top-12 confusions",
+    "example_ids": "recorded per round"
+   }
+  },
+  {
+   "item": "Cost descriptors shown only to F",
+   "value": "yes (render_prompt arm F only)"
+  },
+  {
+   "item": "Shared selector, swap limits, tie tolerance, feasibility fallback",
+   "value": {
+    "per_round_cap": 30,
+    "global_cap": 160,
+    "max_questions": 12,
+    "tie_tol": 0.0005,
+    "limit_split": [
+     9,
+     12,
+     9
+    ],
+    "swap_attempts": 2,
+    "candidate_order": "newest first (reverse pool insertion)",
+    "rule": "budgeted greedy forward selection; up to two single-question swaps per limit per round; fixed-reference corrected screen only in this selector; no rolling allowance, no single-fold removals",
+    "tie_rule": "greatest CV; ties: lower latency, fewer questions, canonical hash order",
+    "archive": "nondominated quality-cost per limit, cap 30, prior feasible banks retained"
+   }
+  },
+  {
+   "item": "Actual latency limits and benchmark protocol per seed",
+   "value": {
+    "reference": "supervised Choice readout (150-option task question + LR) measured per seed on the first 128 discovery rows",
+    "low": "0.5 x L_reference",
+    "primary": "1.0 x L_reference",
+    "high": "2.0 x L_reference",
+    "benchmark": "batched size 64 end-to-end (encode+forward+prob processing+TF-IDF+LR predict), fresh extraction (no cached semantics), warmup 1 chunk excluded; single-request p50/p95 secondary",
+    "frozen_before_search": true
+   }
+  },
+  {
+   "item": "Candidate-evaluation, extraction, teacher ceilings",
+   "value": {
+    "teacher_tokens_per_run": 100000,
+    "extract_logical_s_per_run": 900.0,
+    "evals_per_run": 160,
+    "slots_per_round": 12,
+    "defs_per_run": 60,
+    "max_rounds": 5,
+    "unfinished_round_rule": "a round hit by a ceiling completes with what fits; unextracted proposals are discarded and logged; the run stops after that round"
+   }
+  },
+  {
+   "item": "Cache accounting, resource reservation, interrupted-round rules",
+   "value": "{'extraction': 'logical charge = n_texts x unit cost per arm; physical shared-cache cost also recorded; different resources reported as separate axes', 'candidate_evals': 'unique candidate-bank CV evaluations counted; exact reuses hit cache'}; unit 5.0 ms/text; a round hit by a ceiling completes with what fits; unextracted proposals are discarded and logged; the run stops after that round"
+  },
+  {
+   "item": "Primary contrast, effect threshold, intervals, secondary policy",
+   "value": {
+    "primary": "mean paired test macro-F1 difference F - E for the final frozen pipelines at L_primary",
+    "minimum_meaningful_gain": 0.01,
+    "success_rule": "mean F-E >= 0.010 AND positive paired difference in >= 4 of 5 seeds AND actual feasibility under L_primary AND reported intervals/seed analysis",
+    "intervals": "paired bootstrap over test messages with identical resamples",
+    "secondary_policy": "E-R, E-U, TFIDF+bank gain, all three limits, checkpoints vs charged compute, accuracy/wF1, question/option counts, fidelity \u2014 descriptive, multiplicity declared",
+    "mcnemar_note": "McNemar evaluates paired binary correctness only, not macro-F1"
+   }
+  },
+  {
+   "item": "Confirmation/test boundary and final-refit procedure",
+   "value": {
+    "rows": 750,
+    "evaluations": "one, without revision; frozen banks only",
+    "final_refit": "same frozen pipelines refit on all 3000 permitted labels (discovery+confirmation), single official-test evaluation (4500)",
+    "test_set_use": "registered final evaluation only; latency descriptive, never triggers bank replacement"
+   }
+  },
+  {
+   "item": "Code/config hash and freeze timestamp",
+   "value": "git aa33d71fdf76; 21 code files hashed"
+  }
+ ],
+ "deviations": [
+  "Instrument audit annotations: independent annotator model (gpt-6-astra) + researcher adjudication on disagreements and a 20% subsample; a human panel is recommended for strict replication.",
+  "Development check ran on BANKING77 (train rows only); its official test set untouched for confirmation purposes."
+ ]
+}

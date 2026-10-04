@@ -44,7 +44,18 @@ def load_intent_descriptions():
 
 def load_protocol():
     f = HERE / "discovery" / "fe_discovery" / "frozen_protocol.json"
-    return json.loads(f.read_text())
+    proto = json.loads(f.read_text())
+    # tolerate both flat and nested layouts
+    d = proto.get("declared", {})
+    c = proto.get("calibrated", {})
+    proto.setdefault("ceilings", d.get("ceilings"))
+    proto.setdefault("cost_model", c.get("cost_model"))
+    proto.setdefault("unit_ms_per_text", c.get("unit_ms_per_text"))
+    proto.setdefault("max_questions", proto.get("selector", {}).get("max_questions", 12))
+    proto.setdefault("slots_per_round", d.get("ceilings", {}).get("slots_per_round"))
+    proto.setdefault("defs_per_run", d.get("ceilings", {}).get("defs_per_run"))
+    proto.setdefault("max_rounds", d.get("ceilings", {}).get("max_rounds"))
+    return proto
 
 
 def main():
