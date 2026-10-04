@@ -21,7 +21,7 @@ from extract_probes import ProbeStore, text_key  # noqa: E402
 from tinyjev import load as load_agent  # noqa: E402
 from tinyjev.families import softmax  # noqa: E402
 
-MAX_OPTIONS = 6
+MAX_OPTIONS = 255  # channel limit (pointer family); probe schema validation caps at 6
 
 
 class ExtractionError(RuntimeError):
