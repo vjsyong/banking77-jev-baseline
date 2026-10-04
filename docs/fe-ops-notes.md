@@ -58,6 +58,25 @@ from round 1 under the pool (D3).
 - The model, dtype, extractor, schema, selector, learner, and prompt templates
   are untouched by these changes.
 
+## 4b. Concurrency control — cross-process eval gate (finding + fix)
+
+First pool attempt exposed the campaign's true hidden hot path: with two workers,
+the OvR-liblinear CV evaluations (150 binary fits x 5 folds per eval, ~7.5 s each
+with 4 threads) spawned ~7 worker processes eating ~19 cores whenever two
+selectors overlapped. That starved extraction's CPU-side tokenization: observed
+extraction throughput dropped ~10x (store growth ~65 rows/s vs ~670 rows/s) and
+the GPU sat at 0% utilisation waiting for data. Root cause: selector CPU storms
+overlapping across processes, not GPU contention.
+
+Fix: `Selector.eval()` now acquires a cross-process `flock` gate
+(`stage_c/eval.lock`, via `eval_lock_path`); CV fits from different pool workers
+never overlap, while teacher waits, extraction, and measurements still run
+concurrently. Verified with a two-process lock test (second competitor blocks
+until first releases). Worker env adjusted: `FE_LR_JOBS=6`, OMP/MKL=4.
+
+No scientific impact: evaluation results are deterministic given the frozen
+learner; the gate changes scheduling only. Latency noise caveat (D1) unchanged.
+
 ## 5. Pre-switchover crash log (no confirmation access)
 
 Three startup crashes occurred during first launches, all before any run
