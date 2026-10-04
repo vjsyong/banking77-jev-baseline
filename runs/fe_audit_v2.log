@@ -1,0 +1,17 @@
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1114.99it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  55%|█████▍    | 169/310 [00:00<00:00, 1660.33it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 1668.35it/s]
+  extract v2 transaction_status: 3.8s
+  extract v2 transfer_path: 1.3s
+  extract v2 card_problem_type: 1.4s
+  extract v2 fee_or_charge: 1.2s
+  extract v2 cash_access: 1.2s
+  extract v2 pin_or_passcode: 1.3s
+  extract v2 topup_mechanism: 1.3s
+Traceback (most recent call last):
+  File "/home/xrim/banking77-jev-baseline/discovery/fe_discovery/audit_v2.py", line 139, in <module>
+    main()
+  File "/home/xrim/banking77-jev-baseline/discovery/fe_discovery/audit_v2.py", line 102, in main
+    d = by_concept[p["concept"]]
+        ~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'transfer_direction'
+EXIT=1

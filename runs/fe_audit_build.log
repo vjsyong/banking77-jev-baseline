@@ -1,0 +1,29 @@
+concepts 7 | pairs 184
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 541.87it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 14388.53it/s]
+  extract transaction_status: 4.7s
+  extract transfer_direction: 2.1s
+  extract card_problem_type: 2.0s
+  extract fee_or_charge: 1.5s
+  extract cash_access: 2.0s
+  extract pin_or_passcode: 1.8s
+  extract topup_mechanism: 2.1s
+[teacher] lmuai-pro/gpt-6-astra ok in 20.9s (usage {'prompt_tokens': 6345, 'completion_tokens': 495, 'total_tokens': 6840, 'prompt_tokens_details': {'cached_tokens': 3968}, 'completion_tokens_details': {'reasoning_tokens': 39}})
+  annotated batch 1: 25/25
+[teacher] lmuai-pro/gpt-6-astra ok in 19.2s (usage {'prompt_tokens': 6496, 'completion_tokens': 509, 'total_tokens': 7005, 'prompt_tokens_details': {'cached_tokens': 3968}, 'completion_tokens_details': {'reasoning_tokens': 45}})
+  annotated batch 2: 25/25
+[teacher] lmuai-pro/gpt-6-astra ok in 33.4s (usage {'prompt_tokens': 6744, 'completion_tokens': 619, 'total_tokens': 7363, 'prompt_tokens_details': {'cached_tokens': 3840}, 'completion_tokens_details': {'reasoning_tokens': 218}})
+  annotated batch 3: 25/25
+[teacher] lmuai-pro/gpt-6-astra ok in 16.2s (usage {'prompt_tokens': 6496, 'completion_tokens': 495, 'total_tokens': 6991, 'prompt_tokens_details': {'cached_tokens': 3968}, 'completion_tokens_details': {'reasoning_tokens': 25}})
+  annotated batch 4: 25/25
+[teacher] lmuai-pro/gpt-6-astra ok in 20.0s (usage {'prompt_tokens': 6440, 'completion_tokens': 489, 'total_tokens': 6929, 'prompt_tokens_details': {'cached_tokens': 3968}, 'completion_tokens_details': {'reasoning_tokens': 31}})
+  annotated batch 5: 25/25
+[teacher] lmuai-pro/gpt-6-astra ok in 23.7s (usage {'prompt_tokens': 6551, 'completion_tokens': 512, 'total_tokens': 7063, 'prompt_tokens_details': {'cached_tokens': 3840}, 'completion_tokens_details': {'reasoning_tokens': 95}})
+  annotated batch 6: 25/25
+[teacher] lmuai-pro/gpt-6-astra ok in 13.1s (usage {'prompt_tokens': 6579, 'completion_tokens': 479, 'total_tokens': 7058, 'prompt_tokens_details': {'cached_tokens': 3968}})
+  annotated batch 7: 25/25
+[teacher] lmuai-pro/gpt-6-astra ok in 8.8s (usage {'prompt_tokens': 4995, 'completion_tokens': 176, 'total_tokens': 5171, 'prompt_tokens_details': {'cached_tokens': 3968}})
+  annotated batch 8: 9/25
+sheet: 150 rows to adjudicate (114 disagreements + 36 subsample)
+done --build
+EXIT=0

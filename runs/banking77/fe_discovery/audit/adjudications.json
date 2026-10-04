@@ -1,0 +1,17 @@
+{"note": "Researcher adjudication of audit v3: all 27 disagreements + 37/147 subsample. Gold = these labels where present, else annotator_v3.",
+ "labels": {
+  "1": "unclear", "7": "unclear", "14": "unclear", "16": "declined", "17": "completed",
+  "29": "outgoing", "30": "outgoing", "31": "outgoing", "32": "unclear", "38": "between_own",
+  "39": "unclear", "43": "unclear", "56": "unclear", "57": "unclear", "59": "unclear",
+  "61": "unclear", "64": "unclear", "69": "unclear", "71": "unclear", "73": "unclear",
+  "92": "fee_question_general", "95": "unclear", "128": "cash_general", "147": "unclear",
+  "158": "unclear", "160": "unclear", "162": "unclear",
+  "125": "unclear", "119": "unclear", "68": "unclear", "180": "unclear", "60": "unclear",
+  "78": "unclear", "83": "unclear", "46": "unclear", "27": "unclear", "84": "unclear",
+  "120": "unclear", "161": "unclear", "164": "unclear", "175": "unclear", "149": "unclear",
+  "181": "unclear", "130": "unclear", "75": "unclear", "117": "unclear", "121": "atm_problem",
+  "74": "unclear", "50": "unclear", "141": "unclear", "179": "unclear", "108": "unclear",
+  "26": "unclear", "170": "unclear", "143": "unclear", "102": "unclear", "183": "unclear",
+  "6": "unclear", "176": "unclear", "91": "fee_question_general", "0": "unclear",
+  "163": "unclear", "35": "unclear", "62": "other_issue"
+ }}

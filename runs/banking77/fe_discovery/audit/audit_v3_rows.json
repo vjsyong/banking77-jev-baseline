@@ -1,0 +1,2790 @@
+[
+ {
+  "pair_id": 0,
+  "concept_v3": "transaction_status",
+  "text": "My statement shows different transaction times.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.041,
+   "completed": 0.065,
+   "declined": 0.049,
+   "reversed": 0.044,
+   "unclear": 0.801
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 1,
+  "concept_v3": "transaction_status",
+  "text": "Looks like my card payment was made twice by mistake. I went to pay at the store earlier which rejected once, second time it worked. App is on pending for one of the payments. Can you please remove one of them as it's wrong and clearly was declined?",
+  "sample": "targeted",
+  "model_v3": "declined",
+  "probs_v3": {
+   "pending": 0.189,
+   "completed": 0.018,
+   "declined": 0.47,
+   "reversed": 0.072,
+   "unclear": 0.25
+  },
+  "annotator_raw": "pending",
+  "annotator_v3": "pending"
+ },
+ {
+  "pair_id": 2,
+  "concept_v3": "transaction_status",
+  "text": "My bill shows the same charge more than once",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.035,
+   "completed": 0.068,
+   "declined": 0.02,
+   "reversed": 0.048,
+   "unclear": 0.83
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 3,
+  "concept_v3": "transaction_status",
+  "text": "Why was I charged twice for the same thing?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.061,
+   "completed": 0.118,
+   "declined": 0.03,
+   "reversed": 0.091,
+   "unclear": 0.7
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 4,
+  "concept_v3": "transaction_status",
+  "text": "I have been double charged for a couple of things this week, and would appreciate a refund for the duplicate charges.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.053,
+   "completed": 0.05,
+   "declined": 0.037,
+   "reversed": 0.309,
+   "unclear": 0.55
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 5,
+  "concept_v3": "transaction_status",
+  "text": "I think there is a mistake.  I am being charged twice.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.038,
+   "completed": 0.082,
+   "declined": 0.023,
+   "reversed": 0.061,
+   "unclear": 0.796
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 6,
+  "concept_v3": "transaction_status",
+  "text": "My husband and I went out for our weekly \"dinner and a movie,\" and it was my turn to pick up the check. Now I see that my card was charged twice. Who should I contact about negating the second charge and getting my card credited?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.07,
+   "completed": 0.136,
+   "declined": 0.052,
+   "reversed": 0.129,
+   "unclear": 0.613
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 7,
+  "concept_v3": "transaction_status",
+  "text": "Hi, I checked my transactions and saw that I was charged twice during a restaurant visit. I would like to get my money back.",
+  "sample": "targeted",
+  "model_v3": "reversed",
+  "probs_v3": {
+   "pending": 0.01,
+   "completed": 0.029,
+   "declined": 0.021,
+   "reversed": 0.562,
+   "unclear": 0.378
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 8,
+  "concept_v3": "transaction_status",
+  "text": "I have duplicated transactions on my statement",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.031,
+   "completed": 0.041,
+   "declined": 0.029,
+   "reversed": 0.053,
+   "unclear": 0.845
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 9,
+  "concept_v3": "transaction_status",
+  "text": "Can you help me? I have a duplicate transaction on my account and I don't understand why.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.009,
+   "completed": 0.02,
+   "declined": 0.015,
+   "reversed": 0.036,
+   "unclear": 0.921
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 10,
+  "concept_v3": "transaction_status",
+  "text": "One of my payments was doubled",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.021,
+   "completed": 0.072,
+   "declined": 0.025,
+   "reversed": 0.055,
+   "unclear": 0.826
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 11,
+  "concept_v3": "transaction_status",
+  "text": "Is there a reason to why I was charged twice for a transaction?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.1,
+   "completed": 0.149,
+   "declined": 0.048,
+   "reversed": 0.094,
+   "unclear": 0.608
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 12,
+  "concept_v3": "transaction_status",
+  "text": "Why is there a fee for doing a transfer?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.22,
+   "completed": 0.074,
+   "declined": 0.127,
+   "reversed": 0.077,
+   "unclear": 0.502
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 13,
+  "concept_v3": "transaction_status",
+  "text": "Is there a way to order a new card while in China?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.244,
+   "completed": 0.07,
+   "declined": 0.113,
+   "reversed": 0.064,
+   "unclear": 0.509
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 14,
+  "concept_v3": "transaction_status",
+  "text": "How long until my new card gets here?",
+  "sample": "other",
+  "model_v3": "pending",
+  "probs_v3": {
+   "pending": 0.457,
+   "completed": 0.055,
+   "declined": 0.026,
+   "reversed": 0.028,
+   "unclear": 0.434
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 15,
+  "concept_v3": "transaction_status",
+  "text": "Can the exchange rate change while I am in the process of making a withdrawal?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.268,
+   "completed": 0.068,
+   "declined": 0.056,
+   "reversed": 0.092,
+   "unclear": 0.515
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 16,
+  "concept_v3": "transaction_status",
+  "text": "My payment was stopped",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.047,
+   "completed": 0.014,
+   "declined": 0.081,
+   "reversed": 0.185,
+   "unclear": 0.673
+  },
+  "annotator_raw": "declined",
+  "annotator_v3": "declined"
+ },
+ {
+  "pair_id": 17,
+  "concept_v3": "transaction_status",
+  "text": "My money has disappeared. I had recently added money in, and saw it was there and went through. Now it's gone. What is happening?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.008,
+   "completed": 0.024,
+   "declined": 0.032,
+   "reversed": 0.163,
+   "unclear": 0.773
+  },
+  "annotator_raw": "completed",
+  "annotator_v3": "completed"
+ },
+ {
+  "pair_id": 18,
+  "concept_v3": "transaction_status",
+  "text": "What do I do to close my account?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.056,
+   "completed": 0.045,
+   "declined": 0.081,
+   "reversed": 0.175,
+   "unclear": 0.642
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 19,
+  "concept_v3": "transaction_status",
+  "text": "I do not recongize a payment in my account.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.016,
+   "completed": 0.014,
+   "declined": 0.122,
+   "reversed": 0.051,
+   "unclear": 0.796
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 20,
+  "concept_v3": "transaction_status",
+  "text": "Why was my PIN blocked?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.052,
+   "completed": 0.028,
+   "declined": 0.12,
+   "reversed": 0.043,
+   "unclear": 0.757
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 21,
+  "concept_v3": "transaction_status",
+  "text": "My top-up didn't go through",
+  "sample": "short",
+  "model_v3": "declined",
+  "probs_v3": {
+   "pending": 0.036,
+   "completed": 0.009,
+   "declined": 0.53,
+   "reversed": 0.082,
+   "unclear": 0.342
+  },
+  "annotator_raw": "declined",
+  "annotator_v3": "declined"
+ },
+ {
+  "pair_id": 22,
+  "concept_v3": "transaction_status",
+  "text": "How do I edit my details?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.101,
+   "completed": 0.093,
+   "declined": 0.048,
+   "reversed": 0.044,
+   "unclear": 0.714
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 23,
+  "concept_v3": "transaction_status",
+  "text": "Where's my virtual card",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.089,
+   "completed": 0.087,
+   "declined": 0.068,
+   "reversed": 0.037,
+   "unclear": 0.719
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 24,
+  "concept_v3": "transaction_status",
+  "text": "is there a limit for top up?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.157,
+   "completed": 0.155,
+   "declined": 0.177,
+   "reversed": 0.063,
+   "unclear": 0.449
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 25,
+  "concept_v3": "transaction_status",
+  "text": "I was denied cash at an ATM",
+  "sample": "short",
+  "model_v3": "declined",
+  "probs_v3": {
+   "pending": 0.005,
+   "completed": 0.004,
+   "declined": 0.775,
+   "reversed": 0.039,
+   "unclear": 0.177
+  },
+  "annotator_raw": "declined",
+  "annotator_v3": "declined"
+ },
+ {
+  "pair_id": 26,
+  "concept_v3": "transaction_status",
+  "text": "stop the transaction",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.047,
+   "completed": 0.034,
+   "declined": 0.089,
+   "reversed": 0.155,
+   "unclear": 0.676
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 27,
+  "concept_v3": "transaction_status",
+  "text": "what is the word?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "pending": 0.152,
+   "completed": 0.091,
+   "declined": 0.075,
+   "reversed": 0.041,
+   "unclear": 0.641
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 28,
+  "concept_v3": "transfer_path",
+  "text": "I received a decline message on a transfer",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.024,
+   "outgoing": 0.271,
+   "between_own": 0.025,
+   "unclear": 0.68
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 29,
+  "concept_v3": "transfer_path",
+  "text": "My recipient hasn't received the money",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.075,
+   "outgoing": 0.217,
+   "between_own": 0.032,
+   "unclear": 0.676
+  },
+  "annotator_raw": "outgoing",
+  "annotator_v3": "outgoing"
+ },
+ {
+  "pair_id": 30,
+  "concept_v3": "transfer_path",
+  "text": "Hello.  I ran into a problem with a transfer this morning.  I was trying to send money to some friends but when I tried to send it, the transfer failed.  I don't know what is causing the transfer to be rejected.  Please let me know what is causing the problem.  Thanks.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.033,
+   "outgoing": 0.441,
+   "between_own": 0.02,
+   "unclear": 0.506
+  },
+  "annotator_raw": "outgoing",
+  "annotator_v3": "outgoing"
+ },
+ {
+  "pair_id": 31,
+  "concept_v3": "transfer_path",
+  "text": "Hi I'm sending some money over to an investment bank I do business and the transaction is being rejected. I'm not sure why as I think I have the right details.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.034,
+   "outgoing": 0.18,
+   "between_own": 0.017,
+   "unclear": 0.769
+  },
+  "annotator_raw": "outgoing",
+  "annotator_v3": "outgoing"
+ },
+ {
+  "pair_id": 32,
+  "concept_v3": "transfer_path",
+  "text": "Is it normal to see a fee for transferring money?",
+  "sample": "targeted",
+  "model_v3": "outgoing",
+  "probs_v3": {
+   "incoming": 0.089,
+   "outgoing": 0.506,
+   "between_own": 0.058,
+   "unclear": 0.347
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 33,
+  "concept_v3": "transfer_path",
+  "text": "I've been waiting for a pending transfer to go through for a while now, and don't see any reason why I've been waiting this long.  I know that I have the correct account details, so that isn't the problem.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.088,
+   "outgoing": 0.265,
+   "between_own": 0.079,
+   "unclear": 0.568
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 34,
+  "concept_v3": "transfer_path",
+  "text": "I am still waiting for a transfer to show",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.066,
+   "outgoing": 0.241,
+   "between_own": 0.032,
+   "unclear": 0.662
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 35,
+  "concept_v3": "transfer_path",
+  "text": "I believe that my transfer hasn't gone through.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.031,
+   "outgoing": 0.193,
+   "between_own": 0.028,
+   "unclear": 0.748
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 36,
+  "concept_v3": "transfer_path",
+  "text": "I've made a transfer, how long until the money reaches my account?",
+  "sample": "targeted",
+  "model_v3": "incoming",
+  "probs_v3": {
+   "incoming": 0.345,
+   "outgoing": 0.315,
+   "between_own": 0.139,
+   "unclear": 0.201
+  },
+  "annotator_raw": "incoming",
+  "annotator_v3": "incoming"
+ },
+ {
+  "pair_id": 37,
+  "concept_v3": "transfer_path",
+  "text": "How long is a transfer in the pending status?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.075,
+   "outgoing": 0.41,
+   "between_own": 0.042,
+   "unclear": 0.473
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 38,
+  "concept_v3": "transfer_path",
+  "text": "How can I add money to my account from another account I have?",
+  "sample": "targeted",
+  "model_v3": "between_own",
+  "probs_v3": {
+   "incoming": 0.025,
+   "outgoing": 0.018,
+   "between_own": 0.907,
+   "unclear": 0.051
+  },
+  "annotator_raw": "between_own_accounts",
+  "annotator_v3": "between_own_accounts"
+ },
+ {
+  "pair_id": 39,
+  "concept_v3": "transfer_path",
+  "text": "How long do I have to wait for Europe transfers?",
+  "sample": "targeted",
+  "model_v3": "outgoing",
+  "probs_v3": {
+   "incoming": 0.14,
+   "outgoing": 0.467,
+   "between_own": 0.025,
+   "unclear": 0.368
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 40,
+  "concept_v3": "transfer_path",
+  "text": "Any charges applicable for new card?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.107,
+   "outgoing": 0.253,
+   "between_own": 0.131,
+   "unclear": 0.509
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 41,
+  "concept_v3": "transfer_path",
+  "text": "Hi, I draw out some money from the ATM today. The ATM has given me wrong amount and the application is displaying more amount than i withdraw.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.027,
+   "outgoing": 0.089,
+   "between_own": 0.1,
+   "unclear": 0.784
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 42,
+  "concept_v3": "transfer_path",
+  "text": "On my transfer there was a \"decline\" message",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.053,
+   "outgoing": 0.241,
+   "between_own": 0.034,
+   "unclear": 0.672
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 43,
+  "concept_v3": "transfer_path",
+  "text": "I would like to know how much I can top-up.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.089,
+   "outgoing": 0.164,
+   "between_own": 0.173,
+   "unclear": 0.573
+  },
+  "annotator_raw": "incoming",
+  "annotator_v3": "incoming"
+ },
+ {
+  "pair_id": 44,
+  "concept_v3": "transfer_path",
+  "text": "Help.  My card is broken.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.04,
+   "outgoing": 0.142,
+   "between_own": 0.039,
+   "unclear": 0.78
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 45,
+  "concept_v3": "transfer_path",
+  "text": "Let me know when you charge for payments. I just checked the app and saw a fee that I wasn't warned about.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.124,
+   "outgoing": 0.228,
+   "between_own": 0.061,
+   "unclear": 0.587
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 46,
+  "concept_v3": "transfer_path",
+  "text": "My phone was stolen, what should I do?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.079,
+   "outgoing": 0.181,
+   "between_own": 0.06,
+   "unclear": 0.68
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 47,
+  "concept_v3": "transfer_path",
+  "text": "I keep trying to use my card to buy some things and you keep declining it. Why? I've tried multiple times to make it go through but it won't.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.044,
+   "outgoing": 0.122,
+   "between_own": 0.039,
+   "unclear": 0.795
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 48,
+  "concept_v3": "transfer_path",
+  "text": "Can this app take my salary?",
+  "sample": "short",
+  "model_v3": "incoming",
+  "probs_v3": {
+   "incoming": 0.461,
+   "outgoing": 0.201,
+   "between_own": 0.076,
+   "unclear": 0.262
+  },
+  "annotator_raw": "incoming",
+  "annotator_v3": "incoming"
+ },
+ {
+  "pair_id": 49,
+  "concept_v3": "transfer_path",
+  "text": "My cheque is slow to cash",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.086,
+   "outgoing": 0.122,
+   "between_own": 0.064,
+   "unclear": 0.728
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 50,
+  "concept_v3": "transfer_path",
+  "text": "Can I get a card in the US?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.173,
+   "outgoing": 0.272,
+   "between_own": 0.069,
+   "unclear": 0.486
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 51,
+  "concept_v3": "transfer_path",
+  "text": "I did not get enough cash",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.048,
+   "outgoing": 0.131,
+   "between_own": 0.056,
+   "unclear": 0.764
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 52,
+  "concept_v3": "transfer_path",
+  "text": "The app failed to verify me.",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.069,
+   "outgoing": 0.133,
+   "between_own": 0.039,
+   "unclear": 0.759
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 53,
+  "concept_v3": "transfer_path",
+  "text": "i need help, i lost my card",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.062,
+   "outgoing": 0.277,
+   "between_own": 0.027,
+   "unclear": 0.633
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 54,
+  "concept_v3": "transfer_path",
+  "text": "My passcode won't work.",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.082,
+   "outgoing": 0.12,
+   "between_own": 0.06,
+   "unclear": 0.738
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 55,
+  "concept_v3": "transfer_path",
+  "text": "How can I prove who I am?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "incoming": 0.118,
+   "outgoing": 0.306,
+   "between_own": 0.083,
+   "unclear": 0.493
+  },
+  "annotator_raw": "not_a_transfer",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 56,
+  "concept_v3": "card_problem_type",
+  "text": "Card payment still pending.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.006,
+   "damaged": 0.026,
+   "not_received": 0.036,
+   "other_issue": 0.236,
+   "unclear": 0.696
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 57,
+  "concept_v3": "card_problem_type",
+  "text": "I tried to get gas but my money was gone!",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.206,
+   "damaged": 0.022,
+   "not_received": 0.028,
+   "other_issue": 0.101,
+   "unclear": 0.642
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 58,
+  "concept_v3": "card_problem_type",
+  "text": "My card is about to expire, what do I do?",
+  "sample": "targeted",
+  "model_v3": "other_issue",
+  "probs_v3": {
+   "lost_or_stolen": 0.002,
+   "damaged": 0.004,
+   "not_received": 0.002,
+   "other_issue": 0.816,
+   "unclear": 0.176
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 59,
+  "concept_v3": "card_problem_type",
+  "text": "How long does it actually take my card payment to make it to the account? I've made a payment a couple of days ago but it hasn't moved since.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.005,
+   "damaged": 0.008,
+   "not_received": 0.343,
+   "other_issue": 0.168,
+   "unclear": 0.477
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 60,
+  "concept_v3": "card_problem_type",
+  "text": "Do I have a say when it's delivered?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.049,
+   "damaged": 0.086,
+   "not_received": 0.313,
+   "other_issue": 0.125,
+   "unclear": 0.427
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 61,
+  "concept_v3": "card_problem_type",
+  "text": "This fee shouldn't be there after I paid with a card.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.015,
+   "damaged": 0.023,
+   "not_received": 0.013,
+   "other_issue": 0.173,
+   "unclear": 0.776
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 62,
+  "concept_v3": "card_problem_type",
+  "text": "What is going on with it saying my card payment was declined?",
+  "sample": "targeted",
+  "model_v3": "other_issue",
+  "probs_v3": {
+   "lost_or_stolen": 0.003,
+   "damaged": 0.011,
+   "not_received": 0.003,
+   "other_issue": 0.677,
+   "unclear": 0.306
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 63,
+  "concept_v3": "card_problem_type",
+  "text": "How can I tell if there will be a fee added to my payment or not?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.016,
+   "damaged": 0.022,
+   "not_received": 0.017,
+   "other_issue": 0.152,
+   "unclear": 0.792
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 64,
+  "concept_v3": "card_problem_type",
+  "text": "I've got a problem - I bought something with my card one or two weeks ago, but now exact same amount of the purchase is showing up in my account. I like more money in my account, but this is too good to be true. Can you tell me what's happening?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.016,
+   "damaged": 0.038,
+   "not_received": 0.029,
+   "other_issue": 0.184,
+   "unclear": 0.733
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 65,
+  "concept_v3": "card_problem_type",
+  "text": "I would like to use one of my cards for a family member. Is that allowed?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.028,
+   "damaged": 0.051,
+   "not_received": 0.033,
+   "other_issue": 0.194,
+   "unclear": 0.694
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 66,
+  "concept_v3": "card_problem_type",
+  "text": "What options do I have when topping up a US card?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.043,
+   "damaged": 0.053,
+   "not_received": 0.024,
+   "other_issue": 0.19,
+   "unclear": 0.691
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 67,
+  "concept_v3": "card_problem_type",
+  "text": "My card was supposed to arrive, but hasn't?",
+  "sample": "targeted",
+  "model_v3": "not_received",
+  "probs_v3": {
+   "lost_or_stolen": 0.002,
+   "damaged": 0.003,
+   "not_received": 0.901,
+   "other_issue": 0.02,
+   "unclear": 0.073
+  },
+  "annotator_raw": "not_received",
+  "annotator_v3": "not_received"
+ },
+ {
+  "pair_id": 68,
+  "concept_v3": "card_problem_type",
+  "text": "There is a direct debit payment on my account that I didn't authorize.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.008,
+   "damaged": 0.01,
+   "not_received": 0.009,
+   "other_issue": 0.125,
+   "unclear": 0.848
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 69,
+  "concept_v3": "card_problem_type",
+  "text": "Why is there a pending hold on one pound on my statement?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.011,
+   "damaged": 0.015,
+   "not_received": 0.019,
+   "other_issue": 0.377,
+   "unclear": 0.578
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 70,
+  "concept_v3": "card_problem_type",
+  "text": "Who can purchase a disposable virtual card?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.085,
+   "damaged": 0.065,
+   "not_received": 0.052,
+   "other_issue": 0.183,
+   "unclear": 0.616
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 71,
+  "concept_v3": "card_problem_type",
+  "text": "Your foreign exchange rate is wrong.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.023,
+   "damaged": 0.044,
+   "not_received": 0.02,
+   "other_issue": 0.119,
+   "unclear": 0.793
+  },
+  "annotator_raw": "other_issue",
+  "annotator_v3": "other_issue"
+ },
+ {
+  "pair_id": 72,
+  "concept_v3": "card_problem_type",
+  "text": "Where can I find out how to transfer money into my account.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.072,
+   "damaged": 0.04,
+   "not_received": 0.017,
+   "other_issue": 0.099,
+   "unclear": 0.773
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 73,
+  "concept_v3": "card_problem_type",
+  "text": "Why wont the other bank take my money?? Is it not good enough?? There's sufficient funds but I keep getting denied a standard transfer. Ive tried 5 times!",
+  "sample": "other",
+  "model_v3": "other_issue",
+  "probs_v3": {
+   "lost_or_stolen": 0.011,
+   "damaged": 0.014,
+   "not_received": 0.009,
+   "other_issue": 0.604,
+   "unclear": 0.361
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 74,
+  "concept_v3": "card_problem_type",
+  "text": "Can I get spare cards?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.111,
+   "damaged": 0.148,
+   "not_received": 0.035,
+   "other_issue": 0.223,
+   "unclear": 0.483
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 75,
+  "concept_v3": "card_problem_type",
+  "text": "How long before transferred money shows up?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.044,
+   "damaged": 0.023,
+   "not_received": 0.168,
+   "other_issue": 0.123,
+   "unclear": 0.642
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 76,
+  "concept_v3": "card_problem_type",
+  "text": "Whats the max I can top up",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.069,
+   "damaged": 0.066,
+   "not_received": 0.021,
+   "other_issue": 0.143,
+   "unclear": 0.701
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 77,
+  "concept_v3": "card_problem_type",
+  "text": "Can my friend send me money?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.1,
+   "damaged": 0.066,
+   "not_received": 0.081,
+   "other_issue": 0.152,
+   "unclear": 0.601
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 78,
+  "concept_v3": "card_problem_type",
+  "text": "there is a transfer pending.",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.013,
+   "damaged": 0.035,
+   "not_received": 0.028,
+   "other_issue": 0.172,
+   "unclear": 0.753
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 79,
+  "concept_v3": "card_problem_type",
+  "text": "Exchange fee help?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.06,
+   "damaged": 0.07,
+   "not_received": 0.024,
+   "other_issue": 0.175,
+   "unclear": 0.671
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 80,
+  "concept_v3": "card_problem_type",
+  "text": "I have a missing refund",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.031,
+   "damaged": 0.036,
+   "not_received": 0.062,
+   "other_issue": 0.142,
+   "unclear": 0.729
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 81,
+  "concept_v3": "card_problem_type",
+  "text": "My card no longer works.",
+  "sample": "short",
+  "model_v3": "damaged",
+  "probs_v3": {
+   "lost_or_stolen": 0.005,
+   "damaged": 0.648,
+   "not_received": 0.002,
+   "other_issue": 0.147,
+   "unclear": 0.197
+  },
+  "annotator_raw": "damaged",
+  "annotator_v3": "damaged"
+ },
+ {
+  "pair_id": 82,
+  "concept_v3": "card_problem_type",
+  "text": "A transfer is pending.",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.017,
+   "damaged": 0.038,
+   "not_received": 0.033,
+   "other_issue": 0.192,
+   "unclear": 0.719
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 83,
+  "concept_v3": "card_problem_type",
+  "text": "What is my password?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "lost_or_stolen": 0.086,
+   "damaged": 0.042,
+   "not_received": 0.017,
+   "other_issue": 0.147,
+   "unclear": 0.709
+  },
+  "annotator_raw": "no_card_problem",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 84,
+  "concept_v3": "fee_or_charge",
+  "text": "is there a frequent currency discount?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.223,
+   "fee_question_general": 0.241,
+   "unclear": 0.536
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 85,
+  "concept_v3": "fee_or_charge",
+  "text": "I need help- I got mugged yesterday and they took everything so I can't use the app.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.191,
+   "fee_question_general": 0.158,
+   "unclear": 0.651
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 86,
+  "concept_v3": "fee_or_charge",
+  "text": "I checked my account today and saw that I was charged an extra pound that I did not spend.",
+  "sample": "targeted",
+  "model_v3": "unexpected_fee",
+  "probs_v3": {
+   "unexpected_fee": 0.683,
+   "fee_question_general": 0.134,
+   "unclear": 0.184
+  },
+  "annotator_raw": "unexpected_fee",
+  "annotator_v3": "unexpected_fee"
+ },
+ {
+  "pair_id": 87,
+  "concept_v3": "fee_or_charge",
+  "text": "Do I have to pay extra if I use an international card to top up my account?",
+  "sample": "targeted",
+  "model_v3": "fee_question_general",
+  "probs_v3": {
+   "unexpected_fee": 0.238,
+   "fee_question_general": 0.454,
+   "unclear": 0.308
+  },
+  "annotator_raw": "fee_question_general",
+  "annotator_v3": "fee_question_general"
+ },
+ {
+  "pair_id": 88,
+  "concept_v3": "fee_or_charge",
+  "text": "Is there a fee for exchanging currency?",
+  "sample": "targeted",
+  "model_v3": "fee_question_general",
+  "probs_v3": {
+   "unexpected_fee": 0.252,
+   "fee_question_general": 0.459,
+   "unclear": 0.288
+  },
+  "annotator_raw": "fee_question_general",
+  "annotator_v3": "fee_question_general"
+ },
+ {
+  "pair_id": 89,
+  "concept_v3": "fee_or_charge",
+  "text": "How come my cash withdrawal came with an unnecessary fee?!",
+  "sample": "targeted",
+  "model_v3": "unexpected_fee",
+  "probs_v3": {
+   "unexpected_fee": 0.768,
+   "fee_question_general": 0.137,
+   "unclear": 0.095
+  },
+  "annotator_raw": "unexpected_fee",
+  "annotator_v3": "unexpected_fee"
+ },
+ {
+  "pair_id": 90,
+  "concept_v3": "fee_or_charge",
+  "text": "where can i deposit a check",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.189,
+   "fee_question_general": 0.227,
+   "unclear": 0.584
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 91,
+  "concept_v3": "fee_or_charge",
+  "text": "Is there any fees for top ups?",
+  "sample": "targeted",
+  "model_v3": "fee_question_general",
+  "probs_v3": {
+   "unexpected_fee": 0.209,
+   "fee_question_general": 0.49,
+   "unclear": 0.301
+  },
+  "annotator_raw": "fee_question_general",
+  "annotator_v3": "fee_question_general"
+ },
+ {
+  "pair_id": 92,
+  "concept_v3": "fee_or_charge",
+  "text": "where do i find out about exchange fees",
+  "sample": "targeted",
+  "model_v3": "unexpected_fee",
+  "probs_v3": {
+   "unexpected_fee": 0.444,
+   "fee_question_general": 0.386,
+   "unclear": 0.17
+  },
+  "annotator_raw": "fee_question_general",
+  "annotator_v3": "fee_question_general"
+ },
+ {
+  "pair_id": 93,
+  "concept_v3": "fee_or_charge",
+  "text": "I forgot my phone at the hotel, so I can't access the app.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.092,
+   "fee_question_general": 0.113,
+   "unclear": 0.795
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 94,
+  "concept_v3": "fee_or_charge",
+  "text": "My phone has been stolen.  How can I make sure no one uses my account from it?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.117,
+   "fee_question_general": 0.168,
+   "unclear": 0.715
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 95,
+  "concept_v3": "fee_or_charge",
+  "text": "I need some help figuring out what this strange payment is on my account. It's stays pending and won't go away.",
+  "sample": "targeted",
+  "model_v3": "unexpected_fee",
+  "probs_v3": {
+   "unexpected_fee": 0.558,
+   "fee_question_general": 0.133,
+   "unclear": 0.309
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 96,
+  "concept_v3": "fee_or_charge",
+  "text": "I need to cancel a transaction.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.148,
+   "fee_question_general": 0.315,
+   "unclear": 0.538
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 97,
+  "concept_v3": "fee_or_charge",
+  "text": "Remove my account immediately.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.146,
+   "fee_question_general": 0.157,
+   "unclear": 0.696
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 98,
+  "concept_v3": "fee_or_charge",
+  "text": "Tell me where I can find the auto top up feature and a little bit about it please.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.137,
+   "fee_question_general": 0.105,
+   "unclear": 0.758
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 99,
+  "concept_v3": "fee_or_charge",
+  "text": "Using international ATMs messes up the exchange rate.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.269,
+   "fee_question_general": 0.198,
+   "unclear": 0.533
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 100,
+  "concept_v3": "fee_or_charge",
+  "text": "I need my PIN unlocked.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.188,
+   "fee_question_general": 0.173,
+   "unclear": 0.639
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 101,
+  "concept_v3": "fee_or_charge",
+  "text": "Google play top up help?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.212,
+   "fee_question_general": 0.238,
+   "unclear": 0.55
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 102,
+  "concept_v3": "fee_or_charge",
+  "text": "I have a pending payment on my card.  Why?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.202,
+   "fee_question_general": 0.237,
+   "unclear": 0.561
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 103,
+  "concept_v3": "fee_or_charge",
+  "text": "My app is showing a cash balance that I did not receive.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.375,
+   "fee_question_general": 0.237,
+   "unclear": 0.388
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 104,
+  "concept_v3": "fee_or_charge",
+  "text": "My card hasn't arrived.",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.133,
+   "fee_question_general": 0.174,
+   "unclear": 0.693
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 105,
+  "concept_v3": "fee_or_charge",
+  "text": "Can I top up any amount?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.259,
+   "fee_question_general": 0.286,
+   "unclear": 0.455
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 106,
+  "concept_v3": "fee_or_charge",
+  "text": "I need to verify my funds.",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.274,
+   "fee_question_general": 0.361,
+   "unclear": 0.365
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 107,
+  "concept_v3": "fee_or_charge",
+  "text": "What ATMs can I use my card?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.269,
+   "fee_question_general": 0.145,
+   "unclear": 0.586
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 108,
+  "concept_v3": "fee_or_charge",
+  "text": "What is the refund policy?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.223,
+   "fee_question_general": 0.311,
+   "unclear": 0.466
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 109,
+  "concept_v3": "fee_or_charge",
+  "text": "Can you delete the account?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.195,
+   "fee_question_general": 0.277,
+   "unclear": 0.528
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 110,
+  "concept_v3": "fee_or_charge",
+  "text": "The exchange rate was wrong?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.262,
+   "fee_question_general": 0.317,
+   "unclear": 0.421
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 111,
+  "concept_v3": "fee_or_charge",
+  "text": "Is my card valid everywhere?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "unexpected_fee": 0.259,
+   "fee_question_general": 0.259,
+   "unclear": 0.482
+  },
+  "annotator_raw": "no_fee",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 112,
+  "concept_v3": "cash_access",
+  "text": "I want to use a cheque to pay.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.043,
+   "wrong_amount": 0.01,
+   "cash_general": 0.067,
+   "unclear": 0.88
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 113,
+  "concept_v3": "cash_access",
+  "text": "I tried to withdraw cash, but got declined!",
+  "sample": "targeted",
+  "model_v3": "atm_problem",
+  "probs_v3": {
+   "atm_problem": 0.711,
+   "wrong_amount": 0.005,
+   "cash_general": 0.02,
+   "unclear": 0.264
+  },
+  "annotator_raw": "atm_problem",
+  "annotator_v3": "atm_problem"
+ },
+ {
+  "pair_id": 114,
+  "concept_v3": "cash_access",
+  "text": "May I transfer a cheque into my account?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.108,
+   "wrong_amount": 0.017,
+   "cash_general": 0.093,
+   "unclear": 0.782
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 115,
+  "concept_v3": "cash_access",
+  "text": "Where do I top up?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.164,
+   "wrong_amount": 0.015,
+   "cash_general": 0.187,
+   "unclear": 0.633
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 116,
+  "concept_v3": "cash_access",
+  "text": "Is there any reason my cash withdrawal still shows as pending?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.121,
+   "wrong_amount": 0.019,
+   "cash_general": 0.153,
+   "unclear": 0.707
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 117,
+  "concept_v3": "cash_access",
+  "text": "Why is my app showing me taking money that I did not take out?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.083,
+   "wrong_amount": 0.268,
+   "cash_general": 0.063,
+   "unclear": 0.586
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 118,
+  "concept_v3": "cash_access",
+  "text": "I think there may be something wrong with my card. I have never had issues with withdraws before, but this morning on the way to work it was suddenly declined.",
+  "sample": "targeted",
+  "model_v3": "atm_problem",
+  "probs_v3": {
+   "atm_problem": 0.475,
+   "wrong_amount": 0.011,
+   "cash_general": 0.049,
+   "unclear": 0.465
+  },
+  "annotator_raw": "atm_problem",
+  "annotator_v3": "atm_problem"
+ },
+ {
+  "pair_id": 119,
+  "concept_v3": "cash_access",
+  "text": "How long do deposits take to appear? I've been waiting for more than a week and need the money!",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.122,
+   "wrong_amount": 0.006,
+   "cash_general": 0.267,
+   "unclear": 0.605
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 120,
+  "concept_v3": "cash_access",
+  "text": "I haven't received my cash yet.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.216,
+   "wrong_amount": 0.009,
+   "cash_general": 0.112,
+   "unclear": 0.662
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 121,
+  "concept_v3": "cash_access",
+  "text": "Why am I unable to withdrawal cash?",
+  "sample": "targeted",
+  "model_v3": "atm_problem",
+  "probs_v3": {
+   "atm_problem": 0.481,
+   "wrong_amount": 0.016,
+   "cash_general": 0.057,
+   "unclear": 0.446
+  },
+  "annotator_raw": "atm_problem",
+  "annotator_v3": "atm_problem"
+ },
+ {
+  "pair_id": 122,
+  "concept_v3": "cash_access",
+  "text": "I used my card the other day to get cash from an ATM and was charged an extra fee. I don't understand why I am being charged a fee all of a sudden. I thought it was free to withdraw from an ATM?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.096,
+   "wrong_amount": 0.024,
+   "cash_general": 0.109,
+   "unclear": 0.771
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 123,
+  "concept_v3": "cash_access",
+  "text": "Can you please tell me why my cash withdrawal is still pending?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.117,
+   "wrong_amount": 0.014,
+   "cash_general": 0.108,
+   "unclear": 0.761
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 124,
+  "concept_v3": "cash_access",
+  "text": "How can I prove I am me?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.131,
+   "wrong_amount": 0.013,
+   "cash_general": 0.092,
+   "unclear": 0.764
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 125,
+  "concept_v3": "cash_access",
+  "text": "The cheque I sent a few days ago has not been deposited yet, what is the hold up?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.11,
+   "wrong_amount": 0.02,
+   "cash_general": 0.136,
+   "unclear": 0.734
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 126,
+  "concept_v3": "cash_access",
+  "text": "I made a terrible mistake when typing in my account number.  I accidently sent money to the wrong account.  I noticed the app won't allow me to void the transaction.  Can someone help me with this immediately?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.092,
+   "wrong_amount": 0.075,
+   "cash_general": 0.03,
+   "unclear": 0.803
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 127,
+  "concept_v3": "cash_access",
+  "text": "Why did my transfer to a beneficiary fail?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.096,
+   "wrong_amount": 0.022,
+   "cash_general": 0.075,
+   "unclear": 0.807
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 128,
+  "concept_v3": "cash_access",
+  "text": "Which locations can I withdraw money from?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.13,
+   "wrong_amount": 0.013,
+   "cash_general": 0.353,
+   "unclear": 0.505
+  },
+  "annotator_raw": "cash_general",
+  "annotator_v3": "cash_general"
+ },
+ {
+  "pair_id": 129,
+  "concept_v3": "cash_access",
+  "text": "I would like to exchange currencies on the app. How do I do this?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.082,
+   "wrong_amount": 0.014,
+   "cash_general": 0.106,
+   "unclear": 0.799
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 130,
+  "concept_v3": "cash_access",
+  "text": "Do you have EUR currency available for me?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.178,
+   "wrong_amount": 0.035,
+   "cash_general": 0.13,
+   "unclear": 0.657
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 131,
+  "concept_v3": "cash_access",
+  "text": "I tried to pay with my card and it didn't work",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.179,
+   "wrong_amount": 0.012,
+   "cash_general": 0.057,
+   "unclear": 0.752
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 132,
+  "concept_v3": "cash_access",
+  "text": "My transfer failed, why?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.164,
+   "wrong_amount": 0.031,
+   "cash_general": 0.067,
+   "unclear": 0.738
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 133,
+  "concept_v3": "cash_access",
+  "text": "How do I change my details?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.09,
+   "wrong_amount": 0.015,
+   "cash_general": 0.082,
+   "unclear": 0.814
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 134,
+  "concept_v3": "cash_access",
+  "text": "Why did you charge me extra?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.09,
+   "wrong_amount": 0.11,
+   "cash_general": 0.098,
+   "unclear": 0.702
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 135,
+  "concept_v3": "cash_access",
+  "text": "Has my top up gone through?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.2,
+   "wrong_amount": 0.04,
+   "cash_general": 0.151,
+   "unclear": 0.609
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 136,
+  "concept_v3": "cash_access",
+  "text": "how do i cancel my account",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.049,
+   "wrong_amount": 0.006,
+   "cash_general": 0.052,
+   "unclear": 0.893
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 137,
+  "concept_v3": "cash_access",
+  "text": "Is there a top up fee?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.27,
+   "wrong_amount": 0.035,
+   "cash_general": 0.151,
+   "unclear": 0.544
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 138,
+  "concept_v3": "cash_access",
+  "text": "my card was refused, why?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.336,
+   "wrong_amount": 0.016,
+   "cash_general": 0.046,
+   "unclear": 0.603
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 139,
+  "concept_v3": "cash_access",
+  "text": "What is the top up code for?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "atm_problem": 0.166,
+   "wrong_amount": 0.026,
+   "cash_general": 0.1,
+   "unclear": 0.708
+  },
+  "annotator_raw": "no_cash",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 140,
+  "concept_v3": "pin_or_passcode",
+  "text": "Can I pick between Visa and Mastercard?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.246,
+   "blocked_or_locked": 0.079,
+   "change_request": 0.061,
+   "unclear": 0.614
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 141,
+  "concept_v3": "pin_or_passcode",
+  "text": "I want to deposit my check to top up my account",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.274,
+   "blocked_or_locked": 0.064,
+   "change_request": 0.064,
+   "unclear": 0.598
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 142,
+  "concept_v3": "pin_or_passcode",
+  "text": "I would like to have a Mastercard.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.214,
+   "blocked_or_locked": 0.047,
+   "change_request": 0.077,
+   "unclear": 0.663
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 143,
+  "concept_v3": "pin_or_passcode",
+  "text": "Why isn't my cash deposit showing up in my account?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.212,
+   "blocked_or_locked": 0.068,
+   "change_request": 0.04,
+   "unclear": 0.68
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 144,
+  "concept_v3": "pin_or_passcode",
+  "text": "Please give me both a visa and a mastercard.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.304,
+   "blocked_or_locked": 0.056,
+   "change_request": 0.049,
+   "unclear": 0.591
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 145,
+  "concept_v3": "pin_or_passcode",
+  "text": "Why haven't I seen the cash from the cheque I deposited yet?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.195,
+   "blocked_or_locked": 0.058,
+   "change_request": 0.03,
+   "unclear": 0.717
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 146,
+  "concept_v3": "pin_or_passcode",
+  "text": "I deposited a cheque but the cash hasn't arrived yet",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.101,
+   "blocked_or_locked": 0.055,
+   "change_request": 0.031,
+   "unclear": 0.813
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 147,
+  "concept_v3": "pin_or_passcode",
+  "text": "My card has been stolen what do I do?",
+  "sample": "targeted",
+  "model_v3": "forgot",
+  "probs_v3": {
+   "forgot": 0.389,
+   "blocked_or_locked": 0.112,
+   "change_request": 0.137,
+   "unclear": 0.362
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 148,
+  "concept_v3": "pin_or_passcode",
+  "text": "Can I change my PIN at my local bank?",
+  "sample": "targeted",
+  "model_v3": "change_request",
+  "probs_v3": {
+   "forgot": 0.12,
+   "blocked_or_locked": 0.032,
+   "change_request": 0.736,
+   "unclear": 0.113
+  },
+  "annotator_raw": "change_request",
+  "annotator_v3": "change_request"
+ },
+ {
+  "pair_id": 149,
+  "concept_v3": "pin_or_passcode",
+  "text": "My phone has been stolen.  How can I make sure no one uses my account from it?",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.249,
+   "blocked_or_locked": 0.166,
+   "change_request": 0.121,
+   "unclear": 0.464
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 150,
+  "concept_v3": "pin_or_passcode",
+  "text": "I have yet to receive the cash I added to my account this morning.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.095,
+   "blocked_or_locked": 0.035,
+   "change_request": 0.022,
+   "unclear": 0.849
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 151,
+  "concept_v3": "pin_or_passcode",
+  "text": "Online banking is not showing my cheque or cash deposit so the balance is incorrect.",
+  "sample": "targeted",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.213,
+   "blocked_or_locked": 0.056,
+   "change_request": 0.051,
+   "unclear": 0.681
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 152,
+  "concept_v3": "pin_or_passcode",
+  "text": "My transaction is on the wrong account.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.134,
+   "blocked_or_locked": 0.058,
+   "change_request": 0.135,
+   "unclear": 0.672
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 153,
+  "concept_v3": "pin_or_passcode",
+  "text": "how can the money machine keep my card what do i need to do?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.299,
+   "blocked_or_locked": 0.075,
+   "change_request": 0.137,
+   "unclear": 0.489
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 154,
+  "concept_v3": "pin_or_passcode",
+  "text": "How can I receive a virtual card?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.319,
+   "blocked_or_locked": 0.084,
+   "change_request": 0.091,
+   "unclear": 0.505
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 155,
+  "concept_v3": "pin_or_passcode",
+  "text": "I noticed the exchange rate for cash withdrawal isn't right.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.164,
+   "blocked_or_locked": 0.045,
+   "change_request": 0.063,
+   "unclear": 0.727
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 156,
+  "concept_v3": "pin_or_passcode",
+  "text": "When will my deposit be processed?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.233,
+   "blocked_or_locked": 0.123,
+   "change_request": 0.089,
+   "unclear": 0.555
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 157,
+  "concept_v3": "pin_or_passcode",
+  "text": "I'm not sure if my pop-up went through.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.145,
+   "blocked_or_locked": 0.059,
+   "change_request": 0.088,
+   "unclear": 0.708
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 158,
+  "concept_v3": "pin_or_passcode",
+  "text": "How would I be able to make changes to my personal details?",
+  "sample": "other",
+  "model_v3": "change_request",
+  "probs_v3": {
+   "forgot": 0.066,
+   "blocked_or_locked": 0.019,
+   "change_request": 0.772,
+   "unclear": 0.144
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 159,
+  "concept_v3": "pin_or_passcode",
+  "text": "Why was there an extra charge with the withdrawal of my money?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.266,
+   "blocked_or_locked": 0.108,
+   "change_request": 0.038,
+   "unclear": 0.588
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 160,
+  "concept_v3": "pin_or_passcode",
+  "text": "Problems with my top up",
+  "sample": "short",
+  "model_v3": "forgot",
+  "probs_v3": {
+   "forgot": 0.396,
+   "blocked_or_locked": 0.09,
+   "change_request": 0.15,
+   "unclear": 0.364
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 161,
+  "concept_v3": "pin_or_passcode",
+  "text": "My card payment's cancelled",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.179,
+   "blocked_or_locked": 0.098,
+   "change_request": 0.09,
+   "unclear": 0.633
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 162,
+  "concept_v3": "pin_or_passcode",
+  "text": "How do I replace my card?",
+  "sample": "short",
+  "model_v3": "forgot",
+  "probs_v3": {
+   "forgot": 0.403,
+   "blocked_or_locked": 0.072,
+   "change_request": 0.258,
+   "unclear": 0.267
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 163,
+  "concept_v3": "pin_or_passcode",
+  "text": "Where is my money transfer?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.355,
+   "blocked_or_locked": 0.099,
+   "change_request": 0.093,
+   "unclear": 0.453
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 164,
+  "concept_v3": "pin_or_passcode",
+  "text": "Can I use American Express?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.233,
+   "blocked_or_locked": 0.115,
+   "change_request": 0.081,
+   "unclear": 0.57
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 165,
+  "concept_v3": "pin_or_passcode",
+  "text": "My transfer hasn't arrived",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.183,
+   "blocked_or_locked": 0.094,
+   "change_request": 0.057,
+   "unclear": 0.666
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 166,
+  "concept_v3": "pin_or_passcode",
+  "text": "I dont have a pin",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.312,
+   "blocked_or_locked": 0.034,
+   "change_request": 0.074,
+   "unclear": 0.58
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 167,
+  "concept_v3": "pin_or_passcode",
+  "text": "I need my card ASAP!",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "forgot": 0.265,
+   "blocked_or_locked": 0.043,
+   "change_request": 0.033,
+   "unclear": 0.658
+  },
+  "annotator_raw": "no_pin_topic",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 168,
+  "concept_v3": "topup_mechanism",
+  "text": "I can't seem to get my virtual card to work.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.024,
+   "transfer_topup": 0.013,
+   "cash_or_cheque": 0.008,
+   "unclear": 0.955
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 169,
+  "concept_v3": "topup_mechanism",
+  "text": "Please explain why my payment was declined? I thought everything was good.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.099,
+   "transfer_topup": 0.04,
+   "cash_or_cheque": 0.027,
+   "unclear": 0.834
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 170,
+  "concept_v3": "topup_mechanism",
+  "text": "Hello, in these holidays i have been overcharged on the amount i have withdrawn on one of your ATMs. I did not had any clue about the horrible charges otherwise i would not have withdrawn.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.042,
+   "transfer_topup": 0.014,
+   "cash_or_cheque": 0.033,
+   "unclear": 0.91
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 171,
+  "concept_v3": "topup_mechanism",
+  "text": "I left my card at a restaurant and now its missing.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.028,
+   "transfer_topup": 0.007,
+   "cash_or_cheque": 0.01,
+   "unclear": 0.955
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 172,
+  "concept_v3": "topup_mechanism",
+  "text": "The exchange rate for my withdrawal was wrong.",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.023,
+   "transfer_topup": 0.019,
+   "cash_or_cheque": 0.021,
+   "unclear": 0.936
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 173,
+  "concept_v3": "topup_mechanism",
+  "text": "Can you tell me the cost of a transfer?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.047,
+   "transfer_topup": 0.23,
+   "cash_or_cheque": 0.054,
+   "unclear": 0.669
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 174,
+  "concept_v3": "topup_mechanism",
+  "text": "Why did the app deny my top-up?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.038,
+   "transfer_topup": 0.019,
+   "cash_or_cheque": 0.011,
+   "unclear": 0.932
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 175,
+  "concept_v3": "topup_mechanism",
+  "text": "My phone was left behind.  Can I still use my card?",
+  "sample": "other",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.218,
+   "transfer_topup": 0.021,
+   "cash_or_cheque": 0.02,
+   "unclear": 0.742
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 176,
+  "concept_v3": "topup_mechanism",
+  "text": "My card is stolen.  Help!",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.049,
+   "transfer_topup": 0.012,
+   "cash_or_cheque": 0.008,
+   "unclear": 0.931
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 177,
+  "concept_v3": "topup_mechanism",
+  "text": "How do I change my card PIN?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.051,
+   "transfer_topup": 0.011,
+   "cash_or_cheque": 0.006,
+   "unclear": 0.931
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 178,
+  "concept_v3": "topup_mechanism",
+  "text": "Can I request a card?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.417,
+   "transfer_topup": 0.042,
+   "cash_or_cheque": 0.02,
+   "unclear": 0.521
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 179,
+  "concept_v3": "topup_mechanism",
+  "text": "Can I get an actual card",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.136,
+   "transfer_topup": 0.026,
+   "cash_or_cheque": 0.018,
+   "unclear": 0.82
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 180,
+  "concept_v3": "topup_mechanism",
+  "text": "Google play top up help?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.031,
+   "transfer_topup": 0.032,
+   "cash_or_cheque": 0.018,
+   "unclear": 0.918
+  },
+  "annotator_raw": "unclear",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 181,
+  "concept_v3": "topup_mechanism",
+  "text": "When will I receive my card?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.239,
+   "transfer_topup": 0.054,
+   "cash_or_cheque": 0.02,
+   "unclear": 0.687
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 182,
+  "concept_v3": "topup_mechanism",
+  "text": "Where do I go for a refund?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.052,
+   "transfer_topup": 0.03,
+   "cash_or_cheque": 0.018,
+   "unclear": 0.901
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ },
+ {
+  "pair_id": 183,
+  "concept_v3": "topup_mechanism",
+  "text": "what is the matter?",
+  "sample": "short",
+  "model_v3": "unclear",
+  "probs_v3": {
+   "card_topup": 0.031,
+   "transfer_topup": 0.049,
+   "cash_or_cheque": 0.016,
+   "unclear": 0.904
+  },
+  "annotator_raw": "no_topup",
+  "annotator_v3": "unclear"
+ }
+]

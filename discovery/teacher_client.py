@@ -107,6 +107,43 @@ def teacher_chat(messages: list[dict], model: str | None = None, provider: str |
     raise RuntimeError(f"teacher call failed after retries: {last!r}")
 
 
+def teacher_chat_full(messages: list[dict], model: str | None = None, provider: str | None = None,
+                      temperature: float = 0.4, seed: int | None = None, max_tokens: int = 1600,
+                      timeout: int = 240, retries: int = 2) -> dict:
+    """Like teacher_chat but returns {"text", "usage", "elapsed_s"}.
+
+    Same endpoint/behavior; additive for experiments that record token usage.
+    """
+    provider = provider or DEFAULT_PROVIDER
+    model = model or DEFAULT_MODEL
+    p = _resolve_provider(provider)
+    body: dict = {"model": model, "messages": messages, "temperature": temperature,
+                  "max_tokens": max_tokens}
+    if seed is not None:
+        body["seed"] = seed
+    req = urllib.request.Request(
+        p["base_url"].rstrip("/") + "/chat/completions",
+        data=json.dumps(body).encode("utf-8"),
+        headers={"Content-Type": "application/json",
+                 "Authorization": "Bearer " + p["api_key"]},
+        method="POST")
+    last: Exception | None = None
+    for attempt in range(retries + 1):
+        try:
+            t0 = time.perf_counter()
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                out = json.loads(r.read().decode("utf-8"))
+            dt = time.perf_counter() - t0
+            print(f"[teacher] {provider}/{model} ok in {dt:.1f}s "
+                  f"(usage {out.get('usage')})", file=sys.stderr, flush=True)
+            return {"text": out["choices"][0]["message"]["content"],
+                    "usage": out.get("usage") or {}, "elapsed_s": dt}
+        except Exception as exc:  # noqa: BLE001
+            last = exc
+            time.sleep(2 + 3 * attempt)
+    raise RuntimeError(f"teacher call failed after retries: {last!r}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("prompt")
