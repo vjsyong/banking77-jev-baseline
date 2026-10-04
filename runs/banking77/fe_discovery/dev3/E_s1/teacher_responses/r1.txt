@@ -1,0 +1,110 @@
+[
+  {
+    "name": "money_movement_context",
+    "question": "What kind of money movement does the message describe or ask about?",
+    "options": [
+      {
+        "id": "cash_access",
+        "definition": "Obtaining physical cash from an account, including using an ATM. A card mentioned in connection with an ATM belongs here."
+      },
+      {
+        "id": "merchant_purchase",
+        "definition": "Paying a merchant for goods or services, including purchases made with a card. Mentioning a card alone does not establish a purchase."
+      },
+      {
+        "id": "between_accounts",
+        "definition": "Sending money between bank accounts or to a recipient through a bank transfer, including a bank transfer used to fund the sender's own account."
+      },
+      {
+        "id": "account_funding",
+        "definition": "Adding money to an account by cash, cheque, another card, or an unspecified deposit method, without explicitly describing a bank transfer."
+      },
+      {
+        "id": "unclear",
+        "definition": "No money movement is described, or the message does not establish which kind is involved. A generic card decline or pending payment without transaction context belongs here."
+      }
+    ]
+  },
+  {
+    "name": "action_progress",
+    "question": "What progress or outcome does the message report for the action or its expected result?",
+    "options": [
+      {
+        "id": "prospective",
+        "definition": "The action is wanted, planned, or being considered, with no indication that it has already been attempted."
+      },
+      {
+        "id": "awaiting_result",
+        "definition": "The action has been initiated, but its expected result remains pending, delayed, missing, or not reflected in the account; no definitive failure is stated."
+      },
+      {
+        "id": "unsuccessful",
+        "definition": "An attempted action was explicitly refused, declined, blocked, or reported as failed, rather than merely awaiting a result."
+      },
+      {
+        "id": "undone",
+        "definition": "An action initially took effect or proceeded, but was subsequently reversed, cancelled, or returned."
+      },
+      {
+        "id": "completed",
+        "definition": "The action produced its result, even if the user disputes the amount, rate, fee, or other property of that result."
+      },
+      {
+        "id": "unclear",
+        "definition": "No action progress is stated, or the message does not provide enough information to determine it."
+      }
+    ]
+  },
+  {
+    "name": "requested_information",
+    "question": "What kind of information is the user primarily requesting?",
+    "options": [
+      {
+        "id": "capability_scope",
+        "definition": "Whether something is supported, available, permitted, or possible, or which kinds or how many can be used or held. This includes asking which currencies an account can hold."
+      },
+      {
+        "id": "procedure",
+        "definition": "How to perform, arrange, obtain, or configure something, or a request to carry out an action."
+      },
+      {
+        "id": "timing_status",
+        "definition": "How long something takes, when it will happen, or what its current progress or status is."
+      },
+      {
+        "id": "cost_value",
+        "definition": "The price, fee, rate, or monetary value of something, without primarily asking why an observed result is wrong."
+      },
+      {
+        "id": "problem_resolution",
+        "definition": "Why an observed problem occurred, whether an error occurred, or how an existing problem can be corrected."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a primary information need, or multiple needs are equally central."
+      }
+    ]
+  },
+  {
+    "name": "monetary_discrepancy_basis",
+    "question": "What basis does the message explicitly give for questioning a monetary result?",
+    "options": [
+      {
+        "id": "currency_conversion",
+        "definition": "The user questions the exchange rate or conversion between currencies as the explanation for a monetary result, even when they also mention receiving an unexpected amount."
+      },
+      {
+        "id": "recorded_vs_received",
+        "definition": "The user compares a recorded, debited, requested, or expected amount with the amount actually received or delivered, without explicitly questioning currency conversion."
+      },
+      {
+        "id": "additional_charge",
+        "definition": "The user questions a separate fee, surcharge, or extra debit, without explicitly questioning currency conversion or the amount delivered."
+      },
+      {
+        "id": "unclear",
+        "definition": "No monetary discrepancy is raised, or the message does not establish one of these bases. A general inquiry about exchange rates or fees without a disputed result belongs here."
+      }
+    ]
+  }
+]

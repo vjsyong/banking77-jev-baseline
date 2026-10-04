@@ -1,0 +1,96 @@
+TASK: You are designing interpretable semantic features for a text classifier.
+Dataset: short user messages mapped to 150 assistant intents (CLINC150).
+Pipeline: each proposed question is answered for every message by a small local model (TinyJev). Its per-option probability distribution becomes numeric features for a logistic regression classifier, which also uses TF-IDF text features.
+Goal: discover categorical concepts that separate intents the classifier currently confuses, complementing (not duplicating) lexical signals.
+CONVENTION (settled in the development instrument audit): include exactly ONE option covering 'not present or cannot be determined' (e.g., 'unclear'). Do NOT create separate 'no_X' and 'unclear' options — the extractor cannot reliably distinguish an explicitly-absent concept from an undeterminable one.
+
+Each proposal must be a schema-bound categorical question with:
+- a short snake_case name;
+- one question answerable from the message alone, about ONE concept;
+- 3 to 6 options, each with an explicit definition; include an 'unclear' option for when the message does not state a definite category.
+*Never use the true intent label in the question or options.*
+Prefer concepts that can distinguish MULTIPLE intents and complement lexical signals.
+
+CURRENT SEMANTIC BANK (selected questions):
+(empty — textual TF-IDF is the only representation so far)
+
+
+EXAMPLE PAIRS (random class-balanced sample)
+PAIR 1 (class terminate_account)
+  message: "Delete my account please. Now!"
+  true intent: terminate_account
+  model prediction: terminate_account (p=0.80; runner-up balance_not_updated_after_cheque_or_cash_deposit p=0.01)
+  contrasting message of the SAME class:
+  message: "This company is bad, delete my account now."
+  true intent: terminate_account
+  model prediction: terminate_account (p=0.77; runner-up balance_not_updated_after_cheque_or_cash_deposit p=0.02)
+
+PAIR 2 (class pending_top_up)
+  message: "Is there something wrong with my top up I did an hour ago? it's still pending. I need that money, i cant afford to wait or have it come back to me."
+  true intent: pending_top_up
+  model prediction: pending_transfer (p=0.14; runner-up top_up_reverted p=0.07)
+  contrasting message of the SAME class:
+  message: "I topped-up my account, but I don't think it went through."
+  true intent: pending_top_up
+  model prediction: top_up_failed (p=0.09; runner-up balance_not_updated_after_cheque_or_cash_deposit p=0.07)
+
+PAIR 3 (class unable_to_verify_identity)
+  message: "I can't verify my ID. Why?"
+  true intent: unable_to_verify_identity
+  model prediction: verify_top_up (p=0.21; runner-up verify_my_identity p=0.08)
+  contrasting message of the SAME class:
+  message: "Why is my identity not being verified?"
+  true intent: unable_to_verify_identity
+  model prediction: why_verify_identity (p=0.56; runner-up verify_my_identity p=0.11)
+
+PAIR 4 (class extra_charge_on_statement)
+  message: "I was charged an extra pound for no reason. Why is that?"
+  true intent: extra_charge_on_statement
+  model prediction: extra_charge_on_statement (p=0.79; runner-up transfer_fee_charged p=0.02)
+  contrasting message of the SAME class:
+  message: "I had to pay one pound more than the set price!"
+  true intent: extra_charge_on_statement
+  model prediction: transaction_charged_twice (p=0.24; runner-up getting_spare_card p=0.11)
+
+PAIR 5 (class pending_card_payment)
+  message: "My credit card payment has been in pending status for a super long time.  I don't get it.  Why is it like this?  When will it go through?"
+  true intent: pending_card_payment
+  model prediction: pending_transfer (p=0.18; runner-up pending_card_payment p=0.16)
+  contrasting message of the SAME class:
+  message: "I completed a payment with my card a while ago. It's still showing up as pending. What time frame does this normally take? It doesn't appear to have worked."
+  true intent: pending_card_payment
+  model prediction: pending_card_payment (p=0.43; runner-up pending_top_up p=0.17)
+
+PAIR 6 (class declined_card_payment)
+  message: "Can you tell me why my card keeps getting declined every time I try to use it?"
+  true intent: declined_card_payment
+  model prediction: declined_card_payment (p=0.65; runner-up declined_transfer p=0.07)
+  contrasting message of the SAME class:
+  message: "Whats the reason for my payment being declined? It looked like everything went through ok and my account was good."
+  true intent: declined_card_payment
+  model prediction: declined_card_payment (p=0.20; runner-up reverted_card_payment? p=0.07)
+
+PAIR 7 (class compromised_card)
+  message: "There is unusual activity on my account and I believe someone took my card."
+  true intent: compromised_card
+  model prediction: compromised_card (p=0.19; runner-up lost_or_stolen_phone p=0.07)
+  contrasting message of the SAME class:
+  message: "I have transactions that I don't recognize - I think someone is using my card."
+  true intent: compromised_card
+  model prediction: compromised_card (p=0.46; runner-up card_payment_not_recognised p=0.24)
+
+PAIR 8 (class declined_cash_withdrawal)
+  message: "Is my card broken? I can't get cash out of the ATM"
+  true intent: declined_cash_withdrawal
+  model prediction: declined_cash_withdrawal (p=0.59; runner-up wrong_amount_of_cash_received p=0.05)
+  contrasting message of the SAME class:
+  message: "Is there a reason my cash withdrawal was declined?"
+  true intent: declined_cash_withdrawal
+  model prediction: cash_withdrawal_not_recognised (p=0.30; runner-up declined_card_payment p=0.18)
+
+AGGREGATE DIAGNOSTICS (development folds)
+- current cross-validated macro-F1: 0.6070
+- worst classes (error rate, n): [(np.str_('failed_transfer'), 1.0, 9), (np.str_('topping_up_by_card'), 0.9, 10), (np.str_('transfer_fee_charged'), 0.692, 13), (np.str_('unable_to_verify_identity'), 0.667, 9), (np.str_('card_linking'), 0.625, 8), (np.str_('disposable_card_limits'), 0.625, 8), (np.str_('top_up_by_cash_or_cheque'), 0.583, 12), (np.str_('beneficiary_not_allowed'), 0.545, 11), (np.str_('declined_cash_withdrawal'), 0.538, 13), (np.str_('pending_transfer'), 0.5, 12), (np.str_('top_up_by_card_charge'), 0.5, 8), (np.str_('cash_withdrawal_not_recognised'), 0.462, 13)]
+- most frequent confusions (count): [['disposable_card_limits -> get_disposable_virtual_card', 5], ['transfer_fee_charged -> card_payment_fee_charged', 5], ['pending_top_up -> top_up_failed', 3], ['card_payment_fee_charged -> cash_withdrawal_charge', 3], ['card_payment_not_recognised -> direct_debit_payment_not_recognised', 3], ['unable_to_verify_identity -> why_verify_identity', 3], ['beneficiary_not_allowed -> failed_transfer', 3], ['failed_transfer -> beneficiary_not_allowed', 3], ['top_up_by_cash_or_cheque -> balance_not_updated_after_cheque_or_cash_deposit', 3], ['cash_withdrawal_charge -> card_payment_fee_charged', 3], ['card_linking -> activate_my_card', 2], ['exchange_rate -> card_payment_wrong_exchange_rate', 2]]
+
+Propose up to 3 NEW definitions that would most improve the downstream macro-F1 if added. Respond with ONLY a JSON array of objects with keys 'name', 'question', 'options' (list of {id, definition}).

@@ -1,0 +1,92 @@
+[
+  {
+    "name": "money_movement_purpose",
+    "question": "What purpose does the message explicitly describe for the money movement?",
+    "options": [
+      {
+        "id": "fund_own_account",
+        "definition": "Adding money to the user's own account or available balance, including funding it from a card, cash, or cheque."
+      },
+      {
+        "id": "pay_for_purchase",
+        "definition": "Paying a merchant or paying for goods or services, including a card purchase."
+      },
+      {
+        "id": "send_to_recipient",
+        "definition": "Sending money to another person or a specified destination account, rather than adding funds to the user's own balance."
+      },
+      {
+        "id": "obtain_physical_cash",
+        "definition": "Taking money out of an account as physical cash, such as through an ATM."
+      },
+      {
+        "id": "scheduled_collection",
+        "definition": "Money being collected from an account under a recurring payment mandate or automatic debit arrangement."
+      },
+      {
+        "id": "unclear",
+        "definition": "No money movement is described, or its purpose cannot be determined. A generic payment, charge, or fee without a stated purpose belongs here."
+      }
+    ]
+  },
+  {
+    "name": "reported_process_state",
+    "question": "What state does the message report for the main action or process being discussed?",
+    "options": [
+      {
+        "id": "awaiting_completion",
+        "definition": "The action has started but is explicitly pending, processing, delayed, or awaiting confirmation; a final unsuccessful outcome is not stated."
+      },
+      {
+        "id": "explicitly_refused",
+        "definition": "The action is explicitly declined, rejected, prohibited, or blocked by a restriction."
+      },
+      {
+        "id": "unsuccessful_unspecified",
+        "definition": "The user reports that the action failed, did not work, or cannot be completed, without explicitly describing a refusal, an ongoing pending state, or a reversal."
+      },
+      {
+        "id": "undone_after_start",
+        "definition": "The action initially proceeded or appeared successful, but was subsequently reversed, cancelled, or had its funds returned."
+      },
+      {
+        "id": "completed",
+        "definition": "The action is reported as completed or its result has occurred, even if the user disputes that result, its amount, or its authorization."
+      },
+      {
+        "id": "unclear",
+        "definition": "No definite process state is stated, including hypothetical actions and messages that only express doubt about whether an action succeeded."
+      }
+    ]
+  },
+  {
+    "name": "requested_response_kind",
+    "question": "What kind of response or assistance does the user primarily seek?",
+    "options": [
+      {
+        "id": "procedure",
+        "definition": "Instructions for carrying out an action, setting something up, or obtaining something, without reporting an obstacle to an existing attempt."
+      },
+      {
+        "id": "rules_or_eligibility",
+        "definition": "Information about whether an action is permitted or available, or about its limits, requirements, or qualifying conditions."
+      },
+      {
+        "id": "general_rationale",
+        "definition": "An explanation of why a general policy, requirement, or routine practice exists, rather than why a particular attempt encountered a problem."
+      },
+      {
+        "id": "specific_problem",
+        "definition": "Diagnosis, explanation, correction, or status information for a concrete difficulty, disputed result, or unsuccessful attempt, including questions phrased as 'why' about that problem."
+      },
+      {
+        "id": "perform_action",
+        "definition": "A request for the assistant or provider to directly carry out a concrete action, rather than explain how the user can do it."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish one of these response kinds, or multiple kinds are equally central with no clear primary request."
+      }
+    ]
+  }
+]

@@ -1,0 +1,88 @@
+[
+  {
+    "name": "requested_operation",
+    "question": "What kind of assistance does the user primarily request?",
+    "options": [
+      {
+        "id": "retrieve",
+        "definition": "Report an existing fact, value, list, or status without changing anything or explaining how or why."
+      },
+      {
+        "id": "explain",
+        "definition": "Explain a meaning, cause, rule, or rationale, rather than provide steps for performing an action."
+      },
+      {
+        "id": "instruct",
+        "definition": "Provide directions, steps, or advice that enable the user to carry out an action themselves."
+      },
+      {
+        "id": "create_or_change",
+        "definition": "Carry out an action that creates, initiates, updates, or adjusts something, excluding cancellation, removal, or reversal."
+      },
+      {
+        "id": "stop_or_reverse",
+        "definition": "Carry out an action that cancels, stops, removes, undoes, or reverses something."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a definite primary operation, or requests assistance outside the listed categories."
+      }
+    ]
+  },
+  {
+    "name": "problem_type",
+    "question": "What type of problem does the user explicitly describe?",
+    "options": [
+      {
+        "id": "access_failure",
+        "definition": "The user cannot authenticate, gain access, or use something because access is denied or credentials are not accepted."
+      },
+      {
+        "id": "execution_failure",
+        "definition": "An attempted action or function fails to execute or work, without an explicit access denial."
+      },
+      {
+        "id": "unexpected_result",
+        "definition": "Something produces an incorrect, unfamiliar, duplicate, or otherwise unexpected result, rather than simply failing to occur."
+      },
+      {
+        "id": "missing_or_delayed",
+        "definition": "An expected item, event, update, or result has not arrived, appeared, or completed."
+      },
+      {
+        "id": "eligibility_or_limit",
+        "definition": "A stated restriction, qualification requirement, allowance, or capacity limit prevents or constrains the desired action."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not explicitly establish a problem in one definite listed category."
+      }
+    ]
+  },
+  {
+    "name": "temporal_scope",
+    "question": "What temporal scope does the message explicitly assign to its main subject or event?",
+    "options": [
+      {
+        "id": "past",
+        "definition": "The main subject is an event or condition explicitly situated before the present, including historical activity or a completed event."
+      },
+      {
+        "id": "present",
+        "definition": "The main subject is an explicitly current condition, ongoing event, or activity happening now."
+      },
+      {
+        "id": "future",
+        "definition": "The main subject is an explicitly upcoming, planned, scheduled, or anticipated event or condition."
+      },
+      {
+        "id": "recurring_or_general",
+        "definition": "The main subject explicitly concerns repeated occurrences, usual behavior, or a rule applying generally rather than a particular occasion."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish one definite temporal scope, or spans multiple scopes without a primary one. Do not infer a future scope merely because the user requests an action."
+      }
+    ]
+  }
+]

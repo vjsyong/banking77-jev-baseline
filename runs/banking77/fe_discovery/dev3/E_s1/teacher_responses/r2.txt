@@ -1,0 +1,114 @@
+[
+  {
+    "name": "card_operation_target",
+    "question": "What is the primary card-related object or operation mentioned in the message?",
+    "options": [
+      {
+        "id": "pin_or_security_credential",
+        "definition": "The message concerns obtaining, receiving, changing, or using the card PIN or another card security credential."
+      },
+      {
+        "id": "physical_card",
+        "definition": "The message concerns obtaining, ordering, receiving, or tracking a physical card."
+      },
+      {
+        "id": "app_card_connection",
+        "definition": "The message concerns connecting, linking, or associating an existing card with an app or account."
+      },
+      {
+        "id": "card_activation",
+        "definition": "The message concerns making a newly received card usable through an activation step."
+      },
+      {
+        "id": "card_functionality",
+        "definition": "The message concerns a card failing to work or asks how to make it work."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not state a definite card-related object or operation, or it is not possible to determine one."
+      }
+    ]
+  },
+  {
+    "name": "card_delivery_request_type",
+    "question": "What kind of card-delivery information or action does the message request?",
+    "options": [
+      {
+        "id": "delivery_time_estimate",
+        "definition": "The message asks when a card is expected to arrive or how long delivery takes."
+      },
+      {
+        "id": "shipment_tracking",
+        "definition": "The message asks where a dispatched card is or how to follow its delivery progress."
+      },
+      {
+        "id": "initial_card_order",
+        "definition": "The message asks to obtain or order a physical card without referring to an already dispatched card."
+      },
+      {
+        "id": "delivery_problem",
+        "definition": "The message reports that an expected card has not arrived or that delivery has otherwise gone wrong."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not state a definite card-delivery request type, or it is not possible to determine one."
+      }
+    ]
+  },
+  {
+    "name": "top_up_outcome_state",
+    "question": "What outcome state of the top-up does the message describe or ask about?",
+    "options": [
+      {
+        "id": "reversed_or_removed",
+        "definition": "The top-up appeared to occur but was later undone, removed, or returned."
+      },
+      {
+        "id": "failed_or_declined",
+        "definition": "The top-up was rejected or failed to complete."
+      },
+      {
+        "id": "pending_or_delayed",
+        "definition": "The top-up is still processing or has not completed within the expected time."
+      },
+      {
+        "id": "successful_or_available",
+        "definition": "The message indicates that the top-up completed or that the funds are available."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not state a definite top-up outcome state, or it is not possible to determine one."
+      }
+    ]
+  },
+  {
+    "name": "financial_issue_subject",
+    "question": "What is the primary subject of the financial issue or charge mentioned in the message?",
+    "options": [
+      {
+        "id": "bank_transfer",
+        "definition": "The issue or charge concerns moving money by bank transfer between accounts."
+      },
+      {
+        "id": "account_top_up",
+        "definition": "The issue or charge concerns adding money to the account through a top-up."
+      },
+      {
+        "id": "cash_withdrawal",
+        "definition": "The issue or charge concerns taking cash out, such as at an ATM."
+      },
+      {
+        "id": "card_purchase",
+        "definition": "The issue or charge concerns paying a merchant with a card."
+      },
+      {
+        "id": "currency_conversion",
+        "definition": "The issue concerns the exchange rate or conversion between currencies rather than a specific payment or transfer."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not state a definite financial issue subject, or it is not possible to determine one."
+      }
+    ]
+  }
+]

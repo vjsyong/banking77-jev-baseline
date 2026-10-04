@@ -1,0 +1,60 @@
+/home/xrim/banking77-jev-baseline/venv-serve/lib/python3.12/site-packages/sklearn/model_selection/_split.py:812: UserWarning: The least populated class in y has only 4 members, which is less than n_splits=5.
+  warnings.warn(
+dev data: 1200 rows, 77 classes
+tfidf cache: 1.6s
+C selected: 64.0 ({4.0: 0.703, 16.0: 0.7151, 64.0: 0.716})
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1096.08it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 3248.50it/s]
+calibrated: unit 5.0 ms/text, cost model {'b0': 0.8145652173912992, 'b1': 1.9978478260869528, 'b2': 0.29441304347826147, 'model_id': 'nq+nopt'}
+[teacher] lmuai-pro/gpt-6.1-sol ok in 160.4s (usage {'prompt_tokens': 6348, 'completion_tokens': 1512, 'total_tokens': 7860, 'prompt_tokens_details': {'cached_tokens': 4224}, 'completion_tokens_details': {'reasoning_tokens': 472}})
+[E s1 r1] prop 4 ext 4 pool 4 | primary cv 0.7709 nq 2 | evals 9 | tok 7860
+[teacher] lmuai-pro/gpt-6.1-sol ok in 119.3s (usage {'prompt_tokens': 6253, 'completion_tokens': 1962, 'total_tokens': 8215, 'prompt_tokens_details': {'cached_tokens': 3840}, 'completion_tokens_details': {'reasoning_tokens': 1034}})
+[E s1 r2] prop 4 ext 4 pool 8 | primary cv 0.7898 nq 4 | evals 20 | tok 16075
+{
+ "stop_reason": "max_rounds",
+ "rounds": 2,
+ "teacher_calls": 2,
+ "teacher_tokens": {
+  "in": 12601,
+  "out": 3474
+ },
+ "ledger": {
+  "physical_extract_s": 87.8,
+  "logical_charge_s": 48.0,
+  "extract_requests": 8,
+  "cache_hits": 0
+ },
+ "unique_evals": 20,
+ "wall_s": 472.6
+}
+current: {
+ "low": {
+  "names": [
+   "money_movement_context",
+   "monetary_discrepancy_basis"
+  ],
+  "cv": 0.7567883730153039,
+  "cost": 13.849
+ },
+ "primary": {
+  "names": [
+   "money_movement_context",
+   "requested_information",
+   "top_up_outcome_state",
+   "financial_issue_subject"
+  ],
+  "cv": 0.7898250591210262,
+  "cost": 26.808
+ },
+ "high": {
+  "names": [
+   "money_movement_context",
+   "monetary_discrepancy_basis",
+   "card_operation_target"
+  ],
+  "cv": 0.7768495890454193,
+  "cost": 20.268
+ }
+}
+total wall 494s
+EXIT=0

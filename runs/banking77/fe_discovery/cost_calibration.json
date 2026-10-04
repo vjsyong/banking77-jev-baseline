@@ -1,0 +1,59 @@
+{
+ "points": [
+  [
+   0,
+   0,
+   0.427
+  ],
+  [
+   2,
+   10,
+   7.799
+  ],
+  [
+   4,
+   19,
+   14.545
+  ],
+  [
+   6,
+   29,
+   21.87
+  ],
+  [
+   8,
+   38,
+   28.053
+  ],
+  [
+   10,
+   47,
+   34.425
+  ],
+  [
+   12,
+   59,
+   41.964
+  ]
+ ],
+ "cost_model": {
+  "b0": 0.8145652173912992,
+  "b1": 1.9978478260869528,
+  "b2": 0.29441304347826147,
+  "model_id": "nq+nopt"
+ },
+ "cost_model_chosen": "nq+nopt",
+ "cost_model_max_residual_ms": 0.53,
+ "unit_ms_per_text_median": 5.0,
+ "per_def_ms_per_text": {},
+ "proposed_caps": {
+  "per_round_evals": 30,
+  "global_evals": 160,
+  "extract_logical_s": 900.0,
+  "teacher_tokens": 100000,
+  "slots_per_round": 12,
+  "defs_per_run": 60,
+  "max_rounds": 5
+ },
+ "measured_at": "2026-10-04T13:37:23Z"
+}

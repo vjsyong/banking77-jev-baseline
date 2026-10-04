@@ -1,0 +1,100 @@
+TASK: You are designing interpretable semantic features for a text classifier.
+Dataset: short user messages mapped to 150 assistant intents (CLINC150).
+Pipeline: each proposed question is answered for every message by a small local model (TinyJev). Its per-option probability distribution becomes numeric features for a logistic regression classifier, which also uses TF-IDF text features.
+Goal: discover categorical concepts that separate intents the classifier currently confuses, complementing (not duplicating) lexical signals.
+CONVENTION (settled in the development instrument audit): include exactly ONE option covering 'not present or cannot be determined' (e.g., 'unclear'). Do NOT create separate 'no_X' and 'unclear' options — the extractor cannot reliably distinguish an explicitly-absent concept from an undeterminable one.
+
+Each proposal must be a schema-bound categorical question with:
+- a short snake_case name;
+- one question answerable from the message alone, about ONE concept;
+- 3 to 6 options, each with an explicit definition; include an 'unclear' option for when the message does not state a definite category.
+*Never use the true intent label in the question or options.*
+Prefer concepts that can distinguish MULTIPLE intents and complement lexical signals.
+
+CURRENT SEMANTIC BANK (selected questions):
+(empty — textual TF-IDF is the only representation so far)
+
+
+FAILURE PAIRS — the model confuses these; design concepts that separate them:
+
+FAILURE 1: true transfer_into_account, predicted balance_not_updated_after_cheque_or_cash_deposit
+  message: "I need to deposit money to my account"
+  true intent: transfer_into_account
+  model prediction: balance_not_updated_after_cheque_or_cash_deposit (p=0.51; runner-up top_up_by_cash_or_cheque p=0.39)
+  contrast with a correctly handled message of the confused class:
+  message: "My cash deposit from a week ago is still not in my account. Can you help me please?"
+  true intent: balance_not_updated_after_cheque_or_cash_deposit
+  model prediction: balance_not_updated_after_cheque_or_cash_deposit (p=0.94; runner-up cash_withdrawal_not_recognised p=0.02)
+
+FAILURE 2: true declined_cash_withdrawal, predicted declined_transfer
+  message: "Hello, is there any way to double check my card? I have never had issues with withdraws in the past, but this morning on the way to work it was unexpectedly declined."
+  true intent: declined_cash_withdrawal
+  model prediction: declined_transfer (p=0.15; runner-up declined_card_payment p=0.12)
+  contrast with a correctly handled message of the confused class:
+  message: "Why did my transfer get declined?"
+  true intent: declined_transfer
+  model prediction: declined_transfer (p=0.68; runner-up failed_transfer p=0.28)
+
+FAILURE 3: true declined_cash_withdrawal, predicted declined_card_payment
+  message: "The ATM machines keep declining my card and I don't know why. I thought I had money in my account. Why is this happening?"
+  true intent: declined_cash_withdrawal
+  model prediction: declined_card_payment (p=0.34; runner-up declined_cash_withdrawal p=0.32)
+  contrast with a correctly handled message of the confused class:
+  message: "Why has my card been declined?"
+  true intent: declined_card_payment
+  model prediction: declined_card_payment (p=0.44; runner-up declined_transfer p=0.26)
+
+FAILURE 4: true fiat_currency_support, predicted transfer_into_account
+  message: "How many currencies can I have money in in my account?"
+  true intent: fiat_currency_support
+  model prediction: transfer_into_account (p=0.81; runner-up transfer_timing p=0.03)
+  contrast with a correctly handled message of the confused class:
+  message: "I am out of money in my account and I was wondering if I could do a bank transfer is put more in it?"
+  true intent: transfer_into_account
+  model prediction: transfer_into_account (p=0.43; runner-up balance_not_updated_after_bank_transfer p=0.39)
+
+FAILURE 5: true wrong_exchange_rate_for_cash_withdrawal, predicted wrong_amount_of_cash_received
+  message: "In a recent withdrawal I received less cash than I expected to receive.  Did someone make an error with the exchange rate?"
+  true intent: wrong_exchange_rate_for_cash_withdrawal
+  model prediction: wrong_amount_of_cash_received (p=0.22; runner-up wrong_exchange_rate_for_cash_withdrawal p=0.22)
+  contrast with a correctly handled message of the confused class:
+  message: "Did a WD earlier at an ATM.  The amount showing in the App is more than I got though."
+  true intent: wrong_amount_of_cash_received
+  model prediction: wrong_amount_of_cash_received (p=0.88; runner-up wrong_exchange_rate_for_cash_withdrawal p=0.02)
+
+
+PRESERVATION CONTROLS — the model already separates these; do not break them:
+
+CONTROL 1
+  message: "How long do EU transfers take? I bought something online a couple of days ago , sent the money immediately online but the seller says it is still not there yet."
+  true intent: pending_transfer
+  model prediction: pending_transfer (p=0.91; runner-up transfer_not_received_by_recipient p=0.03)
+  distinct correct message:
+  message: "Can you explain why my payment is still pending?"
+  true intent: pending_transfer
+  model prediction: pending_card_payment (p=0.80; runner-up declined_card_payment p=0.09)
+
+CONTROL 2
+  message: "What is the price for an additional card?"
+  true intent: getting_spare_card
+  model prediction: getting_spare_card (p=0.87; runner-up extra_charge_on_statement p=0.02)
+  distinct correct message:
+  message: "Do you send duplicate cards?"
+  true intent: getting_spare_card
+  model prediction: transaction_charged_twice (p=0.43; runner-up getting_spare_card p=0.18)
+
+CONTROL 3
+  message: "Is there an issue with my account?  I don't see a cheque deposit that I made yesterday.  Please assist."
+  true intent: balance_not_updated_after_cheque_or_cash_deposit
+  model prediction: balance_not_updated_after_cheque_or_cash_deposit (p=0.69; runner-up top_up_by_cash_or_cheque p=0.15)
+  distinct correct message:
+  message: "Why did my cash deposit not show up?"
+  true intent: balance_not_updated_after_cheque_or_cash_deposit
+  model prediction: balance_not_updated_after_cheque_or_cash_deposit (p=0.78; runner-up top_up_by_cash_or_cheque p=0.09)
+
+AGGREGATE DIAGNOSTICS (development folds)
+- current cross-validated macro-F1: 0.7160
+- worst classes (error rate, n): [(np.str_('failed_transfer'), 0.909, 11), (np.str_('pending_top_up'), 0.692, 13), (np.str_('card_not_working'), 0.583, 12), (np.str_('card_linking'), 0.571, 14), (np.str_('exchange_charge'), 0.556, 9), (np.str_('topping_up_by_card'), 0.533, 15), (np.str_('atm_support'), 0.5, 12), (np.str_('wrong_exchange_rate_for_cash_withdrawal'), 0.458, 24), (np.str_('order_physical_card'), 0.455, 11), (np.str_('lost_or_stolen_card'), 0.444, 9), (np.str_('declined_cash_withdrawal'), 0.429, 21), (np.str_('pending_cash_withdrawal'), 0.417, 12)]
+- most frequent confusions (count): [['failed_transfer -> beneficiary_not_allowed', 5], ['wrong_exchange_rate_for_cash_withdrawal -> card_payment_wrong_exchange_rate', 5], ['card_payment_wrong_exchange_rate -> wrong_exchange_rate_for_cash_withdrawal', 4], ['pending_top_up -> top_up_failed', 4], ['top_up_by_cash_or_cheque -> balance_not_updated_after_cheque_or_cash_deposit', 4], ['exchange_rate -> card_payment_wrong_exchange_rate', 3], ['top_up_reverted -> top_up_failed', 3], ['card_payment_not_recognised -> direct_debit_payment_not_recognised', 3], ['disposable_card_limits -> get_disposable_virtual_card', 3], ['declined_card_payment -> reverted_card_payment?', 3], ['transfer_fee_charged -> top_up_by_bank_transfer_charge', 3], ['transfer_fee_charged -> cash_withdrawal_charge', 3]]
+
+Propose up to 4 NEW definitions that would most improve the downstream macro-F1 if added. Respond with ONLY a JSON array of objects with keys 'name', 'question', 'options' (list of {id, definition}).

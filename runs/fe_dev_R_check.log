@@ -1,0 +1,54 @@
+/home/xrim/banking77-jev-baseline/venv-serve/lib/python3.12/site-packages/sklearn/model_selection/_split.py:812: UserWarning: The least populated class in y has only 3 members, which is less than n_splits=5.
+  warnings.warn(
+dev data: 800 rows, 77 classes
+tfidf cache: 1.1s
+C selected: 16.0 ({4.0: 0.6063, 16.0: 0.607, 64.0: 0.6052})
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1100.43it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 3125.41it/s]
+calibrated: unit 5.0 ms/text, cost model {'b0': 0.8145652173912992, 'b1': 1.9978478260869528, 'b2': 0.29441304347826147, 'model_id': 'nq+nopt'}
+[teacher] lmuai-pro/gpt-6.1-sol ok in 56.0s (usage {'prompt_tokens': 6210, 'completion_tokens': 1061, 'total_tokens': 7271, 'prompt_tokens_details': {'cached_tokens': 4224}, 'completion_tokens_details': {'reasoning_tokens': 199}})
+[R s1 r1] prop 3 ext 3 pool 3 | primary cv 0.6843 nq 2 | evals 7 | tok 7271
+{
+ "stop_reason": "max_rounds",
+ "rounds": 1,
+ "teacher_calls": 1,
+ "teacher_tokens": {
+  "in": 6210,
+  "out": 1061
+ },
+ "ledger": {
+  "physical_extract_s": 27.2,
+  "logical_charge_s": 12.0,
+  "extract_requests": 3,
+  "cache_hits": 0
+ },
+ "unique_evals": 7,
+ "wall_s": 107.5
+}
+current: {
+ "low": {
+  "names": [
+   "money_movement_purpose"
+  ],
+  "cv": 0.652728922595088,
+  "cost": 7.851
+ },
+ "primary": {
+  "names": [
+   "money_movement_purpose",
+   "reported_process_state"
+  ],
+  "cv": 0.6843352548036759,
+  "cost": 16.053
+ },
+ "high": {
+  "names": [
+   "money_movement_purpose",
+   "reported_process_state"
+  ],
+  "cv": 0.6843352548036759,
+  "cost": 16.251
+ }
+}
+total wall 125s
+EXIT=0 arm=R

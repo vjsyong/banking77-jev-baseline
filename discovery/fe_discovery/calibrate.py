@@ -116,30 +116,49 @@ def _calib_main(mon):
     ex = FEExtractor(store)
     mon.log(f"calibration on {len(texts)} rows, {len(defs)} defs")
     points, per_def_ms = [], {}
-    for k in (0, 4, 8, 12):
+    for k in (0, 2, 4, 6, 8, 10, 12):
         bank = defs[:k]
         if k:
             t0 = time.perf_counter()
             for d in bank:
                 wall, _ = ex.extract_choice_fe(d["slot"], d["question"], d["options"], texts)
-                per_def_ms[d["name"]] = round(1000 * wall / max(len(texts), 1), 2)
+                if wall > 0:
+                    per_def_ms[d["name"]] = round(1000 * wall / max(len(texts), 1), 2)
             print(f"  extraction {k} defs: {time.perf_counter()-t0:.0f}s total", flush=True)
         block = None
         from fe_extract import bank_matrix
         rk = [text_key(t) for t in texts]
         block = bank_matrix(store, bank, rk) if bank else np.zeros((len(texts), 0))
         pipe = build_pipeline(texts, y, block, c_value=8.0)
-        out = measure_batched(ex, pipe, bank, cal_texts)
+        out1 = measure_batched(ex, pipe, bank, cal_texts)
+        out2 = measure_batched(ex, pipe, bank, cal_texts)
+        out = min(out1, out2, key=lambda o: o["ms_per_text"])  # min of two (warm)
         n_opts = sum(len(d["options"]) for d in bank)
         points.append((len(bank), n_opts, out["ms_per_text"]))
         mon.update(len(points) + 1, message=f"bank {k}q: {out['ms_per_text']} ms/text")
         print(f"  bank {k:2d}q/{n_opts:2d}opt: {out['ms_per_text']} ms/text ({out['throughput']} /s)", flush=True)
 
-    model = CostModel.fit(points)
-    unit = float(np.median([v for v in per_def_ms.values()])) if per_def_ms else 4.5
+    # robust models: nq-only vs nq+nopt; choose by max residual
+    import numpy as _np
+    A1 = _np.array([[1.0, q] for q, o, _m in points])
+    A2 = _np.array([[1.0, q, o] for q, o, _m in points])
+    b = _np.array([m for _q, _o, m in points])
+    c1, *_ = _np.linalg.lstsq(A1, b, rcond=None)
+    c2, *_ = _np.linalg.lstsq(A2, b, rcond=None)
+    r1 = float(_np.abs(A1 @ c1 - b).max())
+    r2 = float(_np.abs(A2 @ c2 - b).max())
+    if r1 <= r2:
+        model = CostModel(b0=float(c1[0]), b1=float(c1[1]), b2=0.0, model_id="nq-linear")
+        chosen, resid = "nq-linear", r1
+    else:
+        model = CostModel(b0=float(c2[0]), b1=float(c2[1]), b2=float(c2[2]), model_id="nq+nopt")
+        chosen, resid = "nq+nopt", r2
+    unit = float(np.median(list(per_def_ms.values()))) if per_def_ms else 5.0
     res = {
         "points": points,
         "cost_model": model.to_json(),
+        "cost_model_chosen": chosen,
+        "cost_model_max_residual_ms": round(resid, 2),
         "unit_ms_per_text_median": unit,
         "per_def_ms_per_text": per_def_ms,
         "proposed_caps": {

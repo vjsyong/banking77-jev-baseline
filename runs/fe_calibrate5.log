@@ -1,0 +1,36 @@
+12 defs for calibration
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1079.51it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  44%|████▎     | 135/310 [00:00<00:00, 1343.16it/s]Loading weights:  89%|████████▉ | 277/310 [00:00<00:00, 1381.66it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 1403.06it/s]
+  bank  0q/ 0opt: 0.427 ms/text (2343.39 /s)
+  extraction 2 defs: 0s total
+  bank  2q/10opt: 7.799 ms/text (128.23 /s)
+  extraction 4 defs: 0s total
+  bank  4q/19opt: 14.545 ms/text (68.75 /s)
+  extraction 6 defs: 0s total
+  bank  6q/29opt: 21.87 ms/text (45.72 /s)
+  extraction 8 defs: 0s total
+  bank  8q/38opt: 28.053 ms/text (35.65 /s)
+  extraction 10 defs: 0s total
+  bank 10q/47opt: 34.425 ms/text (29.05 /s)
+  extraction 12 defs: 0s total
+  bank 12q/59opt: 41.964 ms/text (23.83 /s)
+{
+ "cost_model": {
+  "b0": 0.8145652173912992,
+  "b1": 1.9978478260869528,
+  "b2": 0.29441304347826147,
+  "model_id": "nq+nopt"
+ },
+ "unit_ms": 5.0,
+ "proposed_caps": {
+  "per_round_evals": 30,
+  "global_evals": 160,
+  "extract_logical_s": 900.0,
+  "teacher_tokens": 100000,
+  "slots_per_round": 12,
+  "defs_per_run": 60,
+  "max_rounds": 5
+ }
+}
+written /home/xrim/banking77-jev-baseline/runs/banking77/fe_discovery/cost_calibration.json
+EXIT=0

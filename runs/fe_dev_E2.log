@@ -1,0 +1,11 @@
+/home/xrim/banking77-jev-baseline/venv-serve/lib/python3.12/site-packages/sklearn/model_selection/_split.py:812: UserWarning: The least populated class in y has only 4 members, which is less than n_splits=5.
+  warnings.warn(
+dev data: 1200 rows, 77 classes
+tfidf cache: 1.5s
+C selected: 8.0 ({0.5: 0.5989, 1.0: 0.6714, 2.0: 0.6994, 4.0: 0.7087, 8.0: 0.7171})
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1097.66it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  92%|█████████▏| 284/310 [00:00<00:00, 2827.20it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 2841.60it/s]
+[teacher] lmuai-pro/gpt-6.1-sol ok in 126.4s (usage {'prompt_tokens': 6219, 'completion_tokens': 2004, 'total_tokens': 8223, 'prompt_tokens_details': {'cached_tokens': 3840}, 'completion_tokens_details': {'reasoning_tokens': 1034}})
+[E s1 r1] prop 4 ext 4 pool 4 | primary cv 0.7616 nq 3 | evals 9 | tok 8223
+[teacher] lmuai-pro/gpt-6.1-sol ok in 78.1s (usage {'prompt_tokens': 6394, 'completion_tokens': 1612, 'total_tokens': 8006, 'prompt_tokens_details': {'cached_tokens': 4224}, 'completion_tokens_details': {'reasoning_tokens': 516}})
+EXIT=143

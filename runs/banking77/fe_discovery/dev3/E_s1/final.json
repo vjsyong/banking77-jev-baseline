@@ -1,0 +1,751 @@
+{
+ "arm": "E",
+ "seed": 1,
+ "task": "banking77-dev",
+ "stop_reason": "max_rounds",
+ "rounds": 2,
+ "teacher_calls": 2,
+ "teacher_tokens": {
+  "in": 12601,
+  "out": 3474
+ },
+ "teacher_config": {
+  "provider": "lmuai-pro",
+  "model": "gpt-6.1-sol",
+  "temperature": 0.4,
+  "max_tokens": 2200
+ },
+ "ledger": {
+  "physical_extract_s": 87.8,
+  "logical_charge_s": 48.0,
+  "extract_requests": 8,
+  "cache_hits": 0
+ },
+ "unique_evals": 20,
+ "cache_hits": 12,
+ "measure_calls": 6,
+ "pool": [
+  {
+   "name": "money_movement_context",
+   "idh": "c10382036654e8b1735bb5b6bb3bb4359758a593476bf9d430df2e144d70caec",
+   "question": "What kind of money movement does the message describe or ask about?",
+   "options": [
+    {
+     "id": "cash_access",
+     "definition": "Obtaining physical cash from an account, including using an ATM. A card mentioned in connection with an ATM belongs here."
+    },
+    {
+     "id": "merchant_purchase",
+     "definition": "Paying a merchant for goods or services, including purchases made with a card. Mentioning a card alone does not establish a purchase."
+    },
+    {
+     "id": "between_accounts",
+     "definition": "Sending money between bank accounts or to a recipient through a bank transfer, including a bank transfer used to fund the sender's own account."
+    },
+    {
+     "id": "account_funding",
+     "definition": "Adding money to an account by cash, cheque, another card, or an unspecified deposit method, without explicitly describing a bank transfer."
+    },
+    {
+     "id": "unclear",
+     "definition": "No money movement is described, or the message does not establish which kind is involved. A generic card decline or pending payment without transaction context belongs here."
+    }
+   ],
+   "slot": "fe::63b690b94a3303b1c2c1",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "cash_access",
+      "overlap": [
+       "get_physical_card",
+       "order_physical_card"
+      ]
+     },
+     {
+      "option": "merchant_purchase",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "card_not_working",
+       "card_payment_not_recognised",
+       "lost_or_stolen_card",
+       "virtual_card_not_working"
+      ]
+     },
+     {
+      "option": "between_accounts",
+      "overlap": [
+       "balance_not_updated_after_bank_transfer",
+       "top_up_by_bank_transfer_charge",
+       "transfer_into_account",
+       "transfer_not_received_by_recipient"
+      ]
+     },
+     {
+      "option": "account_funding",
+      "overlap": [
+       "balance_not_updated_after_bank_transfer",
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "card_about_to_expire",
+       "lost_or_stolen_card",
+       "top_up_by_bank_transfer_charge"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "card_not_working",
+       "card_payment_fee_charged",
+       "card_payment_not_recognised",
+       "card_payment_wrong_exchange_rate"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "action_progress",
+   "idh": "4982c3dd5e3e4365c2062a8b4e69f5d16dc4f5d271d436ea529e012615401f4e",
+   "question": "What progress or outcome does the message report for the action or its expected result?",
+   "options": [
+    {
+     "id": "prospective",
+     "definition": "The action is wanted, planned, or being considered, with no indication that it has already been attempted."
+    },
+    {
+     "id": "awaiting_result",
+     "definition": "The action has been initiated, but its expected result remains pending, delayed, missing, or not reflected in the account; no definitive failure is stated."
+    },
+    {
+     "id": "unsuccessful",
+     "definition": "An attempted action was explicitly refused, declined, blocked, or reported as failed, rather than merely awaiting a result."
+    },
+    {
+     "id": "undone",
+     "definition": "An action initially took effect or proceeded, but was subsequently reversed, cancelled, or returned."
+    },
+    {
+     "id": "completed",
+     "definition": "The action produced its result, even if the user disputes the amount, rate, fee, or other property of that result."
+    },
+    {
+     "id": "unclear",
+     "definition": "No action progress is stated, or the message does not provide enough information to determine it."
+    }
+   ],
+   "slot": "fe::09cbbc360e68a1b0336e",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "awaiting_result",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     },
+     {
+      "option": "completed",
+      "overlap": [
+       "wrong_amount_of_cash_received"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "requested_information",
+   "idh": "db73935cebed39bce89c32d4cde5a5f0270c328920e9341d9f72dadc7610f0ad",
+   "question": "What kind of information is the user primarily requesting?",
+   "options": [
+    {
+     "id": "capability_scope",
+     "definition": "Whether something is supported, available, permitted, or possible, or which kinds or how many can be used or held. This includes asking which currencies an account can hold."
+    },
+    {
+     "id": "procedure",
+     "definition": "How to perform, arrange, obtain, or configure something, or a request to carry out an action."
+    },
+    {
+     "id": "timing_status",
+     "definition": "How long something takes, when it will happen, or what its current progress or status is."
+    },
+    {
+     "id": "cost_value",
+     "definition": "The price, fee, rate, or monetary value of something, without primarily asking why an observed result is wrong."
+    },
+    {
+     "id": "problem_resolution",
+     "definition": "Why an observed problem occurred, whether an error occurred, or how an existing problem can be corrected."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not establish a primary information need, or multiple needs are equally central."
+    }
+   ],
+   "slot": "fe::1b8ec66a0de7ab0d34a8",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "capability_scope",
+      "overlap": [
+       "supported_cards_and_currencies"
+      ]
+     },
+     {
+      "option": "cost_value",
+      "overlap": [
+       "card_payment_wrong_exchange_rate",
+       "wrong_amount_of_cash_received",
+       "wrong_exchange_rate_for_cash_withdrawal"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "monetary_discrepancy_basis",
+   "idh": "e4c2e6295320c7348ce1be9bd0a604661cd0ca6679c41eb5deac9834b7f6c61c",
+   "question": "What basis does the message explicitly give for questioning a monetary result?",
+   "options": [
+    {
+     "id": "currency_conversion",
+     "definition": "The user questions the exchange rate or conversion between currencies as the explanation for a monetary result, even when they also mention receiving an unexpected amount."
+    },
+    {
+     "id": "recorded_vs_received",
+     "definition": "The user compares a recorded, debited, requested, or expected amount with the amount actually received or delivered, without explicitly questioning currency conversion."
+    },
+    {
+     "id": "additional_charge",
+     "definition": "The user questions a separate fee, surcharge, or extra debit, without explicitly questioning currency conversion or the amount delivered."
+    },
+    {
+     "id": "unclear",
+     "definition": "No monetary discrepancy is raised, or the message does not establish one of these bases. A general inquiry about exchange rates or fees without a disputed result belongs here."
+    }
+   ],
+   "slot": "fe::097393411dff6903b077",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "currency_conversion",
+      "overlap": [
+       "card_payment_wrong_exchange_rate",
+       "exchange_rate",
+       "wrong_exchange_rate_for_cash_withdrawal"
+      ]
+     },
+     {
+      "option": "recorded_vs_received",
+      "overlap": [
+       "wrong_amount_of_cash_received"
+      ]
+     },
+     {
+      "option": "additional_charge",
+      "overlap": [
+       "extra_charge_on_statement"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "card_operation_target",
+   "idh": "17564410f742949141723b8bace67122144b829328f4044646d82378b96ec941",
+   "question": "What is the primary card-related object or operation mentioned in the message?",
+   "options": [
+    {
+     "id": "pin_or_security_credential",
+     "definition": "The message concerns obtaining, receiving, changing, or using the card PIN or another card security credential."
+    },
+    {
+     "id": "physical_card",
+     "definition": "The message concerns obtaining, ordering, receiving, or tracking a physical card."
+    },
+    {
+     "id": "app_card_connection",
+     "definition": "The message concerns connecting, linking, or associating an existing card with an app or account."
+    },
+    {
+     "id": "card_activation",
+     "definition": "The message concerns making a newly received card usable through an activation step."
+    },
+    {
+     "id": "card_functionality",
+     "definition": "The message concerns a card failing to work or asks how to make it work."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not state a definite card-related object or operation, or it is not possible to determine one."
+    }
+   ],
+   "slot": "fe::841082eb7e795487d20b",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "pin_or_security_credential",
+      "overlap": [
+       "lost_or_stolen_card"
+      ]
+     },
+     {
+      "option": "physical_card",
+      "overlap": [
+       "get_physical_card",
+       "lost_or_stolen_card",
+       "order_physical_card"
+      ]
+     },
+     {
+      "option": "app_card_connection",
+      "overlap": [
+       "card_linking",
+       "lost_or_stolen_card"
+      ]
+     },
+     {
+      "option": "card_functionality",
+      "overlap": [
+       "card_about_to_expire",
+       "lost_or_stolen_card"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "card_about_to_expire",
+       "card_not_working",
+       "card_payment_not_recognised",
+       "lost_or_stolen_card"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "card_delivery_request_type",
+   "idh": "c6f94b9f2d89f58523ec5c8c61956a245287b72c5f9e6afdea7ee870f3413573",
+   "question": "What kind of card-delivery information or action does the message request?",
+   "options": [
+    {
+     "id": "delivery_time_estimate",
+     "definition": "The message asks when a card is expected to arrive or how long delivery takes."
+    },
+    {
+     "id": "shipment_tracking",
+     "definition": "The message asks where a dispatched card is or how to follow its delivery progress."
+    },
+    {
+     "id": "initial_card_order",
+     "definition": "The message asks to obtain or order a physical card without referring to an already dispatched card."
+    },
+    {
+     "id": "delivery_problem",
+     "definition": "The message reports that an expected card has not arrived or that delivery has otherwise gone wrong."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not state a definite card-delivery request type, or it is not possible to determine one."
+    }
+   ],
+   "slot": "fe::0ae083bcc10dce12a453",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "delivery_time_estimate",
+      "overlap": [
+       "card_about_to_expire",
+       "card_delivery_estimate",
+       "lost_or_stolen_card"
+      ]
+     },
+     {
+      "option": "shipment_tracking",
+      "overlap": [
+       "card_about_to_expire",
+       "card_delivery_estimate",
+       "lost_or_stolen_card"
+      ]
+     },
+     {
+      "option": "initial_card_order",
+      "overlap": [
+       "card_about_to_expire",
+       "get_physical_card",
+       "lost_or_stolen_card",
+       "order_physical_card"
+      ]
+     },
+     {
+      "option": "delivery_problem",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "card_delivery_estimate",
+       "card_not_working",
+       "card_payment_not_recognised",
+       "card_payment_wrong_exchange_rate"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "card_about_to_expire",
+       "card_delivery_estimate",
+       "card_not_working",
+       "card_payment_not_recognised"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "top_up_outcome_state",
+   "idh": "f3488f6518d8970ce392ad2591a8392662d455c5aeb59c5bb185bf9ec2cf421e",
+   "question": "What outcome state of the top-up does the message describe or ask about?",
+   "options": [
+    {
+     "id": "reversed_or_removed",
+     "definition": "The top-up appeared to occur but was later undone, removed, or returned."
+    },
+    {
+     "id": "failed_or_declined",
+     "definition": "The top-up was rejected or failed to complete."
+    },
+    {
+     "id": "pending_or_delayed",
+     "definition": "The top-up is still processing or has not completed within the expected time."
+    },
+    {
+     "id": "successful_or_available",
+     "definition": "The message indicates that the top-up completed or that the funds are available."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not state a definite top-up outcome state, or it is not possible to determine one."
+    }
+   ],
+   "slot": "fe::60bd03909197c00593de",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "reversed_or_removed",
+      "overlap": [
+       "automatic_top_up",
+       "pending_top_up",
+       "top_up_by_bank_transfer_charge",
+       "top_up_by_card_charge",
+       "top_up_by_cash_or_cheque"
+      ]
+     },
+     {
+      "option": "failed_or_declined",
+      "overlap": [
+       "automatic_top_up",
+       "pending_top_up",
+       "top_up_by_bank_transfer_charge",
+       "top_up_by_card_charge",
+       "top_up_by_cash_or_cheque"
+      ]
+     },
+     {
+      "option": "pending_or_delayed",
+      "overlap": [
+       "Refund_not_showing_up",
+       "automatic_top_up",
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "pending_top_up",
+       "top_up_by_bank_transfer_charge"
+      ]
+     },
+     {
+      "option": "successful_or_available",
+      "overlap": [
+       "automatic_top_up",
+       "pending_top_up",
+       "top_up_by_bank_transfer_charge",
+       "top_up_by_card_charge",
+       "top_up_by_cash_or_cheque"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "Refund_not_showing_up",
+       "automatic_top_up",
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "pending_top_up",
+       "top_up_by_bank_transfer_charge"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "financial_issue_subject",
+   "idh": "3e5d418ab1416ed58c83e89fc77824f0e37d7ba7390c67765077ef5fec255b9b",
+   "question": "What is the primary subject of the financial issue or charge mentioned in the message?",
+   "options": [
+    {
+     "id": "bank_transfer",
+     "definition": "The issue or charge concerns moving money by bank transfer between accounts."
+    },
+    {
+     "id": "account_top_up",
+     "definition": "The issue or charge concerns adding money to the account through a top-up."
+    },
+    {
+     "id": "cash_withdrawal",
+     "definition": "The issue or charge concerns taking cash out, such as at an ATM."
+    },
+    {
+     "id": "card_purchase",
+     "definition": "The issue or charge concerns paying a merchant with a card."
+    },
+    {
+     "id": "currency_conversion",
+     "definition": "The issue concerns the exchange rate or conversion between currencies rather than a specific payment or transfer."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not state a definite financial issue subject, or it is not possible to determine one."
+    }
+   ],
+   "slot": "fe::69c3dfe0f35b67897c5a",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "bank_transfer",
+      "overlap": [
+       "balance_not_updated_after_bank_transfer",
+       "top_up_by_bank_transfer_charge",
+       "top_up_by_card_charge",
+       "top_up_by_cash_or_cheque",
+       "transfer_not_received_by_recipient"
+      ]
+     },
+     {
+      "option": "account_top_up",
+      "overlap": [
+       "automatic_top_up",
+       "pending_top_up",
+       "top_up_by_bank_transfer_charge",
+       "top_up_by_card_charge",
+       "top_up_by_cash_or_cheque"
+      ]
+     },
+     {
+      "option": "cash_withdrawal",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "cash_withdrawal_charge",
+       "cash_withdrawal_not_recognised",
+       "declined_cash_withdrawal",
+       "pending_cash_withdrawal"
+      ]
+     },
+     {
+      "option": "card_purchase",
+      "overlap": [
+       "lost_or_stolen_card",
+       "top_up_by_card_charge"
+      ]
+     },
+     {
+      "option": "currency_conversion",
+      "overlap": [
+       "card_payment_wrong_exchange_rate",
+       "exchange_rate",
+       "wrong_exchange_rate_for_cash_withdrawal"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  }
+ ],
+ "current": {
+  "low": {
+   "defs": [
+    "c10382036654e8b1735bb5b6bb3bb4359758a593476bf9d430df2e144d70caec",
+    "e4c2e6295320c7348ce1be9bd0a604661cd0ca6679c41eb5deac9834b7f6c61c"
+   ],
+   "names": [
+    "money_movement_context",
+    "monetary_discrepancy_basis"
+   ],
+   "cv": 0.7567883730153039,
+   "cost": 13.849,
+   "est_ms": 7.459978260869558,
+   "measured_ms": 13.849,
+   "nq": 2,
+   "hash_order": [
+    "109266007175ee129336aa1257b026c4f9c8ce2b015b4f0eafc4262193bc145f",
+    "38576261157df6d93be7d0b8704418acca6763fb8452254b8a564ddcae45a545"
+   ],
+   "measured": true,
+   "round": 2
+  },
+  "primary": {
+   "defs": [
+    "c10382036654e8b1735bb5b6bb3bb4359758a593476bf9d430df2e144d70caec",
+    "db73935cebed39bce89c32d4cde5a5f0270c328920e9341d9f72dadc7610f0ad",
+    "f3488f6518d8970ce392ad2591a8392662d455c5aeb59c5bb185bf9ec2cf421e",
+    "3e5d418ab1416ed58c83e89fc77824f0e37d7ba7390c67765077ef5fec255b9b"
+   ],
+   "names": [
+    "money_movement_context",
+    "requested_information",
+    "top_up_outcome_state",
+    "financial_issue_subject"
+   ],
+   "cv": 0.7898250591210262,
+   "cost": 26.808,
+   "est_ms": 15.283043478260863,
+   "measured_ms": 26.808,
+   "nq": 4,
+   "hash_order": [
+    "1a6f5abf8250de8b28857cc3b703f16ab69d2550d87a5c51499139d8a398391e",
+    "38576261157df6d93be7d0b8704418acca6763fb8452254b8a564ddcae45a545",
+    "559700c3053a82bfa80e1b1ef14683304c141f97ec5584c009429c7b6b552d2b",
+    "a65efcdaef1d4fddf7015c07f68b9e574522d8587941a37201527a31545e4080"
+   ],
+   "measured": true,
+   "round": 2
+  },
+  "high": {
+   "defs": [
+    "c10382036654e8b1735bb5b6bb3bb4359758a593476bf9d430df2e144d70caec",
+    "e4c2e6295320c7348ce1be9bd0a604661cd0ca6679c41eb5deac9834b7f6c61c",
+    "17564410f742949141723b8bace67122144b829328f4044646d82378b96ec941"
+   ],
+   "names": [
+    "money_movement_context",
+    "monetary_discrepancy_basis",
+    "card_operation_target"
+   ],
+   "cv": 0.7768495890454193,
+   "cost": 20.268,
+   "est_ms": 11.224304347826079,
+   "measured_ms": 20.268,
+   "nq": 3,
+   "hash_order": [
+    "109266007175ee129336aa1257b026c4f9c8ce2b015b4f0eafc4262193bc145f",
+    "38576261157df6d93be7d0b8704418acca6763fb8452254b8a564ddcae45a545",
+    "d95f4526dfe1aae03583f5509c6e7b5185038e02c16ef98c84370cb92c03e1a9"
+   ],
+   "measured": true,
+   "round": 2
+  }
+ },
+ "archive": {
+  "low": [
+   {
+    "defs": [
+     "c10382036654e8b1735bb5b6bb3bb4359758a593476bf9d430df2e144d70caec",
+     "e4c2e6295320c7348ce1be9bd0a604661cd0ca6679c41eb5deac9834b7f6c61c"
+    ],
+    "names": [
+     "money_movement_context",
+     "monetary_discrepancy_basis"
+    ],
+    "cv": 0.7567883730153039,
+    "cost": 13.849,
+    "est_ms": 7.459978260869558,
+    "measured_ms": 13.849,
+    "nq": 2,
+    "round": 2
+   }
+  ],
+  "primary": [
+   {
+    "defs": [
+     "c10382036654e8b1735bb5b6bb3bb4359758a593476bf9d430df2e144d70caec",
+     "db73935cebed39bce89c32d4cde5a5f0270c328920e9341d9f72dadc7610f0ad",
+     "f3488f6518d8970ce392ad2591a8392662d455c5aeb59c5bb185bf9ec2cf421e",
+     "3e5d418ab1416ed58c83e89fc77824f0e37d7ba7390c67765077ef5fec255b9b"
+    ],
+    "names": [
+     "money_movement_context",
+     "requested_information",
+     "top_up_outcome_state",
+     "financial_issue_subject"
+    ],
+    "cv": 0.7898250591210262,
+    "cost": 26.808,
+    "est_ms": 15.283043478260863,
+    "measured_ms": 26.808,
+    "nq": 4,
+    "round": 2
+   }
+  ],
+  "high": [
+   {
+    "defs": [
+     "c10382036654e8b1735bb5b6bb3bb4359758a593476bf9d430df2e144d70caec",
+     "e4c2e6295320c7348ce1be9bd0a604661cd0ca6679c41eb5deac9834b7f6c61c",
+     "17564410f742949141723b8bace67122144b829328f4044646d82378b96ec941"
+    ],
+    "names": [
+     "money_movement_context",
+     "monetary_discrepancy_basis",
+     "card_operation_target"
+    ],
+    "cv": 0.7768495890454193,
+    "cost": 20.268,
+    "est_ms": 11.224304347826079,
+    "measured_ms": 20.268,
+    "nq": 3,
+    "round": 2
+   }
+  ]
+ },
+ "wall_s": 472.6,
+ "dev_notes": "",
+ "integrity": {
+  "teacher_revision": "gpt-6.1-sol via lmuai-pro (settings frozen)",
+  "slots_per_round": 4,
+  "defs_cap": 60,
+  "max_rounds": 2
+ }
+}

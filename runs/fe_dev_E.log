@@ -1,0 +1,27 @@
+/home/xrim/banking77-jev-baseline/venv-serve/lib/python3.12/site-packages/sklearn/model_selection/_split.py:812: UserWarning: The least populated class in y has only 4 members, which is less than n_splits=5.
+  warnings.warn(
+dev data: 1200 rows, 77 classes
+tfidf cache: 1.7s
+C selected: 8.0 ({0.5: 0.5989, 1.0: 0.6714, 2.0: 0.6994, 4.0: 0.7087, 8.0: 0.7171})
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1042.97it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  94%|█████████▎| 290/310 [00:00<00:00, 2886.52it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 2944.00it/s]
+Traceback (most recent call last):
+  File "/home/xrim/banking77-jev-baseline/discovery/fe_discovery/dev_battery.py", line 102, in <module>
+    main()
+  File "/home/xrim/banking77-jev-baseline/discovery/fe_discovery/dev_battery.py", line 89, in main
+    final = runner.run()
+            ^^^^^^^^^^^^
+  File "/home/xrim/banking77-jev-baseline/discovery/fe_discovery/run_arm.py", line 238, in run
+    proposals, rejected, tmeta = self._teacher_round(round_no, packet_attrs)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xrim/banking77-jev-baseline/discovery/fe_discovery/run_arm.py", line 159, in _teacher_round
+    oof = self.sel.eval([])
+          ^^^^^^^^^^^^^^^^^
+  File "/home/xrim/banking77-jev-baseline/discovery/fe_discovery/selector.py", line 102, in eval
+    r = eval_bank(self.tfidf, sem, self.y, self.C, want_oof=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xrim/banking77-jev-baseline/discovery/fe_discovery/learner.py", line 120, in eval_bank
+    oof[va] = pred
+    ~~~^^^^
+ValueError: invalid literal for int() with base 10: 'card_arrival'
+EXIT=1

@@ -1,0 +1,353 @@
+{
+ "arm": "F",
+ "seed": 1,
+ "task": "banking77-dev",
+ "stop_reason": "max_rounds",
+ "rounds": 1,
+ "teacher_calls": 1,
+ "teacher_tokens": {
+  "in": 6281,
+  "out": 1210
+ },
+ "teacher_config": {
+  "provider": "lmuai-pro",
+  "model": "gpt-6.1-sol",
+  "temperature": 0.4,
+  "max_tokens": 2200
+ },
+ "ledger": {
+  "physical_extract_s": 34.4,
+  "logical_charge_s": 12.0,
+  "extract_requests": 3,
+  "cache_hits": 0
+ },
+ "unique_evals": 7,
+ "cache_hits": 9,
+ "measure_calls": 3,
+ "pool": [
+  {
+   "name": "reported_outcome",
+   "idh": "f64c8edf84bebf85c841c8c1720823968a5093d769893a12ffa5da4a2cf86998",
+   "question": "What outcome or current state does the message explicitly report for an action or process?",
+   "options": [
+    {
+     "id": "still_processing",
+     "definition": "An action has started and is waiting, taking too long, or not yet complete, without an explicit failure or rejection."
+    },
+    {
+     "id": "unsuccessful",
+     "definition": "An action explicitly failed, was refused or rejected, or cannot be completed. A question about why this happened still belongs here."
+    },
+    {
+     "id": "missing_result",
+     "definition": "An expected item, credit, balance change, or other result cannot be found or is not reflected, without an explicit statement that the underlying action failed."
+    },
+    {
+     "id": "successful",
+     "definition": "The message explicitly states that the action completed successfully or its expected result appeared."
+    },
+    {
+     "id": "unclear",
+     "definition": "No definite outcome or current process state is stated, or the message does not support choosing one of the other categories."
+    }
+   ],
+   "slot": "fe::d92b990e4c6dfe0fc62e",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "still_processing",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     },
+     {
+      "option": "missing_result",
+      "overlap": [
+       "balance_not_updated_after_bank_transfer",
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "requested_information",
+   "idh": "0ee81a3d345e78b1ee834fd72c6229047d80b5e8d099f9c52089c9ed65eb43dc",
+   "question": "What kind of information does the user explicitly ask for?",
+   "options": [
+    {
+     "id": "procedure",
+     "definition": "Steps, instructions, or a location for performing an action, excluding an explicitly requested verification or confirmation step."
+    },
+    {
+     "id": "verification_step",
+     "definition": "How or where to verify, authenticate, confirm, or provide proof for something."
+    },
+    {
+     "id": "requirement_rationale",
+     "definition": "Why a rule, requirement, or mandatory step exists, rather than why an individual attempt failed or remains incomplete."
+    },
+    {
+     "id": "monetary_cost",
+     "definition": "The amount, applicability, or explanation of a fee, charge, or other monetary cost."
+    },
+    {
+     "id": "usage_constraint",
+     "definition": "Whether an action is permitted or available, or what limits, eligibility conditions, or usage restrictions apply."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not request one definite information category above, including direct action commands, outcome complaints, and requests to explain an individual failure."
+    }
+   ],
+   "slot": "fe::4a4831e6878377ecdc2f",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "verification_step",
+      "overlap": [
+       "unable_to_verify_identity"
+      ]
+     },
+     {
+      "option": "monetary_cost",
+      "overlap": [
+       "wrong_amount_of_cash_received"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "direct_debit_payment_not_recognised"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "payment_mechanism",
+   "idh": "73d8276e89d2c521a2ae31a8bb728551d7e821fbcccc09377386e402fba17ab8",
+   "question": "Which payment or money-movement mechanism is explicitly involved in the message?",
+   "options": [
+    {
+     "id": "bank_transfer",
+     "definition": "Money moves through a bank or account-to-account transfer, including a transfer used to fund an account."
+    },
+    {
+     "id": "payment_card",
+     "definition": "A payment card is explicitly used for a purchase or to supply funds. Merely owning, receiving, activating, or linking a card does not establish this mechanism."
+    },
+    {
+     "id": "cash",
+     "definition": "Physical cash is explicitly deposited, used to supply funds, or withdrawn, including withdrawals from an ATM."
+    },
+    {
+     "id": "cheque",
+     "definition": "A cheque or check is explicitly used to deposit or supply funds."
+    },
+    {
+     "id": "direct_debit",
+     "definition": "An explicitly identified direct debit or authorized biller collection draws money from an account."
+    },
+    {
+     "id": "unclear",
+     "definition": "No definite mechanism is stated, multiple mechanisms are offered without selecting one, or the mechanism falls outside the categories above. A generic top-up or payment does not establish its mechanism."
+    }
+   ],
+   "slot": "fe::93492cb9eb41c06462f6",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "bank_transfer",
+      "overlap": [
+       "balance_not_updated_after_bank_transfer",
+       "top_up_by_bank_transfer_charge",
+       "transfer_into_account"
+      ]
+     },
+     {
+      "option": "payment_card",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "card_about_to_expire",
+       "card_linking",
+       "card_not_working",
+       "card_payment_fee_charged"
+      ]
+     },
+     {
+      "option": "cash",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "top_up_by_cash_or_cheque"
+      ]
+     },
+     {
+      "option": "cheque",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "top_up_by_cash_or_cheque"
+      ]
+     },
+     {
+      "option": "direct_debit",
+      "overlap": [
+       "direct_debit_payment_not_recognised"
+      ]
+     },
+     {
+      "option": "unclear",
+      "overlap": [
+       "Refund_not_showing_up",
+       "automatic_top_up",
+       "balance_not_updated_after_cheque_or_cash_deposit",
+       "card_payment_not_recognised",
+       "direct_debit_payment_not_recognised"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  }
+ ],
+ "current": {
+  "low": {
+   "defs": [
+    "73d8276e89d2c521a2ae31a8bb728551d7e821fbcccc09377386e402fba17ab8"
+   ],
+   "names": [
+    "payment_mechanism"
+   ],
+   "cv": 0.6434781267743673,
+   "cost": 8.384,
+   "est_ms": 4.57889130434782,
+   "measured_ms": 8.384,
+   "nq": 1,
+   "hash_order": [
+    "520a7b339e2edab07128f077c16f0d1f3bd8d66d4b2543ac65a717167dc43e00"
+   ],
+   "measured": true,
+   "round": 1
+  },
+  "primary": {
+   "defs": [
+    "73d8276e89d2c521a2ae31a8bb728551d7e821fbcccc09377386e402fba17ab8",
+    "f64c8edf84bebf85c841c8c1720823968a5093d769893a12ffa5da4a2cf86998",
+    "0ee81a3d345e78b1ee834fd72c6229047d80b5e8d099f9c52089c9ed65eb43dc"
+   ],
+   "names": [
+    "payment_mechanism",
+    "reported_outcome",
+    "requested_information"
+   ],
+   "cv": 0.6730635604161919,
+   "cost": 23.059,
+   "est_ms": 11.813130434782602,
+   "measured_ms": 23.059,
+   "nq": 3,
+   "hash_order": [
+    "07f07357632bdb49fa3576bb37163bfae452833c95e95fbfba5fb3b0daf451d6",
+    "520a7b339e2edab07128f077c16f0d1f3bd8d66d4b2543ac65a717167dc43e00",
+    "a661d9be16c7da88f296fb91fc658ba2dcc75f33b07348934ba41dfc936a26ef"
+   ],
+   "measured": true,
+   "round": 1
+  },
+  "high": {
+   "defs": [
+    "73d8276e89d2c521a2ae31a8bb728551d7e821fbcccc09377386e402fba17ab8",
+    "f64c8edf84bebf85c841c8c1720823968a5093d769893a12ffa5da4a2cf86998"
+   ],
+   "names": [
+    "payment_mechanism",
+    "reported_outcome"
+   ],
+   "cv": 0.671972820941242,
+   "cost": 15.397,
+   "est_ms": 8.048804347826081,
+   "measured_ms": 15.397,
+   "nq": 2,
+   "hash_order": [
+    "07f07357632bdb49fa3576bb37163bfae452833c95e95fbfba5fb3b0daf451d6",
+    "520a7b339e2edab07128f077c16f0d1f3bd8d66d4b2543ac65a717167dc43e00"
+   ],
+   "measured": true,
+   "round": 1
+  }
+ },
+ "archive": {
+  "low": [
+   {
+    "defs": [
+     "73d8276e89d2c521a2ae31a8bb728551d7e821fbcccc09377386e402fba17ab8"
+    ],
+    "names": [
+     "payment_mechanism"
+    ],
+    "cv": 0.6434781267743673,
+    "cost": 8.384,
+    "est_ms": 4.57889130434782,
+    "measured_ms": 8.384,
+    "nq": 1,
+    "round": 1
+   }
+  ],
+  "primary": [
+   {
+    "defs": [
+     "73d8276e89d2c521a2ae31a8bb728551d7e821fbcccc09377386e402fba17ab8",
+     "f64c8edf84bebf85c841c8c1720823968a5093d769893a12ffa5da4a2cf86998",
+     "0ee81a3d345e78b1ee834fd72c6229047d80b5e8d099f9c52089c9ed65eb43dc"
+    ],
+    "names": [
+     "payment_mechanism",
+     "reported_outcome",
+     "requested_information"
+    ],
+    "cv": 0.6730635604161919,
+    "cost": 23.059,
+    "est_ms": 11.813130434782602,
+    "measured_ms": 23.059,
+    "nq": 3,
+    "round": 1
+   }
+  ],
+  "high": [
+   {
+    "defs": [
+     "73d8276e89d2c521a2ae31a8bb728551d7e821fbcccc09377386e402fba17ab8",
+     "f64c8edf84bebf85c841c8c1720823968a5093d769893a12ffa5da4a2cf86998"
+    ],
+    "names": [
+     "payment_mechanism",
+     "reported_outcome"
+    ],
+    "cv": 0.671972820941242,
+    "cost": 15.397,
+    "est_ms": 8.048804347826081,
+    "measured_ms": 15.397,
+    "nq": 2,
+    "round": 1
+   }
+  ]
+ },
+ "wall_s": 125.2,
+ "dev_notes": "",
+ "integrity": {
+  "teacher_revision": "gpt-6.1-sol via lmuai-pro (settings frozen)",
+  "slots_per_round": 3,
+  "defs_cap": 60,
+  "max_rounds": 1
+ }
+}

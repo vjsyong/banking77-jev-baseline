@@ -1,0 +1,104 @@
+TASK: You are designing interpretable semantic features for a text classifier.
+Dataset: short user messages mapped to 150 assistant intents (CLINC150).
+Pipeline: each proposed question is answered for every message by a small local model (TinyJev). Its per-option probability distribution becomes numeric features for a logistic regression classifier, which also uses TF-IDF text features.
+Goal: discover categorical concepts that separate intents the classifier currently confuses, complementing (not duplicating) lexical signals.
+CONVENTION (settled in the development instrument audit): include exactly ONE option covering 'not present or cannot be determined' (e.g., 'unclear'). Do NOT create separate 'no_X' and 'unclear' options — the extractor cannot reliably distinguish an explicitly-absent concept from an undeterminable one.
+
+Each proposal must be a schema-bound categorical question with:
+- a short snake_case name;
+- one question answerable from the message alone, about ONE concept;
+- 3 to 6 options, each with an explicit definition; include an 'unclear' option for when the message does not state a definite category.
+*Never use the true intent label in the question or options.*
+Prefer concepts that can distinguish MULTIPLE intents and complement lexical signals.
+
+CURRENT SEMANTIC BANK (selected questions):
+- money_movement_context: What kind of money movement does the message describe or ask about? [options: cash_access; merchant_purchase; between_accounts; account_funding; unclear]
+- requested_information: What kind of information is the user primarily requesting? [options: capability_scope; procedure; timing_status; cost_value; problem_resolution; unclear]
+
+
+ALREADY PROPOSED NAMES (do not duplicate; revise by proposing a new name):
+action_progress, monetary_discrepancy_basis, money_movement_context, requested_information
+
+FAILURE PAIRS — the model confuses these; design concepts that separate them:
+
+FAILURE 1: true change_pin, predicted get_physical_card
+  message: "I would like to change the the PIN on my card."
+  true intent: change_pin
+  model prediction: get_physical_card (p=0.41; runner-up change_pin p=0.37)
+  contrast with a correctly handled message of the confused class:
+  message: "Is the PIN sent in another message?"
+  true intent: get_physical_card
+  model prediction: get_physical_card (p=0.64; runner-up card_arrival p=0.03)
+
+FAILURE 2: true card_delivery_estimate, predicted card_arrival
+  message: "Can you tell me how long it takes for a new card to come?"
+  true intent: card_delivery_estimate
+  model prediction: card_arrival (p=0.73; runner-up card_delivery_estimate p=0.21)
+  contrast with a correctly handled message of the confused class:
+  message: "how to track the card you sent"
+  true intent: card_arrival
+  model prediction: card_arrival (p=0.95; runner-up card_linking p=0.01)
+
+FAILURE 3: true card_linking, predicted get_physical_card
+  message: "Now that I have my card, how do I connect it to the app?"
+  true intent: card_linking
+  model prediction: get_physical_card (p=0.34; runner-up card_linking p=0.22)
+  contrast with a correctly handled message of the confused class:
+  message: "Do you deliver the PIN separately?"
+  true intent: get_physical_card
+  model prediction: get_physical_card (p=0.80; runner-up change_pin p=0.05)
+
+FAILURE 4: true top_up_reverted, predicted topping_up_by_card
+  message: "Something is wrong, my top-up is gone and I don't know what happened to my money."
+  true intent: top_up_reverted
+  model prediction: topping_up_by_card (p=0.64; runner-up top_up_failed p=0.27)
+  contrast with a correctly handled message of the confused class:
+  message: "How can my friends top up my account?"
+  true intent: topping_up_by_card
+  model prediction: topping_up_by_card (p=0.85; runner-up top_up_by_cash_or_cheque p=0.10)
+
+FAILURE 5: true fiat_currency_support, predicted transfer_into_account
+  message: "How many currencies can I have money in in my account?"
+  true intent: fiat_currency_support
+  model prediction: transfer_into_account (p=0.69; runner-up fiat_currency_support p=0.21)
+  contrast with a correctly handled message of the confused class:
+  message: "How can I link my bank to my top up account?"
+  true intent: transfer_into_account
+  model prediction: transfer_into_account (p=0.62; runner-up topping_up_by_card p=0.14)
+
+
+PRESERVATION CONTROLS — the model already separates these; do not break them:
+
+CONTROL 1
+  message: "Help me activate my new card."
+  true intent: activate_my_card
+  model prediction: activate_my_card (p=0.92; runner-up card_linking p=0.04)
+  distinct correct message:
+  message: "My new card came in.  How do I activate?"
+  true intent: activate_my_card
+  model prediction: activate_my_card (p=0.90; runner-up card_arrival p=0.03)
+
+CONTROL 2
+  message: "My card doesn't seem to work anymore"
+  true intent: card_not_working
+  model prediction: card_not_working (p=0.76; runner-up virtual_card_not_working p=0.13)
+  distinct correct message:
+  message: "How do I get my card to work?"
+  true intent: card_not_working
+  model prediction: order_physical_card (p=0.28; runner-up card_linking p=0.19)
+
+CONTROL 3
+  message: "I've been waiting for a top up to come through for over an hour and I need the funds now."
+  true intent: pending_top_up
+  model prediction: pending_top_up (p=0.81; runner-up transfer_not_received_by_recipient p=0.09)
+  distinct correct message:
+  message: "why is top up pending"
+  true intent: pending_top_up
+  model prediction: pending_top_up (p=0.53; runner-up pending_cash_withdrawal p=0.20)
+
+AGGREGATE DIAGNOSTICS (development folds)
+- current cross-validated macro-F1: 0.7709
+- worst classes (error rate, n): [(np.str_('failed_transfer'), 0.909, 11), (np.str_('topping_up_by_card'), 0.6, 15), (np.str_('card_not_working'), 0.583, 12), (np.str_('card_linking'), 0.5, 14), (np.str_('lost_or_stolen_card'), 0.444, 9), (np.str_('transfer_not_received_by_recipient'), 0.4, 20), (np.str_('transfer_fee_charged'), 0.391, 23), (np.str_('pending_top_up'), 0.385, 13), (np.str_('wrong_exchange_rate_for_cash_withdrawal'), 0.375, 24), (np.str_('order_physical_card'), 0.364, 11), (np.str_('cash_withdrawal_not_recognised'), 0.333, 21), (np.str_('disposable_card_limits'), 0.333, 12)]
+- most frequent confusions (count): [['transfer_fee_charged -> top_up_by_bank_transfer_charge', 5], ['failed_transfer -> beneficiary_not_allowed', 5], ['wrong_exchange_rate_for_cash_withdrawal -> card_payment_wrong_exchange_rate', 5], ['top_up_reverted -> top_up_failed', 4], ['disposable_card_limits -> get_disposable_virtual_card', 4], ['card_delivery_estimate -> card_arrival', 3], ['transfer_not_received_by_recipient -> transfer_timing', 3], ['balance_not_updated_after_cheque_or_cash_deposit -> balance_not_updated_after_bank_transfer', 3], ['topping_up_by_card -> pending_top_up', 3], ['failed_transfer -> declined_transfer', 3], ['wrong_exchange_rate_for_cash_withdrawal -> cash_withdrawal_charge', 3], ['get_disposable_virtual_card -> disposable_card_limits', 3]]
+
+Propose up to 4 NEW definitions that would most improve the downstream macro-F1 if added. Respond with ONLY a JSON array of objects with keys 'name', 'question', 'options' (list of {id, definition}).

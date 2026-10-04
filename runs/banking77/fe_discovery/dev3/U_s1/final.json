@@ -1,0 +1,277 @@
+{
+ "arm": "U",
+ "seed": 1,
+ "task": "banking77-dev",
+ "stop_reason": "max_rounds",
+ "rounds": 1,
+ "teacher_calls": 1,
+ "teacher_tokens": {
+  "in": 4708,
+  "out": 1043
+ },
+ "teacher_config": {
+  "provider": "lmuai-pro",
+  "model": "gpt-6.1-sol",
+  "temperature": 0.4,
+  "max_tokens": 2200
+ },
+ "ledger": {
+  "physical_extract_s": 27.1,
+  "logical_charge_s": 12.0,
+  "extract_requests": 3,
+  "cache_hits": 0
+ },
+ "unique_evals": 6,
+ "cache_hits": 10,
+ "measure_calls": 3,
+ "pool": [
+  {
+   "name": "requested_operation",
+   "idh": "6dd0f0b5de0574686dcc26f49cac70efbbd18855856642193e8485991720dffc",
+   "question": "What kind of assistance does the user primarily request?",
+   "options": [
+    {
+     "id": "retrieve",
+     "definition": "Report an existing fact, value, list, or status without changing anything or explaining how or why."
+    },
+    {
+     "id": "explain",
+     "definition": "Explain a meaning, cause, rule, or rationale, rather than provide steps for performing an action."
+    },
+    {
+     "id": "instruct",
+     "definition": "Provide directions, steps, or advice that enable the user to carry out an action themselves."
+    },
+    {
+     "id": "create_or_change",
+     "definition": "Carry out an action that creates, initiates, updates, or adjusts something, excluding cancellation, removal, or reversal."
+    },
+    {
+     "id": "stop_or_reverse",
+     "definition": "Carry out an action that cancels, stops, removes, undoes, or reverses something."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not establish a definite primary operation, or requests assistance outside the listed categories."
+    }
+   ],
+   "slot": "fe::6db2fa4ee4d86e971ad9",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "problem_type",
+   "idh": "cca08f39285ed10b55f20e9a7e728c58da0c0b8b538c3d9b3ac09328da981dfb",
+   "question": "What type of problem does the user explicitly describe?",
+   "options": [
+    {
+     "id": "access_failure",
+     "definition": "The user cannot authenticate, gain access, or use something because access is denied or credentials are not accepted."
+    },
+    {
+     "id": "execution_failure",
+     "definition": "An attempted action or function fails to execute or work, without an explicit access denial."
+    },
+    {
+     "id": "unexpected_result",
+     "definition": "Something produces an incorrect, unfamiliar, duplicate, or otherwise unexpected result, rather than simply failing to occur."
+    },
+    {
+     "id": "missing_or_delayed",
+     "definition": "An expected item, event, update, or result has not arrived, appeared, or completed."
+    },
+    {
+     "id": "eligibility_or_limit",
+     "definition": "A stated restriction, qualification requirement, allowance, or capacity limit prevents or constrains the desired action."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not explicitly establish a problem in one definite listed category."
+    }
+   ],
+   "slot": "fe::0f40e86be01847cd0657",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "access_failure",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     },
+     {
+      "option": "missing_or_delayed",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  },
+  {
+   "name": "temporal_scope",
+   "idh": "42804bf9f1b61ead077c70181a2b9495889eb39c925887e0bbeccc21054fd415",
+   "question": "What temporal scope does the message explicitly assign to its main subject or event?",
+   "options": [
+    {
+     "id": "past",
+     "definition": "The main subject is an event or condition explicitly situated before the present, including historical activity or a completed event."
+    },
+    {
+     "id": "present",
+     "definition": "The main subject is an explicitly current condition, ongoing event, or activity happening now."
+    },
+    {
+     "id": "future",
+     "definition": "The main subject is an explicitly upcoming, planned, scheduled, or anticipated event or condition."
+    },
+    {
+     "id": "recurring_or_general",
+     "definition": "The main subject explicitly concerns repeated occurrences, usual behavior, or a rule applying generally rather than a particular occasion."
+    },
+    {
+     "id": "unclear",
+     "definition": "The message does not establish one definite temporal scope, or spans multiple scopes without a primary one. Do not infer a future scope merely because the user requests an action."
+    }
+   ],
+   "slot": "fe::2cf11f8702598543b045",
+   "notes": [],
+   "near_label": {
+    "flagged": [
+     {
+      "option": "unclear",
+      "overlap": [
+       "balance_not_updated_after_cheque_or_cash_deposit"
+      ]
+     }
+    ],
+    "is_proxy_suspect": true
+   }
+  }
+ ],
+ "current": {
+  "low": {
+   "defs": [
+    "cca08f39285ed10b55f20e9a7e728c58da0c0b8b538c3d9b3ac09328da981dfb"
+   ],
+   "names": [
+    "problem_type"
+   ],
+   "cv": 0.6401092853148218,
+   "cost": 7.561,
+   "est_ms": 4.57889130434782,
+   "measured_ms": 7.561,
+   "nq": 1,
+   "hash_order": [
+    "b6ccf35dc74200996a92e8a7217735e6aeb716c712d3f1a0c6886fe45bed3640"
+   ],
+   "measured": true,
+   "round": 1
+  },
+  "primary": {
+   "defs": [
+    "cca08f39285ed10b55f20e9a7e728c58da0c0b8b538c3d9b3ac09328da981dfb"
+   ],
+   "names": [
+    "problem_type"
+   ],
+   "cv": 0.6401092853148218,
+   "cost": 7.612,
+   "est_ms": 4.57889130434782,
+   "measured_ms": 7.612,
+   "nq": 1,
+   "hash_order": [
+    "b6ccf35dc74200996a92e8a7217735e6aeb716c712d3f1a0c6886fe45bed3640"
+   ],
+   "measured": true,
+   "round": 1
+  },
+  "high": {
+   "defs": [
+    "cca08f39285ed10b55f20e9a7e728c58da0c0b8b538c3d9b3ac09328da981dfb"
+   ],
+   "names": [
+    "problem_type"
+   ],
+   "cv": 0.6401092853148218,
+   "cost": 7.618,
+   "est_ms": 4.57889130434782,
+   "measured_ms": 7.618,
+   "nq": 1,
+   "hash_order": [
+    "b6ccf35dc74200996a92e8a7217735e6aeb716c712d3f1a0c6886fe45bed3640"
+   ],
+   "measured": true,
+   "round": 1
+  }
+ },
+ "archive": {
+  "low": [
+   {
+    "defs": [
+     "cca08f39285ed10b55f20e9a7e728c58da0c0b8b538c3d9b3ac09328da981dfb"
+    ],
+    "names": [
+     "problem_type"
+    ],
+    "cv": 0.6401092853148218,
+    "cost": 7.561,
+    "est_ms": 4.57889130434782,
+    "measured_ms": 7.561,
+    "nq": 1,
+    "round": 1
+   }
+  ],
+  "primary": [
+   {
+    "defs": [
+     "cca08f39285ed10b55f20e9a7e728c58da0c0b8b538c3d9b3ac09328da981dfb"
+    ],
+    "names": [
+     "problem_type"
+    ],
+    "cv": 0.6401092853148218,
+    "cost": 7.612,
+    "est_ms": 4.57889130434782,
+    "measured_ms": 7.612,
+    "nq": 1,
+    "round": 1
+   }
+  ],
+  "high": [
+   {
+    "defs": [
+     "cca08f39285ed10b55f20e9a7e728c58da0c0b8b538c3d9b3ac09328da981dfb"
+    ],
+    "names": [
+     "problem_type"
+    ],
+    "cv": 0.6401092853148218,
+    "cost": 7.618,
+    "est_ms": 4.57889130434782,
+    "measured_ms": 7.618,
+    "nq": 1,
+    "round": 1
+   }
+  ]
+ },
+ "wall_s": 104.7,
+ "dev_notes": "",
+ "integrity": {
+  "teacher_revision": "gpt-6.1-sol via lmuai-pro (settings frozen)",
+  "slots_per_round": 3,
+  "defs_cap": 60,
+  "max_rounds": 1
+ }
+}

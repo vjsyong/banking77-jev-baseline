@@ -1,0 +1,88 @@
+[
+  {
+    "name": "reported_outcome",
+    "question": "What outcome or current state does the message explicitly report for an action or process?",
+    "options": [
+      {
+        "id": "still_processing",
+        "definition": "An action has started and is waiting, taking too long, or not yet complete, without an explicit failure or rejection."
+      },
+      {
+        "id": "unsuccessful",
+        "definition": "An action explicitly failed, was refused or rejected, or cannot be completed. A question about why this happened still belongs here."
+      },
+      {
+        "id": "missing_result",
+        "definition": "An expected item, credit, balance change, or other result cannot be found or is not reflected, without an explicit statement that the underlying action failed."
+      },
+      {
+        "id": "successful",
+        "definition": "The message explicitly states that the action completed successfully or its expected result appeared."
+      },
+      {
+        "id": "unclear",
+        "definition": "No definite outcome or current process state is stated, or the message does not support choosing one of the other categories."
+      }
+    ]
+  },
+  {
+    "name": "requested_information",
+    "question": "What kind of information does the user explicitly ask for?",
+    "options": [
+      {
+        "id": "procedure",
+        "definition": "Steps, instructions, or a location for performing an action, excluding an explicitly requested verification or confirmation step."
+      },
+      {
+        "id": "verification_step",
+        "definition": "How or where to verify, authenticate, confirm, or provide proof for something."
+      },
+      {
+        "id": "requirement_rationale",
+        "definition": "Why a rule, requirement, or mandatory step exists, rather than why an individual attempt failed or remains incomplete."
+      },
+      {
+        "id": "monetary_cost",
+        "definition": "The amount, applicability, or explanation of a fee, charge, or other monetary cost."
+      },
+      {
+        "id": "usage_constraint",
+        "definition": "Whether an action is permitted or available, or what limits, eligibility conditions, or usage restrictions apply."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not request one definite information category above, including direct action commands, outcome complaints, and requests to explain an individual failure."
+      }
+    ]
+  },
+  {
+    "name": "payment_mechanism",
+    "question": "Which payment or money-movement mechanism is explicitly involved in the message?",
+    "options": [
+      {
+        "id": "bank_transfer",
+        "definition": "Money moves through a bank or account-to-account transfer, including a transfer used to fund an account."
+      },
+      {
+        "id": "payment_card",
+        "definition": "A payment card is explicitly used for a purchase or to supply funds. Merely owning, receiving, activating, or linking a card does not establish this mechanism."
+      },
+      {
+        "id": "cash",
+        "definition": "Physical cash is explicitly deposited, used to supply funds, or withdrawn, including withdrawals from an ATM."
+      },
+      {
+        "id": "cheque",
+        "definition": "A cheque or check is explicitly used to deposit or supply funds."
+      },
+      {
+        "id": "direct_debit",
+        "definition": "An explicitly identified direct debit or authorized biller collection draws money from an account."
+      },
+      {
+        "id": "unclear",
+        "definition": "No definite mechanism is stated, multiple mechanisms are offered without selecting one, or the mechanism falls outside the categories above. A generic top-up or payment does not establish its mechanism."
+      }
+    ]
+  }
+]

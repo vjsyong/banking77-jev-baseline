@@ -1,0 +1,105 @@
+TASK: You are designing interpretable semantic features for a text classifier.
+Dataset: short user messages mapped to 150 assistant intents (CLINC150).
+Pipeline: each proposed question is answered for every message by a small local model (TinyJev). Its per-option probability distribution becomes numeric features for a logistic regression classifier, which also uses TF-IDF text features.
+Goal: discover categorical concepts that separate intents the classifier currently confuses, complementing (not duplicating) lexical signals.
+CONVENTION (settled in the development instrument audit): include exactly ONE option covering 'not present or cannot be determined' (e.g., 'unclear'). Do NOT create separate 'no_X' and 'unclear' options — the extractor cannot reliably distinguish an explicitly-absent concept from an undeterminable one.
+
+Each proposal must be a schema-bound categorical question with:
+- a short snake_case name;
+- one question answerable from the message alone, about ONE concept;
+- 3 to 6 options, each with an explicit definition; include an 'unclear' option for when the message does not state a definite category.
+*Never use the true intent label in the question or options.*
+Prefer concepts that can distinguish MULTIPLE intents and complement lexical signals.
+
+CURRENT SEMANTIC BANK (selected questions):
+(empty — textual TF-IDF is the only representation so far)
+
+
+FAILURE PAIRS — the model confuses these; design concepts that separate them:
+
+FAILURE 1: true pending_top_up, predicted top_up_failed
+  message: "My top-up is taking a very long time to complete."
+  true intent: pending_top_up
+  model prediction: top_up_failed (p=0.25; runner-up top_up_reverted p=0.07)
+  contrast with a correctly handled message of the confused class:
+  message: "I need assistance finding out why I am unable to top-up my card, it keeps getting refused.  It is extremely imperative I get this resolved quickly."
+  true intent: top_up_failed
+  model prediction: top_up_failed (p=0.12; runner-up declined_card_payment p=0.06)
+
+FAILURE 2: true topping_up_by_card, predicted verify_top_up
+  message: "show me how to top up"
+  true intent: topping_up_by_card
+  model prediction: verify_top_up (p=0.10; runner-up top_up_by_cash_or_cheque p=0.10)
+  contrast with a correctly handled message of the confused class:
+  message: "On a card top-up, where can I verify?"
+  true intent: verify_top_up
+  model prediction: verify_top_up (p=0.61; runner-up automatic_top_up p=0.06)
+
+FAILURE 3: true unable_to_verify_identity, predicted why_verify_identity
+  message: "Why is my identity not being verified?"
+  true intent: unable_to_verify_identity
+  model prediction: why_verify_identity (p=0.56; runner-up verify_my_identity p=0.11)
+  contrast with a correctly handled message of the confused class:
+  message: "Why is identity verification required?"
+  true intent: why_verify_identity
+  model prediction: why_verify_identity (p=0.54; runner-up verify_my_identity p=0.19)
+
+FAILURE 4: true topping_up_by_card, predicted top_up_failed
+  message: "Where did my top-up go? I can't find it in my wallet"
+  true intent: topping_up_by_card
+  model prediction: top_up_failed (p=0.42; runner-up topping_up_by_card p=0.18)
+  contrast with a correctly handled message of the confused class:
+  message: "Why did the top-up fail?"
+  true intent: top_up_failed
+  model prediction: top_up_failed (p=0.43; runner-up verify_top_up p=0.10)
+
+FAILURE 5: true top_up_by_bank_transfer_charge, predicted transfer_into_account
+  message: "How much would it cost me for a bank transfer to top up my account?"
+  true intent: top_up_by_bank_transfer_charge
+  model prediction: transfer_into_account (p=0.44; runner-up top_up_by_bank_transfer_charge p=0.25)
+  contrast with a correctly handled message of the confused class:
+  message: "How would I use a bank transfer for topping my account?"
+  true intent: transfer_into_account
+  model prediction: transfer_into_account (p=0.51; runner-up balance_not_updated_after_bank_transfer p=0.08)
+
+
+PRESERVATION CONTROLS — the model already separates these; do not break them:
+
+CONTROL 1
+  message: "I just got my new card, how do I activate it?"
+  true intent: activate_my_card
+  model prediction: activate_my_card (p=0.79; runner-up card_linking p=0.04)
+  distinct correct message:
+  message: "My new card came in.  How do I activate?"
+  true intent: activate_my_card
+  model prediction: activate_my_card (p=0.75; runner-up card_arrival p=0.06)
+
+CONTROL 2
+  message: "Balance hasn't been updated following a bank transfer"
+  true intent: balance_not_updated_after_bank_transfer
+  model prediction: balance_not_updated_after_bank_transfer (p=0.73; runner-up balance_not_updated_after_cheque_or_cash_deposit p=0.04)
+  distinct correct message:
+  message: "The transfer I made isn't reflected in my balance"
+  true intent: balance_not_updated_after_bank_transfer
+  model prediction: balance_not_updated_after_bank_transfer (p=0.31; runner-up balance_not_updated_after_cheque_or_cash_deposit p=0.25)
+
+CONTROL 3
+  message: "This company is bad, delete my account now."
+  true intent: terminate_account
+  model prediction: terminate_account (p=0.77; runner-up balance_not_updated_after_cheque_or_cash_deposit p=0.02)
+  distinct correct message:
+  message: "your company is awful, i would like to delete my account please"
+  true intent: terminate_account
+  model prediction: terminate_account (p=0.80; runner-up request_refund p=0.03)
+
+AGGREGATE DIAGNOSTICS (development folds)
+- current cross-validated macro-F1: 0.6070
+- worst classes (error rate, n): [(np.str_('failed_transfer'), 1.0, 9), (np.str_('topping_up_by_card'), 0.9, 10), (np.str_('transfer_fee_charged'), 0.692, 13), (np.str_('unable_to_verify_identity'), 0.667, 9), (np.str_('card_linking'), 0.625, 8), (np.str_('disposable_card_limits'), 0.625, 8), (np.str_('top_up_by_cash_or_cheque'), 0.583, 12), (np.str_('beneficiary_not_allowed'), 0.545, 11), (np.str_('declined_cash_withdrawal'), 0.538, 13), (np.str_('pending_transfer'), 0.5, 12), (np.str_('top_up_by_card_charge'), 0.5, 8), (np.str_('cash_withdrawal_not_recognised'), 0.462, 13)]
+- most frequent confusions (count): [['disposable_card_limits -> get_disposable_virtual_card', 5], ['transfer_fee_charged -> card_payment_fee_charged', 5], ['pending_top_up -> top_up_failed', 3], ['card_payment_fee_charged -> cash_withdrawal_charge', 3], ['card_payment_not_recognised -> direct_debit_payment_not_recognised', 3], ['unable_to_verify_identity -> why_verify_identity', 3], ['beneficiary_not_allowed -> failed_transfer', 3], ['failed_transfer -> beneficiary_not_allowed', 3], ['top_up_by_cash_or_cheque -> balance_not_updated_after_cheque_or_cash_deposit', 3], ['cash_withdrawal_charge -> card_payment_fee_charged', 3], ['card_linking -> activate_my_card', 2], ['exchange_rate -> card_payment_wrong_exchange_rate', 2]]
+
+SERVING COST — absolute limits for this deployment (batched, ms/text): {"low": 8.0, "primary": 18.0, "high": 36.0}
+current bank measured latency: None ms/text (questions: 0, numeric width: 0)
+per-question cost estimates (question, options, est. ms/text):
+You may propose REPLACEMENTS or cheaper alternatives to any current question.
+
+Propose up to 3 NEW definitions that would most improve the downstream macro-F1 if added. Respond with ONLY a JSON array of objects with keys 'name', 'question', 'options' (list of {id, definition}).
