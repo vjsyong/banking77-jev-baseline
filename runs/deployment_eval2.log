@@ -1,0 +1,40 @@
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1193.51it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  90%|████████▉ | 278/310 [00:00<00:00, 2737.93it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 2899.26it/s]
+
+== mixed-strict-s0.3: 26 probes ==
+   test extraction: 2s (42 cols)
+   unpruned          : 26p/42c | f1 0.6495 acc 0.6529
+   c_corrected_tol005: 17p/33c | f1 0.6092 acc 0.6133
+   d_corrected_tol010: 17p/33c | f1 0.6083 acc 0.6120
+   paired c_corrected_tol005: Δf1 -4.03pp (95% CI [-5.28, -2.84]), McNemar p=0.0
+   paired d_corrected_tol010: Δf1 -4.12pp (95% CI [-5.39, -2.96]), McNemar p=0.0
+
+== mixed-strict-s0.7: 28 probes ==
+   test extraction: 2s (48 cols)
+   unpruned          : 28p/48c | f1 0.7264 acc 0.7282
+   c_corrected_tol005: 16p/34c | f1 0.6949 acc 0.6977
+   d_corrected_tol010: 21p/41c | f1 0.7108 acc 0.7133
+   paired c_corrected_tol005: Δf1 -3.15pp (95% CI [-4.38, -1.96]), McNemar p=0.0
+   paired d_corrected_tol010: Δf1 -1.56pp (95% CI [-2.52, -0.74]), McNemar p=0.001
+
+== mixed-strict-s1.0: 28 probes ==
+   test extraction: 2s (52 cols)
+   unpruned          : 28p/52c | f1 0.7109 acc 0.7149
+   c_corrected_tol005: 21p/45c | f1 0.6936 acc 0.6974
+   d_corrected_tol010: 22p/46c | f1 0.7014 acc 0.7065
+   paired c_corrected_tol005: Δf1 -1.73pp (95% CI [-2.58, -0.9]), McNemar p=0.0001
+   paired d_corrected_tol010: Δf1 -0.95pp (95% CI [-1.75, -0.21]), McNemar p=0.0382
+
+== latency benchmark ==
+   mixed-strict-s0.3 unpruned: p50 1535.1ms p95 1572.4ms | batched 63.68ms/text @ 15.7/s
+   mixed-strict-s0.3 c_corrected_tol005: p50 1017.8ms p95 1039.6ms | batched 41.64ms/text @ 24.0/s
+   mixed-strict-s0.3 d_corrected_tol010: p50 1064.0ms p95 1095.3ms | batched 42.03ms/text @ 23.8/s
+   mixed-strict-s0.7 unpruned: p50 1743.6ms p95 1768.8ms | batched 64.55ms/text @ 15.5/s
+   mixed-strict-s0.7 c_corrected_tol005: p50 965.9ms p95 1000.5ms | batched 37.08ms/text @ 27.0/s
+   mixed-strict-s0.7 d_corrected_tol010: p50 1170.1ms p95 1199.2ms | batched 47.39ms/text @ 21.1/s
+   mixed-strict-s1.0 unpruned: p50 1621.4ms p95 1789.6ms | batched 66.36ms/text @ 15.1/s
+   mixed-strict-s1.0 c_corrected_tol005: p50 1223.4ms p95 1258.1ms | batched 49.41ms/text @ 20.2/s
+   mixed-strict-s1.0 d_corrected_tol010: p50 1246.1ms p95 1283.6ms | batched 52.13ms/text @ 19.2/s
+
+written deployment_eval.json
+EXIT=0

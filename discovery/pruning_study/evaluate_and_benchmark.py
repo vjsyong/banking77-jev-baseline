@@ -244,17 +244,19 @@ def main():
                 with torch.inference_mode():
                     hs = model(input_ids=ids.to(dev), attention_mask=att.to(dev),
                                use_cache=False).last_hidden_state.float().cpu().numpy()
-                for j, e in enumerate(encs):
-                    z = fam.logits([hs[j, :len(rows[j])]], e)
-                    probs = softmax(z[q["id"]])
-                    if q["type"] == "choice":
-                        keys = e.questions[0]["keys"]
-                        for o in q["criteria"]:
-                            X[j, col] = probs[keys.index(o)]
-                            col += 1
-                    else:
-                        X[j, col] = probs[1]
-                        col += 1
+                probs_all = [softmax(fam.logits([hs[j, :len(rows[j])]], e)[q["id"]])
+                             for j, e in enumerate(encs)]
+                if q["type"] == "choice":
+                    keys = encs[0].questions[0]["keys"]
+                    for oi, o in enumerate(q["criteria"]):
+                        kidx = keys.index(o)
+                        for j in range(n):
+                            X[j, col + oi] = probs_all[j][kidx]
+                    col += len(q["criteria"])
+                else:
+                    for j in range(n):
+                        X[j, col] = probs_all[j][1]
+                    col += 1
             return X
 
         # warmup 3

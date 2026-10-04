@@ -1,0 +1,42 @@
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1112.33it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  90%|█████████ | 279/310 [00:00<00:00, 2758.32it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 2801.64it/s]
+
+== mixed-strict-s0.3: 26 probes ==
+   test extraction: 247s (42 cols)
+   unpruned          : 26p/42c | f1 0.6495 acc 0.6529
+   c_corrected_tol005: 17p/33c | f1 0.6092 acc 0.6133
+   d_corrected_tol010: 17p/33c | f1 0.6083 acc 0.6120
+   paired c_corrected_tol005: Δf1 -4.03pp (95% CI [-5.28, -2.84]), McNemar p=0.0
+   paired d_corrected_tol010: Δf1 -4.12pp (95% CI [-5.39, -2.96]), McNemar p=0.0
+
+== mixed-strict-s0.7: 28 probes ==
+   test extraction: 260s (48 cols)
+   unpruned          : 28p/48c | f1 0.7264 acc 0.7282
+   c_corrected_tol005: 16p/34c | f1 0.6949 acc 0.6977
+   d_corrected_tol010: 21p/41c | f1 0.7108 acc 0.7133
+   paired c_corrected_tol005: Δf1 -3.15pp (95% CI [-4.38, -1.96]), McNemar p=0.0
+   paired d_corrected_tol010: Δf1 -1.56pp (95% CI [-2.52, -0.74]), McNemar p=0.001
+
+== mixed-strict-s1.0: 28 probes ==
+   test extraction: 279s (52 cols)
+   unpruned          : 28p/52c | f1 0.7109 acc 0.7149
+   c_corrected_tol005: 21p/45c | f1 0.6936 acc 0.6974
+   d_corrected_tol010: 22p/46c | f1 0.7014 acc 0.7065
+   paired c_corrected_tol005: Δf1 -1.73pp (95% CI [-2.58, -0.9]), McNemar p=0.0001
+   paired d_corrected_tol010: Δf1 -0.95pp (95% CI [-1.75, -0.21]), McNemar p=0.0382
+
+== latency benchmark ==
+Traceback (most recent call last):
+  File "/home/xrim/banking77-jev-baseline/discovery/pruning_study/evaluate_and_benchmark.py", line 323, in <module>
+    main()
+  File "/home/xrim/banking77-jev-baseline/discovery/pruning_study/evaluate_and_benchmark.py", line 297, in main
+    lat[cfg] = run_bank_timing(probes_cfg)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xrim/banking77-jev-baseline/discovery/pruning_study/evaluate_and_benchmark.py", line 272, in run_bank_timing
+    Xf = features_for(batch_texts[s:s + 64])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xrim/banking77-jev-baseline/discovery/pruning_study/evaluate_and_benchmark.py", line 256, in features_for
+    X[j, col] = probs[1]
+    ~^^^^^^^^
+IndexError: index 42 is out of bounds for axis 1 with size 42
+EXIT=1

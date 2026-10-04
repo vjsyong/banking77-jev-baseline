@@ -85,6 +85,11 @@ mixed-pareto s0.7 = 0.5574 at 8 probes / ~12 ms/text.
 4. **Frontier-feedback benefit to the teacher: still not established** — by design the
    factorial holds feedback constant; what it does establish is where the failure lived:
    representation first, selection second.
+5. **Follow-up (pre-registered pruning study — see `docs/pruning-report.md`):** on frozen
+   snapshots of the three mixed-strict banks, a corrected screen (fixed reference,
+   whole-question removals, frozen learner) compresses structure by 30–43% at a held-out
+   cost of −0.95…−4.12pp test macro-F1 — the pre-registered ≤1pp bar is not met;
+   **decision: compression paused, unpruned representation preserved.**
 
 ## 5. Implications for the next move (options, not conclusions)
 
