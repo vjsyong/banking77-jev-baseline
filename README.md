@@ -2,6 +2,8 @@
 
 Research code for measuring what a small question-answering model contributes as a **feature extractor** for text intent classification. Each message is presented to TinyJev-0.6B as one or more schema-bound categorical questions ("Choice" and "Noul" formats); the model's answer distributions become numeric features for conventional classifiers. The repository contains three completed studies on BANKING77 and one registered experiment currently running on CLINC150, each with a report in `docs/`.
 
+**Headline:** a logistic-regression readout on frozen TinyJev-0.6B lifts BANKING77 macro-F1 from **0.7574** (direct argmax) to **0.9008** (+14.3pp) without changing any model weights.
+
 ## Studies
 
 | # | Study | Task | Status | Report |
@@ -13,14 +15,16 @@ Research code for measuring what a small question-answering model contributes as
 
 ## Headline results
 
-**BANKING77, official test split, macro-F1:**
-- TF-IDF + LogReg: **0.9094** (accuracy 0.9091; LinearSVC 0.9087, ComplementNB 0.8068)
-- Jev direct 77-way choice: **0.7574** (accuracy 0.7633, top-3 0.9078)
+**Probability readout, frozen TinyJev-0.6B, BANKING77 (official split, 10,003 train / 3,080 test, macro-F1):** train a logistic regression on Jev's full 77-way probability vector (**log probabilities, scaling, logistic regression**; Jev stays frozen) and macro-F1 improves from **0.7574** (direct argmax) to **0.9008**, +14.34 percentage points, without changing the model weights. The readout step itself adds about 1 ms per text on top of the Jev pass; the full text-to-prediction pipeline runs at p50 62.5 ms single / 30.2 ms batched per text.
+
+**Reference baselines (same split, macro-F1):**
+- TF-IDF + LogReg: **0.9094** (accuracy 0.9091; LinearSVC 0.9087; ComplementNB 0.8068). The strongest classical baseline still leads the readout slightly, and is far cheaper at inference (0.229 ms/text batched).
+- Jev direct 77-way choice: **0.7574** (accuracy 0.7633, top-3 0.9078).
 - 16 hand-written Noul probes, best learner (ExtraTrees): 0.5707 (LogReg 0.4038). The small hand-written bank underperforms, as the plan anticipated.
 
-**Choice readout (LogReg on Jev's 77 log-probabilities):** **0.9008** macro-F1, +14.3pp over the direct argmax, within 0.9pp of TF-IDF. The trade is label efficiency against compute: per-text latency p50 is 62.5 ms single / 30.2 ms batched for the readout pipeline vs 2.29 ms / 0.229 ms for TF-IDF + LogReg.
+**Label budgets (test macro-F1, two label seeds, chart in `runs/banking77/discovery/label_curves.png`):** the curves answer a practical question, how many labels do you actually have? At the smallest budget (250) the direct argmax is still the strongest single signal; from 500 through about 5,000 labels the readout leads both argmax and TF-IDF (at 1,000: mean 0.8438 vs 0.7350 for TF-IDF); by the full 10,003-label budget TF-IDF catches up and overtakes (0.9094 vs 0.9008). The readout is the better use of a fixed serving budget while labels are scarce; at large budgets TF-IDF wins on both quality and latency.
 
-**Label budgets (test macro-F1, two label seeds, chart in `runs/banking77/discovery/label_curves.png`):** the readout beats TF-IDF from the smallest budgets through roughly 5,000 labels (at 1,000: mean 0.8438 vs 0.7350; parity by 5,000); TF-IDF overtakes only near the full budget (0.9094 vs 0.9008). The direct argmax baseline is flat at 0.7574. If labels are scarce, the readout is the better use of a fixed serving budget; at 10k labels TF-IDF wins on both quality and latency.
+**Practical takeaway:** if you use a Jev-style model for classification and already have labelled examples, keep the full probability vector and train a small classifier on top of it. The readout costs little relative to the model pass.
 
 **Guided discovery (BANKING77, 1,000-label allowance, test macro-F1):**
 - Pilot: frontier feedback (cost model + quality/cost archive) did not reproducibly change the discovered banks (frontier minus unguided +2.16pp mean, carried by a single seed). Banks did improve over the hand-written set (0.4387 to 0.5245 best).
