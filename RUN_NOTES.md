@@ -54,3 +54,11 @@
   measurement.
 - Results are local research data (text + labels retained per the bundle's own
   instructions; keep private per dataset terms).
+
+## Batching probe (2026-10-04, mid-run)
+Measured on a quiet GPU (extraction paused): multi-state batching gives ZERO speedup.
+- separate calls: 0.494 s/text
+- one call x4 states: 0.497 s/text | x8: 0.494 | x16: 0.496
+Reason: `Agent._run()` loops over states internally (one forward per text); no shared work.
+Per-text cost is fixed overhead (padding-waste in the 93-row batch, CPU hidden-state
+copies, kernel-launch latency), not GPU FLOPs. Reproducer: `tools/batch_probe.py`.
