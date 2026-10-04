@@ -1,0 +1,43 @@
+[
+  {"probe_id": "card_activation_request",
+   "question": "Does the customer ask to activate a card?",
+   "pos_intents": ["activate_my_card"],
+   "neg_intents": ["card_arrival", "get_physical_card", "card_linking"],
+   "n_per_side": 18},
+
+  {"probe_id": "transaction_duplicated",
+   "question": "Does the customer say the same transaction was charged twice?",
+   "pos_intents": ["transaction_charged_twice"],
+   "neg_intents": ["pending_card_payment", "card_payment_not_recognised", "request_refund"],
+   "n_per_side": 18},
+
+  {"probe_id": "transfer_recipient_not_received",
+   "question": "Does the message say the transfer recipient has not received the money?",
+   "pos_intents": ["transfer_not_received_by_recipient"],
+   "neg_intents": ["transfer_timing", "receiving_money", "transfer_into_account"],
+   "n_per_side": 18},
+
+  {"probe_id": "automatic_balance_topup",
+   "question": "Does the customer want the account topped up automatically when its balance falls below a threshold?",
+   "pos_intents": ["automatic_top_up"],
+   "neg_intents": ["top_up_by_card_charge", "top_up_failed", "top_up_limits"],
+   "n_per_side": 18},
+
+  {"probe_id": "cash_withdrawal_fee",
+   "question": "Does the customer say a cash withdrawal incurred a fee or charge?",
+   "pos_intents": ["cash_withdrawal_charge"],
+   "neg_intents": ["cash_withdrawal_not_recognised", "wrong_exchange_rate_for_cash_withdrawal", "exchange_charge"],
+   "n_per_side": 18},
+
+  {"probe_id": "card_payment_declined",
+   "question": "Does the customer say a card payment was declined or rejected?",
+   "pos_intents": ["declined_card_payment"],
+   "neg_intents": ["pending_card_payment", "card_payment_not_recognised"],
+   "n_per_side": 18},
+
+  {"probe_id": "card_payment_rejected",
+   "question": "Does the message say a card payment was declined, rejected, or not accepted?",
+   "pos_intents": ["declined_card_payment"],
+   "neg_intents": ["pending_card_payment", "card_payment_not_recognised"],
+   "n_per_side": 18}
+]
