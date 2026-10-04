@@ -1,0 +1,92 @@
+{
+  "card": {
+    "v1_existing": {
+      "accuracy_at_0.5": 0.6744,
+      "auc": 0.7771,
+      "separation": 0.1141,
+      "extract_s": 0.23,
+      "mean_pos": 0.6426,
+      "mean_neg": 0.5286
+    },
+    "v2_short": {
+      "accuracy_at_0.5": 0.8372,
+      "auc": 0.9177,
+      "separation": 0.2626,
+      "extract_s": 0.11,
+      "mean_pos": 0.6193,
+      "mean_neg": 0.3567
+    },
+    "v3_choice": {
+      "accuracy_at_0.5": 0.5349,
+      "auc": 0.8182,
+      "separation": 0.1435,
+      "extract_s": 0.13,
+      "mean_pos": 0.3288,
+      "mean_neg": 0.1853
+    },
+    "v1_cache_check": {
+      "n_compared": 40,
+      "max_abs_diff": 0.00181
+    }
+  },
+  "unauth": {
+    "v1_existing": {
+      "accuracy_at_0.5": 0.7381,
+      "auc": 0.762,
+      "separation": 0.0429,
+      "extract_s": 0.12,
+      "mean_pos": 0.5157,
+      "mean_neg": 0.4728
+    },
+    "v2_short": {
+      "accuracy_at_0.5": 0.6905,
+      "auc": 0.8078,
+      "separation": 0.1342,
+      "extract_s": 0.1,
+      "mean_pos": 0.6437,
+      "mean_neg": 0.5095
+    },
+    "v3_choice": {
+      "accuracy_at_0.5": 0.6667,
+      "auc": 0.8078,
+      "separation": 0.1844,
+      "extract_s": 0.11,
+      "mean_pos": 0.6025,
+      "mean_neg": 0.4181
+    },
+    "v1_cache_check": {
+      "n_compared": 40,
+      "max_abs_diff": 0.00254
+    }
+  },
+  "pin": {
+    "v1_existing": {
+      "accuracy_at_0.5": 0.6047,
+      "auc": 0.8117,
+      "separation": 0.1316,
+      "extract_s": 0.11,
+      "mean_pos": 0.6997,
+      "mean_neg": 0.5681
+    },
+    "v2_short": {
+      "accuracy_at_0.5": 0.9302,
+      "auc": 0.9719,
+      "separation": 0.3398,
+      "extract_s": 0.1,
+      "mean_pos": 0.6886,
+      "mean_neg": 0.3488
+    },
+    "v3_choice": {
+      "accuracy_at_0.5": 0.6744,
+      "auc": 0.9697,
+      "separation": 0.3419,
+      "extract_s": 0.12,
+      "mean_pos": 0.4385,
+      "mean_neg": 0.0966
+    },
+    "v1_cache_check": {
+      "n_compared": 41,
+      "max_abs_diff": 0.00151
+    }
+  }
+}

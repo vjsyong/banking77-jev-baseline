@@ -1,0 +1,65 @@
+{
+  "card_activation_request": {
+    "question": "Does the customer ask to activate a card?",
+    "n": 36,
+    "accuracy_at_0.5": 0.722,
+    "auc": 0.926,
+    "separation": 0.288,
+    "mean_pos": 0.805,
+    "mean_neg": 0.516
+  },
+  "transaction_duplicated": {
+    "question": "Does the customer say the same transaction was charged twice?",
+    "n": 36,
+    "accuracy_at_0.5": 1.0,
+    "auc": 1.0,
+    "separation": 0.41,
+    "mean_pos": 0.726,
+    "mean_neg": 0.317
+  },
+  "transfer_recipient_not_received": {
+    "question": "Does the message say the transfer recipient has not received the money?",
+    "n": 36,
+    "accuracy_at_0.5": 0.778,
+    "auc": 0.812,
+    "separation": 0.148,
+    "mean_pos": 0.573,
+    "mean_neg": 0.425
+  },
+  "automatic_balance_topup": {
+    "question": "Does the customer want the account topped up automatically when its balance falls below a threshold?",
+    "n": 36,
+    "accuracy_at_0.5": 0.722,
+    "auc": 0.907,
+    "separation": 0.193,
+    "mean_pos": 0.694,
+    "mean_neg": 0.5
+  },
+  "cash_withdrawal_fee": {
+    "question": "Does the customer say a cash withdrawal incurred a fee or charge?",
+    "n": 36,
+    "accuracy_at_0.5": 0.722,
+    "auc": 0.809,
+    "separation": 0.236,
+    "mean_pos": 0.664,
+    "mean_neg": 0.428
+  },
+  "card_payment_declined": {
+    "question": "Does the customer say a card payment was declined or rejected?",
+    "n": 36,
+    "accuracy_at_0.5": 0.722,
+    "auc": 0.978,
+    "separation": 0.224,
+    "mean_pos": 0.719,
+    "mean_neg": 0.496
+  },
+  "card_payment_rejected": {
+    "question": "Does the message say a card payment was declined, rejected, or not accepted?",
+    "n": 36,
+    "accuracy_at_0.5": 0.722,
+    "auc": 0.988,
+    "separation": 0.295,
+    "mean_pos": 0.797,
+    "mean_neg": 0.503
+  }
+}

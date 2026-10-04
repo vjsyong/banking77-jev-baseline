@@ -1,0 +1,254 @@
+probe_id,label,score,text
+card_activation_request,1,0.804,"Just received my replacement card, what steps do i need to take to activate it?"
+card_activation_request,1,0.825,How do I activate my new card
+card_activation_request,1,0.899,I need my card activated.
+card_activation_request,1,0.402,I was unable to activate my card.
+card_activation_request,1,0.701,I just got a new card how do I get it to start working?
+card_activation_request,1,0.906,I have a new card and need to activate it
+card_activation_request,1,0.887,I need to do a card activation.
+card_activation_request,1,0.815,What is needed to activate my card?
+card_activation_request,1,0.805,How do I activate my card that just arrived?
+card_activation_request,1,0.917,I just received my card and I'd like to activate it.
+card_activation_request,1,0.859,What is the process for activating my card and using it?
+card_activation_request,1,0.828,What needs to be done to activate and use a card?
+card_activation_request,1,0.93,I would like to be assisted with the activation of my card.
+card_activation_request,1,0.876,What do I need to do for the card activation?
+card_activation_request,1,0.644,i cant seem to activate card
+card_activation_request,1,0.768,What do I do to activate?
+card_activation_request,1,0.723,"How long does it take to activate the card, as it does not look like its working?"
+card_activation_request,1,0.899,I would like to activate my card what do I need to do?
+card_activation_request,0,0.381,I got a new card and can't find where to link it.
+card_activation_request,0,0.658,How do I get started when I get my card?
+card_activation_request,0,0.446,My card appears to have never arrived?
+card_activation_request,0,0.685,can you share card tracking number?
+card_activation_request,0,0.417,I was expecting my new card by now.
+card_activation_request,0,0.463,"My card was supposed to arrive, but hasn't?"
+card_activation_request,0,0.336,My card hasn't arrived.
+card_activation_request,0,0.55,How long will it be to get this new card?
+card_activation_request,0,0.291,"My card has not been delivered yet and its been a week since I ordered it, please help"
+card_activation_request,0,0.557,Will the PIN come separately?
+card_activation_request,0,0.462,I was issued a new card a week ago but still haven't received it. How long will it be until I receive it?
+card_activation_request,0,0.664,Tell me about the card PIN?
+card_activation_request,0,0.333,I'm still waiting for my new card.
+card_activation_request,0,0.298,I am still waiting for my card.
+card_activation_request,0,0.609,Where can I find my PIN? I haven't gotten it yet.
+card_activation_request,0,0.643,Can the card was sen to me be tracked?
+card_activation_request,0,0.823,How do I reactivate a card I thought I lost?
+card_activation_request,0,0.683,Will I be able to track the card that was sent to me?
+transaction_duplicated,1,0.756,I got charged twice with a duplicate card. How do I resolve this?
+transaction_duplicated,1,0.645,To many charges on my card how do I go about fixing that?
+transaction_duplicated,1,0.759,"Looks like my card payment was duplicated after all. I went to pay at the store earlier, got declined once,second time it works. App still stays pending for one of the payments. Can you remove one of them as it's wrong and clearly was declined?"
+transaction_duplicated,1,0.639,Why was I charged twice for the same thing?
+transaction_duplicated,1,0.755,My account was charged twice for one purchase
+transaction_duplicated,1,0.714,After taking over my card transactions I noticed that was charged twice for a restaurant purchased from earlier this week. Can you please remove one of these transactions from my account since it is not accurate?
+transaction_duplicated,1,0.8,I have been charged twice for the same transaction.
+transaction_duplicated,1,0.5,Can you explain the various transaction times shown on my statement?
+transaction_duplicated,1,0.665,Why am I getting double charged for multiple transactions?
+transaction_duplicated,1,0.858,I got charged in double and want a refund
+transaction_duplicated,1,0.845,Hello. I checked my transactions and saw I was double charged for a restaurant visit. Can I get my money back?
+transaction_duplicated,1,0.728,There is a payment that I was charged two times for.
+transaction_duplicated,1,0.754,Please tell me why the same transaction is showing up on my account more than once.
+transaction_duplicated,1,0.534,Is there a reason to why I was charged twice for a transaction?
+transaction_duplicated,1,0.886,I got charged twice for the same payment. Please removed the pending payment. Thank you.
+transaction_duplicated,1,0.836,I have been charged twice for the same thing!
+transaction_duplicated,1,0.779,I was charged twice.
+transaction_duplicated,1,0.621,Why am I being charged again?
+transaction_duplicated,0,0.29,I would like my refund for this item I bought.
+transaction_duplicated,0,0.239,"Hey, I ordered a thing but changed my mind and want a refund on it. Since I haven't received the thing, would you just go ahead and cancel the payment for me?"
+transaction_duplicated,0,0.348,There is a strange card payment I don't recognise.
+transaction_duplicated,0,0.213,I have made a card payment but it did not completed still showing as pending. Please tell me when it will be completed.
+transaction_duplicated,0,0.437,I am unhappy with an item I bought. How do I get a refund?
+transaction_duplicated,0,0.164,The purchase I made is still pending.
+transaction_duplicated,0,0.229,I have a charge I did not make.
+transaction_duplicated,0,0.305,"I need to refund my item, can you please help?"
+transaction_duplicated,0,0.338,What is the cause of the delay in applying my card payment to my account?
+transaction_duplicated,0,0.166,The payment on my card shows as pending.
+transaction_duplicated,0,0.476,Give me a refund
+transaction_duplicated,0,0.413,There is a payment that is not mine in the App.
+transaction_duplicated,0,0.333,How can i get a refund for something i just bought?
+transaction_duplicated,0,0.467,Can I get an item refunded?
+transaction_duplicated,0,0.26,There is a payment made with my card that I don't recognize at all.
+transaction_duplicated,0,0.343,I have a card payment that has been pending for some time and would like to know when it is going to go through.
+transaction_duplicated,0,0.296,My card payment has been stuck on pending. What is the problem? It should have gone through by now.
+transaction_duplicated,0,0.383,Why is there a payment I didn't do in my app?
+transfer_recipient_not_received,1,0.67,"How much time do transfers take? I sent money to a friend who needs it fast. It's been hours, and the money has not gone through."
+transfer_recipient_not_received,1,0.473,when will my transfer arrive
+transfer_recipient_not_received,1,0.572,Why hasn't the transaction I did arrive yet?
+transfer_recipient_not_received,1,0.826,I sent money to someone but they haven't gotten it yet
+transfer_recipient_not_received,1,0.84,I sent money about 5 days ago and the recipient has not received the money yet.
+transfer_recipient_not_received,1,0.645,"|I moved out of my old house two weeks ago and cancelled my direct debit to my old landlord, this direct debit was working fine.  Now I've moved in to a new place and set up a transfer to a new landlord but it's not reached her yet, can you check it please?"
+transfer_recipient_not_received,1,0.749,I sent money to my family last Friday but they don't have it.
+transfer_recipient_not_received,1,0.581,"I've been waiting since Friday, where is my money?"
+transfer_recipient_not_received,1,0.429,How long will it take for my transfer to arrive?
+transfer_recipient_not_received,1,0.627,Why has my transfer not arrived yet?
+transfer_recipient_not_received,1,0.544,"I have checked the account information several times to be sure that it is correct, but the in country transfer I did a few days ago still has not appeared! What is the hold up?"
+transfer_recipient_not_received,1,0.249,I am just waiting on the completion of the transaction.
+transfer_recipient_not_received,1,0.551,I transferred some cash and it has not arrived yet.
+transfer_recipient_not_received,1,0.6,"I need to verify a payment to my new landlord. I transferred the first rent payment a few days ago. While it shows on my side, the landlord is saying he hasn't received it yet. Can you verify that it has processed?"
+transfer_recipient_not_received,1,0.635,"I have done a transfer within the country the day before yesterday, but it's still not there yet. Can you please check what's going on with that, the account number is the right one, I've checked that several times already."
+transfer_recipient_not_received,1,0.478,wheres my money receipt
+transfer_recipient_not_received,1,0.399,Hi - I have made a transaction to my new landlord but unfortunately it shows on my end but not on the landlord's end. The numbers are correct. Can you confirm when that will go through?
+transfer_recipient_not_received,1,0.443,What is the time for a transfer?
+transfer_recipient_not_received,0,0.346,How does a bank transfer for topping my account work?
+transfer_recipient_not_received,0,0.308,"I have an account at another bank, but I want to transfer some of the money to my account here.
+."
+transfer_recipient_not_received,0,0.322,"I need to transfer money into my account, and I don't know how to do that."
+transfer_recipient_not_received,0,0.37,How can I receive money from someone?
+transfer_recipient_not_received,0,0.358,Can my job deposit my wages directly into the account.
+transfer_recipient_not_received,0,0.47,My friend would like to send me money. What are the options available to them?
+transfer_recipient_not_received,0,0.513,Can I add money to top up my account via a bank transfer?
+transfer_recipient_not_received,0,0.483,How long will an urgent transfer from China take?
+transfer_recipient_not_received,0,0.492,When can I use money sent to my account?
+transfer_recipient_not_received,0,0.482,Can I withdraw money from another bank and transfer it into my empty account?
+transfer_recipient_not_received,0,0.495,When will a transfer from the US post?
+transfer_recipient_not_received,0,0.506,Can I transfer money to my account with the app?
+transfer_recipient_not_received,0,0.418,How many days until my US transfer arrives?
+transfer_recipient_not_received,0,0.499,"I need to transfer something ASAP from China, how long will it take to post to my account?"
+transfer_recipient_not_received,0,0.423,How long does it take for a transfer to be in my account?
+transfer_recipient_not_received,0,0.464,How do I go forth with bank transfers for top up accounts?
+transfer_recipient_not_received,0,0.331,I need to transfer money to my account from another bank
+transfer_recipient_not_received,0,0.369,When will the money be made available in my account?
+automatic_balance_topup,1,0.617,Can I add money in intervals to my account?  I will be traveling.
+automatic_balance_topup,1,0.858,"I going to be traveling, can I set up auto top-up if I run low on money?"
+automatic_balance_topup,1,0.666,What is the maximum times I can auto top-up?
+automatic_balance_topup,1,0.794,If I am running low on credit can I auto top up?
+automatic_balance_topup,1,0.649,What are the maximum amount you can do for auto top-up?
+automatic_balance_topup,1,0.832,What are the auto-top up policies?
+automatic_balance_topup,1,0.642,"When I travel, can it automatically add money in certain intervals?"
+automatic_balance_topup,1,0.533,How do I access the option to top up?
+automatic_balance_topup,1,0.676,What is the auto top-up limit?
+automatic_balance_topup,1,0.712,When I'm traveling is it possible to add money automatically at certain time points?
+automatic_balance_topup,1,0.813,How do i access the auto top-up option?
+automatic_balance_topup,1,0.713,I have a trip coming up and want to add money automatically.
+automatic_balance_topup,1,0.768,Can I have my account add money automatically in certain intervals?
+automatic_balance_topup,1,0.755,is there a way to do automatic top up
+automatic_balance_topup,1,0.552,Can I auto top-up as much as I want?
+automatic_balance_topup,1,0.757,I would like to top up my account automatically. How do I do that?
+automatic_balance_topup,1,0.757,How do I activate auto top-up when traveling?
+automatic_balance_topup,1,0.39,Does the app top up automatically?
+automatic_balance_topup,0,0.517,What are the charges for topping up US card?
+automatic_balance_topup,0,0.46,Looks like my top-up has been cancelled
+automatic_balance_topup,0,0.477,How much are the fees for adding funds using an international card?
+automatic_balance_topup,0,0.62,How often am I able to top-up?
+automatic_balance_topup,0,0.557,What fees to you have for top ups?
+automatic_balance_topup,0,0.469,Is there a limit to how much I can top up?
+automatic_balance_topup,0,0.452,My top up is giving me problems. What is wrong with it?
+automatic_balance_topup,0,0.504,Do you limit my top-ups?
+automatic_balance_topup,0,0.623,Do I get charged if I top up with my European bank card?
+automatic_balance_topup,0,0.514,How much is the charge to top up via credit card?
+automatic_balance_topup,0,0.559,Is there a top-up limit that I have to stay under during a given period of time?
+automatic_balance_topup,0,0.415,My credit card was declined for top-up. Can you see if there is enough funds in my account?
+automatic_balance_topup,0,0.629,Is there any amount in which I would get cut off from topping up?
+automatic_balance_topup,0,0.437,Are there any charges for topping up a US-issued card?
+automatic_balance_topup,0,0.418,"Hello, there was an error while attempting top-up with my card this morning. I was able to use the card two days ago with no issues. Could you please assist?"
+automatic_balance_topup,0,0.492,Please explain why my top-up didn't go through.
+automatic_balance_topup,0,0.346,"I attempted to top up my car today, it failed! I just got it a couple of days before and it worked then. What is going on with it?"
+automatic_balance_topup,0,0.52,I topped off my card is that something you will charge me for?
+cash_withdrawal_fee,1,0.129,Since when were there charges for taking out cash from my account? It's always been free for me to do this before.  How much are the charges going to be?
+cash_withdrawal_fee,1,0.835,Why did I get a fee from the ATM?
+cash_withdrawal_fee,1,0.592,"I hate this ATM, it charged me an extra fee, Why did it charge?"
+cash_withdrawal_fee,1,0.8,Why was I charged a fee for my withdrawal?
+cash_withdrawal_fee,1,0.823,There was an extra fee on my account when I got cash.
+cash_withdrawal_fee,1,0.845,Why was I charged for getting cash?
+cash_withdrawal_fee,1,0.452,Is there an extra fee for using an ATM?
+cash_withdrawal_fee,1,0.833,why has a cash withdrawal charged me?
+cash_withdrawal_fee,1,0.841,Why am I charged a fee for withdrawing cash?
+cash_withdrawal_fee,1,0.451,I have a strange transaction on my account which appears to pertain to a cash withdrawal I made outside Nandos in Leeds.  What is that for?  Is it fraud?
+cash_withdrawal_fee,1,0.799,I saw I was charged extra for money I withdrew?
+cash_withdrawal_fee,1,0.875,"Why is there now a charge for making cash withdrawals? I wanted some cash after I went to the grocery store, and there's a new fee!"
+cash_withdrawal_fee,1,0.582,Is there a charge for getting cash?
+cash_withdrawal_fee,1,0.81,Why did withdrawing money cost me extra?
+cash_withdrawal_fee,1,0.29,"Do you charge for cash withdrawals?  I want to get my hands on my own money and you appear to be charging me for the pleasure! Why is this, you'd never get this with my high street bank!"
+cash_withdrawal_fee,1,0.845,Why was there a fee for my cash withdrawal?
+cash_withdrawal_fee,1,0.452,How do I avoid a fee to use an ATM?
+cash_withdrawal_fee,1,0.707,"The ATM charged me an extra fee, Why?"
+cash_withdrawal_fee,0,0.467,"Would you be able to offer me a discount, since I need to exchange currencies frequently?"
+cash_withdrawal_fee,0,0.65,Fees for currency exchange
+cash_withdrawal_fee,0,0.496,Is there a charge for exchanging foreign currency?
+cash_withdrawal_fee,0,0.291,The app says I made a cash withdrawal even though I didn't.
+cash_withdrawal_fee,0,0.549,is there a foreign currencies charge?
+cash_withdrawal_fee,0,0.52,How much is the exchange fee?
+cash_withdrawal_fee,0,0.319,Will there be any extra fees if I exchange currencies?
+cash_withdrawal_fee,0,0.44,"A WD was just made on my account, but it was not me and I still have my card.  What to do?"
+cash_withdrawal_fee,0,0.507,The exchange rate was wrong?
+cash_withdrawal_fee,0,0.319,I didn't receive the correct amount of cash when I exchanged it overseas.
+cash_withdrawal_fee,0,0.289,There is a withdrawal on my account I didn't make.
+cash_withdrawal_fee,0,0.428,I got cash abroad and need to check the exchange rate
+cash_withdrawal_fee,0,0.363,Is it possible to use an ATM when I am not in the country and make a withdraw with out extra fees?
+cash_withdrawal_fee,0,0.607,What do I do when a charge has been made that I did not make?
+cash_withdrawal_fee,0,0.422,Does a discount apply if I exchange currencies frequently?
+cash_withdrawal_fee,0,0.461,the exchange rate was different than expected
+cash_withdrawal_fee,0,0.354,Can i get money back in my home currency at  ATM? As I am on holiday and bit concerned because i do not have any cash with me . Is it possible to withdraw without any additional cost.
+cash_withdrawal_fee,0,0.222,"My app says I made a withdrawal, but I didn't."
+card_payment_declined,1,0.73,My card failed to work when I was shopping in a store
+card_payment_declined,1,0.817,My credit card has been declined.
+card_payment_declined,1,0.552,"I received my new card and tried using it today, just to have it show declined over and over again.  Why is this happening?"
+card_payment_declined,1,0.722,Why are all my card payments being declined?
+card_payment_declined,1,0.593,I've tried several times to make a payment and every time my card is declined? Could my card be locked? I don't know what to do.
+card_payment_declined,1,0.547,Is there an issue with my card payment as it has not gone through.
+card_payment_declined,1,0.618,I don't understand why my payment was declined. I thought everything was ok.
+card_payment_declined,1,0.796,Card payment didn't go through.
+card_payment_declined,1,0.714,"I was out today looking forward to paying with my brand new card, turns out the payment just kept getting declined. This is pretty sad, what's going on?"
+card_payment_declined,1,0.879,My card was declined
+card_payment_declined,1,0.624,"My payment has been declined!! What's going on, I thought everything was alright and working well?"
+card_payment_declined,1,0.689,Why do you keep declining my payment? I tried several times already with this card and it is just not working.
+card_payment_declined,1,0.771,My card payment doesn't work.
+card_payment_declined,1,0.602,Why does is payment not going through? Did my account get frozen or some other issue I don't know about. What can I do to fix this problem?
+card_payment_declined,1,0.844,My card was refused
+card_payment_declined,1,0.83,How do I check to see why my card payment was declined?
+card_payment_declined,1,0.841,Tell me why my card payment has been declined.
+card_payment_declined,1,0.778,I had a decline on my card. Why?
+card_payment_declined,0,0.528,I think my card is being used by someone else to make purchases that I didn't authorize! I checked my account and see that there have been quite a few purchases over the last two days that I have no idea where they came from. We need to freeze my card now! And I need to find a way to get my money back.
+card_payment_declined,0,0.496,I have a payment in my statement that is off
+card_payment_declined,0,0.374,"My card payment is just showing up as pending since forever, what's going on with that, it should be going through at some point?"
+card_payment_declined,0,0.498,I didn't make this payment!
+card_payment_declined,0,0.509,What does pending payment mean?
+card_payment_declined,0,0.568,How long does it take for my payment to process?
+card_payment_declined,0,0.508,What does a 'pending payment' mean?
+card_payment_declined,0,0.537,I'm not sure where this charge came from.
+card_payment_declined,0,0.574,"After I make a payment, how long will it be before it transitions from ""pending"" to complete?"
+card_payment_declined,0,0.378,When is a payment I made with my card going to clear>
+card_payment_declined,0,0.477,"Is there something wrong with my card payment? It's been pending a really, really long time."
+card_payment_declined,0,0.539,There is a strange payment on my card and I don't know what to do.
+card_payment_declined,0,0.353,There is a payment done with my card which i definitely did not do.Never seen that name before.
+card_payment_declined,0,0.478,"Hi, status of one of my card payment is still pending from a while. Please let e know how much time it will take to complete."
+card_payment_declined,0,0.549,How long does a payment usually show as pending? Is it normal that mine is still pending?
+card_payment_declined,0,0.558,I have a charge for something I didn't buy.
+card_payment_declined,0,0.489,There is a payment made with my card that I don't recognize at all.
+card_payment_declined,0,0.509,"There are a couple payments with my card shown in the app that i really make myself. What's going on with this, maybe someone has access to my card?!"
+card_payment_rejected,1,0.576,I'm sure I have enough money so why didn't the store accept my card?
+card_payment_rejected,1,0.888,My card payment failed.
+card_payment_rejected,1,0.728,why couldn't I use my card at a store?
+card_payment_rejected,1,0.906,My card payment has been declined
+card_payment_rejected,1,0.588,"Everything seems fine with my account, so why did it decline my payment?"
+card_payment_rejected,1,0.87,Explain why my card payment wouldn't go through.
+card_payment_rejected,1,0.896,I had a card payment that was declined.  Why?
+card_payment_rejected,1,0.813,"my card payment has been declined, do you know why?"
+card_payment_rejected,1,0.867,My card payment is being declined and I've tried several times.
+card_payment_rejected,1,0.787,Why won't you accept my payment? I keep trying with this card and it's not working.
+card_payment_rejected,1,0.703,Why do you keep declining my payment?I tried several times already with this card and it is just not working.
+card_payment_rejected,1,0.912,How do I check to see why my card payment was declined?
+card_payment_rejected,1,0.794,My card payment doesn't work.
+card_payment_rejected,1,0.8,Why would my card payment not work?
+card_payment_rejected,1,0.659,"I'm not sure why my payment has been declined? Please tell me why, I thought it was all good."
+card_payment_rejected,1,0.867,My card was rejected
+card_payment_rejected,1,0.789,I could not use my card in a store.
+card_payment_rejected,1,0.907,I was just needing to know why my card got declined
+card_payment_rejected,0,0.514,I noticed that there's a payment on my card that's pending.
+card_payment_rejected,0,0.385,I made a payment but it's still pending
+card_payment_rejected,0,0.43,One of my card payments looks like it's stuck but I have made the payment days ago. How long until the payment will be applied to my account?
+card_payment_rejected,0,0.517,There is a vendor name I don't recognize on a payment from my account. I don't think I made this payment.
+card_payment_rejected,0,0.475,What does pending payment mean?
+card_payment_rejected,0,0.58,"It says ""pending payment?"" Why is it saying this?"
+card_payment_rejected,0,0.418,I do not recognise this card payment.
+card_payment_rejected,0,0.559,How is my card payment still pending?
+card_payment_rejected,0,0.488,Why is there an unknown card payment?
+card_payment_rejected,0,0.531,There is a payment that has not processed.
+card_payment_rejected,0,0.599,Why is the payment I made still pending?
+card_payment_rejected,0,0.418,"One of my card payments, I don't recognise the name of the merchant."
+card_payment_rejected,0,0.587,I purchases several items today. Why are they still showing pending?
+card_payment_rejected,0,0.554,Why hasn't my payment shown up yet?
+card_payment_rejected,0,0.565,I have a card payment that I don't recognize. What should I do?
+card_payment_rejected,0,0.543,There are a couple of payments with my card shown in the app that I really didn't make myself. What's going on with this?
+card_payment_rejected,0,0.495,There are a couple of payments with my card shown in the app that I really didn't make myself. Why is it happened?
+card_payment_rejected,0,0.388,My card payment has been pending for a long time now. Why is it taking so long to take. It should have already made it through.

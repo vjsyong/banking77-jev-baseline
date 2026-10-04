@@ -1,0 +1,129 @@
+concept,bucket,label,v1_existing,v2_short,v3_choice,text
+card,clear_pos,1,0.6206,0.7431,0.6633,Do you take both Visa and Mastercard?
+card,clear_pos,1,0.7338,0.7127,0.4082,"I received my card, how do I get it to show in the app?"
+card,clear_pos,1,0.6993,0.5884,0.4247,Someone took my card without permission
+card,clear_pos,1,0.6677,0.7201,0.464,"my payment was rejected, do you know why?"
+card,clear_pos,1,0.7153,0.6105,0.2704,Can I add a card that I just found (again) to the app?
+card,clear_pos,1,0.6414,0.6984,0.4292,How can I check on the delivery status of my card?
+card,clear_pos,1,0.7723,0.6606,0.3002,"I just got a card, how can I add it to the app?"
+card,clear_pos,1,0.7712,0.6442,0.4829,"I found my card that I thought I had lost, I need to reactive it, please help."
+card,clear_pos,1,0.5798,0.7774,0.4069,What credit cards do you carry
+card,clear_pos,1,0.5867,0.3408,0.1925,"My card isn't working at all, I need assistance. It's really frustrating."
+card,clear_pos,1,0.7357,0.685,0.3508,How do I link an existing card?
+card,clear_pos,1,0.7922,0.6977,0.3848,What information do I need to gather in order to activate my card?
+card,clear_pos,1,0.6323,0.5787,0.3116,How do I find the PIN?
+card,clear_pos,1,0.496,0.3985,0.1449,The activation process for my card isn't working.
+card,clear_pos,1,0.7384,0.5828,0.2744,Someone hacked into my cards account.
+card,clear_pos,1,0.6464,0.6776,0.3379,I think my card is broke?
+card,clear_pos,1,0.6241,0.6691,0.2769,I tried to use my card today in the restaurant but it didn't work and just got declined. What's wrong?
+card,clear_pos,1,0.5863,0.4562,0.1495,How do I activate a card?
+card,clear_pos,1,0.6251,0.4865,0.2398,I haven't received my card.
+card,clear_neg,0,0.4124,0.3177,0.1304,Top up did not work on the app.
+card,clear_neg,0,0.3874,0.2913,0.3366,What other currencies are available to change to?
+card,clear_neg,0,0.5913,0.5652,0.2986,I cannot find my refund on my statement.
+card,clear_neg,0,0.5103,0.4895,0.2565,How long until the transfer is reflected on my account balance?
+card,clear_neg,0,0.4026,0.072,0.1149,What time will a transfer from the US take?
+card,clear_neg,0,0.5803,0.2238,0.0595,Please delete this account.
+card,clear_neg,0,0.4118,0.1487,0.1648,What foreign exchange rate will I get on weekdays and on the weekends?
+card,clear_neg,0,0.5624,0.3474,0.2438,"Hello, can you please inform me about international transfers? I am expecting a transfer I made from France two days ago and would like to know when it will arrive."
+card,clear_neg,0,0.3931,0.2078,0.0792,What will I need to configure if my salary is in GBP?
+card,clear_neg,0,0.4601,0.3482,0.0909,Top-up is not working
+card,clear_neg,0,0.4314,0.4188,0.251,"Can you let me know where my refund money is? I requested a refund a few days back, but it's not showing up yet.  Do you guys have the money yet? Maybe it's just not in my account.  Let me know when it will become available, please."
+card,clear_neg,0,0.6469,0.4079,0.1459,Can I transfer my salary onto here?
+card,clear_neg,0,0.512,0.2653,0.2098,I am travelling and I was wondering what your exchange rates are
+card,clear_neg,0,0.5914,0.4618,0.2857,How will I know when I get my refund?
+card,clear_neg,0,0.2762,0.3856,0.2002,This place has been too much work so I'd just like to close out my account & be done.
+card,clear_neg,0,0.4763,0.3757,0.1672,Give me a refund now!! I am still waiting.
+card,clear_neg,0,0.6047,0.2019,0.1353,What documents do I need to validate my identity?
+card,clear_neg,0,0.7199,0.5477,0.3472,"i need a refund from you because the merchant is refusing, can you do that?"
+card,clear_neg,0,0.6372,0.4888,0.2813,Is it possible to change from USD to GBP with your App?
+card,clear_neg,0,0.6678,0.5627,0.1331,"Hello. I bought an item a while ago, and have since requested a refund.  However, upon checking my online statements, it seems that I haven't been issued a refund yet.  How can this be remedied?"
+card,clear_neg,0,0.4789,0.2322,0.0322,"I made a bank transfer from my UK account today, but it's not showing.  Can you check status?"
+card,known_failure,1,0.1726,0.523,0.1151,Nothing goes through on my card.
+card,known_failure,1,0.6581,0.7546,0.277,I am still waiting on my card?
+card,known_failure,0,0.8741,0.4867,0.1126,Can my 19 year old daughter open a savings account at the bank?
+unauth,clear_pos,1,0.5741,0.7435,0.6416,"I am seeing unathorized transactions in the app, on my account."
+unauth,clear_pos,1,0.4832,0.5588,0.4591,I didn't initiate a direct debit that I see on my account
+unauth,clear_pos,1,0.4472,0.7051,0.84,I did not do this payment
+unauth,clear_pos,1,0.5353,0.6993,0.3742,I see a strange payment in my account.
+unauth,clear_pos,1,0.5166,0.3988,0.4794,"What is this card payment, I do not recognize it."
+unauth,clear_pos,1,0.5112,0.6829,0.7629,"There are a couple payments with my card shown in the app that i really didn't make myself. What's going on with this, does someone has access to my card?!"
+unauth,clear_pos,1,0.6241,0.7503,0.7373,Could I raise a dispute for a large payment that i found out was not done by me in my couple of last statements? I am aware its delayed now. Please help me out.
+unauth,clear_pos,1,0.5992,0.6937,0.758,What do I do if I see a cash withdrawal on my account that I don't remember making?
+unauth,clear_pos,1,0.495,0.5056,0.3389,Someone stole my wallet a couple of hours ago now and they have taken money from my account. Is there any way that you can help so I won't lose any more of my money.
+unauth,clear_pos,1,0.5253,0.6926,0.5944,I have a payment in my statement that is off
+unauth,clear_pos,1,0.5111,0.7275,0.5557,I checked my account and see that funds were deducted from a seller I didn't approve of. Can you help me understand?
+unauth,clear_pos,1,0.4917,0.6098,0.5897,I didn't withdraw cash but I see that transaction on my app
+unauth,clear_pos,1,0.5039,0.6555,0.6186,I checked the app and there is a payment that I don't recognize.
+unauth,clear_pos,1,0.546,0.6801,0.6886,Purchases I did not make are appearing in my bank statement?
+unauth,clear_pos,1,0.4469,0.7542,0.752,Payment I didn't do.
+unauth,clear_pos,1,0.4138,0.5069,0.4358,I don't recognize a charge on my statement.
+unauth,clear_pos,1,0.5174,0.6102,0.3469,Can you help me figure out what is going on with a debit payment that is showing up on my account I am not sure is suppose to be there.
+unauth,clear_pos,1,0.5273,0.659,0.6541,I'm noticing a payment/purchase at a company that I don't recognise.
+unauth,clear_pos,1,0.5299,0.5972,0.8195,The app is showing a cash withdrawal that I didn't make.
+unauth,clear_neg,0,0.4552,0.6135,0.4022,Why did I get charged a fee for my transfer?
+unauth,clear_neg,0,0.4137,0.4608,0.3016,Is there a minimum age for having an account?
+unauth,clear_neg,0,0.4213,0.4055,0.5194,How are your exchange rates calculated?
+unauth,clear_neg,0,0.7732,0.5966,0.3741,Would it be possible to open up an account for children?
+unauth,clear_neg,0,0.4394,0.5264,0.2268,I had transferred some money but the balance hasn't changed.
+unauth,clear_neg,0,0.4776,0.71,0.4033,why was i chargged
+unauth,clear_neg,0,0.4725,0.4345,0.4829,I am wondering if International Transfers take longer. I a made a transfer from France two days ago and believed it would be here already. Please let me know when I will get it!
+unauth,clear_neg,0,0.3929,0.444,0.6144,How old do you need to be to use the banks services?
+unauth,clear_neg,0,0.4885,0.5976,0.4982,I'm expecting a refund but it's no where to be seen
+unauth,clear_neg,0,0.4517,0.5068,0.6201,How long will it take to transfer something to China urgently?
+unauth,clear_neg,0,0.6532,0.6219,0.3869,I need information explaining why my top-up failed to go through
+unauth,clear_neg,0,0.4519,0.5294,0.2601,"I've used my account frequently over the last month to manage my payments from abroad for my new place. I noticed that my fees have suddenly increased. As a frequent customer, shouldn't I be rewarded rather than suddenly being subject to a new fee?"
+unauth,clear_neg,0,0.4901,0.6046,0.5148,Can I transfer my payroll to the bank?
+unauth,clear_neg,0,0.5207,0.597,0.5233,Why hasn't my refund been appiled to my account?
+unauth,clear_neg,0,0.4427,0.4651,0.3116,Is my card lost? I am still waiting for it to be delivered.
+unauth,clear_neg,0,0.3596,0.3804,0.1316,Why is my balance the same after a transfer?
+unauth,clear_neg,0,0.409,0.4503,0.5843,What is the timeframe for a transfer in Europe?
+unauth,clear_neg,0,0.3969,0.401,0.3823,How old do my kids have to be use this?
+unauth,clear_neg,0,0.5083,0.5882,0.5621,I thought you guys offered free transfers. Why was I charged?
+unauth,clear_neg,0,0.364,0.4469,0.5198,What will my exchange rate be?
+unauth,clear_neg,0,0.4524,0.2301,0.3298,Help me with a PIN change.
+unauth,known_failure,0,0.8518,0.7438,0.3443,I want to change my pin number from an ATM. Is this possible?
+unauth,known_failure,0,0.188,0.3638,0.3213,"Do any of your machines provide cash from my home country? I don't have any money on me and I'm on holiday so I'm concerned. Also, will I be charged anything to do this?"
+pin,clear_pos,1,0.5909,0.5527,0.4515,Which countries can I change my PIN in?
+pin,clear_pos,1,0.8427,0.7488,0.4583,Can I change my PIN on my phone?
+pin,clear_pos,1,0.6687,0.5949,0.1885,I don't remember my password
+pin,clear_pos,1,0.6624,0.752,0.5223,How can I unblock my PIN?
+pin,clear_pos,1,0.6865,0.7504,0.6278,I tried entering my passcode and it isn't working. Can you help?
+pin,clear_pos,1,0.6276,0.6105,0.6193,"I think someone saw my PIN and I am on vacation in Spain, can I change it locally at an ATM?"
+pin,clear_pos,1,0.6515,0.3785,0.0921,"I used to know my password, but not anymore."
+pin,clear_pos,1,0.7339,0.6882,0.6153,I'm travelling abroad but I've run into a situation where I need to change my PIN immediately. Can I do this from here?
+pin,clear_pos,1,0.8298,0.8438,0.3755,How do I change my passcode?
+pin,clear_pos,1,0.505,0.5025,0.4793,I am on vacation in Spain and think someone saw my pin when… Can I change it at a local ATM?
+pin,clear_pos,1,0.7694,0.7849,0.3843,Do you know how to change my card PIN?
+pin,clear_pos,1,0.7164,0.5373,0.1122,I can't log into my account because I lost my password
+pin,clear_pos,1,0.7836,0.8325,0.6393,I entered my pin wrong  too many times.
+pin,clear_pos,1,0.8396,0.8411,0.4524,passcode retrieval
+pin,clear_pos,1,0.7344,0.7894,0.2723,How do I change my card PIN?
+pin,clear_pos,1,0.6443,0.766,0.3991,I cannot try my PIN anymore.
+pin,clear_pos,1,0.711,0.7897,0.5819,My PIN isn't working.
+pin,clear_pos,1,0.5256,0.4965,0.4478,Do I have to go to an actual bank to change my PIN?
+pin,clear_pos,1,0.5578,0.6338,0.5602,Where do I go to unblock my PIN?
+pin,clear_pos,1,0.7359,0.7622,0.4432,Please help me set up a new PIN.
+pin,clear_neg,0,0.6134,0.4439,0.1416,I tried to top-up but it got denied.
+pin,clear_neg,0,0.6989,0.3214,0.0754,What is taking so long with my refund?
+pin,clear_neg,0,0.6253,0.2249,0.0994,How long do transfers take to go though
+pin,clear_neg,0,0.5382,0.3646,0.1276,Will I get extra charges?
+pin,clear_neg,0,0.4876,0.066,0.0686,How long does it take in Europe to do a transfer?
+pin,clear_neg,0,0.564,0.3971,0.1095,What is the age requirement?
+pin,clear_neg,0,0.536,0.4658,0.087,What do I need to do to get my new card which I have requested 2 weeks ago?
+pin,clear_neg,0,0.4704,0.4344,0.0902,I was issued a card about a week ago. why hasn't it come in yet?
+pin,clear_neg,0,0.5191,0.3411,0.1318,I believe my top up did not work.
+pin,clear_neg,0,0.5728,0.3581,0.1117,I was charge a fee that I wasn't told about
+pin,clear_neg,0,0.536,0.1158,0.094,What is the time frame for european transfers?
+pin,clear_neg,0,0.7187,0.4493,0.0594,It's been a week since you sent my card and I still don't have it.
+pin,clear_neg,0,0.6074,0.3371,0.0869,Hey I thought transfers were free.  Why are you charging me?
+pin,clear_neg,0,0.7007,0.453,0.0986,Why am I charged to get money from the ATM?
+pin,clear_neg,0,0.6171,0.4607,0.0835,what is the status of my refund
+pin,clear_neg,0,0.6618,0.4489,0.0841,What's going on? I was just recently charged for an ATM withdrawal. I've never seen this charge before and before it's always been free.
+pin,clear_neg,0,0.3888,0.2547,0.0701,"Its been 3 days, How long will my transfer take to get to my wallet?"
+pin,clear_neg,0,0.518,0.3962,0.0769,I was issued a new card a week ago but still haven't received it. How long will it be until I receive it?
+pin,clear_neg,0,0.7608,0.3889,0.1038,I was charged a fee with my cash withdrawal that I shouldn't have been charged.
+pin,clear_neg,0,0.4851,0.1949,0.0657,A refund for a recent return has not arrived on my card.
+pin,clear_neg,0,0.5794,0.5107,0.1724,"Hello, I tried to top up with my card, but it didn't work. I just got it a couple days before and it works fine. What's the deal? Can you check into this?"
+pin,known_failure,1,0.8761,0.8047,0.4853,I want to change my pin number from an ATM. Is this possible?
+pin,known_failure,0,0.2985,0.2461,0.0861,"According to the app, I got cash from an ATM but I haven't made any transactions."

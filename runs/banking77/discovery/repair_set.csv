@@ -1,0 +1,129 @@
+concept,label,bucket,split_row,source_split,text
+card,1,clear_pos,4185,train,Do you take both Visa and Mastercard?
+card,1,clear_pos,185,train,"I received my card, how do I get it to show in the app?"
+card,1,clear_pos,1528,train,Someone took my card without permission
+card,1,clear_pos,5942,train,"my payment was rejected, do you know why?"
+card,1,clear_pos,171,train,Can I add a card that I just found (again) to the app?
+card,1,clear_pos,69,train,How can I check on the delivery status of my card?
+card,1,clear_pos,158,train,"I just got a card, how can I add it to the app?"
+card,1,clear_pos,254,train,"I found my card that I thought I had lost, I need to reactive it, please help."
+card,1,clear_pos,4126,train,What credit cards do you carry
+card,1,clear_pos,1247,train,"My card isn't working at all, I need assistance. It's really frustrating."
+card,1,clear_pos,178,train,How do I link an existing card?
+card,1,clear_pos,9275,train,What information do I need to gather in order to activate my card?
+card,1,clear_pos,4056,train,How do I find the PIN?
+card,1,clear_pos,9311,train,The activation process for my card isn't working.
+card,1,clear_pos,4527,train,Someone hacked into my cards account.
+card,1,clear_pos,1268,train,I think my card is broke?
+card,1,clear_pos,1286,train,I tried to use my card today in the restaurant but it didn't work and just got declined. What's wrong?
+card,1,clear_pos,9247,train,How do I activate a card?
+card,1,clear_pos,107,train,I haven't received my card.
+card,0,clear_neg,8563,train,Top up did not work on the app.
+card,0,clear_neg,1468,train,What other currencies are available to change to?
+card,0,clear_neg,5747,train,I cannot find my refund on my statement.
+card,0,clear_neg,6632,train,How long until the transfer is reflected on my account balance?
+card,0,clear_neg,6596,train,What time will a transfer from the US take?
+card,0,clear_neg,6205,train,Please delete this account.
+card,0,clear_neg,295,train,What foreign exchange rate will I get on weekdays and on the weekends?
+card,0,clear_neg,8688,train,"Hello, can you please inform me about international transfers? I am expecting a transfer I made from France two days ago and would like to know when it will arrive."
+card,0,clear_neg,7392,train,What will I need to configure if my salary is in GBP?
+card,0,clear_neg,8469,train,Top-up is not working
+card,0,clear_neg,5793,train,"Can you let me know where my refund money is? I requested a refund a few days back, but it's not showing up yet.  Do you guys have the money yet? Maybe it's just not in my account.  Let me know when it will become available, please."
+card,0,clear_neg,7386,train,Can I transfer my salary onto here?
+card,0,clear_neg,391,train,I am travelling and I was wondering what your exchange rates are
+card,0,clear_neg,5733,train,How will I know when I get my refund?
+card,0,clear_neg,6176,train,This place has been too much work so I'd just like to close out my account & be done.
+card,0,clear_neg,5720,train,Give me a refund now!! I am still waiting.
+card,0,clear_neg,9786,train,What documents do I need to validate my identity?
+card,0,clear_neg,5803,train,"i need a refund from you because the merchant is refusing, can you do that?"
+card,0,clear_neg,1420,train,Is it possible to change from USD to GBP with your App?
+card,0,clear_neg,5728,train,"Hello. I bought an item a while ago, and have since requested a refund.  However, upon checking my online statements, it seems that I haven't been issued a refund yet.  How can this be remedied?"
+card,0,clear_neg,8685,train,"I made a bank transfer from my UK account today, but it's not showing.  Can you check status?"
+card,1,known_failure,-1,test,Nothing goes through on my card.
+card,1,known_failure,-1,train,I am still waiting on my card?
+card,0,known_failure,-1,test,Can my 19 year old daughter open a savings account at the bank?
+unauth,1,clear_pos,8839,train,"I am seeing unathorized transactions in the app, on my account."
+unauth,1,clear_pos,4790,train,I didn't initiate a direct debit that I see on my account
+unauth,1,clear_pos,3535,train,I did not do this payment
+unauth,1,clear_pos,3608,train,I see a strange payment in my account.
+unauth,1,clear_pos,3638,train,"What is this card payment, I do not recognize it."
+unauth,1,clear_pos,3490,train,"There are a couple payments with my card shown in the app that i really didn't make myself. What's going on with this, does someone has access to my card?!"
+unauth,1,clear_pos,4670,train,Could I raise a dispute for a large payment that i found out was not done by me in my couple of last statements? I am aware its delayed now. Please help me out.
+unauth,1,clear_pos,8855,train,What do I do if I see a cash withdrawal on my account that I don't remember making?
+unauth,1,clear_pos,8846,train,Someone stole my wallet a couple of hours ago now and they have taken money from my account. Is there any way that you can help so I won't lose any more of my money.
+unauth,1,clear_pos,3534,train,I have a payment in my statement that is off
+unauth,1,clear_pos,4808,train,I checked my account and see that funds were deducted from a seller I didn't approve of. Can you help me understand?
+unauth,1,clear_pos,8930,train,I didn't withdraw cash but I see that transaction on my app
+unauth,1,clear_pos,3562,train,I checked the app and there is a payment that I don't recognize.
+unauth,1,clear_pos,4755,train,Purchases I did not make are appearing in my bank statement?
+unauth,1,clear_pos,3517,train,Payment I didn't do.
+unauth,1,clear_pos,3617,train,I don't recognize a charge on my statement.
+unauth,1,clear_pos,4686,train,Can you help me figure out what is going on with a debit payment that is showing up on my account I am not sure is suppose to be there.
+unauth,1,clear_pos,3522,train,I'm noticing a payment/purchase at a company that I don't recognise.
+unauth,1,clear_pos,8801,train,The app is showing a cash withdrawal that I didn't make.
+unauth,0,clear_neg,7319,train,Why did I get charged a fee for my transfer?
+unauth,0,clear_neg,1656,train,Is there a minimum age for having an account?
+unauth,0,clear_neg,342,train,How are your exchange rates calculated?
+unauth,0,clear_neg,1576,train,Would it be possible to open up an account for children?
+unauth,0,clear_neg,8656,train,I had transferred some money but the balance hasn't changed.
+unauth,0,clear_neg,7218,train,why was i chargged
+unauth,0,clear_neg,8705,train,I am wondering if International Transfers take longer. I a made a transfer from France two days ago and believed it would be here already. Please let me know when I will get it!
+unauth,0,clear_neg,1558,train,How old do you need to be to use the banks services?
+unauth,0,clear_neg,5826,train,I'm expecting a refund but it's no where to be seen
+unauth,0,clear_neg,6679,train,How long will it take to transfer something to China urgently?
+unauth,0,clear_neg,8577,train,I need information explaining why my top-up failed to go through
+unauth,0,clear_neg,7258,train,"I've used my account frequently over the last month to manage my payments from abroad for my new place. I noticed that my fees have suddenly increased. As a frequent customer, shouldn't I be rewarded rather than suddenly being subject to a new fee?"
+unauth,0,clear_neg,7360,train,Can I transfer my payroll to the bank?
+unauth,0,clear_neg,5723,train,Why hasn't my refund been appiled to my account?
+unauth,0,clear_neg,46,train,Is my card lost? I am still waiting for it to be delivered.
+unauth,0,clear_neg,8620,train,Why is my balance the same after a transfer?
+unauth,0,clear_neg,6623,train,What is the timeframe for a transfer in Europe?
+unauth,0,clear_neg,1573,train,How old do my kids have to be use this?
+unauth,0,clear_neg,7239,train,I thought you guys offered free transfers. Why was I charged?
+unauth,0,clear_neg,356,train,What will my exchange rate be?
+unauth,0,clear_neg,6933,train,Help me with a PIN change.
+unauth,0,known_failure,-1,train,I want to change my pin number from an ATM. Is this possible?
+unauth,0,known_failure,-1,train,"Do any of your machines provide cash from my home country? I don't have any money on me and I'm on holiday so I'm concerned. Also, will I be charged anything to do this?"
+pin,1,clear_pos,6916,train,Which countries can I change my PIN in?
+pin,1,clear_pos,6932,train,Can I change my PIN on my phone?
+pin,1,clear_pos,4859,train,I don't remember my password
+pin,1,clear_pos,1684,train,How can I unblock my PIN?
+pin,1,clear_pos,4893,train,I tried entering my passcode and it isn't working. Can you help?
+pin,1,clear_pos,6946,train,"I think someone saw my PIN and I am on vacation in Spain, can I change it locally at an ATM?"
+pin,1,clear_pos,4856,train,"I used to know my password, but not anymore."
+pin,1,clear_pos,6927,train,I'm travelling abroad but I've run into a situation where I need to change my PIN immediately. Can I do this from here?
+pin,1,clear_pos,4869,train,How do I change my passcode?
+pin,1,clear_pos,6954,train,I am on vacation in Spain and think someone saw my pin when… Can I change it at a local ATM?
+pin,1,clear_pos,6986,train,Do you know how to change my card PIN?
+pin,1,clear_pos,4865,train,I can't log into my account because I lost my password
+pin,1,clear_pos,1745,train,I entered my pin wrong  too many times.
+pin,1,clear_pos,4847,train,passcode retrieval
+pin,1,clear_pos,6949,train,How do I change my card PIN?
+pin,1,clear_pos,1686,train,I cannot try my PIN anymore.
+pin,1,clear_pos,1738,train,My PIN isn't working.
+pin,1,clear_pos,6992,train,Do I have to go to an actual bank to change my PIN?
+pin,1,clear_pos,1747,train,Where do I go to unblock my PIN?
+pin,1,clear_pos,6920,train,Please help me set up a new PIN.
+pin,0,clear_neg,8520,train,I tried to top-up but it got denied.
+pin,0,clear_neg,5749,train,What is taking so long with my refund?
+pin,0,clear_neg,8722,train,How long do transfers take to go though
+pin,0,clear_neg,7311,train,Will I get extra charges?
+pin,0,clear_neg,6645,train,How long does it take in Europe to do a transfer?
+pin,0,clear_neg,1659,train,What is the age requirement?
+pin,0,clear_neg,92,train,What do I need to do to get my new card which I have requested 2 weeks ago?
+pin,0,clear_neg,110,train,I was issued a card about a week ago. why hasn't it come in yet?
+pin,0,clear_neg,8552,train,I believe my top up did not work.
+pin,0,clear_neg,7323,train,I was charge a fee that I wasn't told about
+pin,0,clear_neg,6698,train,What is the time frame for european transfers?
+pin,0,clear_neg,25,train,It's been a week since you sent my card and I still don't have it.
+pin,0,clear_neg,7305,train,Hey I thought transfers were free.  Why are you charging me?
+pin,0,clear_neg,9343,train,Why am I charged to get money from the ATM?
+pin,0,clear_neg,5780,train,what is the status of my refund
+pin,0,clear_neg,9457,train,What's going on? I was just recently charged for an ATM withdrawal. I've never seen this charge before and before it's always been free.
+pin,0,clear_neg,6686,train,"Its been 3 days, How long will my transfer take to get to my wallet?"
+pin,0,clear_neg,137,train,I was issued a new card a week ago but still haven't received it. How long will it be until I receive it?
+pin,0,clear_neg,9474,train,I was charged a fee with my cash withdrawal that I shouldn't have been charged.
+pin,0,clear_neg,5798,train,A refund for a recent return has not arrived on my card.
+pin,0,clear_neg,8586,train,"Hello, I tried to top up with my card, but it didn't work. I just got it a couple days before and it works fine. What's the deal? Can you check into this?"
+pin,1,known_failure,-1,train,I want to change my pin number from an ATM. Is this possible?
+pin,0,known_failure,-1,train,"According to the app, I got cash from an ATM but I haven't made any transactions."

@@ -1,0 +1,734 @@
+{
+  "runs": [
+    {
+      "policy": "unguided",
+      "seed": 0.3,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.4834,
+      "cv_scores_1k": {
+        "lr": 0.4834,
+        "svm": 0.4351,
+        "et": 0.347
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.447,
+        "accuracy": 0.4571
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.447,
+          "accuracy": 0.4571
+        },
+        "svm": {
+          "macro_f1": 0.333,
+          "accuracy": 0.336
+        },
+        "et": {
+          "macro_f1": 0.4256,
+          "accuracy": 0.4396
+        }
+      },
+      "extract_ms_per_text": 77.157,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "card_payment_declined",
+        "bank_transfer_failed",
+        "direct_debit_involved",
+        "transaction_duplicated",
+        "cash_withdrawal_declined",
+        "cash_withdrawal_not_recognized",
+        "beneficiary_issue",
+        "balance_not_updated_after_transfer",
+        "card_payment_not_recognized",
+        "cash_withdrawal_charge",
+        "card_payment_wrong_exchange_rate",
+        "pin_related"
+      ]
+    },
+    {
+      "policy": "unguided",
+      "seed": 0.7,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.4691,
+      "cv_scores_1k": {
+        "lr": 0.4691,
+        "svm": 0.4251,
+        "et": 0.3668
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.4167,
+        "accuracy": 0.438
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.4167,
+          "accuracy": 0.438
+        },
+        "svm": {
+          "macro_f1": 0.3898,
+          "accuracy": 0.4042
+        },
+        "et": {
+          "macro_f1": 0.3496,
+          "accuracy": 0.3643
+        }
+      },
+      "extract_ms_per_text": 76.369,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "declined_card_payment",
+        "card_delivery",
+        "direct_debit",
+        "declined_cash_withdrawal",
+        "unrecognized_card_payment",
+        "unrecognized_cash_withdrawal",
+        "failed_bank_transfer",
+        "beneficiary_unavailable",
+        "top_up_failed",
+        "transfer_not_received_by_recipient",
+        "duplicate_transaction_charge",
+        "unrecognized_direct_debit"
+      ]
+    },
+    {
+      "policy": "unguided",
+      "seed": 1.0,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.486,
+      "cv_scores_1k": {
+        "lr": 0.486,
+        "svm": 0.4356,
+        "et": 0.3449
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.4336,
+        "accuracy": 0.4494
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.4336,
+          "accuracy": 0.4494
+        },
+        "svm": {
+          "macro_f1": 0.3795,
+          "accuracy": 0.388
+        },
+        "et": {
+          "macro_f1": 0.3539,
+          "accuracy": 0.3672
+        }
+      },
+      "extract_ms_per_text": 76.687,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "direct_debit",
+        "duplicate_charge",
+        "refund_request",
+        "transfer_not_received_by_recipient",
+        "declined_card_payment",
+        "declined_cash_withdrawal",
+        "failed_bank_transfer",
+        "card_delivery_timing",
+        "reverted_card_payment",
+        "cash_withdrawal_fee",
+        "beneficiary_not_allowed",
+        "card_payment_wrong_exchange_rate"
+      ]
+    },
+    {
+      "policy": "accuracy",
+      "seed": 0.3,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.49,
+      "cv_scores_1k": {
+        "lr": 0.49,
+        "svm": 0.4312,
+        "et": 0.3552
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.4489,
+        "accuracy": 0.4532
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.4489,
+          "accuracy": 0.4532
+        },
+        "svm": {
+          "macro_f1": 0.4047,
+          "accuracy": 0.4159
+        },
+        "et": {
+          "macro_f1": 0.418,
+          "accuracy": 0.4305
+        }
+      },
+      "extract_ms_per_text": 77.048,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "transfer_recipient_not_received",
+        "cash_deposit_balance_missing",
+        "automatic_low_balance_top_up",
+        "virtual_card_payment_failure",
+        "card_acceptance_issue",
+        "duplicate_transaction_charge",
+        "extra_card_request",
+        "transfer_status_pending",
+        "card_activation_request",
+        "card_linking_request",
+        "cash_withdrawal_exchange_rate",
+        "in_app_currency_exchange"
+      ]
+    },
+    {
+      "policy": "accuracy",
+      "seed": 0.7,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.4799,
+      "cv_scores_1k": {
+        "lr": 0.4799,
+        "svm": 0.4305,
+        "et": 0.3499
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.5245,
+        "accuracy": 0.5253
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.5245,
+          "accuracy": 0.5253
+        },
+        "svm": {
+          "macro_f1": 0.4608,
+          "accuracy": 0.4675
+        },
+        "et": {
+          "macro_f1": 0.4255,
+          "accuracy": 0.439
+        }
+      },
+      "extract_ms_per_text": 76.939,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "card_acceptance_by_merchant",
+        "additional_card_request",
+        "virtual_card_failure",
+        "cash_or_cheque_deposit",
+        "recipient_has_not_received_transfer",
+        "card_delivery_timing_request",
+        "fiat_currency_support_query",
+        "card_security_compromise",
+        "card_not_arrived",
+        "virtual_card_creation_request",
+        "existing_card_linking",
+        "direct_debit_unrecognized"
+      ]
+    },
+    {
+      "policy": "accuracy",
+      "seed": 1.0,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.4621,
+      "cv_scores_1k": {
+        "lr": 0.4621,
+        "svm": 0.4297,
+        "et": 0.3395
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.487,
+        "accuracy": 0.4873
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.487,
+          "accuracy": 0.4873
+        },
+        "svm": {
+          "macro_f1": 0.3968,
+          "accuracy": 0.4062
+        },
+        "et": {
+          "macro_f1": 0.4111,
+          "accuracy": 0.4224
+        }
+      },
+      "extract_ms_per_text": 77.423,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "card_activation",
+        "recipient_missing_transfer",
+        "cash_deposit_balance_missing",
+        "automatic_balance_top_up",
+        "transfer_explicitly_declined",
+        "transfer_explicitly_failed",
+        "cash_withdrawal_exchange_rate",
+        "currency_support_question",
+        "card_acceptance",
+        "virtual_card_not_working",
+        "pending_bank_transfer",
+        "wrong_cash_amount"
+      ]
+    },
+    {
+      "policy": "frontier",
+      "seed": 0.3,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.4829,
+      "cv_scores_1k": {
+        "lr": 0.4829,
+        "svm": 0.4314,
+        "et": 0.3561
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.5101,
+        "accuracy": 0.513
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.5101,
+          "accuracy": 0.513
+        },
+        "svm": {
+          "macro_f1": 0.4461,
+          "accuracy": 0.4555
+        },
+        "et": {
+          "macro_f1": 0.4304,
+          "accuracy": 0.4422
+        }
+      },
+      "extract_ms_per_text": 77.459,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "card_payment_rejected",
+        "virtual_card_failure",
+        "personal_details_change",
+        "cash_or_cheque_topup",
+        "forgotten_passcode",
+        "recipient_missing_transfer",
+        "duplicate_transaction",
+        "card_activation_request",
+        "merchant_card_acceptance",
+        "link_existing_card",
+        "beneficiary_restriction",
+        "automatic_balance_topup"
+      ]
+    },
+    {
+      "policy": "frontier",
+      "seed": 0.7,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.4764,
+      "cv_scores_1k": {
+        "lr": 0.4764,
+        "svm": 0.4294,
+        "et": 0.3276
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.4167,
+        "accuracy": 0.426
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.4167,
+          "accuracy": 0.426
+        },
+        "svm": {
+          "macro_f1": 0.2781,
+          "accuracy": 0.2883
+        },
+        "et": {
+          "macro_f1": 0.4204,
+          "accuracy": 0.4347
+        }
+      },
+      "extract_ms_per_text": 76.822,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "card_acceptance",
+        "virtual_card_failure",
+        "receiving_money_request",
+        "card_activation_needed",
+        "transfer_recipient_not_received",
+        "duplicate_transaction",
+        "direct_debit_involved",
+        "card_lost_or_stolen",
+        "virtual_card_acquisition",
+        "card_linking_needed",
+        "transfer_failed",
+        "top_up_reverted_after_completion"
+      ]
+    },
+    {
+      "policy": "frontier",
+      "seed": 1.0,
+      "bank_size": 28,
+      "new_probes": 12,
+      "cv_best_1k": 0.4642,
+      "cv_scores_1k": {
+        "lr": 0.4642,
+        "svm": 0.4328,
+        "et": 0.3501
+      },
+      "best_model": "lr",
+      "best_cv_pick": "lr",
+      "test_best": {
+        "macro_f1": 0.4354,
+        "accuracy": 0.4477
+      },
+      "test_per_model": {
+        "lr": {
+          "macro_f1": 0.4354,
+          "accuracy": 0.4477
+        },
+        "svm": {
+          "macro_f1": 0.3465,
+          "accuracy": 0.3692
+        },
+        "et": {
+          "macro_f1": 0.4009,
+          "accuracy": 0.411
+        }
+      },
+      "extract_ms_per_text": 77.22,
+      "final_bank_ids": [
+        "asks_for_information",
+        "requests_an_action",
+        "reports_a_problem",
+        "unauthorised_activity",
+        "transaction_is_pending",
+        "transaction_is_completed",
+        "money_outgoing",
+        "money_incoming",
+        "physical_or_virtual_card",
+        "cash_or_atm",
+        "bank_transfer",
+        "account_funding_or_top_up",
+        "fee_or_charge",
+        "currency_conversion",
+        "cancel_or_reverse",
+        "account_access_or_security",
+        "card_activation",
+        "card_linking",
+        "transfer_recipient_not_received",
+        "automatic_top_up",
+        "cash_withdrawal_exchange_rate",
+        "card_payment_exchange_rate",
+        "virtual_card_not_working",
+        "card_acceptance",
+        "completed_transfer_recipient_missing",
+        "cash_or_cheque_deposit",
+        "duplicate_transaction",
+        "card_security_compromise"
+      ]
+    }
+  ],
+  "per_policy": {
+    "unguided": {
+      "n_seeds": 3,
+      "mean_test_macro_f1": 0.4324,
+      "mean_bank_size": 28.0,
+      "mean_extract_ms": 76.738,
+      "mean_new_probes": 12.0
+    },
+    "accuracy": {
+      "n_seeds": 3,
+      "mean_test_macro_f1": 0.4868,
+      "mean_bank_size": 28.0,
+      "mean_extract_ms": 77.137,
+      "mean_new_probes": 12.0
+    },
+    "frontier": {
+      "n_seeds": 3,
+      "mean_test_macro_f1": 0.4541,
+      "mean_bank_size": 28.0,
+      "mean_extract_ms": 77.167,
+      "mean_new_probes": 12.0
+    }
+  },
+  "probe_extract_ms": {
+    "asks_for_information": 3.782,
+    "requests_an_action": 2.822,
+    "reports_a_problem": 2.749,
+    "unauthorised_activity": 2.881,
+    "transaction_is_pending": 2.867,
+    "transaction_is_completed": 2.776,
+    "money_outgoing": 2.948,
+    "money_incoming": 2.925,
+    "physical_or_virtual_card": 2.713,
+    "cash_or_atm": 2.92,
+    "bank_transfer": 2.671,
+    "account_funding_or_top_up": 2.829,
+    "fee_or_charge": 2.819,
+    "currency_conversion": 2.793,
+    "cancel_or_reverse": 2.921,
+    "account_access_or_security": 2.965,
+    "card_payment_declined": 2.555,
+    "bank_transfer_failed": 2.611,
+    "direct_debit_involved": 2.536,
+    "transaction_duplicated": 2.531,
+    "cash_withdrawal_declined": 2.629,
+    "cash_withdrawal_not_recognized": 2.64,
+    "beneficiary_issue": 2.721,
+    "balance_not_updated_after_transfer": 2.533,
+    "card_payment_not_recognized": 2.543,
+    "cash_withdrawal_charge": 2.5,
+    "card_payment_wrong_exchange_rate": 2.49,
+    "pin_related": 2.487,
+    "declined_card_payment": 2.436,
+    "card_delivery": 2.643,
+    "direct_debit": 2.435,
+    "declined_cash_withdrawal": 2.54,
+    "unrecognized_card_payment": 2.463,
+    "unrecognized_cash_withdrawal": 2.452,
+    "failed_bank_transfer": 2.408,
+    "beneficiary_unavailable": 2.595,
+    "top_up_failed": 2.505,
+    "transfer_not_received_by_recipient": 2.522,
+    "duplicate_transaction_charge": 2.486,
+    "unrecognized_direct_debit": 2.503,
+    "duplicate_charge": 2.526,
+    "refund_request": 2.66,
+    "card_delivery_timing": 2.458,
+    "reverted_card_payment": 2.656,
+    "cash_withdrawal_fee": 2.518,
+    "beneficiary_not_allowed": 2.657,
+    "transfer_recipient_not_received": 2.542,
+    "cash_deposit_balance_missing": 2.692,
+    "automatic_low_balance_top_up": 2.629,
+    "virtual_card_payment_failure": 2.5,
+    "card_acceptance_issue": 2.551,
+    "extra_card_request": 2.546,
+    "transfer_status_pending": 2.544,
+    "card_activation_request": 2.48,
+    "card_linking_request": 2.526,
+    "cash_withdrawal_exchange_rate": 2.627,
+    "in_app_currency_exchange": 2.544,
+    "card_acceptance_by_merchant": 2.56,
+    "additional_card_request": 2.481,
+    "virtual_card_failure": 2.465,
+    "cash_or_cheque_deposit": 2.512,
+    "recipient_has_not_received_transfer": 2.61,
+    "card_delivery_timing_request": 2.562,
+    "fiat_currency_support_query": 2.509,
+    "card_security_compromise": 2.584,
+    "card_not_arrived": 2.673,
+    "virtual_card_creation_request": 2.55,
+    "existing_card_linking": 2.573,
+    "direct_debit_unrecognized": 2.479,
+    "card_activation": 2.469,
+    "recipient_missing_transfer": 2.595,
+    "automatic_balance_top_up": 2.733,
+    "transfer_explicitly_declined": 2.588,
+    "transfer_explicitly_failed": 2.55,
+    "currency_support_question": 2.648,
+    "card_acceptance": 2.511,
+    "virtual_card_not_working": 2.481,
+    "pending_bank_transfer": 2.499,
+    "wrong_cash_amount": 2.649,
+    "card_payment_rejected": 2.722,
+    "personal_details_change": 2.528,
+    "cash_or_cheque_topup": 2.525,
+    "forgotten_passcode": 2.473,
+    "duplicate_transaction": 2.568,
+    "merchant_card_acceptance": 2.701,
+    "link_existing_card": 2.683,
+    "beneficiary_restriction": 2.738,
+    "automatic_balance_topup": 2.6,
+    "receiving_money_request": 2.627,
+    "card_activation_needed": 2.543,
+    "card_lost_or_stolen": 2.517,
+    "virtual_card_acquisition": 2.521,
+    "card_linking_needed": 2.558,
+    "transfer_failed": 2.464,
+    "top_up_reverted_after_completion": 2.589,
+    "card_linking": 2.542,
+    "automatic_top_up": 2.592,
+    "card_payment_exchange_rate": 2.668,
+    "completed_transfer_recipient_missing": 2.743
+  },
+  "refs": {
+    "n_small": 1000,
+    "seed": 77,
+    "tfidf_lr_1k": {
+      "macro_f1": 0.7503828467383591,
+      "accuracy": 0.7532467532467533
+    },
+    "readout_lr_1k": {
+      "macro_f1": 0.8467516757432239,
+      "accuracy": 0.8470779220779221,
+      "top3": 0.9525974025974026,
+      "C": 1.0,
+      "cv_macro_f1": 0.8339856151544462
+    },
+    "probes16_1k": {
+      "lr": {
+        "macro_f1": 0.4384169038375963,
+        "accuracy": 0.44805194805194803,
+        "top3": 0.6646103896103897,
+        "C": 1.0,
+        "cv_macro_f1": 0.3725591896714891
+      },
+      "svm": {
+        "macro_f1": 0.3689051014100312,
+        "accuracy": 0.38311688311688313
+      },
+      "extra_trees": {
+        "macro_f1": 0.3519671175274658,
+        "accuracy": 0.3665584415584416,
+        "top3": 0.589935064935065
+      }
+    },
+    "direct_argmax": {
+      "macro_f1": 0.757448781968429,
+      "accuracy": 0.7633116883116883,
+      "top3": 0.9077922077922078
+    },
+    "note": "trained on 1,000 stratified train rows; evaluated on the full 3,080-row test split"
+  }
+}

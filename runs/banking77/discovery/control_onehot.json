@@ -1,0 +1,27 @@
+{
+  "protocol": "StandardScaler->LR, 3-fold stratified CV seed 77, C grid [0.1,1,10]",
+  "argmax_baseline": {
+    "macro_f1": 0.757448781968429,
+    "accuracy": 0.7633116883116883,
+    "top3": 0.9077922077922078
+  },
+  "onehot_lr": {
+    "best_C": 0.1,
+    "cv_macro_f1": 0.7547840219459013,
+    "test_macro_f1": 0.7509609730395616,
+    "test_accuracy": 0.7597402597402597,
+    "test_top3": 0.8957792207792208
+  },
+  "logprob_lr": {
+    "best_C": 1.0,
+    "cv_macro_f1": 0.8916804549667798,
+    "test_macro_f1": 0.9007598654702849,
+    "test_accuracy": 0.9006493506493507,
+    "test_top3": 0.9766233766233766
+  },
+  "decomposition_pp": {
+    "supervision_gain_macro_f1": -0.65,
+    "representation_gain_macro_f1": 14.98,
+    "total_gain_macro_f1": 14.33
+  }
+}
