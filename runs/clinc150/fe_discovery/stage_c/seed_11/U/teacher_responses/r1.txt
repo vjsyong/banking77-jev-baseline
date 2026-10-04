@@ -1,0 +1,314 @@
+[
+  {
+    "name": "requested_intervention",
+    "question": "What kind of response or intervention is the user primarily asking for?",
+    "options": [
+      {
+        "id": "report_facts",
+        "definition": "Retrieve or report an existing fact, record, value, or current state."
+      },
+      {
+        "id": "explain",
+        "definition": "Explain a meaning, cause, rule, or how something works."
+      },
+      {
+        "id": "give_steps",
+        "definition": "Provide instructions so the user can perform an action themselves."
+      },
+      {
+        "id": "take_action",
+        "definition": "Perform an action or change something on the user's behalf."
+      },
+      {
+        "id": "recommend",
+        "definition": "Suggest or select a suitable choice for the user."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a definite kind of requested response or intervention."
+      }
+    ]
+  },
+  {
+    "name": "event_time",
+    "question": "When does the main event or situation discussed in the message occur relative to now?",
+    "options": [
+      {
+        "id": "past",
+        "definition": "The message concerns an event that already happened or a previously existing situation."
+      },
+      {
+        "id": "present",
+        "definition": "The message concerns what is happening now or the current state of something."
+      },
+      {
+        "id": "future",
+        "definition": "The message concerns a planned, expected, or hypothetical future event."
+      },
+      {
+        "id": "timeless",
+        "definition": "The message explicitly concerns a general rule or recurring situation rather than a particular time."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a definite temporal category for its main subject."
+      }
+    ]
+  },
+  {
+    "name": "process_stage",
+    "question": "What stage has the main process or attempted action reached?",
+    "options": [
+      {
+        "id": "not_started",
+        "definition": "The user is considering or preparing for an action that has not yet begun."
+      },
+      {
+        "id": "underway",
+        "definition": "The action has begun and is still pending, processing, or awaiting completion."
+      },
+      {
+        "id": "completed",
+        "definition": "The action has finished or its result has already been delivered."
+      },
+      {
+        "id": "unsuccessful",
+        "definition": "An attempted action was rejected, failed, or could not proceed."
+      },
+      {
+        "id": "stopped",
+        "definition": "An action that had begun was canceled, withdrawn, or otherwise terminated before completion."
+      },
+      {
+        "id": "unclear",
+        "definition": "No definite process stage is stated, or the message does not concern a process."
+      }
+    ]
+  },
+  {
+    "name": "change_direction",
+    "question": "What structural change does the user want made to the main item, arrangement, or setting?",
+    "options": [
+      {
+        "id": "add",
+        "definition": "Introduce a new item, arrangement, association, or setting that does not currently exist."
+      },
+      {
+        "id": "modify",
+        "definition": "Alter an existing item, arrangement, or setting while retaining it."
+      },
+      {
+        "id": "remove",
+        "definition": "Delete, discontinue, or detach an existing item, arrangement, or association."
+      },
+      {
+        "id": "restore",
+        "definition": "Return something to a previous state or undo an earlier change."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not request a definite structural change."
+      }
+    ]
+  },
+  {
+    "name": "money_direction",
+    "question": "What direction of money movement is described from the user's perspective?",
+    "options": [
+      {
+        "id": "incoming",
+        "definition": "Money is expected to arrive, be credited, or be returned to the user."
+      },
+      {
+        "id": "outgoing",
+        "definition": "Money leaves or would leave the user to pay another person or organization."
+      },
+      {
+        "id": "own_holdings",
+        "definition": "Money moves between accounts or forms of money belonging to the user, without paying another party."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a definite direction of money movement."
+      }
+    ]
+  },
+  {
+    "name": "problem_locus",
+    "question": "Where is the main problem described in the message located?",
+    "options": [
+      {
+        "id": "access",
+        "definition": "The user cannot authenticate, enter, unlock, or obtain permission to use something."
+      },
+      {
+        "id": "execution",
+        "definition": "The user can attempt an operation, but it fails, is rejected, or does not finish."
+      },
+      {
+        "id": "result",
+        "definition": "An operation produced a result, but its content, amount, destination, or behavior is wrong."
+      },
+      {
+        "id": "possession",
+        "definition": "A needed physical item is missing, stolen, damaged, or has not arrived."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not locate a definite problem in any of these categories."
+      }
+    ]
+  },
+  {
+    "name": "answer_scope",
+    "question": "What scope of information is the user asking about?",
+    "options": [
+      {
+        "id": "specific_instance",
+        "definition": "The answer concerns one identifiable event, object, record, or occurrence."
+      },
+      {
+        "id": "personal_overview",
+        "definition": "The answer concerns the user's overall situation or a collection of their items or events."
+      },
+      {
+        "id": "general_rule",
+        "definition": "The answer concerns a generally applicable policy, definition, capability, or procedure."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a definite scope, or it does not request information."
+      }
+    ]
+  },
+  {
+    "name": "quantity_kind",
+    "question": "What kind of quantitative information is the user primarily requesting?",
+    "options": [
+      {
+        "id": "total_amount",
+        "definition": "An absolute amount, count, or total, including a monetary amount."
+      },
+      {
+        "id": "rate",
+        "definition": "A percentage, ratio, conversion rate, or amount per unit."
+      },
+      {
+        "id": "duration",
+        "definition": "An elapsed time, waiting time, or length of time."
+      },
+      {
+        "id": "time_point",
+        "definition": "A specific date, clock time, or deadline."
+      },
+      {
+        "id": "limit",
+        "definition": "A maximum, minimum, allowance, or threshold."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not request a definite kind of quantitative information."
+      }
+    ]
+  },
+  {
+    "name": "geographic_scope",
+    "question": "What geographic relationship is explicitly relevant to the user's request?",
+    "options": [
+      {
+        "id": "nearby",
+        "definition": "The request concerns proximity to the user's current location or another specified location."
+      },
+      {
+        "id": "same_country",
+        "definition": "The request explicitly concerns activity within one country."
+      },
+      {
+        "id": "cross_border",
+        "definition": "The request explicitly concerns another country or movement between countries."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a definite geographic relationship."
+      }
+    ]
+  },
+  {
+    "name": "recurrence",
+    "question": "What recurrence pattern is stated for the main activity or arrangement?",
+    "options": [
+      {
+        "id": "one_time",
+        "definition": "The activity is explicitly a single occurrence or applies only to one specified occasion."
+      },
+      {
+        "id": "scheduled_repeat",
+        "definition": "The activity repeats on a stated schedule or regular interval."
+      },
+      {
+        "id": "conditional_repeat",
+        "definition": "The activity repeats whenever a stated event or condition occurs."
+      },
+      {
+        "id": "ongoing",
+        "definition": "The arrangement remains continuously in effect rather than occurring as separate scheduled events."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not state a definite recurrence pattern."
+      }
+    ]
+  },
+  {
+    "name": "interaction_channel",
+    "question": "Through what channel does the main activity explicitly take place?",
+    "options": [
+      {
+        "id": "digital_self_service",
+        "definition": "The activity takes place through an app, website, or other digital interface used directly by the user."
+      },
+      {
+        "id": "physical_self_service",
+        "definition": "The activity takes place through a physical machine or device used directly by the user."
+      },
+      {
+        "id": "in_person",
+        "definition": "The activity involves being physically present with a staff member or service provider."
+      },
+      {
+        "id": "remote_person",
+        "definition": "The activity involves communicating remotely with a person by phone, chat, email, or another messaging channel."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a definite interaction channel."
+      }
+    ]
+  },
+  {
+    "name": "conversation_dependency",
+    "question": "How does the message depend on an earlier conversational turn?",
+    "options": [
+      {
+        "id": "refer_back",
+        "definition": "The message explicitly refers to earlier content without supplying enough information to identify that content on its own."
+      },
+      {
+        "id": "correct_prior",
+        "definition": "The message explicitly corrects, rejects, or replaces something said or understood earlier."
+      },
+      {
+        "id": "accept_prior",
+        "definition": "The message explicitly agrees with, acknowledges, or accepts an earlier statement or proposal."
+      },
+      {
+        "id": "repeat_prior",
+        "definition": "The message explicitly asks for an earlier response or action to be repeated."
+      },
+      {
+        "id": "unclear",
+        "definition": "The message does not establish a definite dependency on an earlier conversational turn."
+      }
+    ]
+  }
+]

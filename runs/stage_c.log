@@ -1,4 +1,6 @@
 protocol loaded; 150 intents described (sha 1e475a3a7ed6)
-Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1127.12it/s]
-Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 3201.71it/s]
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 1079.51it/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  49%|████▊     | 151/310 [00:00<00:00, 1433.12it/s]Loading weights:  95%|█████████▌| 295/310 [00:00<00:00, 1393.50it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 1445.67it/s]
 seed 11: resume (C=64.0, limits={'low': {'ms_per_text': 81.519, 'L_reference': 163.038}, 'primary': {'ms_per_text': 163.038, 'L_reference': 163.038}, 'high': {'ms_per_text': 326.076, 'L_reference': 163.038}})
+[teacher] lmuai-pro/gpt-6.1-sol ok in 99.6s (usage {'prompt_tokens': 4708, 'completion_tokens': 2577, 'total_tokens': 7285, 'prompt_tokens_details': {'cached_tokens': 4224}, 'completion_tokens_details': {'reasoning_tokens': 282}})
+[U s11 r1] prop 12 ext 12 pool 12 | primary cv 0.8786 nq 1 | evals 13 | tok 7285

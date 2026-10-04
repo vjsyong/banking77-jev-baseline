@@ -1,0 +1,21 @@
+TASK: You are designing interpretable semantic features for a text classifier.
+Dataset: short user messages mapped to 150 assistant intents (CLINC150).
+Pipeline: each proposed question is answered for every message by a small local model (TinyJev). Its per-option probability distribution becomes numeric features for a logistic regression classifier, which also uses TF-IDF text features.
+Goal: discover categorical concepts that separate intents the classifier currently confuses, complementing (not duplicating) lexical signals.
+CONVENTION (settled in the development instrument audit): include exactly ONE option covering 'not present or cannot be determined' (e.g., 'unclear'). Do NOT create separate 'no_X' and 'unclear' options — the extractor cannot reliably distinguish an explicitly-absent concept from an undeterminable one.
+
+Each proposal must be a schema-bound categorical question with:
+- a short snake_case name;
+- one question answerable from the message alone, about ONE concept;
+- 3 to 6 options, each with an explicit definition; include an 'unclear' option for when the message does not state a definite category.
+*Never use the true intent label in the question or options.*
+Prefer concepts that can distinguish MULTIPLE intents and complement lexical signals.
+
+CURRENT SEMANTIC BANK (selected questions):
+- requested_intervention: What kind of response or intervention is the user primarily asking for? [options: report_facts; explain; give_steps; take_action; recommend; unclear]
+
+
+ALREADY PROPOSED NAMES (do not duplicate; revise by proposing a new name):
+answer_scope, change_direction, conversation_dependency, event_time, geographic_scope, interaction_channel, money_direction, problem_locus, process_stage, quantity_kind, recurrence, requested_intervention
+
+Propose up to 12 NEW definitions that would most improve the downstream macro-F1 if added. Respond with ONLY a JSON array of objects with keys 'name', 'question', 'options' (list of {id, definition}).

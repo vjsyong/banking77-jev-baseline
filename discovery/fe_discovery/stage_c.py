@@ -147,7 +147,7 @@ def main():
                                    dataset={"texts_d": texts, "y_d": y, "folds": folds},
                                    extractor=ex, store=store, tfidf=tfidf, selector=sel,
                                    out_dir=outdir, task_name="clinc150",
-                                   intent_labels=intents, ceilings=ceilings,
+                                   intent_labels=[n for n, _ in intents], ceilings=ceilings,
                                    unit_ms_per_text=unit_ms,
                                    label_of_row={},
                                    texts_cal={"texts": texts[:128]})

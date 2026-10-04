@@ -1,0 +1,27 @@
+{
+ "seed": 11,
+ "C": 64.0,
+ "C_table": {
+  "4.0": 0.8515,
+  "16.0": 0.8582,
+  "64.0": 0.8616
+ },
+ "limits": {
+  "low": {
+   "ms_per_text": 81.519,
+   "L_reference": 163.038
+  },
+  "primary": {
+   "ms_per_text": 163.038,
+   "L_reference": 163.038
+  },
+  "high": {
+   "ms_per_text": 326.076,
+   "L_reference": 163.038
+  }
+ },
+ "reference_ms_per_text": 163.038,
+ "readout_task_slot": "fe::task::a31f05722382",
+ "tfidf_build_s": 582.9,
+ "task_def_sha": "0f708325a10929cc2f789f86a4278731be6703e7da9494ae22251b0e8add982b"
+}
