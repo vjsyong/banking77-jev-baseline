@@ -14,6 +14,8 @@
   measurements via measure_fn.
 """
 from collections import OrderedDict
+import fcntl
+import threading
 import time
 
 import numpy as np
@@ -30,10 +32,48 @@ def bank_hash_order(defs):
     return tuple(sorted(canonical_hash(d) for d in defs))
 
 
+class _EvalGate:
+    """Cross-process serialization for CV evaluations (CPU storms).
+
+    flock on a shared file; RLock keeps in-process nesting safe. When
+    eval_lock_path is None the gate is a no-op.
+    """
+
+    def __init__(self, path):
+        self.path = path
+        self._tlock = threading.RLock()
+        self._depth = 0
+        self._fd = None
+
+    def __enter__(self):
+        self._tlock.acquire()
+        try:
+            if self._depth == 0 and self.path is not None:
+                self._fd = open(self.path, "a+")
+                fcntl.flock(self._fd, fcntl.LOCK_EX)
+            self._depth += 1
+        except BaseException:
+            self._tlock.release()
+            raise
+        return self
+
+    def __exit__(self, *exc):
+        try:
+            self._depth -= 1
+            if self._depth == 0 and self._fd is not None:
+                fcntl.flock(self._fd, fcntl.LOCK_UN)
+                self._fd.close()
+                self._fd = None
+        finally:
+            self._tlock.release()
+        return False
+
+
 class Selector:
     def __init__(self, tfidf, y, c_value, cost_model, limits, store,
                  per_round_cap=30, global_cap=200, max_questions=12,
-                 tie_tol=0.0005, limit_split=(9, 12, 9), swap_attempts=2):
+                 tie_tol=0.0005, limit_split=(9, 12, 9), swap_attempts=2,
+                 eval_lock_path=None):
         self.tfidf, self.y, self.C = tfidf, y, c_value
         self.cost_model, self.limits, self.store = cost_model, limits, store
         self.per_round_cap = per_round_cap
@@ -54,6 +94,7 @@ class Selector:
         self.current = {"low": None, "primary": None, "high": None}
         self.round_no = 0
         self.measure_calls = 0
+        self._gate = _EvalGate(eval_lock_path)
 
     # ---------- pool / features ----------
     def add_defs(self, defs):
@@ -99,12 +140,13 @@ class Selector:
             return self._eval_cache[key]
         if self.round_evals >= self.per_round_cap or self.unique_evals >= self.global_cap:
             raise BudgetExhausted()
-        t0 = time.perf_counter()
-        sem = self.bank_matrix(defs)
-        r = eval_bank(self.tfidf, sem, self.y, self.C, want_oof=True)
-        rec = {"cv": r["cv_macro_f1"], "folds": r["fold_scores"],
-               "oof_pred": r["oof_pred"], "oof_proba": r["oof_proba"],
-               "classes": r["classes"], "eval_s": round(time.perf_counter() - t0, 1)}
+        with self._gate:  # serialize CV fits across pool workers
+            t0 = time.perf_counter()
+            sem = self.bank_matrix(defs)
+            r = eval_bank(self.tfidf, sem, self.y, self.C, want_oof=True)
+            rec = {"cv": r["cv_macro_f1"], "folds": r["fold_scores"],
+                   "oof_pred": r["oof_pred"], "oof_proba": r["oof_proba"],
+                   "classes": r["classes"], "eval_s": round(time.perf_counter() - t0, 1)}
         self._eval_cache[key] = rec
         self.unique_evals += 1
         self.round_evals += 1

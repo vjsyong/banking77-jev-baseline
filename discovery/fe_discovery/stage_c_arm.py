@@ -68,7 +68,8 @@ def main():
                    per_round_cap=proto["selector"]["per_round_cap"],
                    global_cap=proto["selector"]["global_cap"],
                    max_questions=proto["max_questions"],
-                   limit_split=tuple(proto["selector"]["limit_split"]))
+                   limit_split=tuple(proto["selector"]["limit_split"]),
+                   eval_lock_path=str(SC.STAGE / "eval.lock"))
     sel.attach_texts(texts)
     runner = RA.Runner(arm=arm, seed=seed,
                        dataset={"texts_d": texts, "y_d": y, "folds": folds},

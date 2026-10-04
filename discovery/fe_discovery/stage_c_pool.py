@@ -32,10 +32,10 @@ N = int(os.environ.get("FE_POOL_WORKERS", "2"))
 def env_for_children():
     env = dict(os.environ)
     env["HF_DATASETS_TRUST_REMOTE_CODE"] = "1"
-    env["FE_LR_JOBS"] = env.get("FE_LR_JOBS", "4")
+    env["FE_LR_JOBS"] = env.get("FE_LR_JOBS", "6")
     env["PYTORCH_CUDA_ALLOC_CONF"] = env.get("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
-    env["OMP_NUM_THREADS"] = env.get("OMP_NUM_THREADS", "6")
-    env["MKL_NUM_THREADS"] = env.get("MKL_NUM_THREADS", "6")
+    env["OMP_NUM_THREADS"] = env.get("OMP_NUM_THREADS", "4")
+    env["MKL_NUM_THREADS"] = env.get("MKL_NUM_THREADS", "4")
     return env
 
 
