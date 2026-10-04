@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "bank_transfer_still_processing",
+      "question": "Does the customer describe a bank transfer as pending or still processing?",
+      "options": ["yes", "no"],
+      "rationale": "Separates pending transfers from pending card payments and recipient nonreceipt without an explicit pending status."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "transfer_explicitly_rejected",
+      "question": "Does the customer describe a bank transfer as declined, rejected, or refused?",
+      "options": ["yes", "no"],
+      "rationale": "Distinguishes explicit transfer rejection from generic transfer failure, targeting the failed_transfer versus declined_transfer confusion."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "top_up_money_returned",
+      "question": "Does the customer say money from a top-up was returned to its funding source?",
+      "options": ["yes", "no"],
+      "rationale": "Separates reverted top-ups from failed top-ups by detecting the return of funding money."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "same_transaction_charged_twice",
+      "question": "Does the customer say they were charged more than once for the same transaction?",
+      "options": ["yes", "no"],
+      "rationale": "Targets transaction_charged_twice's near-zero F1 with a duplication signal absent from general fee and outgoing-money probes."
+    }
+  ],
+  "summary": "Add transaction-specific status probes for pending transfers, rejected transfers, and returned top-up funds, plus a duplicate-charge probe. These target observed confusions and a severely underperforming intent."
+}

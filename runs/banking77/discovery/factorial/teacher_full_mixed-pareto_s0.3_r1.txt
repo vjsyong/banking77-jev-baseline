@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "card_acquisition_type",
+      "question": "Is the customer asking to obtain a physical card, including an extra card, obtain a virtual card, or neither?",
+      "options": ["physical", "virtual", "neither"],
+      "rationale": "Separates physical and virtual card acquisition from existing-card problems, targeting get_physical_card, getting_spare_card, getting_virtual_card, and virtual_card_not_working."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "card_setup_operation",
+      "question": "What card setup operation does the customer ask about: activating a card, linking a card to an account, or neither?",
+      "options": ["activate", "link", "neither"],
+      "rationale": "Separates activate_my_card from card_linking and distinguishes both from obtaining a card or reporting a lost card."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "transfer_delivery_evidence",
+      "question": "For a bank transfer, does the message explicitly describe a pending status, otherwise say the recipient has not received it, or neither?",
+      "options": ["pending", "recipient_missing", "neither"],
+      "rationale": "Distinguishes explicit pending_transfer evidence from transfer_not_received_by_recipient without inferring transaction status from nonreceipt."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "cash_issue_type",
+      "question": "Is the customer describing a cash or cheque deposit missing from their balance, an incorrect amount of cash dispensed, or neither?",
+      "options": ["deposit_missing", "wrong_cash_amount", "neither"],
+      "rationale": "Directly separates balance_not_updated_after_cheque_or_cash_deposit from wrong_amount_of_cash_received and distinguishes deposit failures from cash-deposit eligibility questions."
+    }
+  ],
+  "summary": "Add four targeted categorical probes for card acquisition, activation versus linking, explicit transfer status versus recipient nonreceipt, and missing deposits versus incorrect cash dispensing. Preserve existing broad probes."
+}

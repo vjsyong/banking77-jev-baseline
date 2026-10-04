@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "merchant_card_payment",
+      "question": "Is a payment to a merchant using a card central to the customer's message?",
+      "options": ["yes", "no"],
+      "rationale": "Separates card payments from transfers, ATM withdrawals, and card top-ups, especially for pending transactions and incorrect exchange rates."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "cash_withdrawal",
+      "question": "Is withdrawing cash central to the customer's message?",
+      "options": ["yes", "no"],
+      "rationale": "Distinguishes withdrawals from deposits; combines with pending, unauthorised activity, and currency probes to identify poorly classified withdrawal intents."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "transfer_recipient_nonreceipt",
+      "question": "Does the customer say a transfer recipient has not received the money?",
+      "options": ["yes", "no"],
+      "rationale": "Separates recipient nonreceipt from a transfer merely showing a pending status."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "pin_is_blocked",
+      "question": "Does the customer describe their card PIN as blocked after incorrect attempts?",
+      "options": ["yes", "no"],
+      "rationale": "Distinguishes PIN lockout from a request to change the PIN, directly targeting a recurring confusion."
+    }
+  ],
+  "summary": "Add transaction-specific anchors for merchant payments and cash withdrawals, plus explicit recipient nonreceipt and PIN lockout signals. These complement existing status, currency, and authorisation probes to separate recurring confusions."
+}

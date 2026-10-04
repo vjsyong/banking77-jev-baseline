@@ -1,0 +1,53 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "pin_change_or_block",
+      "question": "Does the customer want to change their card PIN, report a blocked PIN, or describe neither?",
+      "options": [
+        "change card PIN",
+        "PIN blocked",
+        "neither"
+      ],
+      "rationale": "Separates a requested PIN change from a PIN blocked by unsuccessful attempts."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "supported_currency_context",
+      "question": "Is the customer asking which currencies the account supports, which cards or currencies can fund a top-up, or neither?",
+      "options": [
+        "account currencies",
+        "top-up cards or currencies",
+        "neither"
+      ],
+      "rationale": "Separates fiat currency support from supported funding cards and currencies by the purpose of the support question."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "top_up_failure_or_reversal",
+      "question": "Does the customer describe a top-up being reversed or returned, failing without a stated reversal, or neither?",
+      "options": [
+        "reversed or returned",
+        "failed without reversal",
+        "neither"
+      ],
+      "rationale": "Distinguishes money returned after a top-up from an unsuccessful top-up, with explicit reversal taking precedence."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "payment_fee_or_extra_entry",
+      "question": "Does the customer describe an explicit card-payment fee, an extra statement charge not identified as a fee, or neither?",
+      "options": [
+        "explicit payment fee",
+        "unexplained extra charge",
+        "neither"
+      ],
+      "rationale": "Separates an identified payment fee from an unexplained additional statement charge, addressing confusion in both directions."
+    }
+  ],
+  "summary": "Add four text-grounded categorical probes targeting PIN changes versus blocks, account versus top-up currency support, failed versus reversed top-ups, and explicit payment fees versus unexplained statement charges."
+}

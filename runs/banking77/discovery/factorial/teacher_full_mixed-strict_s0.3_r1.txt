@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "card_setup_action",
+      "question": "Which card setup action does the customer ask about: activating a card, linking a card to an account or app, or neither?",
+      "options": ["activate", "link", "neither"],
+      "rationale": "Separates activation from card linking and physical-card acquisition, addressing two frequent confusions."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "explicit_card_form",
+      "question": "Is the card explicitly described as physical or plastic, virtual or disposable, or neither exclusively?",
+      "options": ["physical", "virtual", "unspecified_or_both"],
+      "rationale": "Distinguishes physical-card acquisition from virtual-card acquisition and virtual-card failures; existing action and problem probes provide complementary features."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "direct_debit_mentioned",
+      "question": "Does the customer explicitly mention a direct debit or a merchant automatically collecting money from their bank account?",
+      "options": ["yes", "no"],
+      "rationale": "Separates unrecognized direct debits from refund requests and other unauthorized transactions when combined with existing probes."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "transfer_failure_kind",
+      "question": "For a bank transfer, does the customer explicitly report rejection or refusal, a processing failure without stated rejection, or neither?",
+      "options": ["rejected", "processing_failure", "neither"],
+      "rationale": "Separates declined transfers from failed transfers without treating pending transfers or recipient nonreceipt alone as processing failures."
+    }
+  ],
+  "summary": "Add card setup, explicit card form, direct-debit recognition, and transfer-failure distinctions. These complement existing action, problem, authorization, and pending-status features while targeting several frequent confusions and low-F1 intents."
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "cell": "mixed-pareto",
+    "seed": 0.3,
+    "bank_size": 11,
+    "cv_recorded": 0.5394,
+    "cv_run_scoped": 0.4346,
+    "test_macro_f1_run_scoped": 0.4905,
+    "test_accuracy": 0.4987,
+    "best_model": "lr",
+    "extract_s": 139.9
+  },
+  {
+    "cell": "mixed-pareto",
+    "seed": 0.7,
+    "bank_size": 8,
+    "cv_recorded": 0.5352,
+    "cv_run_scoped": 0.4745,
+    "test_macro_f1_run_scoped": 0.5574,
+    "test_accuracy": 0.5705,
+    "best_model": "et",
+    "extract_s": 105.3
+  },
+  {
+    "cell": "mixed-pareto",
+    "seed": 1.0,
+    "bank_size": 10,
+    "cv_recorded": 0.5177,
+    "cv_run_scoped": 0.4029,
+    "test_macro_f1_run_scoped": 0.4547,
+    "test_accuracy": 0.4627,
+    "best_model": "lr",
+    "extract_s": 129.9
+  }
+]

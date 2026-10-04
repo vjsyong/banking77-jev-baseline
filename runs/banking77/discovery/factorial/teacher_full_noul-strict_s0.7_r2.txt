@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "merchant_card_acceptance",
+      "question": "Is the customer asking where their payment card can be used?",
+      "options": ["yes", "no"],
+      "rationale": "Separates card_acceptance from card_linking and questions about cards eligible for account funding."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "supported_card_funding",
+      "question": "Is the customer asking whether a particular card or card currency is supported for topping up?",
+      "options": ["yes", "no"],
+      "rationale": "Separates supported_cards_and_currencies from fiat_currency_support and general topping_up_by_card instructions."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "transfer_explicitly_rejected",
+      "question": "Does the customer explicitly describe a bank transfer as declined, rejected, or refused?",
+      "options": ["yes", "no"],
+      "rationale": "Separates declined_transfer from failed_transfer using explicit rejection language rather than generic failure."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "in_app_currency_exchange",
+      "question": "Is the customer asking how to exchange currencies within the app?",
+      "options": ["yes", "no"],
+      "rationale": "Separates exchange_via_app from exchange_rate and fiat_currency_support by identifying an exchange procedure request."
+    }
+  ],
+  "summary": "Add four focused distinctions: merchant acceptance, top-up card eligibility, explicit transfer rejection, and in-app exchange procedures. These target observed confusions while retaining existing broad domain and transaction-state probes."
+}

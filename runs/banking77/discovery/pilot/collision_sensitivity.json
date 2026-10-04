@@ -1,0 +1,505 @@
+{
+  "aggregate": {
+    "n_ids": 19,
+    "n_pairs": 29,
+    "mean_of_mean_abs_delta": 0.0706,
+    "median_of_mean_abs_delta": 0.0654,
+    "p95_of_mean_abs_delta": 0.1395,
+    "worst_pair_max_abs_delta": 0.5009,
+    "mean_p95_abs_delta": 0.1644,
+    "min_pearson": 0.6146,
+    "mean_pearson": 0.8125,
+    "elapsed_s": 133.8
+  },
+  "per_id": {
+    "card_acceptance": {
+      "n_variants": 3,
+      "variants": [
+        "Does the customer ask where or whether their card can be used?",
+        "Does the customer ask whether a card or payment is accepted by a merchant or service?",
+        "Does the customer ask whether or where their card can be used for purchases?"
+      ],
+      "exposed_runs": [
+        "accuracy/s1.0",
+        "frontier/s0.7",
+        "frontier/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0439,
+          "p95_abs_delta": 0.1174,
+          "max_abs_delta": 0.2664,
+          "pearson": 0.7703
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "mean_abs_delta": 0.0377,
+          "p95_abs_delta": 0.103,
+          "max_abs_delta": 0.2603,
+          "pearson": 0.8771
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "mean_abs_delta": 0.0463,
+          "p95_abs_delta": 0.1214,
+          "max_abs_delta": 0.2244,
+          "pearson": 0.8249
+        }
+      ]
+    },
+    "card_activation": {
+      "n_variants": 2,
+      "variants": [
+        "Does the message concern activating a newly received payment card?",
+        "Is the customer asking to activate a payment card?"
+      ],
+      "exposed_runs": [
+        "accuracy/s1.0",
+        "frontier/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0631,
+          "p95_abs_delta": 0.1653,
+          "max_abs_delta": 0.4282,
+          "pearson": 0.7702
+        }
+      ]
+    },
+    "card_activation_request": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer ask to activate a card?",
+        "Does the customer ask to activate a physical payment card?"
+      ],
+      "exposed_runs": [
+        "accuracy/s0.3",
+        "frontier/s0.3"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.048,
+          "p95_abs_delta": 0.1365,
+          "max_abs_delta": 0.3967,
+          "pearson": 0.8623
+        }
+      ]
+    },
+    "card_payment_wrong_exchange_rate": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer say a card payment used an incorrect exchange rate?",
+        "Does the customer say a card payment used the wrong exchange rate?"
+      ],
+      "exposed_runs": [
+        "unguided/s0.3",
+        "unguided/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0126,
+          "p95_abs_delta": 0.032,
+          "max_abs_delta": 0.0669,
+          "pearson": 0.99
+        }
+      ]
+    },
+    "card_security_compromise": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer report that their card or card details have been compromised?",
+        "Does the customer say their card or card details may be compromised?"
+      ],
+      "exposed_runs": [
+        "accuracy/s0.7",
+        "frontier/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.042,
+          "p95_abs_delta": 0.1055,
+          "max_abs_delta": 0.2017,
+          "pearson": 0.9378
+        }
+      ]
+    },
+    "cash_or_cheque_deposit": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer describe depositing cash or a cheque into the account?",
+        "Is a cash or cheque deposit central to the customer's issue?"
+      ],
+      "exposed_runs": [
+        "accuracy/s0.7",
+        "frontier/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0654,
+          "p95_abs_delta": 0.164,
+          "max_abs_delta": 0.3599,
+          "pearson": 0.7498
+        }
+      ]
+    },
+    "cash_withdrawal_exchange_rate": {
+      "n_variants": 3,
+      "variants": [
+        "Does the exchange-rate issue specifically concern cash withdrawn from an ATM?",
+        "Does the issue concern the exchange rate applied to a cash withdrawal?",
+        "Does the message specifically concern the exchange rate applied to a cash withdrawal?"
+      ],
+      "exposed_runs": [
+        "accuracy/s0.3",
+        "accuracy/s1.0",
+        "frontier/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0692,
+          "p95_abs_delta": 0.1762,
+          "max_abs_delta": 0.3484,
+          "pearson": 0.7771
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "mean_abs_delta": 0.1022,
+          "p95_abs_delta": 0.2211,
+          "max_abs_delta": 0.4373,
+          "pearson": 0.7557
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "mean_abs_delta": 0.0979,
+          "p95_abs_delta": 0.1744,
+          "max_abs_delta": 0.2791,
+          "pearson": 0.9437
+        }
+      ]
+    },
+    "declined_card_payment": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer say a card payment was declined?",
+        "Does the message describe a card payment being declined or refused?"
+      ],
+      "exposed_runs": [
+        "unguided/s0.7",
+        "unguided/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.127,
+          "p95_abs_delta": 0.3048,
+          "max_abs_delta": 0.4975,
+          "pearson": 0.6179
+        }
+      ]
+    },
+    "declined_cash_withdrawal": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer say a cash withdrawal was declined?",
+        "Does the message describe a cash withdrawal being declined or refused?"
+      ],
+      "exposed_runs": [
+        "unguided/s0.7",
+        "unguided/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.1397,
+          "p95_abs_delta": 0.3216,
+          "max_abs_delta": 0.5009,
+          "pearson": 0.6146
+        }
+      ]
+    },
+    "direct_debit": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer mention a direct debit?",
+        "Does the message mention a direct debit as the relevant payment or account event?"
+      ],
+      "exposed_runs": [
+        "unguided/s0.7",
+        "unguided/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0957,
+          "p95_abs_delta": 0.2076,
+          "max_abs_delta": 0.3561,
+          "pearson": 0.8311
+        }
+      ]
+    },
+    "direct_debit_involved": {
+      "n_variants": 2,
+      "variants": [
+        "Does the message mention a direct debit?",
+        "Is a direct debit central to the customer's issue or request?"
+      ],
+      "exposed_runs": [
+        "frontier/s0.7",
+        "unguided/s0.3"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.1695,
+          "p95_abs_delta": 0.3016,
+          "max_abs_delta": 0.4133,
+          "pearson": 0.7675
+        }
+      ]
+    },
+    "duplicate_transaction": {
+      "n_variants": 3,
+      "variants": [
+        "Does the customer report being charged twice for one transaction?",
+        "Does the customer report being charged twice for the same transaction?",
+        "Does the customer say the same transaction was charged twice?"
+      ],
+      "exposed_runs": [
+        "frontier/s0.3",
+        "frontier/s0.7",
+        "frontier/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0182,
+          "p95_abs_delta": 0.047,
+          "max_abs_delta": 0.1083,
+          "pearson": 0.9782
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "mean_abs_delta": 0.069,
+          "p95_abs_delta": 0.1684,
+          "max_abs_delta": 0.3149,
+          "pearson": 0.8311
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "mean_abs_delta": 0.0694,
+          "p95_abs_delta": 0.1584,
+          "max_abs_delta": 0.2919,
+          "pearson": 0.8072
+        }
+      ]
+    },
+    "duplicate_transaction_charge": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer report being charged twice for one transaction?",
+        "Does the message say the same transaction was charged twice?"
+      ],
+      "exposed_runs": [
+        "accuracy/s0.3",
+        "unguided/s0.7"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.108,
+          "p95_abs_delta": 0.2304,
+          "max_abs_delta": 0.3673,
+          "pearson": 0.7748
+        }
+      ]
+    },
+    "failed_bank_transfer": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer say a bank transfer failed?",
+        "Does the message describe a bank transfer that failed or was rejected?"
+      ],
+      "exposed_runs": [
+        "unguided/s0.7",
+        "unguided/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.1393,
+          "p95_abs_delta": 0.3177,
+          "max_abs_delta": 0.4408,
+          "pearson": 0.6654
+        }
+      ]
+    },
+    "recipient_missing_transfer": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer say a completed transfer has not reached its intended recipient?",
+        "Does the message say a transfer recipient has not received money despite the transfer being sent?"
+      ],
+      "exposed_runs": [
+        "accuracy/s1.0",
+        "frontier/s0.3"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.058,
+          "p95_abs_delta": 0.1522,
+          "max_abs_delta": 0.3091,
+          "pearson": 0.7499
+        }
+      ]
+    },
+    "transfer_not_received_by_recipient": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer say a completed bank transfer has not arrived for the recipient?",
+        "Does the customer say a transfer recipient has not received the money?"
+      ],
+      "exposed_runs": [
+        "unguided/s0.7",
+        "unguided/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0375,
+          "p95_abs_delta": 0.0988,
+          "max_abs_delta": 0.2172,
+          "pearson": 0.8412
+        }
+      ]
+    },
+    "transfer_recipient_not_received": {
+      "n_variants": 3,
+      "variants": [
+        "Does the customer say a completed transfer has not reached the intended recipient?",
+        "Does the customer say a transfer recipient has not received the money?",
+        "Does the message say the transfer recipient has not received the money?"
+      ],
+      "exposed_runs": [
+        "accuracy/s0.3",
+        "frontier/s0.7",
+        "frontier/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0384,
+          "p95_abs_delta": 0.0989,
+          "max_abs_delta": 0.2831,
+          "pearson": 0.8551
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "mean_abs_delta": 0.0667,
+          "p95_abs_delta": 0.1593,
+          "max_abs_delta": 0.2601,
+          "pearson": 0.7261
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "mean_abs_delta": 0.0444,
+          "p95_abs_delta": 0.1162,
+          "max_abs_delta": 0.2456,
+          "pearson": 0.8447
+        }
+      ]
+    },
+    "virtual_card_failure": {
+      "n_variants": 3,
+      "variants": [
+        "Does the customer report that a virtual card fails during use?",
+        "Does the customer report that a virtual card is not working?",
+        "Does the message report that a virtual card is not working?"
+      ],
+      "exposed_runs": [
+        "accuracy/s0.7",
+        "frontier/s0.3",
+        "frontier/s0.7"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0447,
+          "p95_abs_delta": 0.1084,
+          "max_abs_delta": 0.2093,
+          "pearson": 0.8749
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "mean_abs_delta": 0.0773,
+          "p95_abs_delta": 0.1749,
+          "max_abs_delta": 0.4055,
+          "pearson": 0.8309
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "mean_abs_delta": 0.0469,
+          "p95_abs_delta": 0.1185,
+          "max_abs_delta": 0.2723,
+          "pearson": 0.917
+        }
+      ]
+    },
+    "virtual_card_not_working": {
+      "n_variants": 2,
+      "variants": [
+        "Does the customer say their virtual card is not working?",
+        "Does the message say a virtual card is not working, being declined, or unusable?"
+      ],
+      "exposed_runs": [
+        "accuracy/s1.0",
+        "frontier/s1.0"
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "mean_abs_delta": 0.0684,
+          "p95_abs_delta": 0.1647,
+          "max_abs_delta": 0.2664,
+          "pearson": 0.7751
+        }
+      ]
+    }
+  }
+}

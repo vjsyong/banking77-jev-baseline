@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "virtual_card",
+      "question": "Does the customer explicitly refer to a virtual payment card?",
+      "options": ["yes", "no"],
+      "rationale": "Separates virtual-card intents from physical-card intents; existing action and problem probes help distinguish obtaining a virtual card from malfunction."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "card_delivery",
+      "question": "Is the customer asking about or reporting a physical card's delivery?",
+      "options": ["yes", "no"],
+      "rationale": "Distinguishes card_arrival from card_linking and card acquisition requests, addressing a frequent confusion and near-zero arrival F1."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "direct_debit",
+      "question": "Does the customer explicitly refer to a direct debit?",
+      "options": ["yes", "no"],
+      "rationale": "Combines with unauthorised_activity to identify unrecognised direct debits and separate them from generic refund requests."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "top_up_card_support",
+      "question": "Is the customer asking whether a particular payment card can be used to add money to their account?",
+      "options": ["yes", "no"],
+      "rationale": "Separates supported_cards_and_currencies from fiat_currency_support and card_acceptance by identifying funding-card compatibility."
+    }
+  ],
+  "summary": "Add four concrete topic probes targeting low-F1 intents and observed confusions. Combine these signals with existing action, problem, funding, and unauthorised-activity probes to distinguish intent within each topic."
+}

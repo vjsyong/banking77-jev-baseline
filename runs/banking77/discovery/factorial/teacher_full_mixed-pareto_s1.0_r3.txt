@@ -1,0 +1,53 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "transaction_channel",
+      "question": "Which transaction channel is explicitly involved in the customer's issue?",
+      "options": [
+        "Card purchase",
+        "ATM cash withdrawal",
+        "Other or unspecified"
+      ],
+      "rationale": "Separates card-payment and cash-withdrawal exchange-rate errors, fees, declines, and unrecognised transactions."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "debit_recognition_or_duplication",
+      "question": "Does the customer explicitly report an unrecognised debit, a recognised transaction charged twice, or neither?",
+      "options": [
+        "Unrecognised debit",
+        "Recognised transaction charged twice",
+        "Neither"
+      ],
+      "rationale": "Distinguishes unrecognised card, ATM, and direct-debit transactions from fee complaints, and separates duplicate charges from extra charges."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "credential_type",
+      "question": "Which security credential does the customer explicitly discuss?",
+      "options": [
+        "App login passcode",
+        "Payment card PIN",
+        "Other or unspecified"
+      ],
+      "rationale": "Separates forgotten app passcodes from card PIN changes without relying on whether the customer requests information."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "card_delivery_expectation",
+      "question": "Is the customer reporting a card delivery as late or missing, asking about delivery timing without reporting lateness, or neither?",
+      "options": [
+        "Late or missing delivery",
+        "Delivery timing only",
+        "Neither"
+      ],
+      "rationale": "Separates card_arrival complaints from card_delivery_estimate questions using explicit delivery expectations."
+    }
+  ],
+  "summary": "Add transaction-channel, debit-recognition, credential, and delivery-expectation probes to distinguish recurring confusions using explicit message evidence. Existing fee and card probes provide complementary features."
+}

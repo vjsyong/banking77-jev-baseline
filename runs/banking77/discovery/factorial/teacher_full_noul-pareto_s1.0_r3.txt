@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "transaction_not_recognised",
+      "question": "Does the customer report a transaction they do not recognise or did not authorise?",
+      "options": ["yes", "no"],
+      "rationale": "Separates unrecognised withdrawals and direct debits from incorrect cash amounts and funding fees, using existing transaction-type probes."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "account_currency_support",
+      "question": "Is the customer asking which currencies their account can hold?",
+      "options": ["yes", "no"],
+      "rationale": "Distinguishes fiat_currency_support from exchanging currencies, exchange-rate questions, and currencies supported for card top-ups."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "contactless_payment_problem",
+      "question": "Does the customer report a problem paying by tapping their card?",
+      "options": ["yes", "no"],
+      "rationale": "Identifies contactless_not_working separately from general card acceptance and virtual-card problems, which currently lack distinguishing signals."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "transaction_charged_twice",
+      "question": "Does the customer report being charged more than once for the same transaction?",
+      "options": ["yes", "no"],
+      "rationale": "Separates duplicate charges from payment fees, extra statement charges, and unrecognised transactions."
+    }
+  ],
+  "summary": "Add recognition, account-currency support, contactless failure, and duplicate-charge signals. These target poorly performing intents and documented confusions while complementing existing transaction-type probes."
+}

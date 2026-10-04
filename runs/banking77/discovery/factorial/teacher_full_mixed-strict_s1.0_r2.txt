@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "physical_card_order_purpose",
+      "question": "Is the customer seeking a first physical card, an additional spare physical card, or neither?",
+      "options": ["first physical card", "additional spare card", "neither or unspecified"],
+      "rationale": "Separates ordering a physical card from getting a spare without treating every card request as an additional-card request."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "disposable_card_request_focus",
+      "question": "Is the customer asking to obtain a disposable virtual card, asking about its usage limits, or neither?",
+      "options": ["obtain disposable card", "disposable usage limits", "neither"],
+      "rationale": "Directly separates get_disposable_virtual_card from disposable_card_limits, a repeated confusion and low-F1 intent."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "card_delivery_question_focus",
+      "question": "Is the customer asking the expected card delivery time without reporting a delay, reporting a late or missing delivery, or neither?",
+      "options": ["expected delivery time", "late or missing delivery", "neither"],
+      "rationale": "Distinguishes card_delivery_estimate from card_arrival using an explicit delay complaint rather than shared delivery vocabulary."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "transfer_recipient_restriction",
+      "question": "Does the message explicitly describe a recipient who is not permitted, a transfer failure without a recipient restriction, or neither?",
+      "options": ["recipient not permitted", "failure without restriction", "neither"],
+      "rationale": "Separates beneficiary_not_allowed from failed_transfer by detecting recipient eligibility restrictions rather than generic transfer failure."
+    }
+  ],
+  "summary": "Add four focused categorical probes for spare-card ordering, disposable-card acquisition versus limits, delivery estimates versus delays, and beneficiary restrictions. Each includes a fallback option to avoid forcing unrelated messages into a targeted category."
+}

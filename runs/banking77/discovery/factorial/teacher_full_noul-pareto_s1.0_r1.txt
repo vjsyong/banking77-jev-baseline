@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "card_activation",
+      "question": "Is the customer asking about activating a payment card?",
+      "options": ["yes", "no"],
+      "rationale": "Separates activation from card linking and lost or stolen cards, which currently share broad card and action signals."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "card_linking",
+      "question": "Is the customer asking about linking an existing payment card to their account?",
+      "options": ["yes", "no"],
+      "rationale": "Distinguishes linking an existing card from activating one or obtaining a physical card."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "direct_debit",
+      "question": "Is a direct debit central to the customer's message?",
+      "options": ["yes", "no"],
+      "rationale": "Combines with unauthorised_activity to identify unrecognized direct debits and separate them from generic refund requests."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "cash_or_cheque_deposit",
+      "question": "Is the customer discussing adding money to their account using cash or a cheque?",
+      "options": ["yes", "no"],
+      "rationale": "Separates deposit balance problems from incorrect ATM cash amounts and distinguishes cash or cheque funding from card top-ups."
+    }
+  ],
+  "summary": "Add transaction-mechanism and card-lifecycle signals absent from the current bank. These complement existing problem, authorization, funding, and card probes to separate several observed confusions without combining concepts."
+}

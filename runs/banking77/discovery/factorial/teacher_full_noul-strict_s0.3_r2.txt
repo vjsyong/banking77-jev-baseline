@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "transfer_explicitly_rejected",
+      "question": "Does the customer describe a transfer being explicitly declined or rejected?",
+      "options": ["yes", "no"],
+      "rationale": "Separates explicit transfer rejection from generic transfer failure, supplementing existing problem and bank-transfer probes."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "recipient_missing_transfer",
+      "question": "Does the customer say a transfer's recipient has not received the money?",
+      "options": ["yes", "no"],
+      "rationale": "Identifies recipient-side nonreceipt, separating transfer_not_received_by_recipient from pending_transfer without assuming an unstated transaction status."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "funding_card_eligibility",
+      "question": "Is the customer asking whether a payment card is eligible for adding money to their account?",
+      "options": ["yes", "no"],
+      "rationale": "Provides a funding-card eligibility signal for supported_cards_and_currencies, distinguishing it from general fiat currency support."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "perform_currency_exchange",
+      "question": "Is the customer asking about performing a currency exchange within the app?",
+      "options": ["yes", "no"],
+      "rationale": "Separates exchange_via_app operational questions from fiat_currency_support and exchange_rate questions."
+    }
+  ],
+  "summary": "Add four focused signals for explicit transfer rejection, recipient nonreceipt, funding-card eligibility, and in-app exchange operations. These address recurrent confusions that broad transaction, currency, and information probes do not distinguish."
+}

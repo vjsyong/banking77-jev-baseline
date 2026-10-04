@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "transaction_not_recognised",
+      "question": "Does the customer report a transaction they do not recognise or did not authorise?",
+      "options": ["yes", "no"],
+      "rationale": "Separates unrecognised withdrawals from incorrect cash amounts and flags unrecognised direct debits or card payments."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "transfer_specific_fee",
+      "question": "Does the customer describe a fee charged specifically for making or receiving a bank transfer?",
+      "options": ["yes", "no"],
+      "rationale": "Separates transfer_fee_charged from extra_charge_on_statement by identifying an explicitly transfer-related fee."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "recipient_not_permitted",
+      "question": "Does the customer say a transfer recipient is not permitted or supported?",
+      "options": ["yes", "no"],
+      "rationale": "Separates beneficiary_not_allowed from declined_transfer and failed_transfer using explicit recipient restrictions."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "link_card_to_account",
+      "question": "Is the customer trying to link an existing card to their account?",
+      "options": ["yes", "no"],
+      "rationale": "Separates card_linking from activate_my_card by detecting account association rather than activation."
+    }
+  ],
+  "summary": "Add transaction recognition, transfer-specific fees, recipient restrictions, and card linking signals to address recurrent confusions without duplicating existing transaction-status or activation probes."
+}

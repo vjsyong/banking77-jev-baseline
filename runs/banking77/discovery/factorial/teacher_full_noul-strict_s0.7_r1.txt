@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "card_activation",
+      "question": "Is the customer discussing activating a payment card?",
+      "options": ["yes", "no"],
+      "rationale": "Separates activate_my_card from card_linking and lost_or_stolen_card, addressing two frequent confusions."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "card_linking",
+      "question": "Is the customer discussing linking an existing payment card to their account?",
+      "options": ["yes", "no"],
+      "rationale": "Distinguishes card_linking from activation and obtaining a physical card, which existing card and action probes conflate."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "cash_or_cheque_deposit",
+      "question": "Is the customer discussing adding money to their account using cash or a cheque?",
+      "options": ["yes", "no"],
+      "rationale": "Separates deposit balance problems from incorrect cash withdrawals and identifies top_up_by_cash_or_cheque."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "direct_debit",
+      "question": "Is a direct debit central to the customer's message?",
+      "options": ["yes", "no"],
+      "rationale": "Combines with unauthorised_activity to distinguish direct_debit_payment_not_recognised from request_refund and other unrecognized transactions."
+    }
+  ],
+  "summary": "Add four concrete topic probes that complement existing broad signals, separating activation, card linking, cash or cheque deposits, and direct debits in prominent confusion pairs."
+}

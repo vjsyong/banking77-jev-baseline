@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "transfer_missing_destination",
+      "question": "For a transfer described as missing or not credited, where is the money expected: the customer's own account balance, another recipient's account, or neither location explicitly?",
+      "options": ["own_balance", "recipient_account", "neither"],
+      "rationale": "Separates balance_not_updated_after_bank_transfer from transfer_not_received_by_recipient using the stated destination of missing funds."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "support_question_scope",
+      "question": "Is the customer asking which cards or currencies can be used to top up, which currencies the account can hold, or neither exclusively?",
+      "options": ["top_up_support", "account_currencies", "neither"],
+      "rationale": "Separates supported_cards_and_currencies from fiat_currency_support and distinguishes support questions from exchange actions."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "atm_specific_outcome",
+      "question": "Does the customer report an ATM dispensing an incorrect cash amount, retaining their card, or neither exclusively?",
+      "options": ["wrong_cash_amount", "card_retained", "neither"],
+      "rationale": "Separates wrong_amount_of_cash_received from declined_cash_withdrawal and gives card_swallowed a dedicated signal."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "card_failure_specificity",
+      "question": "Does the customer explicitly report a declined card purchase, describe a card as unusable without an explicit purchase decline, or neither?",
+      "options": ["purchase_declined", "card_unusable", "neither"],
+      "rationale": "Separates declined_card_payment from card_not_working while excluding cash-withdrawal declines from the purchase-decline category."
+    }
+  ],
+  "summary": "Add destination, support-scope, ATM-outcome, and card-failure probes to distinguish specific failure modes and support requests that broad topic probes currently merge."
+}

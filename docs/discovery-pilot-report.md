@@ -177,6 +177,9 @@ Isolate the explanation rather than running more proposal rounds. Factors:
 - Attribution rules: pruning gains → selection mechanism; mixed-representation gains →
   measurement design; neither → no demonstrated benefit from frontier mechanics to the
   teacher, and the probe-search line pauses with this extractor.
+- **Status: completed. See `docs/factorial-report.md`** — representation first
+  (mixed +16.6pp paired, strict cells), pruning compression-only (−10.6/−19.5pp),
+  frontier-feedback benefit still not established (feedback held constant by design).
 
 ### Concrete revisions being carried into the factorial (qualified)
 

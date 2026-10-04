@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "card_form",
+      "question": "Which card form does the customer explicitly refer to?",
+      "options": ["Physical card", "Virtual card", "Neither or unspecified"],
+      "rationale": "Separates physical-card acquisition from virtual-card acquisition and malfunction, which the existing combined card probe cannot distinguish."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "card_setup_task",
+      "question": "Is the customer discussing activating a card, linking an existing card to an account, or neither?",
+      "options": ["Activate card", "Link card", "Neither"],
+      "rationale": "Separates activation from linking and distinguishes both setup tasks from requesting a physical card."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "transfer_failure_description",
+      "question": "Does the message explicitly describe a transfer as declined or rejected, as failed or errored without rejection, or neither?",
+      "options": ["Declined or rejected", "Failed without rejection", "Neither"],
+      "rationale": "Targets failed_transfer versus declined_transfer using the customer's stated outcome, without inferring an unstated failure cause."
+    },
+    {
+      "action": "add",
+      "format": "choice",
+      "name": "cash_discrepancy_type",
+      "question": "Is the reported problem a cash or cheque deposit missing from the balance, an ATM dispensing the wrong cash amount, or neither?",
+      "options": ["Deposit balance missing", "Wrong ATM cash amount", "Neither"],
+      "rationale": "Directly separates uncredited cash or cheque deposits from incorrect cash dispensed, a repeated confusion not resolved by the broad cash probe."
+    }
+  ],
+  "summary": "Add four text-grounded categorical probes for card form, card setup, transfer failure wording, and cash discrepancy. These target repeated confusions and several weak card intents while preserving explicit fallback options."
+}

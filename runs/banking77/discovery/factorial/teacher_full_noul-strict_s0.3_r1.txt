@@ -1,0 +1,37 @@
+{
+  "proposals": [
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "virtual_card",
+      "question": "Is the customer specifically discussing a virtual payment card?",
+      "options": ["yes", "no"],
+      "rationale": "Separates virtual-card acquisition and malfunction from physical-card intents; existing problem and action probes help distinguish acquisition from malfunction."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "direct_debit",
+      "question": "Is a direct debit central to the customer's message?",
+      "options": ["yes", "no"],
+      "rationale": "Separates unrecognized direct debits from generic refund requests when combined with the existing unauthorized-activity probe."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "cash_or_cheque_deposit",
+      "question": "Is the customer discussing depositing cash or a cheque into their account?",
+      "options": ["yes", "no"],
+      "rationale": "Separates deposit-balance problems from incorrect cash withdrawals and identifies cash-or-cheque funding questions."
+    },
+    {
+      "action": "add",
+      "format": "noul",
+      "name": "card_activation",
+      "question": "Is the customer discussing activating a payment card?",
+      "options": ["yes", "no"],
+      "rationale": "Directly separates activation from card linking and lost-or-stolen-card reports, addressing two prominent confusion pairs."
+    }
+  ],
+  "summary": "Add four narrow semantic anchors missing from the broad bank: virtual cards, direct debits, cash-or-cheque deposits, and card activation. Their combinations with existing problem, authorization, and action probes target several observed confusions."
+}
