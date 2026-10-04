@@ -1,0 +1,22 @@
+budget    250 seed 77: TF-IDF 0.5055 | readout 0.7340 (2s)
+budget    250 seed 78: TF-IDF 0.4607 | readout 0.7154 (2s)
+budget    500 seed 77: TF-IDF 0.6454 | readout 0.8039 (3s)
+budget    500 seed 78: TF-IDF 0.5970 | readout 0.8013 (3s)
+budget   1000 seed 77: TF-IDF 0.7504 | readout 0.8468 (5s)
+budget   1000 seed 78: TF-IDF 0.7197 | readout 0.8407 (5s)
+budget   2500 seed 77: TF-IDF 0.8447 | readout 0.8715 (13s)
+budget   2500 seed 78: TF-IDF 0.8470 | readout 0.8765 (12s)
+budget   5000 seed 77: TF-IDF 0.8825 | readout 0.8872 (25s)
+budget   5000 seed 78: TF-IDF 0.8846 | readout 0.8859 (21s)
+budget  10003 seed 10003: TF-IDF 0.9094 | readout 0.9008 (40s)
+
+SUMMARY (test macro-F1):
+  n=   250: tfidf 0.4831 | readout 0.7247 | Δ +24.16pp
+  n=   500: tfidf 0.6212 | readout 0.8026 | Δ +18.14pp
+  n=  1000: tfidf 0.7350 | readout 0.8438 | Δ +10.88pp
+  n=  2500: tfidf 0.8458 | readout 0.8740 | Δ +2.82pp
+  n=  5000: tfidf 0.8836 | readout 0.8865 | Δ +0.29pp
+  n= 10003: tfidf 0.9094 | readout 0.9008 | Δ -0.86pp
+written /home/xrim/banking77-jev-baseline/runs/banking77/discovery/label_curves.json
+plot written: /home/xrim/banking77-jev-baseline/runs/banking77/discovery/label_curves.png
+EXIT=0
