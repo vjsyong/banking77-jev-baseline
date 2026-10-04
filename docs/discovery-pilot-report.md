@@ -199,6 +199,17 @@ Isolate the explanation rather than running more proposal rounds. Factors:
   only take strict CV improvements — it cannot accept equal-quality, cheaper banks (to be
   addressed by the selection factor above).
 - B0 comparison uses a fixed (C=1) LR protocol; Stage-C references use CV-tuned C.
+- **Probe-cache wording collisions (found after the run, quantified).** 19 of the 99 probe
+  ids appear with slightly different wordings across runs while sharing one cache slot
+  (pre-fix cache semantics: rows were served by id, not by definition). A re-extraction
+  sensitivity study (29 variant pairs, 1k split) measures the substitution effect:
+  mean per-message |Δ| ≈ **0.071** (median 0.065; p95 of pair-means 0.140), worst
+  single-message Δ 0.50, mean r ≈ 0.81 (min 0.62). All 9 runs' final banks are exposed
+  to at least one such id, so per-run numbers carry a near-paraphrase substitution on a
+  subset of features; arm-level comparisons are the headline and are affected only
+  through that channel. The factorial experiment (next section) runs on the fixed,
+  definition-aware cache and re-verifies values per wording at evaluation time.
+  Artifact: `runs/banking77/discovery/pilot/collision_sensitivity.json`.
 
 ## 6. Artifacts
 
