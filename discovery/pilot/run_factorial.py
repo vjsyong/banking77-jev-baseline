@@ -70,6 +70,9 @@ class _NullMonitor:
     def fail(self, *a, **k):
         pass
 
+
+_ACTIVE_MONITOR = None
+
 RUNS = HERE / "runs" / "banking77"
 OUT = RUNS / "discovery" / "factorial"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -270,6 +273,8 @@ def main():
                         total=len(cells) * len(seeds), agent_name="banking77-factorial")
            if _TaskMonitor else _NullMonitor())
     mon.log(f"registered: cells={cells} seeds={seeds} rounds={args.rounds} regime=1k rows")
+    global _ACTIVE_MONITOR
+    _ACTIVE_MONITOR = mon
 
     idx = pd.read_csv(RUNS / "discovery" / "smallregime_index.csv")["csv_index"].to_numpy()
     pred = pd.read_csv(RUNS / "jev_predictions.csv").iloc[idx].reset_index(drop=True)
@@ -362,7 +367,7 @@ def main():
                         bank, X, cur, pruned, prune_evals = prune_pass(bank, X, y, folds, cur)
                         t_score += time.perf_counter() - t0
                         if pruned:
-                            _, cv_scores = bank_cv(X, y, folds)
+                            cv_scores, _ = bank_cv(X, y, folds)
                         nd_archive.append({"size": len(bank), "score": round(cur, 4),
                                            "label": f"r{rnd}postprune"})
 
@@ -423,4 +428,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BaseException as exc:  # noqa: BLE001
+        if _ACTIVE_MONITOR is not None:
+            _ACTIVE_MONITOR.fail(f"{type(exc).__name__}: {exc}")
+        raise
