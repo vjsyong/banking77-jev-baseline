@@ -142,6 +142,7 @@ def stage1(mon=None):
     fp = OUT / "frozen_banks.json"
     if fp.exists():
         frozen = json.loads(fp.read_text())
+        frozen["seeds"] = {int(k): v for k, v in frozen["seeds"].items()}
         if mon is not None:
             mon.log(f"reusing existing freeze sha {frozen['sha256'][:12]}")
     else:
@@ -208,6 +209,8 @@ def stage1(mon=None):
                     mon.update(done, message=f"s{seed} {arm} {ln}: test {f1t:.4f} (nq {len(defs)})")
         (OUT / "stage_eval_partial.json").write_text(json.dumps(results, indent=1))
     store.close()
+    if not results:
+        raise RuntimeError("stage1 produced no results; check frozen_banks.json seed key handling")
     print("stage1 done -> stage_eval_partial.json")
 
 
@@ -224,6 +227,7 @@ def baselines_and_stage2(mon=None, step_base=0):
 
     proto = load_protocol()
     frozen = _json.loads((OUT / "frozen_banks.json").read_text())
+    frozen["seeds"] = {int(k): v for k, v in frozen["seeds"].items()}
     partial = _json.loads((OUT / "stage_eval_partial.json").read_text())
     test = test_rows()
     y_test = np.array([r["label"] for r in test])

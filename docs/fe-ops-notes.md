@@ -132,5 +132,12 @@ registered pass; the pre-reboot partial file is informational only.
 - **Ops gotcha recorded.** `nvidia-smi -L` exits non-zero (255) while the
   faulty GPU 0 is present even though GPU 1 works. Readiness checks must test
   the output (a `^GPU ` line), not the exit code.
+- **D8. Resume key normalization (bugfix).** JSON round-trips object keys to
+  strings; stage1/stage2 now normalize `frozen["seeds"]` keys back to ints on
+  load, and stage1 raises if zero banks were evaluated. The first boot-resume
+  attempt (post-reboot 02:09 UTC) hit this: stage1 skipped all seeds silently,
+  stage2 crashed (`KeyError 11`) before any evaluation. No results were
+  produced or lost; fixed and relaunched. The pre-reboot seed-11 partial
+  (committed) is the first run's record.
 
-confirm.py sha256 at the executing (D7) revision: 66ad9723...
+confirm.py sha256: D7 = 66ad9723...; D8 (executing) = df75b4bd3ee6bd01...
