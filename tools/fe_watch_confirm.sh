@@ -16,5 +16,5 @@ if [ "$found" -eq 0 ]; then
   exit 1
 fi
 while pgrep -f "$PAT" >/dev/null; do sleep 120; done
-echo "confirm run finished $(date -u +%H:%M UTC)"
+echo "confirm run finished $(date -u +'%H:%M UTC')"
 tail -10 runs/fe_confirm.log

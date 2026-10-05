@@ -1,0 +1,11 @@
+{
+ "note": "supplementary, post-registration: readout refit on full 3000-label allowance",
+ "per_seed": {
+  "11": 0.9042,
+  "23": 0.9052,
+  "37": 0.9179,
+  "53": 0.9027,
+  "71": 0.8993
+ },
+ "mean": 0.9059
+}

@@ -1,6 +1,6 @@
 # TinyJev semantic probes: baselines, label budgets, and guided feature discovery
 
-Research code for measuring what a small question-answering model contributes as a **feature extractor** for text intent classification. Each message is presented to TinyJev-0.6B as one or more schema-bound categorical questions ("Choice" and "Noul" formats); the model's answer distributions become numeric features for conventional classifiers. The repository contains three completed studies on BANKING77 and one registered experiment currently running on CLINC150, each with a report in `docs/`.
+Research code for measuring what a small question-answering model contributes as a **feature extractor** for text intent classification. Each message is presented to TinyJev-0.6B as one or more schema-bound categorical questions ("Choice" and "Noul" formats); the model's answer distributions become numeric features for conventional classifiers. The repository contains four completed studies across BANKING77 and CLINC150, each with a report in `docs/`.
 
 **Headline:** a logistic-regression readout on frozen TinyJev-0.6B lifts BANKING77 macro-F1 from **0.7574** (direct argmax) to **0.9008** (+14.3pp) without changing any model weights.
 
@@ -11,7 +11,7 @@ Research code for measuring what a small question-answering model contributes as
 | 1 | Baseline: TF-IDF vs. direct Jev choice vs. semantic-probe features | BANKING77 | complete | `docs/consolidated-report.md` |
 | 2 | Label-budget readout and a frozen deployable pipeline | BANKING77 | complete | `docs/readout-v1-report.md` |
 | 3 | Guided probe discovery: pilot, representation x selection factorial, pruning study | BANKING77 | complete | `docs/discovery-pilot-report.md`, `docs/factorial-report.md`, `docs/pruning-report.md` |
-| 4 | Example-guided discovery with a frontier teacher (arms U/R/E/F) | CLINC150 | in progress | `docs/frontier_guided_discovery_experiment_brief.md`, `docs/fe-freeze.md`, `docs/fe-ops-notes.md` |
+| 4 | Feedback-conditioned discovery: five seeds x four arms, one-shot confirmation | CLINC150 | complete | `docs/fe-report.md` (design/method: `docs/frontier_guided_discovery_experiment_brief.md`, `docs/fe-freeze.md`, `docs/fe-ops-notes.md`) |
 
 ## Headline results
 
@@ -31,7 +31,7 @@ Research code for measuring what a small question-answering model contributes as
 - Factorial (2x2: representation x selection): representation is the lever. Mixed Choice-format banks reached **0.6956** (strict) and 0.5009 (pareto) vs 0.5295 / 0.4233 for Noul-only; paired representation effect +16.6pp (strict). The selection variant changed compression cost only.
 - Pruning study: **NO-GO** at the preregistered standard (at most 1pp macro-F1 loss at 25% or better measured-latency reduction). Conservative pruning passed the latency bar (25% to 43% saved) but failed quality (0/3 and 1/3 banks passing).
 
-**FE-discovery (CLINC150) is in progress:** example-guided vs. frontier-guided discovery under a fixed serving budget, four feedback arms, five seeds, one-shot confirmation on held-out splits. The instrument audit and protocol freeze are complete; the campaign is running. No results to report yet.
+**FE-discovery (CLINC150, complete):** five seeds x four feedback arms under a fixed serving budget, one-shot confirmation, official test. **All registered contrasts are null**: no feedback condition separates from any other (primary F−E +0.02pp, 95% CI −0.35 to +0.36; secondaries within ±0.25pp of zero). Absolute levels: arms 0.905-0.907, TF-IDF 0.871, task-choice readout ~0.90-0.91, and a frozen **bge-small embeddings baseline leads the table at 0.940**. Compact Jev question banks reached readout parity but did not beat it. Full report: `docs/fe-report.md`.
 
 ## Repository layout
 
@@ -83,7 +83,7 @@ python banking77_baseline.py evaluate-jev --out runs/banking77
 
 `tools/batched_extract.py` is the faster, cache-compatible extraction path used for the reported numbers (see `docs/batching-research.md` for the measurements and the equivalence checks). Discovery and readout scripts live under `discovery/` and `readout/`; run them from the repository root, and use `--help` where a script takes options. Experiments write their artifacts under `runs/`.
 
-**Portability note:** `banking77_baseline.py` and `readout/` are self-contained, but most scripts under `discovery/` and two under `tools/` resolve the repository root from the development path (`/home/xrim/banking77-jev-baseline`). When cloning elsewhere, adjust the `HERE` constant near the top of those scripts (or clone to that path). A portability cleanup is scheduled after the in-flight study completes.
+**Portability note:** `banking77_baseline.py` and `readout/` are self-contained, but most scripts under `discovery/` and two under `tools/` resolve the repository root from the development path (`/home/xrim/banking77-jev-baseline`). When cloning elsewhere, adjust the `HERE` constant near the top of those scripts (or clone to that path). A portability cleanup is pending.
 
 ## Data and provenance
 
