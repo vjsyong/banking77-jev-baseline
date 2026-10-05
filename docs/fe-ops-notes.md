@@ -106,4 +106,31 @@ left as recorded and this section is the deliberate deviation record.
   (per standing convention) and a `full` command that runs stage1 then stage2 in
   one process/card. Scheduling and observability only; no evaluation logic.
 
-Current file sha256: 76504b1849c0e0130c9439b9... (pre-run revision actually executed).
+File sha256 at the D6 revision: 76504b1849c0e0130c9439b9... (superseded by the D7 revision; see section 7 below).
+
+## 7. Host reboot pause/resume (confirmation run)
+
+The host was rebooted to attempt a GPU 0 hardware fix while stage1 was running:
+seed 11 complete (12/60 banks evaluated, written to `stage_eval_partial.json`)
+and seed 23 just started. The run was stopped cleanly before shutdown. On
+resume, stage1 re-evaluates from the top (results are deterministic and
+extraction is store-cached), so the first full post-reboot pass is the
+registered pass; the pre-reboot partial file is informational only.
+
+- **D7. Freeze reuse on resume.** `stage1` now reuses an existing
+  `frozen_banks.json` when present instead of re-freezing, so the original
+  freeze (sha `e433f406...`, written before any confirmation access) remains
+  the record. A re-freeze would have rewritten `frozen_at` and the sha after
+  partial confirmation access had begun. Fresh runs without a frozen file
+  behave exactly as before. `frozen_banks.json` and the partial are committed
+  to git for preservation.
+- **Auto-resume on boot.** Lingering systemd user unit `fe-confirm.service`
+  (script: `tools/fe_confirm_resume.sh`) starts at boot, waits for a working
+  GPU, guards against double-run/rerun, then relaunches `confirm.py full` with
+  `MemoryMax=24G`; output appends to `runs/fe_confirm.log`. The unit's full
+  path (GPU wait, guards, exit codes) was validated live before shutdown.
+- **Ops gotcha recorded.** `nvidia-smi -L` exits non-zero (255) while the
+  faulty GPU 0 is present even though GPU 1 works. Readiness checks must test
+  the output (a `^GPU ` line), not the exit code.
+
+confirm.py sha256 at the executing (D7) revision: 66ad9723...

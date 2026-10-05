@@ -139,9 +139,15 @@ def fit_pipeline(texts, y, sem, C):
 
 def stage1(mon=None):
     tokens = sys.argv[2] if len(sys.argv) > 2 else "all"
-    frozen = freeze_banks()
-    if mon is not None:
-        mon.log(f"banks frozen sha {frozen['sha256'][:12]}")
+    fp = OUT / "frozen_banks.json"
+    if fp.exists():
+        frozen = json.loads(fp.read_text())
+        if mon is not None:
+            mon.log(f"reusing existing freeze sha {frozen['sha256'][:12]}")
+    else:
+        frozen = freeze_banks()
+        if mon is not None:
+            mon.log(f"banks frozen sha {frozen['sha256'][:12]}")
     from extract_probes import ProbeStore, text_key
     from fe_extract import FEExtractor
     from sklearn.metrics import accuracy_score, f1_score
