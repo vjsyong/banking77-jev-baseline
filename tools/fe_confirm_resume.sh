@@ -26,7 +26,7 @@ fi
 sleep 20
 
 # 2) guards: already running / already complete
-if pgrep -f "discovery/fe_discovery/confirm.py full" >/dev/null 2>&1; then
+if pgrep -f "venv-serve/bin/python.*confirm\.py full" >/dev/null 2>&1; then
   echo "[resume] confirm.py full already running; nothing to do"
   exit 0
 fi
