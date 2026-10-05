@@ -85,3 +85,25 @@ completed a first round: protocol key names (`ceilings` nesting), option cap
 Each was fixed and relaunched; U seed 11 completed under the serial runner
 before the switchover. No confirmation-split data has been touched by any run
 or by this file's authors.
+
+## 6. Pre-confirmation revisions (confirm.py)
+
+`confirm.py` appears in `frozen_protocol.json` `code_hashes`; its recorded hash
+(2c426c42...) predates three revisions made before its first execution. No
+confirmation-split data was touched by any revision (stage1/stage2 had never
+run; the recorded revision was written but never executed). The run that
+produces the confirmation numbers starts after these edits; the frozen hash is
+left as recorded and this section is the deliberate deviation record.
+
+- **D6a. Zero-shot baseline label formatting (bugfix).** `intent_descriptions_frozen.json`
+  entries are `[name, definition]` pairs; the zero-shot argmax baseline now maps
+  to `intents[i][0]`. Pre-fix, predicted labels were pairs rather than names,
+  which would have produced a spurious near-zero baseline instead of a crash.
+- **D6b. Readout single fit.** Supervised readout fits once and predicts twice
+  (was refitting the identical model for the confirmation predictions).
+  Numerically identical; less compute.
+- **D6c. TaskMonitor wiring + `full` entry point.** In-script taildash monitor
+  (per standing convention) and a `full` command that runs stage1 then stage2 in
+  one process/card. Scheduling and observability only; no evaluation logic.
+
+Current file sha256: 76504b1849c0e0130c9439b9... (pre-run revision actually executed).

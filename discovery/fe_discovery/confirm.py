@@ -137,9 +137,11 @@ def fit_pipeline(texts, y, sem, C):
     return predict
 
 
-def stage1():
+def stage1(mon=None):
     tokens = sys.argv[2] if len(sys.argv) > 2 else "all"
     frozen = freeze_banks()
+    if mon is not None:
+        mon.log(f"banks frozen sha {frozen['sha256'][:12]}")
     from extract_probes import ProbeStore, text_key
     from fe_extract import FEExtractor
     from sklearn.metrics import accuracy_score, f1_score
@@ -151,6 +153,7 @@ def stage1():
     y_test = np.array([r["label"] for r in test])
 
     results = {}
+    done = 0
     for seed in SEEDS:
         if seed not in frozen["seeds"]:
             continue
@@ -194,12 +197,15 @@ def stage1():
                     "test_preds": pt.tolist(),
                 }
                 print(f"  {arm} {ln}: conf {f1c:.4f} | test {f1t:.4f} (nq {len(defs)})", flush=True)
+                done += 1
+                if mon is not None:
+                    mon.update(done, message=f"s{seed} {arm} {ln}: test {f1t:.4f} (nq {len(defs)})")
         (OUT / "stage_eval_partial.json").write_text(json.dumps(results, indent=1))
     store.close()
     print("stage1 done -> stage_eval_partial.json")
 
 
-def baselines_and_stage2():
+def baselines_and_stage2(mon=None, step_base=0):
     """Baselines under the same allowance + registered analysis (brief §12)."""
     import json as _json
     from extract_probes import ProbeStore, text_key
@@ -230,6 +236,7 @@ def baselines_and_stage2():
     defn["slot"] = f"fe::task::{canonical_hash({k: v for k, v in defn.items() if k != 'slot'})[:12]}"
 
     baselines = {}
+    done = step_base
     for seed in SEEDS:
         disc, conf, _ = load_split(seed)
         td = [r["text"] for r in disc]
@@ -249,12 +256,12 @@ def baselines_and_stage2():
             return np.log(np.array(rows))
 
         P_te, P_c, P_d = task_probs(ttexts), task_probs(tc), task_probs(td)
-        # direct choice zero-shot: argmax
-        pred_zs = [intents[i] for i in P_te.argmax(1)]
+        # direct choice zero-shot: argmax (intents entries are [name, definition] pairs)
+        pred_zs = [intents[i][0] for i in P_te.argmax(1)]
         # supervised readout: LR on log-probs
         ro = make_lr(C).fit(P_d, yd)
         ro_te = ro.predict(P_te)
-        ro_c = make_lr(C).fit(P_d, yd).predict(P_c)
+        ro_c = ro.predict(P_c)
         # tfidf only
         vec = FeatureUnion([("word", TfidfVectorizer(**__import__("learner").TFIDF_WORD)),
                             ("char", TfidfVectorizer(**__import__("learner").TFIDF_CHAR))]).fit(td + tc)
@@ -280,7 +287,12 @@ def baselines_and_stage2():
         print(f"seed {seed} baselines: tfidf {baselines[seed]['tfidf_lr']['test_macro_f1']} | "
               f"emb {baselines[seed]['embeddings_lr']['test_macro_f1']} | readout {baselines[seed]['supervised_readout']['test_macro_f1']} | "
               f"zs {baselines[seed]['zeroshot_direct_choice']['test_macro_f1']}", flush=True)
+        done += 1
+        if mon is not None:
+            mon.update(done, message=f"s{seed} baselines: tfidf {baselines[seed]['tfidf_lr']['test_macro_f1']}")
     store.close()
+    if mon is not None:
+        mon.log("baselines done; running registered paired analysis (1000x bootstrap)")
 
     # ---- registered analysis ----
     rng = np.random.default_rng(7)
@@ -359,9 +371,33 @@ if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "stage1"
     if cmd == "freeze":
         freeze_banks()
-    elif cmd == "stage1":
-        stage1()
-    elif cmd == "stage2":
-        baselines_and_stage2()
-    else:
-        print("unknown")
+        raise SystemExit(0)
+    try:
+        sys.path.insert(0, "/home/xrim/taildash/client")
+        from taildash import TaskMonitor
+        mon = TaskMonitor(server="http://localhost:8080",
+                          title=f"FE discovery: confirm ({cmd}) [clinc150]",
+                          total={"stage1": 60, "stage2": 5, "full": 65}.get(cmd, 1),
+                          agent_name="fe-discovery")
+    except Exception:  # noqa: BLE001
+        class _N:
+            def log(self, *a, **k): pass
+            def update(self, *a, **k): pass
+            def complete(self, *a, **k): pass
+            def fail(self, *a, **k): pass
+        mon = _N()
+    try:
+        if cmd == "stage1":
+            stage1(mon)
+        elif cmd == "stage2":
+            baselines_and_stage2(mon)
+        elif cmd == "full":
+            stage1(mon)
+            baselines_and_stage2(mon, step_base=60)
+        else:
+            print("unknown")
+            raise SystemExit(1)
+        mon.complete("done")
+    except BaseException as exc:  # noqa: BLE001
+        mon.fail(f"{type(exc).__name__}: {exc}")
+        raise
